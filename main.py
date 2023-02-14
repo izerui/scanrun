@@ -7,7 +7,7 @@
 
 import sys
 from PySide6.QtWidgets import QApplication, QWidget
-from ui_Login import Ui_Form
+from ui.ui_Login import Ui_Form
 
 class MainWindow(QWidget):
     def __init__(self):

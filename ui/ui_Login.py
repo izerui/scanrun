@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'LoginwzziDL.ui'
+## Form generated from reading UI file 'Login.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -16,12 +16,13 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLineEdit,
-    QSizePolicy, QWidget)
+    QPushButton, QSizePolicy, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
+        Form.setEnabled(True)
         Form.resize(640, 480)
         self.gridLayoutWidget = QWidget(Form)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
@@ -34,21 +35,31 @@ class Ui_Form(object):
 
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
-        self.lineEdit = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.usernameInput = QLineEdit(self.gridLayoutWidget)
+        self.usernameInput.setObjectName(u"usernameInput")
 
-        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.usernameInput, 0, 1, 1, 1)
 
         self.label_2 = QLabel(self.gridLayoutWidget)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
 
-        self.lineEdit_2 = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.passwordInput = QLineEdit(self.gridLayoutWidget)
+        self.passwordInput.setObjectName(u"passwordInput")
 
-        self.gridLayout.addWidget(self.lineEdit_2, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.passwordInput, 1, 1, 1, 1)
 
+        self.subButton = QPushButton(Form)
+        self.subButton.setObjectName(u"subButton")
+        self.subButton.setEnabled(False)
+        self.subButton.setGeometry(QRect(410, 370, 100, 32))
+#if QT_CONFIG(shortcut)
+        self.label.setBuddy(self.usernameInput)
+        self.label_2.setBuddy(self.passwordInput)
+#endif // QT_CONFIG(shortcut)
+        QWidget.setTabOrder(self.usernameInput, self.passwordInput)
+        QWidget.setTabOrder(self.passwordInput, self.subButton)
 
         self.retranslateUi(Form)
 
@@ -59,5 +70,6 @@ class Ui_Form(object):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label.setText(QCoreApplication.translate("Form", u"\u7528\u6237\u540d", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u5bc6\u7801", None))
+        self.subButton.setText(QCoreApplication.translate("Form", u"\u63d0\u4ea4", None))
     # retranslateUi
 

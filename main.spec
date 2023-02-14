@@ -37,7 +37,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['Icon.icns'],
+    icon=['resources/Icon.icns'],
 )
 coll = COLLECT(
     exe,
@@ -52,6 +52,6 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='main.app',
-    icon='Icon.icns',
+    icon='resources/Icon.icns',
     bundle_identifier=None,
 )

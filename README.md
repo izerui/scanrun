@@ -12,7 +12,24 @@
 # 配置第三方工具
 * pyside6-designer
 
-# 打包
-* 生成exe: `pyinstaller -D -w -i Icon.ico main.py`
-* 生成app: `pyinstaller -D -w -i Icon.icns main.py`
-* 图标: https://www.jianshu.com/p/e74047f7cc91
+# 打包 https://www.jianshu.com/p/e74047f7cc91
+* Windows:
+  * 生成exe: `pyinstaller -D -w -i resources/Icon.ico main.py`
+* Mac:
+  > 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
+  ```
+  mkdir tmp.iconset
+  cd tmp.iconset
+  sips -z 16 16     pic.png --out tmp.iconset/icon_16x16.png
+  sips -z 32 32     pic.png --out tmp.iconset/icon_16x16@2x.png
+  sips -z 32 32     pic.png --out tmp.iconset/icon_32x32.png
+  sips -z 64 64     pic.png --out tmp.iconset/icon_32x32@2x.png
+  sips -z 128 128   pic.png --out tmp.iconset/icon_128x128.png
+  sips -z 256 256   pic.png --out tmp.iconset/icon_128x128@2x.png
+  sips -z 256 256   pic.png --out tmp.iconset/icon_256x256.png
+  sips -z 512 512   pic.png --out tmp.iconset/icon_256x256@2x.png
+  sips -z 512 512   pic.png --out tmp.iconset/icon_512x512.png
+  sips -z 1024 1024   pic.png --out tmp.iconset/icon_512x512@2x.png
+  ```
+  * 生成图表: `iconutil -c icns resources/tmp.iconset -o resources/Icon.icns`
+  * 生成app: `pyinstaller -D -w -i resources/Icon.icns main.py`

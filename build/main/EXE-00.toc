@@ -2,7 +2,7 @@
  False,
  False,
  True,
- ['/Users/liuyuhua/PycharmProjects/scanrun/Icon.icns'],
+ ['/Users/liuyuhua/PycharmProjects/scanrun/resources/Icon.icns'],
  None,
  False,
  False,
@@ -48,7 +48,7 @@
  [],
  False,
  False,
- 1676338729,
+ 1676370042,
  [('runw',
    '/Users/liuyuhua/PycharmProjects/scanrun/venv/lib/python3.8/site-packages/PyInstaller/bootloader/Darwin-64bit/runw',
    'EXECUTABLE')])
