@@ -1,5 +1,6 @@
 import requests
 
+
 class FkRequest(object):
     """
     请求代理工具类
@@ -10,6 +11,12 @@ class FkRequest(object):
 
     @classmethod
     def request(cls, method, url, **kwargs):
+        if 'postCode' in kwargs:
+            cls.headers['postCode'] = kwargs['postCode']
+            del kwargs['postCode']
+        else:
+            if 'postCode' in cls.headers:
+                del cls.headers['postCode']
         kwargs.setdefault("headers", cls.headers)
         response = requests.request(method, url, **kwargs)
         response.encoding = response.apparent_encoding

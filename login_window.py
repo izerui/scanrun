@@ -27,13 +27,13 @@ class LoginWindow(QWidget):
             'password': self.ui.passwordInput.text(),
             'type': 1
         }
-        try:
-            res = FkRequest.post('https://yj2025.com/ierp/login', postJson)
-            if res.status_code == 200 and json.loads(res.text)['success']:
-                FkRequest.setCookies(res.headers.get('set-cookie'))
-                self.loginSuccessSignal.emit('loginSuccess')
-                self.close()
-            else:
-                QMessageBox.information(self, '错误', '登录失败')
-        except:
-            QMessageBox.information(self, '异常', '登录碰到异常')
+        # try:
+        res = FkRequest.post('https://yj2025.com/ierp/login', postJson)
+        if res.status_code == 200 and json.loads(res.text)['success']:
+            FkRequest.setCookies(res.headers.get('set-cookie'))
+            self.loginSuccessSignal.emit('loginSuccess')
+            self.close()
+        else:
+            QMessageBox.information(self, '错误', '登录失败')
+        # except:
+        #     QMessageBox.information(self, '异常', '登录碰到异常')

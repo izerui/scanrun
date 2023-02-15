@@ -14,11 +14,13 @@ from login_window import LoginWindow
 
 class MainWindow(QWidget):
 
+    # 显示登录页
     def loadLoginWindow(self):
         self.login = LoginWindow()
         self.login.loginSuccessSignal.connect(self.loadHomeWindow)
         self.login.show()
 
+    # 显示登录后的主页
     def loadHomeWindow(self):
         self.home = HomeWindow()
         self.home.loginExistSignal.connect(self.loadLoginWindow)
