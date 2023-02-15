@@ -4,13 +4,20 @@
 * 生成`requirements.txt`: `pip freeze > requirements.txt`
 * 通过`requirements.txt`安装依赖: `pip install -r requirements.txt`
 
-# 安装依赖
+# 已安装依赖列表
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* requests: `pip install requests`
 
 
-# 配置第三方工具
-* pyside6-designer
+# 配置pycharm第三方工具,如果是vscode只需要安装插件: `Qt for Python`
+* pyside6-designer:
+  > * program: `$ProjectFileDir$/venv/bin/pyside6-designer`
+  > * working directory: `$FileDir$`
+* pyside6-uic:
+  > * program: `$ProjectFileDir$/venv/bin/pyside6-uic`
+  > * arguments: `$FileName$ -o ui_$FileNameWithoutExtension$.py`
+  > * working directory: `$FileDir$`
 
 # 打包 https://www.jianshu.com/p/e74047f7cc91
 * Windows:

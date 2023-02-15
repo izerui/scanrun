@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'Login.ui'
+## Form generated from reading UI file 'login.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -18,13 +18,13 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLineEdit,
     QPushButton, QSizePolicy, QWidget)
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.setEnabled(True)
-        Form.resize(640, 480)
-        self.gridLayoutWidget = QWidget(Form)
+class Ui_Login_Form(object):
+    def setupUi(self, Login_Form):
+        if not Login_Form.objectName():
+            Login_Form.setObjectName(u"Login_Form")
+        Login_Form.setEnabled(True)
+        Login_Form.resize(640, 480)
+        self.gridLayoutWidget = QWidget(Login_Form)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
         self.gridLayoutWidget.setGeometry(QRect(120, 100, 421, 251))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
@@ -50,7 +50,7 @@ class Ui_Form(object):
 
         self.gridLayout.addWidget(self.passwordInput, 1, 1, 1, 1)
 
-        self.subButton = QPushButton(Form)
+        self.subButton = QPushButton(Login_Form)
         self.subButton.setObjectName(u"subButton")
         self.subButton.setEnabled(False)
         self.subButton.setGeometry(QRect(410, 370, 100, 32))
@@ -61,15 +61,20 @@ class Ui_Form(object):
         QWidget.setTabOrder(self.usernameInput, self.passwordInput)
         QWidget.setTabOrder(self.passwordInput, self.subButton)
 
-        self.retranslateUi(Form)
+        self.retranslateUi(Login_Form)
+        self.usernameInput.textEdited.connect(Login_Form.changeButtonState)
+        self.passwordInput.textEdited.connect(Login_Form.changeButtonState)
+        self.subButton.clicked.connect(Login_Form.loginForm)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(Login_Form)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"\u7528\u6237\u540d", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"\u5bc6\u7801", None))
-        self.subButton.setText(QCoreApplication.translate("Form", u"\u63d0\u4ea4", None))
+    def retranslateUi(self, Login_Form):
+        Login_Form.setWindowTitle(QCoreApplication.translate("Login_Form", u"Form", None))
+        self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d", None))
+        self.usernameInput.setText("")
+        self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6\u7801", None))
+        self.passwordInput.setText("")
+        self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u63d0\u4ea4", None))
     # retranslateUi
 
