@@ -10,8 +10,6 @@ from PySide6.QtWidgets import QApplication, QWidget
 
 from home_window import HomeWindow
 from login_window import LoginWindow
-import asyncio
-import nest_asyncio
 
 class MainWindow(QWidget):
 
@@ -31,10 +29,6 @@ class MainWindow(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    loop = asyncio.get_event_loop()
-    asyncio.set_event_loop(loop)
-    nest_asyncio.apply()
-
     window = MainWindow()
     window.loadLoginWindow()
     sys.exit(app.exec())

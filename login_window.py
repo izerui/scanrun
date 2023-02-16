@@ -1,11 +1,10 @@
 # -*- coding: UTF-8 -*-
-import asyncio
 import json
 
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QMessageBox, QWidget
 
-from net_util import NetUtil
+from request import PostThread, Request
 from ui.ui_login import Ui_Login_Form
 
 
@@ -18,7 +17,6 @@ class LoginWindow(QWidget):
         self.ui.setupUi(self)
         self.changeButtonState()
 
-
     # 改变提交按钮状态
     def changeButtonState(self):
         if len(self.ui.usernameInput.text()) > 0 and len(self.ui.passwordInput.text()) > 0:
@@ -27,18 +25,19 @@ class LoginWindow(QWidget):
             self.ui.subButton.setDisabled(True)
 
     def loginForm(self):
-        task = asyncio.ensure_future(self.loginFormAsync())
-        asyncio.get_event_loop().run_until_complete(task)
-    async def loginFormAsync(self):
-        postJson = {
+        data = {
             'username': self.ui.usernameInput.text(),
             'password': self.ui.passwordInput.text(),
             'type': 1
         }
-        result = await NetUtil.postAsync('https://yj2025.com/ierp/login', data=postJson)
+        self.loginThread = PostThread('https://yj2025.com/ierp/login', data)
+        self.loginThread.resultSginal.connect(self.loginSuccess)
+        self.loginThread.start()
+
+    def loginSuccess(self, result):
         if result.status_code == 200 and json.loads(result.text)['success']:
-            NetUtil.setCookies(result.headers.get('set-cookie'))
-            self.loginSuccessSignal.emit('loginSuccess')
+            Request.setCookies(result.headers.get('set-cookie'))
+            self.loginSuccessSignal.emit('success')
             self.close()
         else:
             QMessageBox.critical(None, '错误', '登录验证失败')

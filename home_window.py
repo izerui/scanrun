@@ -1,11 +1,11 @@
-import asyncio
+# -*- coding: UTF-8 -*-
 import json
 
 from PySide6 import QtWidgets
 from PySide6.QtCore import Signal, QTime, QEventLoop, QTimer
 from PySide6.QtWidgets import QWidget, QMainWindow, QMessageBox, QTableWidgetItem
 
-from net_util import NetUtil
+from request import PostThread
 from ui.ui_home import Ui_Home
 
 
@@ -23,14 +23,13 @@ class HomeWindow(QMainWindow):
         QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
 
     def loadOrders(self):
-        task = asyncio.ensure_future(self.loadOrdersAsync())
-        asyncio.get_event_loop().run_until_complete(task)
-
-    async def loadOrdersAsync(self):
         reqParam = {"docStatus": "DRAFT", "pageIndex": 0, "pageSize": 20, "total": 0}
-        result = await NetUtil.postAsync('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
+        self.loadDataThread = PostThread('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
                                          postCode='M1018')
-        print(result)
+        self.loadDataThread.resultSginal.connect(self.dataResponse)
+        self.loadDataThread.start()
+
+    def dataResponse(self, result):
         data = json.loads(result.text)['data']
         self.ui.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ui.tableWidget.setRowCount(len(data['content']))
