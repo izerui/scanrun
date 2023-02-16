@@ -8,8 +8,8 @@ import sys
 
 from PySide6.QtWidgets import QApplication, QWidget
 
-from home_window import HomeWindow
-from login_window import LoginWindow
+from home import HomeWindow
+from login import LoginWindow
 
 class MainWindow(QWidget):
 

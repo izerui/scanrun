@@ -5,7 +5,7 @@ from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QMessageBox, QWidget
 
 from request import PostThread, Request
-from thread_executor import ThreadExecutor
+from executor import ThreadExecutor
 from ui.ui_login import Ui_Login_Form
 
 

@@ -6,7 +6,7 @@ from PySide6.QtCore import Signal, QTime, QEventLoop, QTimer
 from PySide6.QtWidgets import QWidget, QMainWindow, QMessageBox, QTableWidgetItem
 
 from request import PostThread
-from thread_executor import ThreadExecutor
+from executor import ThreadExecutor
 from ui.ui_home import Ui_Home
 
 
