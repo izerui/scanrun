@@ -18,7 +18,7 @@
     <item row="1" column="0">
      <widget class="QGroupBox" name="groupBox">
       <property name="title">
-       <string>任务列表</string>
+       <string/>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
@@ -64,11 +64,42 @@
           </size>
          </property>
          <property name="title">
-          <string>操作</string>
+          <string/>
          </property>
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>840</x>
+         <y>10</y>
+         <width>91</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>退出登录</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normalon>:/logo/pic/logout.png</normalon>
+        </iconset>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -84,7 +115,7 @@
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>帮助</string>
+     <string>系统</string>
     </property>
     <addaction name="action"/>
    </widget>
@@ -100,7 +131,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images_rc/images.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>menubar</sender>
@@ -118,8 +151,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Home</receiver>
+   <slot>logout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>896</x>
+     <y>647</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>793</x>
+     <y>819</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>toolbarClicked()</slot>
+  <slot>logout()</slot>
  </slots>
 </ui>

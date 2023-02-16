@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import json
 
 from PySide6.QtCore import Signal
@@ -13,6 +14,7 @@ class LoginWindow(QWidget):
         super().__init__()
         self.ui = Ui_Login_Form()
         self.ui.setupUi(self)
+        self.changeButtonState()
 
     # 改变提交按钮状态
     def changeButtonState(self):

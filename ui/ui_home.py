@@ -17,8 +17,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QGroupBox, QHeaderView,
-    QMainWindow, QMenu, QMenuBar, QSizePolicy,
-    QStatusBar, QTableWidget, QTableWidgetItem, QWidget)
+    QMainWindow, QMenu, QMenuBar, QPushButton,
+    QSizePolicy, QStatusBar, QTableWidget, QTableWidgetItem,
+    QWidget)
+import images_rc
 
 class Ui_Home(object):
     def setupUi(self, Home):
@@ -65,6 +67,18 @@ class Ui_Home(object):
 
         self.gridLayout.addWidget(self.groupBox, 1, 0, 1, 1)
 
+        self.groupBox_3 = QGroupBox(self.centralwidget)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setMinimumSize(QSize(0, 60))
+        self.pushButton = QPushButton(self.groupBox_3)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(840, 10, 91, 41))
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/logout.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton.setIcon(icon1)
+
+        self.gridLayout.addWidget(self.groupBox_3, 2, 0, 1, 1)
+
         Home.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Home)
         self.menubar.setObjectName(u"menubar")
@@ -81,6 +95,7 @@ class Ui_Home(object):
 
         self.retranslateUi(Home)
         self.menubar.triggered.connect(Home.toolbarClicked)
+        self.pushButton.clicked.connect(Home.logout)
 
         QMetaObject.connectSlotsByName(Home)
     # setupUi
@@ -88,7 +103,7 @@ class Ui_Home(object):
     def retranslateUi(self, Home):
         Home.setWindowTitle(QCoreApplication.translate("Home", u"MainWindow", None))
         self.action.setText(QCoreApplication.translate("Home", u"\u5173\u4e8e", None))
-        self.groupBox.setTitle(QCoreApplication.translate("Home", u"\u4efb\u52a1\u5217\u8868", None))
+        self.groupBox.setTitle("")
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Home", u"\u9500\u552e\u5355\u53f7", u"\u65b9\u6cd5"));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
@@ -101,7 +116,9 @@ class Ui_Home(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("Home", u"\u4e1a\u52a1\u5458", None));
         ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("Home", u"\u521b\u5efa\u65f6\u95f4", None));
-        self.groupBox_2.setTitle(QCoreApplication.translate("Home", u"\u64cd\u4f5c", None))
-        self.menu.setTitle(QCoreApplication.translate("Home", u"\u5e2e\u52a9", None))
+        self.groupBox_2.setTitle("")
+        self.groupBox_3.setTitle("")
+        self.pushButton.setText(QCoreApplication.translate("Home", u"\u9000\u51fa\u767b\u5f55", None))
+        self.menu.setTitle(QCoreApplication.translate("Home", u"\u7cfb\u7edf", None))
     # retranslateUi
 

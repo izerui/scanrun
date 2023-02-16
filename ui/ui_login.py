@@ -48,6 +48,9 @@ class Ui_Login_Form(object):
         self.subButton.setObjectName(u"subButton")
         self.subButton.setEnabled(False)
         self.subButton.setGeometry(QRect(130, 210, 100, 32))
+        icon = QIcon()
+        icon.addFile(u":/logo/pic/login.png", QSize(), QIcon.Normal, QIcon.On)
+        self.subButton.setIcon(icon)
         self.label_2 = QLabel(self.frame)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(110, 160, 71, 21))
@@ -61,6 +64,9 @@ class Ui_Login_Form(object):
         self.resetButton = QPushButton(self.frame)
         self.resetButton.setObjectName(u"resetButton")
         self.resetButton.setGeometry(QRect(250, 210, 100, 32))
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/bg-reset.png", QSize(), QIcon.Normal, QIcon.On)
+        self.resetButton.setIcon(icon1)
         self.title = QLabel(self.frame)
         self.title.setObjectName(u"title")
         self.title.setGeometry(QRect(189, 40, 161, 41))
@@ -96,11 +102,11 @@ class Ui_Login_Form(object):
 
     def retranslateUi(self, Login_Form):
         Login_Form.setWindowTitle(QCoreApplication.translate("Login_Form", u"Form", None))
-        self.usernameInput.setText("")
+        self.usernameInput.setText(QCoreApplication.translate("Login_Form", u"18073112120", None))
         self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d\uff1a", None))
         self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u767b\u5f55", None))
         self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6    \u7801\uff1a", None))
-        self.passwordInput.setText("")
+        self.passwordInput.setText(QCoreApplication.translate("Login_Form", u"18073112120", None))
         self.passwordInput.setPlaceholderText("")
         self.resetButton.setText(QCoreApplication.translate("Login_Form", u"\u91cd\u7f6e", None))
         self.title.setText(QCoreApplication.translate("Login_Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

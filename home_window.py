@@ -36,3 +36,7 @@ class HomeWindow(QMainWindow):
             self.ui.tableWidget.setItem(i, 5, QTableWidgetItem(d['createTime']))
             i += 1
         # self.ui.tableWidget.show()
+
+    def logout(self):
+        self.loginExistSignal.emit('logout')
+        self.close()

@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="logo">
+    <file>pic/logout.png</file>
+    <file>pic/bg-reset.png</file>
+    <file>pic/login.png</file>
     <file>pic/logo.png</file>
   </qresource>
 </RCC>
