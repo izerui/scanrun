@@ -14,6 +14,7 @@ from login_window import LoginWindow
 
 class MainWindow(QWidget):
 
+
     # 显示登录页
     def loadLoginWindow(self):
         self.login = LoginWindow()
