@@ -5,10 +5,11 @@ from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QMessageBox, QWidget
 
 from request import PostThread, Request
+from thread_executor import ThreadExecutor
 from ui.ui_login import Ui_Login_Form
 
 
-class LoginWindow(QWidget):
+class LoginWindow(QWidget, ThreadExecutor):
     loginSuccessSignal = Signal(str)
 
     def __init__(self):
@@ -33,12 +34,10 @@ class LoginWindow(QWidget):
             'password': self.ui.passwordInput.text(),
             'type': 1
         }
-        if hasattr(self, 'loginThread') and self.loginThread.isRunning():
-            pass
-        else:
-            self.loginThread = PostThread('https://yj2025.com/ierp/login', data)
-            self.loginThread.resultSignal.connect(self.loginSuccess)
-            self.loginThread.start()
+        self.execute_new_thread('loginThread',
+                                PostThread('https://yj2025.com/ierp/login', data),
+                                'resultSignal',
+                                self.loginSuccess)
 
     def loginSuccess(self, result):
         if result.status_code == 200 and json.loads(result.text)['success']:
@@ -46,6 +45,7 @@ class LoginWindow(QWidget):
             self.loginSuccessSignal.emit('success')
             self.close()
         else:
+            self.ui.process_label.setVisible(False)
             QMessageBox.critical(None, '错误', '登录验证失败')
 
     def resetForm(self):
