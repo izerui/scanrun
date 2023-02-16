@@ -8,7 +8,8 @@
 # 已安装依赖列表
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* requests: `pip install requests`
+* httpx: `pip install httpx`
+* nest_asyncio: `pip install nest_asyncio`
 
 
 # 配置pycharm第三方工具,如果是vscode只需要安装插件: `Qt for Python`

@@ -1,3 +1,4 @@
+import asyncio
 import json
 
 from PySide6 import QtWidgets
@@ -22,9 +23,14 @@ class HomeWindow(QMainWindow):
         QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
 
     def loadOrders(self):
+        task = asyncio.ensure_future(self.loadOrdersAsync())
+        asyncio.get_event_loop().run_until_complete(task)
+
+    async def loadOrdersAsync(self):
         reqParam = {"docStatus": "DRAFT", "pageIndex": 0, "pageSize": 20, "total": 0}
-        result = NetUtil.post('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
-                           postCode='M1018')
+        result = await NetUtil.postAsync('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
+                                         postCode='M1018')
+        print(result)
         data = json.loads(result.text)['data']
         self.ui.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ui.tableWidget.setRowCount(len(data['content']))

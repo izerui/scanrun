@@ -127,6 +127,7 @@ class Ui_Home(object):
         self.retranslateUi(Home)
         self.menubar.triggered.connect(Home.toolbarClicked)
         self.pushButton.clicked.connect(Home.logout)
+        self.pushButton_2.clicked.connect(Home.loadOrders)
 
         QMetaObject.connectSlotsByName(Home)
     # setupUi

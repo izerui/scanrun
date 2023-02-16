@@ -27,12 +27,15 @@ class LoginWindow(QWidget):
             self.ui.subButton.setDisabled(True)
 
     def loginForm(self):
+        task = asyncio.ensure_future(self.loginFormAsync())
+        asyncio.get_event_loop().run_until_complete(task)
+    async def loginFormAsync(self):
         postJson = {
             'username': self.ui.usernameInput.text(),
             'password': self.ui.passwordInput.text(),
             'type': 1
         }
-        result = NetUtil.post('https://yj2025.com/ierp/login', data=postJson)
+        result = await NetUtil.postAsync('https://yj2025.com/ierp/login', data=postJson)
         if result.status_code == 200 and json.loads(result.text)['success']:
             NetUtil.setCookies(result.headers.get('set-cookie'))
             self.loginSuccessSignal.emit('loginSuccess')

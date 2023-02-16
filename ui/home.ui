@@ -236,9 +236,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Home</receiver>
+   <slot>loadOrders()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>628</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>866</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>toolbarClicked()</slot>
   <slot>logout()</slot>
+  <slot>loadOrders()</slot>
  </slots>
 </ui>
