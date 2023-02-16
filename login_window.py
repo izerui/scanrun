@@ -34,6 +34,12 @@ class LoginWindow(QWidget):
             self.loginSuccessSignal.emit('loginSuccess')
             self.close()
         else:
-            QMessageBox.information(self, '错误', '登录失败')
+            QMessageBox.critical(None, '错误', '登录验证失败')
         # except:
         #     QMessageBox.information(self, '异常', '登录碰到异常')
+
+    def resetForm(self):
+        self.ui.usernameInput.setText('')
+        self.ui.passwordInput.setText('')
+        self.ui.subButton.setEnabled(False)
+        self.ui.usernameInput.setFocus()

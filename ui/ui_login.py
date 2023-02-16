@@ -15,66 +15,102 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
+    QLineEdit, QPushButton, QSizePolicy, QWidget)
+import images_rc
 
 class Ui_Login_Form(object):
     def setupUi(self, Login_Form):
         if not Login_Form.objectName():
             Login_Form.setObjectName(u"Login_Form")
         Login_Form.setEnabled(True)
-        Login_Form.resize(640, 480)
-        self.gridLayoutWidget = QWidget(Login_Form)
-        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(120, 100, 421, 251))
-        self.gridLayout = QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.label = QLabel(self.gridLayoutWidget)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-
-        self.usernameInput = QLineEdit(self.gridLayoutWidget)
+        Login_Form.resize(509, 342)
+        Login_Form.setMinimumSize(QSize(509, 342))
+        Login_Form.setMaximumSize(QSize(509, 342))
+        self.gridLayout_2 = QGridLayout(Login_Form)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.frame = QFrame(Login_Form)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.usernameInput = QLineEdit(self.frame)
         self.usernameInput.setObjectName(u"usernameInput")
-
-        self.gridLayout.addWidget(self.usernameInput, 0, 1, 1, 1)
-
-        self.label_2 = QLabel(self.gridLayoutWidget)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
-
-        self.passwordInput = QLineEdit(self.gridLayoutWidget)
-        self.passwordInput.setObjectName(u"passwordInput")
-
-        self.gridLayout.addWidget(self.passwordInput, 1, 1, 1, 1)
-
-        self.subButton = QPushButton(Login_Form)
+        self.usernameInput.setGeometry(QRect(200, 102, 150, 21))
+        self.usernameInput.setMaxLength(24)
+        self.label = QLabel(self.frame)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(126, 102, 66, 21))
+        font = QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        self.label.setFont(font)
+        self.subButton = QPushButton(self.frame)
         self.subButton.setObjectName(u"subButton")
         self.subButton.setEnabled(False)
-        self.subButton.setGeometry(QRect(410, 370, 100, 32))
+        self.subButton.setGeometry(QRect(130, 210, 100, 32))
+        self.label_2 = QLabel(self.frame)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(130, 160, 60, 21))
+        self.label_2.setFont(font)
+        self.passwordInput = QLineEdit(self.frame)
+        self.passwordInput.setObjectName(u"passwordInput")
+        self.passwordInput.setGeometry(QRect(200, 160, 150, 21))
+        self.passwordInput.setMaxLength(24)
+        self.passwordInput.setFrame(True)
+        self.passwordInput.setEchoMode(QLineEdit.Password)
+        self.resetButton = QPushButton(self.frame)
+        self.resetButton.setObjectName(u"resetButton")
+        self.resetButton.setGeometry(QRect(250, 210, 100, 32))
+        self.title = QLabel(self.frame)
+        self.title.setObjectName(u"title")
+        self.title.setGeometry(QRect(189, 40, 161, 41))
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.title.sizePolicy().hasHeightForWidth())
+        self.title.setSizePolicy(sizePolicy)
+        font1 = QFont()
+        font1.setFamilies([u"Academy Engraved LET"])
+        font1.setPointSize(24)
+        font1.setBold(False)
+        self.title.setFont(font1)
+        self.logo = QLabel(self.frame)
+        self.logo.setObjectName(u"logo")
+        self.logo.setGeometry(QRect(130, 40, 41, 41))
+
+        self.gridLayout_2.addWidget(self.frame, 1, 0, 1, 1)
+
 #if QT_CONFIG(shortcut)
         self.label.setBuddy(self.usernameInput)
         self.label_2.setBuddy(self.passwordInput)
 #endif // QT_CONFIG(shortcut)
-        QWidget.setTabOrder(self.usernameInput, self.passwordInput)
-        QWidget.setTabOrder(self.passwordInput, self.subButton)
 
         self.retranslateUi(Login_Form)
         self.usernameInput.textEdited.connect(Login_Form.changeButtonState)
         self.passwordInput.textEdited.connect(Login_Form.changeButtonState)
         self.subButton.clicked.connect(Login_Form.loginForm)
+        self.resetButton.clicked.connect(Login_Form.resetForm)
 
         QMetaObject.connectSlotsByName(Login_Form)
     # setupUi
 
     def retranslateUi(self, Login_Form):
         Login_Form.setWindowTitle(QCoreApplication.translate("Login_Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d", None))
         self.usernameInput.setText("")
-        self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6\u7801", None))
+        self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d\uff1a", None))
+        self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u767b\u5f55", None))
+        self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6   \u7801\uff1a", None))
         self.passwordInput.setText("")
-        self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u63d0\u4ea4", None))
+        self.passwordInput.setPlaceholderText("")
+        self.resetButton.setText(QCoreApplication.translate("Login_Form", u"\u91cd\u7f6e", None))
+        self.title.setText(QCoreApplication.translate("Login_Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Academy Engraved LET'; font-size:24pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u626b\u7801\u88c5\u7bb1\u7a0b\u5e8f</p></body></html>", None))
+        self.logo.setText(QCoreApplication.translate("Login_Form", u"<html><head/><body><p><img width='42' height='42'  src=\":/logo/pic/logo.png\"/></p></body></html>", None))
     # retranslateUi
 
