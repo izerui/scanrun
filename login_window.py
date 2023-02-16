@@ -15,6 +15,7 @@ class LoginWindow(QWidget):
         super().__init__()
         self.ui = Ui_Login_Form()
         self.ui.setupUi(self)
+        self.ui.process_label.setVisible(False)
         self.changeButtonState()
 
     # 改变提交按钮状态
@@ -25,14 +26,19 @@ class LoginWindow(QWidget):
             self.ui.subButton.setDisabled(True)
 
     def loginForm(self):
+        self.ui.subButton.setDisabled(True)
+        self.ui.process_label.setVisible(True)
         data = {
             'username': self.ui.usernameInput.text(),
             'password': self.ui.passwordInput.text(),
             'type': 1
         }
-        self.loginThread = PostThread('https://yj2025.com/ierp/login', data)
-        self.loginThread.resultSginal.connect(self.loginSuccess)
-        self.loginThread.start()
+        if hasattr(self, 'loginThread') and self.loginThread.isRunning():
+            pass
+        else:
+            self.loginThread = PostThread('https://yj2025.com/ierp/login', data)
+            self.loginThread.resultSignal.connect(self.loginSuccess)
+            self.loginThread.start()
 
     def loginSuccess(self, result):
         if result.status_code == 200 and json.loads(result.text)['success']:

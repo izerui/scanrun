@@ -6,10 +6,11 @@ from PySide6.QtCore import Signal, QTime, QEventLoop, QTimer
 from PySide6.QtWidgets import QWidget, QMainWindow, QMessageBox, QTableWidgetItem
 
 from request import PostThread
+from thread_executor import ThreadExecutor
 from ui.ui_home import Ui_Home
 
 
-class HomeWindow(QMainWindow):
+class HomeWindow(QMainWindow, ThreadExecutor):
     loginExistSignal = Signal(str)
 
     def __init__(self):
@@ -18,16 +19,18 @@ class HomeWindow(QMainWindow):
         self.ui.setupUi(self)
         self.loadOrders()
 
-
     def toolbarClicked(self):
         QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
 
     def loadOrders(self):
+        self.ui.tableWidget.setRowCount(0)
         reqParam = {"docStatus": "DRAFT", "pageIndex": 0, "pageSize": 20, "total": 0}
-        self.loadDataThread = PostThread('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
-                                         postCode='M1018')
-        self.loadDataThread.resultSginal.connect(self.dataResponse)
-        self.loadDataThread.start()
+        self.execute_new_thread('loadDataThread',
+                                PostThread('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
+                                           postCode='M1018'),
+                                'resultSignal',
+                                self.dataResponse
+                                )
 
     def dataResponse(self, result):
         data = json.loads(result.text)['data']

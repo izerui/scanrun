@@ -67,7 +67,7 @@ class Request(object):
 
 
 class PostThread(QThread):
-    resultSginal = Signal(object)
+    resultSignal = Signal(object)
 
     def __init__(self, url, data=None, json=None, **kwargs):
         super().__init__()
@@ -78,11 +78,11 @@ class PostThread(QThread):
 
     def run(self):
         result = Request.post(self.url, data=self.data, json=self.json, **self.kwargs)
-        self.resultSginal.emit(result)
+        self.resultSignal.emit(result)
 
 
 class GetThread(QThread):
-    resultSginal = Signal(object)
+    resultSignal = Signal(object)
 
     def __init__(self, url, params=None, **kwargs):
         super().__init__()
@@ -92,4 +92,4 @@ class GetThread(QThread):
 
     def run(self):
         result = Request.get(self.url, params=self.params, **self.kwargs)
-        self.resultSginal.emit(result)
+        self.resultSignal.emit(result)

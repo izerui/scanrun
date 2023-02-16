@@ -83,6 +83,14 @@ class Ui_Login_Form(object):
         self.logo = QLabel(self.frame)
         self.logo.setObjectName(u"logo")
         self.logo.setGeometry(QRect(130, 40, 41, 41))
+        self.process_label = QLabel(self.frame)
+        self.process_label.setObjectName(u"process_label")
+        self.process_label.setGeometry(QRect(190, 240, 90, 40))
+        font2 = QFont()
+        font2.setPointSize(14)
+        font2.setBold(False)
+        self.process_label.setFont(font2)
+        self.process_label.setAlignment(Qt.AlignCenter)
 
         self.gridLayout_2.addWidget(self.frame, 1, 0, 1, 1)
 
@@ -118,5 +126,6 @@ class Ui_Login_Form(object):
 "</style></head><body style=\" font-family:'Academy Engraved LET'; font-size:24pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u626b\u7801\u88c5\u7bb1\u7a0b\u5e8f</p></body></html>", None))
         self.logo.setText(QCoreApplication.translate("Login_Form", u"<html><head/><body><p><img width='42' height='42'  src=\":/logo/pic/logo.png\"/></p></body></html>", None))
+        self.process_label.setText(QCoreApplication.translate("Login_Form", u"\u6b63\u5728\u767b\u9646...", None))
     # retranslateUi
 
