@@ -6,7 +6,7 @@
 
 import sys
 
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtWidgets import QApplication, QWidget, QStyleFactory
 
 from home import HomeWindow
 from login import LoginWindow
@@ -31,4 +31,5 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MainWindow()
     window.loadLoginWindow()
+    # app.setStyle(QStyleFactory.create('macOS'))
     sys.exit(app.exec())
