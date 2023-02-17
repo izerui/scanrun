@@ -3,7 +3,7 @@ import json
 
 from PySide6 import QtWidgets
 from PySide6.QtCore import Signal, QTime, QEventLoop, QTimer
-from PySide6.QtWidgets import QWidget, QMainWindow, QMessageBox, QTableWidgetItem
+from PySide6.QtWidgets import QWidget, QMainWindow, QMessageBox, QTableWidgetItem, QHeaderView
 
 from request import PostThread
 from executor import ThreadExecutor
@@ -23,6 +23,8 @@ class HomeWindow(QMainWindow, ThreadExecutor):
         QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
 
     def loadOrders(self):
+        self.ui.tableWidget.setShowGrid(True)
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.tableWidget.setRowCount(0)
         reqParam = {"docStatus": "DRAFT", "pageIndex": 0, "pageSize": 20, "total": 0}
         self.execute_new_thread('loadDataThread',
