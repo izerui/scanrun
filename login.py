@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import json
+import sys
 
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QMessageBox, QWidget
@@ -48,8 +49,5 @@ class LoginWindow(QWidget, ThreadExecutor):
             self.ui.process_label.setVisible(False)
             QMessageBox.critical(None, '错误', '登录验证失败')
 
-    def resetForm(self):
-        self.ui.usernameInput.setText('')
-        self.ui.passwordInput.setText('')
-        self.ui.subButton.setEnabled(False)
-        self.ui.usernameInput.setFocus()
+    def existForm(self):
+        sys.exit()

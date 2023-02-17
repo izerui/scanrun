@@ -146,7 +146,7 @@ class Ui_Home(object):
         self.pushButton.setMinimumSize(QSize(0, 42))
         self.pushButton.setMaximumSize(QSize(100, 16777215))
         icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/logout.png", QSize(), QIcon.Normal, QIcon.On)
+        icon1.addFile(u":/logo/pic/dengchu.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton.setIcon(icon1)
 
         self.gridLayout.addWidget(self.pushButton, 0, 0, 1, 1)
@@ -222,7 +222,7 @@ class Ui_Home(object):
         self.pushButton_3.setText(QCoreApplication.translate("Home", u"\u5c3e\u9875", None))
         self.pushButton_4.setText(QCoreApplication.translate("Home", u"\u8df3\u8f6c\u5230", None))
         self.label.setText(QCoreApplication.translate("Home", u"\u9875", None))
-        self.pushButton.setText(QCoreApplication.translate("Home", u"\u9000\u51fa\u767b\u5f55", None))
+        self.pushButton.setText(QCoreApplication.translate("Home", u"\u6ce8\u9500", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("Home", u"\u83dc\u5355", None));
 

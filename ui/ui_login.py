@@ -68,19 +68,14 @@ class Ui_Login_Form(object):
         self.passwordInput.setMaxLength(24)
         self.passwordInput.setFrame(True)
         self.passwordInput.setEchoMode(QLineEdit.Password)
-        self.resetButton = QPushButton(self.frame)
-        self.resetButton.setObjectName(u"resetButton")
-        self.resetButton.setGeometry(QRect(250, 210, 100, 42))
-        self.resetButton.setMinimumSize(QSize(0, 42))
-        self.resetButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.outButton = QPushButton(self.frame)
+        self.outButton.setObjectName(u"outButton")
+        self.outButton.setGeometry(QRect(250, 210, 100, 42))
+        self.outButton.setMinimumSize(QSize(0, 42))
+        self.outButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon1 = QIcon()
-        iconThemeName = u"battery-low"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon1 = QIcon.fromTheme(iconThemeName)
-        else:
-            icon1.addFile(u":/logo/pic/bg-reset.png", QSize(), QIcon.Normal, QIcon.On)
-
-        self.resetButton.setIcon(icon1)
+        icon1.addFile(u":/logo/pic/logout.png", QSize(), QIcon.Normal, QIcon.On)
+        self.outButton.setIcon(icon1)
         self.title = QLabel(self.frame)
         self.title.setObjectName(u"title")
         self.title.setGeometry(QRect(180, 40, 161, 41))
@@ -117,7 +112,7 @@ class Ui_Login_Form(object):
         self.usernameInput.textEdited.connect(Login_Form.changeButtonState)
         self.passwordInput.textEdited.connect(Login_Form.changeButtonState)
         self.subButton.clicked.connect(Login_Form.loginForm)
-        self.resetButton.clicked.connect(Login_Form.resetForm)
+        self.outButton.clicked.connect(Login_Form.existForm)
 
         QMetaObject.connectSlotsByName(Login_Form)
     # setupUi
@@ -130,7 +125,7 @@ class Ui_Login_Form(object):
         self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6    \u7801\uff1a", None))
         self.passwordInput.setText(QCoreApplication.translate("Login_Form", u"18073112120", None))
         self.passwordInput.setPlaceholderText("")
-        self.resetButton.setText(QCoreApplication.translate("Login_Form", u"\u91cd\u7f6e", None))
+        self.outButton.setText(QCoreApplication.translate("Login_Form", u"\u9000\u51fa", None))
         self.title.setText(QCoreApplication.translate("Login_Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

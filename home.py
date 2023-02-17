@@ -5,7 +5,7 @@ from PySide6 import QtWidgets
 from PySide6.QtCore import Signal, QTime, QEventLoop, QTimer
 from PySide6.QtWidgets import QWidget, QMainWindow, QMessageBox, QTableWidgetItem, QHeaderView
 
-from request import PostThread
+from request import PostThread, Request
 from executor import ThreadExecutor
 from ui.ui_home import Ui_Home
 
@@ -17,14 +17,13 @@ class HomeWindow(QMainWindow, ThreadExecutor):
         super().__init__()
         self.ui = Ui_Home()
         self.ui.setupUi(self)
+        self.initStyle()
         self.loadOrders()
 
     def toolbarClicked(self):
         QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
 
     def loadOrders(self):
-        self.ui.tableWidget.setShowGrid(True)
-        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.tableWidget.setRowCount(0)
         reqParam = {"docStatus": "DRAFT", "pageIndex": 0, "pageSize": 20, "total": 0}
         self.execute_new_thread('loadDataThread',
@@ -52,3 +51,9 @@ class HomeWindow(QMainWindow, ThreadExecutor):
     def logout(self):
         self.loginExistSignal.emit('logout')
         self.close()
+
+    def initStyle(self):
+        self.ui.treeWidget.expandAll()
+        self.ui.tableWidget.setShowGrid(True)
+        self.ui.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        pass

@@ -253,11 +253,11 @@
        </size>
       </property>
       <property name="text">
-       <string>退出登录</string>
+       <string>注销</string>
       </property>
       <property name="icon">
        <iconset>
-        <normalon>:/logo/pic/logout.png</normalon>
+        <normalon>:/logo/pic/dengchu.png</normalon>
        </iconset>
       </property>
      </widget>

@@ -152,7 +152,7 @@
        <string extracomment="请输入密码"/>
       </property>
      </widget>
-     <widget class="QPushButton" name="resetButton">
+     <widget class="QPushButton" name="outButton">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -171,11 +171,11 @@
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="text">
-       <string>重置</string>
+       <string>退出</string>
       </property>
       <property name="icon">
-       <iconset theme="battery-low">
-        <normalon>:/logo/pic/bg-reset.png</normalon>
+       <iconset>
+        <normalon>:/logo/pic/logout.png</normalon>
        </iconset>
       </property>
      </widget>
@@ -304,18 +304,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </hints>
   </connection>
   <connection>
-   <sender>resetButton</sender>
+   <sender>outButton</sender>
    <signal>clicked()</signal>
    <receiver>Login_Form</receiver>
-   <slot>resetForm()</slot>
+   <slot>existForm()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>334</x>
+     <x>333</x>
      <y>241</y>
     </hint>
     <hint type="destinationlabel">
-     <x>492</x>
-     <y>545</y>
+     <x>379</x>
+     <y>504</y>
     </hint>
    </hints>
   </connection>
@@ -323,6 +323,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
  <slots>
   <slot>changeButtonState()</slot>
   <slot>loginForm()</slot>
-  <slot>resetForm()</slot>
+  <slot>existForm()</slot>
  </slots>
 </ui>
