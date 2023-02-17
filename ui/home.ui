@@ -238,29 +238,6 @@
       </layout>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="maximumSize">
-       <size>
-        <width>160</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>158</width>
-         <height>605</height>
-        </rect>
-       </property>
-      </widget>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="pushButton">
       <property name="minimumSize">
@@ -283,6 +260,72 @@
         <normalon>:/logo/pic/logout.png</normalon>
        </iconset>
       </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QWidget" name="widget_2" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>160</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTreeWidget" name="treeWidget">
+         <property name="autoExpandDelay">
+          <number>1</number>
+         </property>
+         <property name="expandsOnDoubleClick">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>菜单</string>
+          </property>
+          <property name="textAlignment">
+           <set>AlignCenter</set>
+          </property>
+         </column>
+         <item>
+          <property name="text">
+           <string>我的经管</string>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="icon">
+           <iconset resource="../images_rc/images.qrc">
+            <normaloff>:/logo/pic/yj04.png</normaloff>:/logo/pic/yj04.png</iconset>
+          </property>
+          <item>
+           <property name="text">
+            <string>扫码任务</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normalon>:/logo/pic/scan.png</normalon>
+            </iconset>
+           </property>
+          </item>
+         </item>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -341,8 +384,8 @@
    <slot>logout()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>896</x>
-     <y>647</y>
+     <x>111</x>
+     <y>73</y>
     </hint>
     <hint type="destinationlabel">
      <x>793</x>
@@ -357,8 +400,8 @@
    <slot>loadOrders()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>108</x>
-     <y>628</y>
+     <x>249</x>
+     <y>694</y>
     </hint>
     <hint type="destinationlabel">
      <x>532</x>

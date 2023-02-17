@@ -19,8 +19,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QGroupBox,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QMainWindow, QMenu, QMenuBar, QPushButton,
-    QScrollArea, QSizePolicy, QTableWidget, QTableWidgetItem,
-    QWidget)
+    QSizePolicy, QTableWidget, QTableWidgetItem, QTreeWidget,
+    QTreeWidgetItem, QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_Home(object):
@@ -42,6 +42,14 @@ class Ui_Home(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(12, 12, -1, 12)
+        self.line_3 = QFrame(self.centralwidget)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setFrameShape(QFrame.HLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout.addWidget(self.line_3, 1, 0, 1, 2)
+
         self.groupBox = QGroupBox(self.centralwidget)
         self.groupBox.setObjectName(u"groupBox")
         self.gridLayout_2 = QGridLayout(self.groupBox)
@@ -131,26 +139,9 @@ class Ui_Home(object):
         self.gridLayout_2.addWidget(self.widget, 1, 1, 1, 1, Qt.AlignLeft)
 
 
-        self.gridLayout.addWidget(self.groupBox, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.groupBox, 2, 1, 1, 1)
 
-        self.scrollArea = QScrollArea(self.centralwidget)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setMaximumSize(QSize(160, 16777215))
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 158, 590))
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-        self.gridLayout.addWidget(self.scrollArea, 1, 0, 1, 1)
-
-        self.groupBox_3 = QGroupBox(self.centralwidget)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setMinimumSize(QSize(0, 60))
-        self.groupBox_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.horizontalLayout_2 = QHBoxLayout(self.groupBox_3)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.pushButton = QPushButton(self.groupBox_3)
+        self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 42))
         self.pushButton.setMaximumSize(QSize(100, 16777215))
@@ -158,10 +149,37 @@ class Ui_Home(object):
         icon1.addFile(u":/logo/pic/logout.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton.setIcon(icon1)
 
-        self.horizontalLayout_2.addWidget(self.pushButton)
+        self.gridLayout.addWidget(self.pushButton, 0, 0, 1, 1)
+
+        self.widget_2 = QWidget(self.centralwidget)
+        self.widget_2.setObjectName(u"widget_2")
+        self.widget_2.setMaximumSize(QSize(160, 16777215))
+        self.verticalLayout = QVBoxLayout(self.widget_2)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.treeWidget = QTreeWidget(self.widget_2)
+        __qtreewidgetitem = QTreeWidgetItem()
+        __qtreewidgetitem.setTextAlignment(0, Qt.AlignCenter);
+        self.treeWidget.setHeaderItem(__qtreewidgetitem)
+        icon2 = QIcon()
+        icon2.addFile(u":/logo/pic/yj04.png", QSize(), QIcon.Normal, QIcon.Off)
+        font = QFont()
+        font.setPointSize(13)
+        icon3 = QIcon()
+        icon3.addFile(u":/logo/pic/scan.png", QSize(), QIcon.Normal, QIcon.On)
+        __qtreewidgetitem1 = QTreeWidgetItem(self.treeWidget)
+        __qtreewidgetitem1.setFont(0, font);
+        __qtreewidgetitem1.setIcon(0, icon2);
+        __qtreewidgetitem2 = QTreeWidgetItem(__qtreewidgetitem1)
+        __qtreewidgetitem2.setIcon(0, icon3);
+        self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.setAutoExpandDelay(1)
+        self.treeWidget.setExpandsOnDoubleClick(True)
+
+        self.verticalLayout.addWidget(self.treeWidget)
 
 
-        self.gridLayout.addWidget(self.groupBox_3, 2, 0, 1, 2, Qt.AlignRight)
+        self.gridLayout.addWidget(self.widget_2, 2, 0, 1, 1)
 
         Home.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Home)
@@ -204,8 +222,18 @@ class Ui_Home(object):
         self.pushButton_3.setText(QCoreApplication.translate("Home", u"\u5c3e\u9875", None))
         self.pushButton_4.setText(QCoreApplication.translate("Home", u"\u8df3\u8f6c\u5230", None))
         self.label.setText(QCoreApplication.translate("Home", u"\u9875", None))
-        self.groupBox_3.setTitle("")
         self.pushButton.setText(QCoreApplication.translate("Home", u"\u9000\u51fa\u767b\u5f55", None))
+        ___qtreewidgetitem = self.treeWidget.headerItem()
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("Home", u"\u83dc\u5355", None));
+
+        __sortingEnabled = self.treeWidget.isSortingEnabled()
+        self.treeWidget.setSortingEnabled(False)
+        ___qtreewidgetitem1 = self.treeWidget.topLevelItem(0)
+        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("Home", u"\u6211\u7684\u7ecf\u7ba1", None));
+        ___qtreewidgetitem2 = ___qtreewidgetitem1.child(0)
+        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("Home", u"\u626b\u7801\u4efb\u52a1", None));
+        self.treeWidget.setSortingEnabled(__sortingEnabled)
+
         self.menu.setTitle(QCoreApplication.translate("Home", u"\u7cfb\u7edf", None))
     # retranslateUi
 
