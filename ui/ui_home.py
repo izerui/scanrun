@@ -19,7 +19,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QGroupBox,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QTableWidget, QTableWidgetItem, QWidget)
+    QScrollArea, QSizePolicy, QTableWidget, QTableWidgetItem,
+    QWidget)
 import images_rc
 
 class Ui_Home(object):
@@ -64,70 +65,52 @@ class Ui_Home(object):
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setAutoScroll(True)
 
-        self.gridLayout_2.addWidget(self.tableWidget, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.tableWidget, 0, 1, 1, 1)
 
-
-        self.gridLayout.addWidget(self.groupBox, 1, 0, 1, 1)
-
-        self.groupBox_3 = QGroupBox(self.centralwidget)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setMinimumSize(QSize(0, 60))
-        self.groupBox_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.gridLayout_3 = QGridLayout(self.groupBox_3)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.line = QFrame(self.groupBox_3)
-        self.line.setObjectName(u"line")
-        self.line.setFrameShape(QFrame.VLine)
-        self.line.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_3.addWidget(self.line, 0, 6, 1, 1)
-
-        self.pushButton_2 = QPushButton(self.groupBox_3)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(0, 42))
-        self.pushButton_2.setMaximumSize(QSize(80, 16777215))
-
-        self.gridLayout_3.addWidget(self.pushButton_2, 0, 1, 1, 1)
-
-        self.pushButton_5 = QPushButton(self.groupBox_3)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setMinimumSize(QSize(0, 42))
-        self.pushButton_5.setMaximumSize(QSize(80, 16777215))
-
-        self.gridLayout_3.addWidget(self.pushButton_5, 0, 2, 1, 1)
-
-        self.pushButton_3 = QPushButton(self.groupBox_3)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setMinimumSize(QSize(0, 42))
-        self.pushButton_3.setMaximumSize(QSize(80, 16777215))
-
-        self.gridLayout_3.addWidget(self.pushButton_3, 0, 4, 1, 1)
-
-        self.pushButton_6 = QPushButton(self.groupBox_3)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        self.pushButton_6.setMinimumSize(QSize(0, 42))
-        self.pushButton_6.setMaximumSize(QSize(80, 16777215))
-
-        self.gridLayout_3.addWidget(self.pushButton_6, 0, 3, 1, 1)
-
-        self.pushButton = QPushButton(self.groupBox_3)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(0, 42))
-        self.pushButton.setMaximumSize(QSize(100, 16777215))
-        icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/logout.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton.setIcon(icon1)
-
-        self.gridLayout_3.addWidget(self.pushButton, 0, 9, 1, 1)
-
-        self.widget = QWidget(self.groupBox_3)
+        self.widget = QWidget(self.groupBox)
         self.widget.setObjectName(u"widget")
+        self.widget.setMinimumSize(QSize(0, 40))
         self.horizontalLayout = QHBoxLayout(self.widget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.pushButton_2 = QPushButton(self.widget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setMinimumSize(QSize(0, 30))
+        self.pushButton_2.setMaximumSize(QSize(80, 16777215))
+
+        self.horizontalLayout.addWidget(self.pushButton_2)
+
+        self.pushButton_5 = QPushButton(self.widget)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setMinimumSize(QSize(0, 30))
+        self.pushButton_5.setMaximumSize(QSize(80, 16777215))
+
+        self.horizontalLayout.addWidget(self.pushButton_5)
+
+        self.pushButton_6 = QPushButton(self.widget)
+        self.pushButton_6.setObjectName(u"pushButton_6")
+        self.pushButton_6.setMinimumSize(QSize(0, 30))
+        self.pushButton_6.setMaximumSize(QSize(80, 16777215))
+
+        self.horizontalLayout.addWidget(self.pushButton_6)
+
+        self.pushButton_3 = QPushButton(self.widget)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setMinimumSize(QSize(0, 30))
+        self.pushButton_3.setMaximumSize(QSize(80, 16777215))
+
+        self.horizontalLayout.addWidget(self.pushButton_3)
+
+        self.line_2 = QFrame(self.widget)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.VLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout.addWidget(self.line_2)
+
         self.pushButton_4 = QPushButton(self.widget)
         self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setMinimumSize(QSize(0, 42))
+        self.pushButton_4.setMinimumSize(QSize(0, 30))
         self.pushButton_4.setMaximumSize(QSize(50, 16777215))
 
         self.horizontalLayout.addWidget(self.pushButton_4)
@@ -145,10 +128,40 @@ class Ui_Home(object):
         self.horizontalLayout.addWidget(self.label)
 
 
-        self.gridLayout_3.addWidget(self.widget, 0, 5, 1, 1)
+        self.gridLayout_2.addWidget(self.widget, 1, 1, 1, 1, Qt.AlignLeft)
 
 
-        self.gridLayout.addWidget(self.groupBox_3, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.groupBox, 1, 1, 1, 1)
+
+        self.scrollArea = QScrollArea(self.centralwidget)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setMaximumSize(QSize(160, 16777215))
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 158, 590))
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.gridLayout.addWidget(self.scrollArea, 1, 0, 1, 1)
+
+        self.groupBox_3 = QGroupBox(self.centralwidget)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setMinimumSize(QSize(0, 60))
+        self.groupBox_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.horizontalLayout_2 = QHBoxLayout(self.groupBox_3)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.pushButton = QPushButton(self.groupBox_3)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(0, 42))
+        self.pushButton.setMaximumSize(QSize(100, 16777215))
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/logout.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton.setIcon(icon1)
+
+        self.horizontalLayout_2.addWidget(self.pushButton)
+
+
+        self.gridLayout.addWidget(self.groupBox_3, 2, 0, 1, 2, Qt.AlignRight)
 
         Home.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Home)
@@ -185,14 +198,14 @@ class Ui_Home(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("Home", u"\u4e1a\u52a1\u5458", None));
         ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("Home", u"\u521b\u5efa\u65f6\u95f4", None));
-        self.groupBox_3.setTitle("")
         self.pushButton_2.setText(QCoreApplication.translate("Home", u"\u9996\u9875", None))
         self.pushButton_5.setText(QCoreApplication.translate("Home", u"\u4e0a\u4e00\u9875", None))
-        self.pushButton_3.setText(QCoreApplication.translate("Home", u"\u5c3e\u9875", None))
         self.pushButton_6.setText(QCoreApplication.translate("Home", u"\u4e0b\u4e00\u9875", None))
-        self.pushButton.setText(QCoreApplication.translate("Home", u"\u9000\u51fa\u767b\u5f55", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Home", u"\u5c3e\u9875", None))
         self.pushButton_4.setText(QCoreApplication.translate("Home", u"\u8df3\u8f6c\u5230", None))
         self.label.setText(QCoreApplication.translate("Home", u"\u9875", None))
+        self.groupBox_3.setTitle("")
+        self.pushButton.setText(QCoreApplication.translate("Home", u"\u9000\u51fa\u767b\u5f55", None))
         self.menu.setTitle(QCoreApplication.translate("Home", u"\u7cfb\u7edf", None))
     # retranslateUi
 

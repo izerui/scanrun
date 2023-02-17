@@ -47,9 +47,16 @@ class Ui_Login_Form(object):
         self.subButton = QPushButton(self.frame)
         self.subButton.setObjectName(u"subButton")
         self.subButton.setEnabled(False)
-        self.subButton.setGeometry(QRect(130, 210, 100, 32))
+        self.subButton.setGeometry(QRect(130, 210, 100, 42))
+        self.subButton.setMinimumSize(QSize(0, 42))
+        self.subButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon = QIcon()
-        icon.addFile(u":/logo/pic/login.png", QSize(), QIcon.Normal, QIcon.On)
+        iconThemeName = u"audio-card"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon = QIcon.fromTheme(iconThemeName)
+        else:
+            icon.addFile(u":/logo/pic/login.png", QSize(), QIcon.Normal, QIcon.On)
+
         self.subButton.setIcon(icon)
         self.label_2 = QLabel(self.frame)
         self.label_2.setObjectName(u"label_2")
@@ -63,13 +70,20 @@ class Ui_Login_Form(object):
         self.passwordInput.setEchoMode(QLineEdit.Password)
         self.resetButton = QPushButton(self.frame)
         self.resetButton.setObjectName(u"resetButton")
-        self.resetButton.setGeometry(QRect(250, 210, 100, 32))
+        self.resetButton.setGeometry(QRect(250, 210, 100, 42))
+        self.resetButton.setMinimumSize(QSize(0, 42))
+        self.resetButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/bg-reset.png", QSize(), QIcon.Normal, QIcon.On)
+        iconThemeName = u"battery-low"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon1 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon1.addFile(u":/logo/pic/bg-reset.png", QSize(), QIcon.Normal, QIcon.On)
+
         self.resetButton.setIcon(icon1)
         self.title = QLabel(self.frame)
         self.title.setObjectName(u"title")
-        self.title.setGeometry(QRect(189, 40, 161, 41))
+        self.title.setGeometry(QRect(180, 40, 161, 41))
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -82,10 +96,10 @@ class Ui_Login_Form(object):
         self.title.setFont(font1)
         self.logo = QLabel(self.frame)
         self.logo.setObjectName(u"logo")
-        self.logo.setGeometry(QRect(130, 40, 41, 41))
+        self.logo.setGeometry(QRect(121, 40, 41, 41))
         self.process_label = QLabel(self.frame)
         self.process_label.setObjectName(u"process_label")
-        self.process_label.setGeometry(QRect(190, 240, 90, 40))
+        self.process_label.setGeometry(QRect(190, 250, 90, 40))
         font2 = QFont()
         font2.setPointSize(14)
         font2.setBold(False)
