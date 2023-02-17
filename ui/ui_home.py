@@ -35,7 +35,7 @@ class Ui_Home(object):
         if QIcon.hasThemeIcon(iconThemeName):
             icon = QIcon.fromTheme(iconThemeName)
         else:
-            icon.addFile(u"../../../.designer/images_rc/pic/login.png", QSize(), QIcon.Normal, QIcon.Off)
+            icon.addFile(u"../../../../../.designer/images_rc/pic/login.png", QSize(), QIcon.Normal, QIcon.Off)
 
         self.action.setIcon(icon)
         self.centralwidget = QWidget(Home)

@@ -2,10 +2,10 @@
 
 # 脚本
 * 生成`requirements.txt`: `pip freeze > requirements.txt`
-* 通过`requirements.txt`安装依赖: `pip install -r requirements.txt`
+* 通过`requirements.txt`安装依赖: `pip install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * 执行各个目录中的`build.sh`文件来编译资源文件和ui文件
 
-# 已安装依赖列表
+# 已安装依赖列表(不及时更新)
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx`

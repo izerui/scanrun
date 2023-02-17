@@ -350,7 +350,7 @@
   <action name="action">
    <property name="icon">
     <iconset theme="applications-science">
-     <normaloff>../../../.designer/images_rc/pic/login.png</normaloff>../../../.designer/images_rc/pic/login.png</iconset>
+     <normaloff>../../../../../.designer/images_rc/pic/login.png</normaloff>../../../../../.designer/images_rc/pic/login.png</iconset>
    </property>
    <property name="text">
     <string>关于</string>
