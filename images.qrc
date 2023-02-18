@@ -7,5 +7,6 @@
         <file>pic/bg-reset.png</file>
         <file>pic/login.png</file>
         <file>pic/logo.png</file>
+        <file>pic/aboutus.png</file>
     </qresource>
 </RCC>

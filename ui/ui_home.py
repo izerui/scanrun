@@ -16,11 +16,12 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QGroupBox,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QTableWidget, QTableWidgetItem, QTreeWidget,
-    QTreeWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QFrame,
+    QGridLayout, QGroupBox, QHBoxLayout, QHeaderView,
+    QLabel, QMainWindow, QMenu, QMenuBar,
+    QPushButton, QSizePolicy, QSpinBox, QTableWidget,
+    QTableWidgetItem, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+    QWidget)
 import images_rc
 
 class Ui_Home(object):
@@ -76,6 +77,7 @@ class Ui_Home(object):
         self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setAutoScroll(True)
+        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
 
         self.gridLayout_2.addWidget(self.tableWidget, 0, 1, 1, 1)
 
@@ -127,12 +129,15 @@ class Ui_Home(object):
 
         self.horizontalLayout.addWidget(self.pushButton_4)
 
-        self.lineEdit = QLineEdit(self.widget)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setMinimumSize(QSize(0, 25))
-        self.lineEdit.setMaximumSize(QSize(42, 16777215))
+        self.pageInput = QSpinBox(self.widget)
+        self.pageInput.setObjectName(u"pageInput")
+        self.pageInput.setMinimumSize(QSize(0, 30))
+        self.pageInput.setMaximumSize(QSize(16777215, 30))
+        self.pageInput.setMaximum(9999)
+        self.pageInput.setStepType(QAbstractSpinBox.AdaptiveDecimalStepType)
+        self.pageInput.setDisplayIntegerBase(10)
 
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.horizontalLayout.addWidget(self.pageInput)
 
         self.label = QLabel(self.widget)
         self.label.setObjectName(u"label")
@@ -200,7 +205,11 @@ class Ui_Home(object):
         self.retranslateUi(Home)
         self.menubar.triggered.connect(Home.toolbarClicked)
         self.pushButton.clicked.connect(Home.logout)
-        self.pushButton_2.clicked.connect(Home.loadOrders)
+        self.pushButton_5.clicked.connect(Home.prePage)
+        self.pushButton_6.clicked.connect(Home.nextPage)
+        self.pushButton_3.clicked.connect(Home.endPage)
+        self.pushButton_4.clicked.connect(Home.jumpPage)
+        self.pushButton_2.clicked.connect(Home.firstPage)
 
         QMetaObject.connectSlotsByName(Home)
     # setupUi
@@ -226,7 +235,7 @@ class Ui_Home(object):
         self.pushButton_6.setText(QCoreApplication.translate("Home", u"\u4e0b\u4e00\u9875", None))
         self.pushButton_3.setText(QCoreApplication.translate("Home", u"\u5c3e\u9875", None))
         self.pushButton_4.setText(QCoreApplication.translate("Home", u"\u8df3\u8f6c\u5230", None))
-        self.label.setText(QCoreApplication.translate("Home", u"\u9875", None))
+        self.label.setText(QCoreApplication.translate("Home", u"--", None))
         self.pushButton.setText(QCoreApplication.translate("Home", u"\u6ce8\u9500", None))
         ___qtreewidgetitem = self.treeWidget.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("Home", u"\u83dc\u5355", None));

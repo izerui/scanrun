@@ -6,6 +6,7 @@
 
 import sys
 
+from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QApplication, QWidget, QStyleFactory
 
 from home import HomeWindow
@@ -14,13 +15,15 @@ from login import LoginWindow
 class MainWindow(QWidget):
 
 
-    # 显示登录页
+    # 槽函数：显示登录页
+    @Slot()
     def loadLoginWindow(self):
         self.login = LoginWindow()
         self.login.loginSuccessSignal.connect(self.loadHomeWindow)
         self.login.show()
 
-    # 显示登录后的主页
+    # 槽函数：显示登录后的主页
+    @Slot()
     def loadHomeWindow(self):
         self.home = HomeWindow()
         self.home.loginExistSignal.connect(self.loadLoginWindow)

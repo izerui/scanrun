@@ -66,6 +66,9 @@
          <property name="autoScroll">
           <bool>true</bool>
          </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
          <column>
           <property name="text">
            <string comment="方法" extracomment="飞飞飞">销售单号</string>
@@ -222,25 +225,34 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QSpinBox" name="pageInput">
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>25</height>
+              <height>30</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>42</width>
-              <height>16777215</height>
+              <width>16777215</width>
+              <height>30</height>
              </size>
+            </property>
+            <property name="maximum">
+             <number>9999</number>
+            </property>
+            <property name="stepType">
+             <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+            </property>
+            <property name="displayIntegerBase">
+             <number>10</number>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>页</string>
+             <string>--</string>
             </property>
            </widget>
           </item>
@@ -408,18 +420,82 @@
    </hints>
   </connection>
   <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>Home</receiver>
+   <slot>prePage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>292</x>
+     <y>676</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>420</x>
+     <y>769</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>Home</receiver>
+   <slot>nextPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>378</x>
+     <y>678</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>384</x>
+     <y>746</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Home</receiver>
+   <slot>endPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>674</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>736</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>Home</receiver>
+   <slot>jumpPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>544</x>
+     <y>679</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>557</x>
+     <y>756</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
    <receiver>Home</receiver>
-   <slot>loadOrders()</slot>
+   <slot>firstPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>249</x>
-     <y>694</y>
+     <x>217</x>
+     <y>677</y>
     </hint>
     <hint type="destinationlabel">
-     <x>532</x>
-     <y>866</y>
+     <x>229</x>
+     <y>765</y>
     </hint>
    </hints>
   </connection>
@@ -427,6 +503,10 @@
  <slots>
   <slot>toolbarClicked()</slot>
   <slot>logout()</slot>
-  <slot>loadOrders()</slot>
+  <slot>prePage()</slot>
+  <slot>nextPage()</slot>
+  <slot>endPage()</slot>
+  <slot>jumpPage()</slot>
+  <slot>firstPage()</slot>
  </slots>
 </ui>
