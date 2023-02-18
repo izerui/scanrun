@@ -28,15 +28,19 @@ class Ui_Home(object):
         if not Home.objectName():
             Home.setObjectName(u"Home")
         Home.resize(979, 716)
+        Home.setStyleSheet(u"QPushButton#evilButton {\n"
+"    background-color: red;\n"
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;\n"
+"}")
         self.action = QAction(Home)
         self.action.setObjectName(u"action")
-        icon = QIcon()
-        iconThemeName = u"applications-science"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon = QIcon.fromTheme(iconThemeName)
-        else:
-            icon.addFile(u"../../../../../.designer/images_rc/pic/login.png", QSize(), QIcon.Normal, QIcon.Off)
-
+        icon = QIcon(QIcon.fromTheme(u"applications-science"))
         self.action.setIcon(icon)
         self.centralwidget = QWidget(Home)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -145,6 +149,7 @@ class Ui_Home(object):
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 42))
         self.pushButton.setMaximumSize(QSize(100, 16777215))
+        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon1 = QIcon()
         icon1.addFile(u":/logo/pic/dengchu.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton.setIcon(icon1)

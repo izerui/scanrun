@@ -252,7 +252,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </layout>
  </widget>
  <resources>
-  <include location="../images_rc/images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>

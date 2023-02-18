@@ -2,37 +2,37 @@
 import json
 import sys
 
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QMessageBox, QWidget
 
-from request import PostThread, Request
 from executor import ThreadExecutor
+from request import PostThread, Request
 from ui.ui_login import Ui_Login_Form
 
 
-class LoginWindow(QWidget, ThreadExecutor):
+class LoginWindow(QWidget, Ui_Login_Form, ThreadExecutor):
     loginSuccessSignal = Signal(str)
 
     def __init__(self):
         super().__init__()
-        self.ui = Ui_Login_Form()
-        self.ui.setupUi(self)
-        self.ui.process_label.setVisible(False)
+        self.setupUi(self)
+        self.process_label.setVisible(False)
         self.changeButtonState()
 
     # 改变提交按钮状态
     def changeButtonState(self):
-        if len(self.ui.usernameInput.text()) > 0 and len(self.ui.passwordInput.text()) > 0:
-            self.ui.subButton.setEnabled(True)
+        if len(self.usernameInput.text()) > 0 and len(self.passwordInput.text()) > 0:
+            self.subButton.setEnabled(True)
         else:
-            self.ui.subButton.setDisabled(True)
+            self.subButton.setDisabled(True)
 
+    @Slot()
     def loginForm(self):
-        self.ui.subButton.setDisabled(True)
-        self.ui.process_label.setVisible(True)
+        self.subButton.setDisabled(True)
+        self.process_label.setVisible(True)
         data = {
-            'username': self.ui.usernameInput.text(),
-            'password': self.ui.passwordInput.text(),
+            'username': self.usernameInput.text(),
+            'password': self.passwordInput.text(),
             'type': 1
         }
         self.execute_new_thread('loginThread',
@@ -46,8 +46,9 @@ class LoginWindow(QWidget, ThreadExecutor):
             self.loginSuccessSignal.emit('success')
             self.close()
         else:
-            self.ui.process_label.setVisible(False)
+            self.process_label.setVisible(False)
             QMessageBox.critical(None, '错误', '登录验证失败')
 
+    @Slot()
     def existForm(self):
         sys.exit()

@@ -13,6 +13,18 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton#evilButton {
+    background-color: red;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: beige;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
@@ -252,6 +264,9 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="text">
        <string>注销</string>
       </property>
@@ -309,7 +324,7 @@
            </font>
           </property>
           <property name="icon">
-           <iconset resource="../images_rc/images.qrc">
+           <iconset resource="../images.qrc">
             <normaloff>:/logo/pic/yj04.png</normaloff>:/logo/pic/yj04.png</iconset>
           </property>
           <item>
@@ -349,8 +364,7 @@
   </widget>
   <action name="action">
    <property name="icon">
-    <iconset theme="applications-science">
-     <normaloff>../../../../../.designer/images_rc/pic/login.png</normaloff>../../../../../.designer/images_rc/pic/login.png</iconset>
+    <iconset theme="applications-science"/>
    </property>
    <property name="text">
     <string>关于</string>
@@ -358,7 +372,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../images_rc/images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>
