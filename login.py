@@ -18,6 +18,7 @@ class LoginWindow(QWidget, Ui_Login_Form, ThreadExecutor):
         self.setupUi(self)
         self.process_label.setVisible(False)
         self.changeButtonState()
+        pass
 
     # 改变提交按钮状态
     def changeButtonState(self):
@@ -25,6 +26,7 @@ class LoginWindow(QWidget, Ui_Login_Form, ThreadExecutor):
             self.subButton.setEnabled(True)
         else:
             self.subButton.setDisabled(True)
+        pass
 
     @Slot()
     def loginForm(self):
@@ -39,6 +41,7 @@ class LoginWindow(QWidget, Ui_Login_Form, ThreadExecutor):
                                 PostThread('https://yj2025.com/ierp/login', data),
                                 'resultSignal',
                                 self.loginSuccess)
+        pass
 
     def loginSuccess(self, result):
         if result.status_code == 200 and json.loads(result.text)['success']:
@@ -48,7 +51,9 @@ class LoginWindow(QWidget, Ui_Login_Form, ThreadExecutor):
         else:
             self.process_label.setVisible(False)
             QMessageBox.critical(None, '错误', '登录验证失败')
+        pass
 
     @Slot()
     def existForm(self):
         sys.exit()
+        pass

@@ -1,12 +1,21 @@
 <RCC>
-    <qresource prefix="/logo">
-        <file>pic/dengchu.png</file>
-        <file>pic/yj04.png</file>
-        <file>pic/scan.png</file>
-        <file>pic/logout.png</file>
-        <file>pic/bg-reset.png</file>
-        <file>pic/login.png</file>
-        <file>pic/logo.png</file>
-        <file>pic/aboutus.png</file>
-    </qresource>
+  <qresource prefix="/logo">
+    <file>pic/home.png</file>
+    <file>pic/aboutus.png</file>
+    <file>pic/bg-reset.png</file>
+    <file>pic/dengchu.png</file>
+    <file>pic/end.png</file>
+    <file>pic/first.png</file>
+    <file>pic/jump.png</file>
+    <file>pic/login.png</file>
+    <file>pic/logo.png</file>
+    <file>pic/logout.png</file>
+    <file>pic/logout2.png</file>
+    <file>pic/next.png</file>
+    <file>pic/pre.png</file>
+    <file>pic/scan.png</file>
+    <file>pic/scanIco.png</file>
+    <file>pic/scanIco1.png</file>
+    <file>pic/yj04.png</file>
+  </qresource>
 </RCC>
