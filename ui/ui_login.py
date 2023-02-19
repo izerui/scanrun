@@ -118,7 +118,7 @@ class Ui_Login_Form(object):
     # setupUi
 
     def retranslateUi(self, Login_Form):
-        Login_Form.setWindowTitle(QCoreApplication.translate("Login_Form", u"Form", None))
+        Login_Form.setWindowTitle(QCoreApplication.translate("Login_Form", u"SN\u5e8f\u5217\u53f7\u626b\u7801\u88c5\u7bb1\u7cfb\u7edf-\u767b\u5f55\u9875\u9762", None))
         self.usernameInput.setText(QCoreApplication.translate("Login_Form", u"18073112120", None))
         self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d\uff1a", None))
         self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u767b\u5f55", None))

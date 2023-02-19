@@ -19,8 +19,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QFormLayout,
     QFrame, QGridLayout, QGroupBox, QHBoxLayout,
     QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QMenu, QMenuBar, QPushButton, QScrollArea,
-    QSizePolicy, QSpacerItem, QSpinBox, QStackedWidget,
+    QMenuBar, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QSpinBox, QStackedWidget, QTabWidget,
     QTableWidget, QTableWidgetItem, QToolBar, QTreeWidget,
     QTreeWidgetItem, QVBoxLayout, QWidget)
 import images_rc
@@ -29,7 +29,7 @@ class Ui_Home(object):
     def setupUi(self, Home):
         if not Home.objectName():
             Home.setObjectName(u"Home")
-        Home.resize(979, 716)
+        Home.resize(856, 672)
         Home.setStyleSheet(u"QPushButton#evilButton {\n"
 "    background-color: red;\n"
 "    border-style: outset;\n"
@@ -42,25 +42,26 @@ class Ui_Home(object):
 "}")
         self.action = QAction(Home)
         self.action.setObjectName(u"action")
-        icon = QIcon(QIcon.fromTheme(u"applications-science"))
+        icon = QIcon()
+        iconThemeName = u"applications-science"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon = QIcon.fromTheme(iconThemeName)
+        else:
+            icon.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+
         self.action.setIcon(icon)
-        self.actionlogout = QAction(Home)
-        self.actionlogout.setObjectName(u"actionlogout")
-        icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/logout2.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.actionlogout.setIcon(icon1)
         self.actionscan = QAction(Home)
         self.actionscan.setObjectName(u"actionscan")
-        icon2 = QIcon()
-        icon2.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon2.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Active, QIcon.On)
-        icon2.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Selected, QIcon.On)
-        self.actionscan.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Active, QIcon.On)
+        icon1.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Selected, QIcon.On)
+        self.actionscan.setIcon(icon1)
         self.action_2 = QAction(Home)
         self.action_2.setObjectName(u"action_2")
-        icon3 = QIcon()
-        icon3.addFile(u":/logo/pic/home.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.action_2.setIcon(icon3)
+        icon2 = QIcon()
+        icon2.addFile(u":/logo/pic/home.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.action_2.setIcon(icon2)
         self.centralwidget = QWidget(Home)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -109,9 +110,9 @@ class Ui_Home(object):
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setMinimumSize(QSize(24, 24))
         self.pushButton_2.setMaximumSize(QSize(32, 32))
-        icon4 = QIcon()
-        icon4.addFile(u":/logo/pic/first.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_2.setIcon(icon4)
+        icon3 = QIcon()
+        icon3.addFile(u":/logo/pic/first.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_2.setIcon(icon3)
 
         self.horizontalLayout.addWidget(self.pushButton_2)
 
@@ -119,9 +120,9 @@ class Ui_Home(object):
         self.pushButton_5.setObjectName(u"pushButton_5")
         self.pushButton_5.setMinimumSize(QSize(0, 30))
         self.pushButton_5.setMaximumSize(QSize(32, 32))
-        icon5 = QIcon()
-        icon5.addFile(u":/logo/pic/pre.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_5.setIcon(icon5)
+        icon4 = QIcon()
+        icon4.addFile(u":/logo/pic/pre.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_5.setIcon(icon4)
 
         self.horizontalLayout.addWidget(self.pushButton_5)
 
@@ -129,9 +130,9 @@ class Ui_Home(object):
         self.pushButton_6.setObjectName(u"pushButton_6")
         self.pushButton_6.setMinimumSize(QSize(0, 30))
         self.pushButton_6.setMaximumSize(QSize(32, 32))
-        icon6 = QIcon()
-        icon6.addFile(u":/logo/pic/next.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_6.setIcon(icon6)
+        icon5 = QIcon()
+        icon5.addFile(u":/logo/pic/next.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_6.setIcon(icon5)
 
         self.horizontalLayout.addWidget(self.pushButton_6)
 
@@ -139,9 +140,9 @@ class Ui_Home(object):
         self.pushButton_3.setObjectName(u"pushButton_3")
         self.pushButton_3.setMinimumSize(QSize(0, 30))
         self.pushButton_3.setMaximumSize(QSize(32, 32))
-        icon7 = QIcon()
-        icon7.addFile(u":/logo/pic/end.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_3.setIcon(icon7)
+        icon6 = QIcon()
+        icon6.addFile(u":/logo/pic/end.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_3.setIcon(icon6)
 
         self.horizontalLayout.addWidget(self.pushButton_3)
 
@@ -156,9 +157,9 @@ class Ui_Home(object):
         self.pushButton_4.setObjectName(u"pushButton_4")
         self.pushButton_4.setMinimumSize(QSize(0, 30))
         self.pushButton_4.setMaximumSize(QSize(32, 32))
-        icon8 = QIcon()
-        icon8.addFile(u":/logo/pic/jump.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_4.setIcon(icon8)
+        icon7 = QIcon()
+        icon7.addFile(u":/logo/pic/jump.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_4.setIcon(icon7)
 
         self.horizontalLayout.addWidget(self.pushButton_4)
 
@@ -199,9 +200,9 @@ class Ui_Home(object):
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMaximumSize(QSize(100, 40))
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
-        icon9 = QIcon()
-        icon9.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton.setIcon(icon9)
+        icon8 = QIcon()
+        icon8.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton.setIcon(icon8)
         self.pushButton.setIconSize(QSize(20, 20))
 
         self.horizontalLayout.addWidget(self.pushButton)
@@ -216,7 +217,7 @@ class Ui_Home(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 728, 202))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 605, 202))
         self.gridLayout_2 = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.formLayout_2 = QFormLayout()
@@ -310,17 +311,17 @@ class Ui_Home(object):
         __qtreewidgetitem = QTreeWidgetItem()
         __qtreewidgetitem.setTextAlignment(0, Qt.AlignCenter);
         self.treeWidget.setHeaderItem(__qtreewidgetitem)
-        icon10 = QIcon()
-        icon10.addFile(u":/logo/pic/yj04.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon9 = QIcon()
+        icon9.addFile(u":/logo/pic/yj04.png", QSize(), QIcon.Normal, QIcon.Off)
         font = QFont()
         font.setPointSize(13)
-        icon11 = QIcon()
-        icon11.addFile(u":/logo/pic/scan.png", QSize(), QIcon.Normal, QIcon.On)
+        icon10 = QIcon()
+        icon10.addFile(u":/logo/pic/scan.png", QSize(), QIcon.Normal, QIcon.On)
         __qtreewidgetitem1 = QTreeWidgetItem(self.treeWidget)
         __qtreewidgetitem1.setFont(0, font);
-        __qtreewidgetitem1.setIcon(0, icon10);
+        __qtreewidgetitem1.setIcon(0, icon9);
         __qtreewidgetitem2 = QTreeWidgetItem(__qtreewidgetitem1)
-        __qtreewidgetitem2.setIcon(0, icon11);
+        __qtreewidgetitem2.setIcon(0, icon10);
         self.treeWidget.setObjectName(u"treeWidget")
         self.treeWidget.setAutoExpandDelay(1)
         self.treeWidget.setExpandsOnDoubleClick(True)
@@ -333,9 +334,30 @@ class Ui_Home(object):
         self.stackedWidget.addWidget(self.page_13)
         self.page_14 = QWidget()
         self.page_14.setObjectName(u"page_14")
+        self.verticalLayout_3 = QVBoxLayout(self.page_14)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label_2 = QLabel(self.page_14)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(350, 240, 58, 16))
+
+        self.verticalLayout_3.addWidget(self.label_2, 0, Qt.AlignHCenter)
+
+        self.groupBox_3 = QGroupBox(self.page_14)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setMinimumSize(QSize(0, 200))
+
+        self.verticalLayout_3.addWidget(self.groupBox_3)
+
+        self.tabWidget = QTabWidget(self.page_14)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName(u"tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
+
+        self.verticalLayout_3.addWidget(self.tabWidget)
+
         self.stackedWidget.addWidget(self.page_14)
 
         self.gridLayout.addWidget(self.stackedWidget, 0, 0, 1, 1)
@@ -343,9 +365,7 @@ class Ui_Home(object):
         Home.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Home)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 979, 24))
-        self.menu = QMenu(self.menubar)
-        self.menu.setObjectName(u"menu")
+        self.menubar.setGeometry(QRect(0, 0, 856, 24))
         Home.setMenuBar(self.menubar)
         self.toolBar = QToolBar(Home)
         self.toolBar.setObjectName(u"toolBar")
@@ -353,10 +373,7 @@ class Ui_Home(object):
         self.toolBar.setFocusPolicy(Qt.ClickFocus)
         Home.addToolBar(Qt.TopToolBarArea, self.toolBar)
 
-        self.menubar.addAction(self.menu.menuAction())
-        self.menu.addAction(self.action)
         self.toolBar.addAction(self.action_2)
-        self.toolBar.addAction(self.actionlogout)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionscan)
 
@@ -371,18 +388,15 @@ class Ui_Home(object):
         self.toolBar.actionTriggered.connect(Home.toolbarClicked)
 
         self.stackedWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Home)
     # setupUi
 
     def retranslateUi(self, Home):
-        Home.setWindowTitle(QCoreApplication.translate("Home", u"MainWindow", None))
+        Home.setWindowTitle(QCoreApplication.translate("Home", u"SN\u5e8f\u5217\u53f7\u626b\u7801\u88c5\u7bb1\u7cfb\u7edf", None))
         self.action.setText(QCoreApplication.translate("Home", u"about", None))
-        self.actionlogout.setText(QCoreApplication.translate("Home", u"logout", None))
-#if QT_CONFIG(tooltip)
-        self.actionlogout.setToolTip(QCoreApplication.translate("Home", u"\u8fd4\u56de\u767b\u5f55", None))
-#endif // QT_CONFIG(tooltip)
         self.actionscan.setText(QCoreApplication.translate("Home", u"scan", None))
 #if QT_CONFIG(tooltip)
         self.actionscan.setToolTip(QCoreApplication.translate("Home", u"\u5f00\u59cb\u626b\u7801", None))
@@ -444,8 +458,9 @@ class Ui_Home(object):
         ___qtreewidgetitem2.setText(0, QCoreApplication.translate("Home", u"\u626b\u7801\u4efb\u52a1", None));
         self.treeWidget.setSortingEnabled(__sortingEnabled)
 
-        self.label_2.setText(QCoreApplication.translate("Home", u"TextLabel", None))
-        self.menu.setTitle(QCoreApplication.translate("Home", u"\u7cfb\u7edf", None))
+        self.label_2.setText(QCoreApplication.translate("Home", u"\u8ba2\u5355\u4fe1\u606f", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Home", u"\u88c5\u7bb1", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("Home", u"\u88c5\u5361\u677f", None))
         self.toolBar.setWindowTitle(QCoreApplication.translate("Home", u"toolBar", None))
     # retranslateUi
 

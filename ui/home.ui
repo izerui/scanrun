@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>979</width>
-    <height>716</height>
+    <width>856</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SN序列号扫码装箱系统</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton#evilButton {
@@ -381,7 +381,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>728</width>
+                <width>605</width>
                 <height>202</height>
                </rect>
               </property>
@@ -561,19 +561,42 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_14">
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>240</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>订单信息</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>200</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>装箱</string>
+           </attribute>
+          </widget>
+          <widget class="QWidget" name="tab_2">
+           <attribute name="title">
+            <string>装卡板</string>
+           </attribute>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -584,17 +607,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>979</width>
+     <width>856</width>
      <height>24</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>系统</string>
-    </property>
-    <addaction name="action"/>
-   </widget>
-   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="cursor">
@@ -613,28 +629,16 @@
     <bool>false</bool>
    </attribute>
    <addaction name="action_2"/>
-   <addaction name="actionlogout"/>
    <addaction name="separator"/>
    <addaction name="actionscan"/>
   </widget>
   <action name="action">
    <property name="icon">
-    <iconset theme="applications-science"/>
+    <iconset theme="applications-science">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>about</string>
-   </property>
-  </action>
-  <action name="actionlogout">
-   <property name="icon">
-    <iconset resource="../images.qrc">
-     <normaloff>:/logo/pic/logout2.png</normaloff>:/logo/pic/logout2.png</iconset>
-   </property>
-   <property name="text">
-    <string>logout</string>
-   </property>
-   <property name="toolTip">
-    <string>返回登录</string>
    </property>
   </action>
   <action name="actionscan">

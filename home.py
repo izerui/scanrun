@@ -33,6 +33,10 @@ class HomeWindow(QMainWindow, Ui_Home, ThreadExecutor):
     def toolbarClicked(self, *args: QAction):
         if args[0].text() == 'home':
             self.stackedWidget.setCurrentIndex(0)
+        if args[0].text() == 'scan':
+            self.startScanJob()
+        if args[0].text() == 'logout':
+            self.logout()
         # QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
         pass
 
@@ -64,7 +68,6 @@ class HomeWindow(QMainWindow, Ui_Home, ThreadExecutor):
 
     @Slot()
     def nextPage(self):
-        # TODO 判断 总页数
         if self.pageIndex + 1 < self.totalPage:
             self.pageIndex += 1
             self.loadData()
@@ -129,7 +132,7 @@ class HomeWindow(QMainWindow, Ui_Home, ThreadExecutor):
 
     def dataResChangeView(self, data):
         self.pageInput.setValue(data['number'] + 1)
-        self.label.setText(f'页 共{self.totalPage}页  {self.totalCount}条')
+        self.label.setText(f'页 共{self.totalPage}页  {self.totalCount}条记录')
         pass
 
     @Slot()
