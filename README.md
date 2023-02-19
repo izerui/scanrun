@@ -9,6 +9,7 @@
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx`
+* httpx: `pip install APScheduler`
 
 
 # 配置pycharm第三方工具,如果是vscode只需要安装插件: `Qt for Python`
