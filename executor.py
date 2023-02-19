@@ -28,7 +28,20 @@ class HttpExecutor(object):
         QMessageBox.critical(None, '错误', err)
 
 
-class PostThread(QThread):
+class HttpInterceptor(object):
+
+    def handler(self, response):
+        if response.status_code != 200:
+            self.error.emit(f'请求远程服务器失败,错误代码{response.status_code}')
+        else:
+            result = json.loads(response.text)
+            if not result['success']:
+                self.error.emit(result['errMsg'])
+            else:
+                self.response.emit(result, response)
+
+
+class PostThread(QThread, HttpInterceptor):
     response = Signal(object, Response)
     error = Signal(str)
 
@@ -42,20 +55,13 @@ class PostThread(QThread):
     def run(self):
         # try:
         response = Request.post(self.url, data=self.data, json=self.json, **self.kwargs)
-        if response.status_code != 200:
-            self.error.emit(f'请求远程服务器失败,错误代码{response.status_code}')
-        else:
-            result = json.loads(response.text)
-            if not result['success']:
-                self.error.emit(result['errMsg'])
-            else:
-                self.response.emit(result, response)
+        self.handler(response)
         # except Exception as e:
         #     traceback.print_exc(e)
         #     self.error.emit(str(e))
 
 
-class GetThread(QThread):
+class GetThread(QThread, HttpInterceptor):
     response = Signal(object, Response)
     error = Signal(str)
 
@@ -68,14 +74,7 @@ class GetThread(QThread):
     def run(self):
         # try:
         response = Request.get(self.url, params=self.params, **self.kwargs)
-        if response.status_code != 200:
-            self.error.emit(f'请求远程服务器失败,错误代码{response.status_code}')
-        else:
-            result = json.loads(response.text)
-            if not result['success']:
-                self.error.emit(result['errMsg'])
-            else:
-                self.response.emit(result, response)
+        self.handler(response)
         # except Exception as e:
         #     traceback.print_exc(e)
         #     self.error.emit(str(e))

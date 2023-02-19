@@ -1,5 +1,5 @@
 from PySide6.QtCore import Slot, Signal
-from PySide6.QtWidgets import QDialog
+from PySide6.QtWidgets import QDialog, QMessageBox
 
 from executor import HttpExecutor, PostThread
 from ui.ui_task_form import Ui_TaskForm
@@ -37,13 +37,15 @@ class TaskFormDialog(QDialog, Ui_TaskForm, HttpExecutor):
 
     @Slot()
     def accept(self) -> None:
-        dict = {
-            'chejian_code': self.chejian.currentData()['departmentCode'],
-            'chejian_name': self.chejian.currentData()['departmentName'],
-            'laxian_name': self.laxian.text(),
-            'banzu_code': self.banzu.currentData()['departmentCode'],
-            'banzu_name': self.banzu.currentData()['departmentName']
-        }
-        self.formCreated.emit(dict)
-        self.close()
-        pass
+        if not self.banzu.currentData():
+            QMessageBox.critical(None, '错误', '请选择班组')
+        else:
+            dict = {
+                'chejian_code': self.chejian.currentData()['departmentCode'],
+                'chejian_name': self.chejian.currentData()['departmentName'],
+                'laxian_name': self.laxian.text(),
+                'banzu_code': self.banzu.currentData()['departmentCode'],
+                'banzu_name': self.banzu.currentData()['departmentName']
+            }
+            self.formCreated.emit(dict)
+            self.close()
