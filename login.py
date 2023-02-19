@@ -1,16 +1,15 @@
 # -*- coding: UTF-8 -*-
-import json
 import sys
 
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QMessageBox, QWidget
+from PySide6.QtWidgets import QWidget
 
-from executor import ThreadExecutor
-from request import PostThread, Request
+from executor import HttpExecutor, PostThread, GetThread
+from request import Request
 from ui.ui_login import Ui_Login_Form
 
 
-class LoginWindow(QWidget, Ui_Login_Form, ThreadExecutor):
+class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
     loginSuccessSignal = Signal(str)
 
     def __init__(self):
@@ -37,20 +36,18 @@ class LoginWindow(QWidget, Ui_Login_Form, ThreadExecutor):
             'password': self.passwordInput.text(),
             'type': 1
         }
-        self.execute_new_thread('loginThread',
-                                PostThread('https://yj2025.com/ierp/login', data),
-                                'resultSignal',
-                                self.loginSuccess)
+        self.execute_http(
+            'loginThread',
+            PostThread('https://yj2025.com/ierp/login', data),
+            self.loginSuccess
+        )
         pass
 
-    def loginSuccess(self, result):
-        if result.status_code == 200 and json.loads(result.text)['success']:
-            Request.setCookies(result.headers.get('set-cookie'))
-            self.loginSuccessSignal.emit('success')
-            self.close()
-        else:
-            self.process_label.setVisible(False)
-            QMessageBox.critical(None, '错误', '登录验证失败')
+    def loginSuccess(self, result, response):
+        self.process_label.setVisible(False)
+        Request.setCookies(response.headers.get('set-cookie'))
+        self.loginSuccessSignal.emit('success')
+        self.close()
         pass
 
     @Slot()

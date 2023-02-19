@@ -7,10 +7,11 @@
 import sys
 
 from PySide6.QtCore import Slot
-from PySide6.QtWidgets import QApplication, QWidget, QStyleFactory
+from PySide6.QtWidgets import QApplication, QWidget
 
 from home import HomeWindow
 from login import LoginWindow
+
 
 class MainWindow(QWidget):
 

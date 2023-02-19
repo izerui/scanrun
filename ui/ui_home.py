@@ -29,7 +29,10 @@ class Ui_Home(object):
     def setupUi(self, Home):
         if not Home.objectName():
             Home.setObjectName(u"Home")
-        Home.resize(856, 672)
+        Home.resize(907, 672)
+        icon = QIcon()
+        icon.addFile(u":/logo/pic/logo.png", QSize(), QIcon.Normal, QIcon.On)
+        Home.setWindowIcon(icon)
         Home.setStyleSheet(u"QPushButton#evilButton {\n"
 "    background-color: red;\n"
 "    border-style: outset;\n"
@@ -40,28 +43,19 @@ class Ui_Home(object):
 "    min-width: 10em;\n"
 "    padding: 6px;\n"
 "}")
-        self.action = QAction(Home)
-        self.action.setObjectName(u"action")
-        icon = QIcon()
-        iconThemeName = u"applications-science"
-        if QIcon.hasThemeIcon(iconThemeName):
-            icon = QIcon.fromTheme(iconThemeName)
-        else:
-            icon.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
-
-        self.action.setIcon(icon)
-        self.actionscan = QAction(Home)
-        self.actionscan.setObjectName(u"actionscan")
+        Home.setUnifiedTitleAndToolBarOnMac(False)
+        self.scanAction = QAction(Home)
+        self.scanAction.setObjectName(u"scanAction")
         icon1 = QIcon()
         icon1.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.Off)
         icon1.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Active, QIcon.On)
         icon1.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Selected, QIcon.On)
-        self.actionscan.setIcon(icon1)
-        self.action_2 = QAction(Home)
-        self.action_2.setObjectName(u"action_2")
+        self.scanAction.setIcon(icon1)
+        self.homeAction = QAction(Home)
+        self.homeAction.setObjectName(u"homeAction")
         icon2 = QIcon()
-        icon2.addFile(u":/logo/pic/home.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.action_2.setIcon(icon2)
+        icon2.addFile(u":/logo/pic/return_home.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.homeAction.setIcon(icon2)
         self.centralwidget = QWidget(Home)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -217,7 +211,7 @@ class Ui_Home(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 605, 202))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 671, 202))
         self.gridLayout_2 = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.formLayout_2 = QFormLayout()
@@ -365,7 +359,7 @@ class Ui_Home(object):
         Home.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Home)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 856, 24))
+        self.menubar.setGeometry(QRect(0, 0, 907, 24))
         Home.setMenuBar(self.menubar)
         self.toolBar = QToolBar(Home)
         self.toolBar.setObjectName(u"toolBar")
@@ -373,9 +367,8 @@ class Ui_Home(object):
         self.toolBar.setFocusPolicy(Qt.ClickFocus)
         Home.addToolBar(Qt.TopToolBarArea, self.toolBar)
 
-        self.toolBar.addAction(self.action_2)
-        self.toolBar.addSeparator()
-        self.toolBar.addAction(self.actionscan)
+        self.toolBar.addAction(self.homeAction)
+        self.toolBar.addAction(self.scanAction)
 
         self.retranslateUi(Home)
         self.pushButton_4.clicked.connect(Home.jumpPage)
@@ -384,7 +377,7 @@ class Ui_Home(object):
         self.pushButton_5.clicked.connect(Home.prePage)
         self.pushButton_6.clicked.connect(Home.nextPage)
         self.tableWidget.itemSelectionChanged.connect(Home.dataRowSelected)
-        self.pushButton.clicked.connect(Home.startScanJob)
+        self.pushButton.clicked.connect(Home.openTaskForm)
         self.toolBar.actionTriggered.connect(Home.toolbarClicked)
 
         self.stackedWidget.setCurrentIndex(0)
@@ -396,12 +389,11 @@ class Ui_Home(object):
 
     def retranslateUi(self, Home):
         Home.setWindowTitle(QCoreApplication.translate("Home", u"SN\u5e8f\u5217\u53f7\u626b\u7801\u88c5\u7bb1\u7cfb\u7edf", None))
-        self.action.setText(QCoreApplication.translate("Home", u"about", None))
-        self.actionscan.setText(QCoreApplication.translate("Home", u"scan", None))
+        self.scanAction.setText(QCoreApplication.translate("Home", u"scan", None))
 #if QT_CONFIG(tooltip)
-        self.actionscan.setToolTip(QCoreApplication.translate("Home", u"\u5f00\u59cb\u626b\u7801", None))
+        self.scanAction.setToolTip(QCoreApplication.translate("Home", u"\u5f00\u59cb\u626b\u7801", None))
 #endif // QT_CONFIG(tooltip)
-        self.action_2.setText(QCoreApplication.translate("Home", u"home", None))
+        self.homeAction.setText(QCoreApplication.translate("Home", u"home", None))
         self.groupBox.setTitle("")
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Home", u"\u9500\u552e\u5355\u53f7", u"\u65b9\u6cd5"));

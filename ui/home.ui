@@ -6,12 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>856</width>
+    <width>907</width>
     <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>SN序列号扫码装箱系统</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normalon>:/logo/pic/logo.png</normalon>
+   </iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton#evilButton {
@@ -24,6 +29,9 @@
     min-width: 10em;
     padding: 6px;
 }</string>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -381,7 +389,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>605</width>
+                <width>671</width>
                 <height>202</height>
                </rect>
               </property>
@@ -607,7 +615,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>856</width>
+     <width>907</width>
      <height>24</height>
     </rect>
    </property>
@@ -628,20 +636,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_2"/>
-   <addaction name="separator"/>
-   <addaction name="actionscan"/>
+   <addaction name="homeAction"/>
+   <addaction name="scanAction"/>
   </widget>
-  <action name="action">
-   <property name="icon">
-    <iconset theme="applications-science">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>about</string>
-   </property>
-  </action>
-  <action name="actionscan">
+  <action name="scanAction">
    <property name="icon">
     <iconset resource="../images.qrc">
      <normaloff>:/logo/pic/scanIco.png</normaloff>
@@ -655,10 +653,10 @@
     <string>开始扫码</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="homeAction">
    <property name="icon">
     <iconset resource="../images.qrc">
-     <normaloff>:/logo/pic/home.png</normaloff>:/logo/pic/home.png</iconset>
+     <normaloff>:/logo/pic/return_home.png</normaloff>:/logo/pic/return_home.png</iconset>
    </property>
    <property name="text">
     <string>home</string>
@@ -677,11 +675,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>435</x>
-     <y>456</y>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
      <x>599</x>
-     <y>781</y>
+     <y>671</y>
     </hint>
    </hints>
   </connection>
@@ -692,12 +690,12 @@
    <slot>firstPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>228</x>
-     <y>456</y>
+     <x>236</x>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
      <x>244</x>
-     <y>751</y>
+     <y>671</y>
     </hint>
    </hints>
   </connection>
@@ -708,12 +706,12 @@
    <slot>endPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>365</x>
-     <y>453</y>
+     <x>374</x>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
      <x>493</x>
-     <y>777</y>
+     <y>671</y>
     </hint>
    </hints>
   </connection>
@@ -725,11 +723,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>282</x>
-     <y>453</y>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
      <x>332</x>
-     <y>780</y>
+     <y>671</y>
     </hint>
    </hints>
   </connection>
@@ -741,11 +739,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>328</x>
-     <y>453</y>
+     <y>427</y>
     </hint>
     <hint type="destinationlabel">
      <x>412</x>
-     <y>778</y>
+     <y>671</y>
     </hint>
    </hints>
   </connection>
@@ -761,7 +759,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>801</x>
-     <y>796</y>
+     <y>671</y>
     </hint>
    </hints>
   </connection>
@@ -769,15 +767,15 @@
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>Home</receiver>
-   <slot>startScanJob()</slot>
+   <slot>openTaskForm()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>898</x>
-     <y>460</y>
+     <x>783</x>
+     <y>431</y>
     </hint>
     <hint type="destinationlabel">
-     <x>890</x>
-     <y>754</y>
+     <x>813</x>
+     <y>671</y>
     </hint>
    </hints>
   </connection>
@@ -793,7 +791,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>332</x>
-     <y>-97</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>
@@ -808,6 +806,6 @@
   <slot>firstPage()</slot>
   <slot>dataRowDoubleClicked()</slot>
   <slot>dataRowSelected()</slot>
-  <slot>startScanJob()</slot>
+  <slot>openTaskForm()</slot>
  </slots>
 </ui>
