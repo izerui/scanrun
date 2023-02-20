@@ -17,7 +17,6 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
         self.setupUi(self)
         self.process_label.setVisible(False)
         self.changeButtonState()
-        pass
 
     # 改变提交按钮状态
     def changeButtonState(self):
@@ -25,7 +24,6 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
             self.subButton.setEnabled(True)
         else:
             self.subButton.setDisabled(True)
-        pass
 
     @Slot()
     def loginForm(self):
@@ -41,16 +39,13 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
             PostThread('https://yj2025.com/ierp/login', data),
             self.loginSuccess
         )
-        pass
 
     def loginSuccess(self, result, response):
         self.process_label.setVisible(False)
         Request.setCookies(response.headers.get('set-cookie'))
         self.loginSuccessSignal.emit('success')
         self.close()
-        pass
 
     @Slot()
     def existForm(self):
         sys.exit()
-        pass

@@ -19,21 +19,18 @@ class TaskFormDialog(QDialog, Ui_TaskForm, HttpExecutor):
             PostThread('https://yj2025.com/ierp/development-pc/v4/process/group?recordStatus=1&keyword='),
             self.deptsResponse
         )
-        pass
 
     @Slot()
     def deptsResponse(self, result):
         self.chejian.clear()
         for d in result['data']:
             self.chejian.addItem(d['departmentName'], d)
-        pass
 
     @Slot()
     def deptSelected(self):
         self.banzu.clear()
         for d in self.chejian.currentData()['children']:
             self.banzu.addItem(d['departmentName'], d)
-        pass
 
     @Slot()
     def accept(self) -> None:
