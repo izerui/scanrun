@@ -42,3 +42,9 @@
   ```
   * 生成图表: `iconutil -c icns resources/tmp.iconset -o resources/Icon.icns`
   * 生成app: `pyinstaller -D -w -i resources/Icon.icns main.py`
+
+# qt-designer 使用说明
+* 资源浏览器管理qrc资源
+* 动作编辑器管理toolbar等action
+* 信号/槽其实是事件的发布订阅
+* 选择控件提升为,则会修改ui的类定义，通过指定的类来创建对象，可以用来做组件化，避免所有ui和交互都在同一个ui文件、controller文件

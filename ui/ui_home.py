@@ -16,372 +16,134 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QFormLayout,
-    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QMenuBar, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QSpinBox, QStackedWidget, QTabWidget,
-    QTableWidget, QTableWidgetItem, QToolBar, QTreeWidget,
-    QTreeWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QButtonGroup, QFrame, QGridLayout,
+    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
+    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+
+from controller.list import ListFrame
+from controller.scan import ScanFrame
+from controller.task import TaskFrame
 import images_rc
 
 class Ui_Home(object):
     def setupUi(self, Home):
         if not Home.objectName():
             Home.setObjectName(u"Home")
-        Home.resize(907, 672)
+        Home.resize(969, 697)
+        Home.setMinimumSize(QSize(800, 600))
         icon = QIcon()
         icon.addFile(u":/logo/pic/logo.png", QSize(), QIcon.Normal, QIcon.On)
         Home.setWindowIcon(icon)
-        Home.setStyleSheet(u"QPushButton#evilButton {\n"
-"    background-color: red;\n"
-"    border-style: outset;\n"
-"    border-width: 2px;\n"
-"    border-radius: 10px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    min-width: 10em;\n"
-"    padding: 6px;\n"
+        Home.setStyleSheet(u"QPushButton {\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #dcdfe6;\n"
+"    padding: 10px;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #ecf5ff;\n"
+"    color: #409eff;\n"
+"}\n"
+"\n"
+"QPushButton:pressed, QPushButton:checked {\n"
+"    border: 1px solid #3a8ee6;\n"
+"    color: #409eff;\n"
 "}")
         Home.setUnifiedTitleAndToolBarOnMac(False)
-        self.scanAction = QAction(Home)
-        self.scanAction.setObjectName(u"scanAction")
-        icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon1.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Active, QIcon.On)
-        icon1.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Selected, QIcon.On)
-        self.scanAction.setIcon(icon1)
         self.homeAction = QAction(Home)
         self.homeAction.setObjectName(u"homeAction")
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/return_home.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.homeAction.setIcon(icon1)
+        self.scanAction = QAction(Home)
+        self.scanAction.setObjectName(u"scanAction")
         icon2 = QIcon()
-        icon2.addFile(u":/logo/pic/return_home.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.homeAction.setIcon(icon2)
+        icon2.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Active, QIcon.On)
+        icon2.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Selected, QIcon.On)
+        self.scanAction.setIcon(icon2)
         self.centralwidget = QWidget(Home)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(12, 12, -1, 12)
-        self.stackedWidget = QStackedWidget(self.centralwidget)
-        self.stackedWidget.setObjectName(u"stackedWidget")
-        self.page_13 = QWidget()
-        self.page_13.setObjectName(u"page_13")
-        self.gridLayout_3 = QGridLayout(self.page_13)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.groupBox = QGroupBox(self.page_13)
-        self.groupBox.setObjectName(u"groupBox")
-        self.verticalLayout_2 = QVBoxLayout(self.groupBox)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(2, 2, 2, 2)
-        self.tableWidget = QTableWidget(self.groupBox)
-        if (self.tableWidget.columnCount() < 6):
-            self.tableWidget.setColumnCount(6)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setAutoScroll(True)
-        self.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
-
-        self.verticalLayout_2.addWidget(self.tableWidget)
-
-        self.widget = QWidget(self.groupBox)
-        self.widget.setObjectName(u"widget")
-        self.widget.setMinimumSize(QSize(0, 40))
-        self.horizontalLayout = QHBoxLayout(self.widget)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.pushButton_2 = QPushButton(self.widget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(24, 24))
-        self.pushButton_2.setMaximumSize(QSize(32, 32))
-        icon3 = QIcon()
-        icon3.addFile(u":/logo/pic/first.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_2.setIcon(icon3)
-
-        self.horizontalLayout.addWidget(self.pushButton_2)
-
-        self.pushButton_5 = QPushButton(self.widget)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setMinimumSize(QSize(0, 30))
-        self.pushButton_5.setMaximumSize(QSize(32, 32))
-        icon4 = QIcon()
-        icon4.addFile(u":/logo/pic/pre.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_5.setIcon(icon4)
-
-        self.horizontalLayout.addWidget(self.pushButton_5)
-
-        self.pushButton_6 = QPushButton(self.widget)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        self.pushButton_6.setMinimumSize(QSize(0, 30))
-        self.pushButton_6.setMaximumSize(QSize(32, 32))
-        icon5 = QIcon()
-        icon5.addFile(u":/logo/pic/next.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_6.setIcon(icon5)
-
-        self.horizontalLayout.addWidget(self.pushButton_6)
-
-        self.pushButton_3 = QPushButton(self.widget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setMinimumSize(QSize(0, 30))
-        self.pushButton_3.setMaximumSize(QSize(32, 32))
-        icon6 = QIcon()
-        icon6.addFile(u":/logo/pic/end.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_3.setIcon(icon6)
-
-        self.horizontalLayout.addWidget(self.pushButton_3)
-
-        self.line_2 = QFrame(self.widget)
-        self.line_2.setObjectName(u"line_2")
-        self.line_2.setFrameShape(QFrame.VLine)
-        self.line_2.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout.addWidget(self.line_2)
-
-        self.pushButton_4 = QPushButton(self.widget)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setMinimumSize(QSize(0, 30))
-        self.pushButton_4.setMaximumSize(QSize(32, 32))
-        icon7 = QIcon()
-        icon7.addFile(u":/logo/pic/jump.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_4.setIcon(icon7)
-
-        self.horizontalLayout.addWidget(self.pushButton_4)
-
-        self.pageInput = QSpinBox(self.widget)
-        self.pageInput.setObjectName(u"pageInput")
-        self.pageInput.setMinimumSize(QSize(0, 30))
-        self.pageInput.setMaximumSize(QSize(16777215, 30))
-        self.pageInput.setMaximum(9999)
-        self.pageInput.setStepType(QAbstractSpinBox.AdaptiveDecimalStepType)
-        self.pageInput.setDisplayIntegerBase(10)
-
-        self.horizontalLayout.addWidget(self.pageInput)
-
-        self.line_3 = QFrame(self.widget)
-        self.line_3.setObjectName(u"line_3")
-        self.line_3.setFrameShape(QFrame.VLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout.addWidget(self.line_3)
-
-        self.label = QLabel(self.widget)
-        self.label.setObjectName(u"label")
-
-        self.horizontalLayout.addWidget(self.label)
-
-        self.line = QFrame(self.widget)
-        self.line.setObjectName(u"line")
-        self.line.setFrameShape(QFrame.VLine)
-        self.line.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout.addWidget(self.line)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
-
-        self.pushButton = QPushButton(self.widget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMaximumSize(QSize(100, 40))
-        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
-        icon8 = QIcon()
-        icon8.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton.setIcon(icon8)
-        self.pushButton.setIconSize(QSize(20, 20))
-
-        self.horizontalLayout.addWidget(self.pushButton)
-
-
-        self.verticalLayout_2.addWidget(self.widget)
-
-        self.scrollArea = QScrollArea(self.groupBox)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setMinimumSize(QSize(0, 200))
-        self.scrollArea.setMaximumSize(QSize(16777215, 200))
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 671, 202))
-        self.gridLayout_2 = QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.formLayout_2 = QFormLayout()
-        self.formLayout_2.setObjectName(u"formLayout_2")
-        self.formLayout_2.setFieldGrowthPolicy(QFormLayout.ExpandingFieldsGrow)
-        self.formLayout_2.setRowWrapPolicy(QFormLayout.WrapLongRows)
-        self.formLayout_2.setLabelAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-        self.formLayout_2.setHorizontalSpacing(3)
-        self.Label = QLabel(self.scrollAreaWidgetContents)
-        self.Label.setObjectName(u"Label")
-
-        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.Label)
-
-        self.LineEdit_1 = QLineEdit(self.scrollAreaWidgetContents)
-        self.LineEdit_1.setObjectName(u"LineEdit_1")
-        self.LineEdit_1.setReadOnly(True)
-
-        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.LineEdit_1)
-
-        self.Label2 = QLabel(self.scrollAreaWidgetContents)
-        self.Label2.setObjectName(u"Label2")
-
-        self.formLayout_2.setWidget(1, QFormLayout.LabelRole, self.Label2)
-
-        self.Label3 = QLabel(self.scrollAreaWidgetContents)
-        self.Label3.setObjectName(u"Label3")
-
-        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.Label3)
-
-        self.LineEdit_3 = QLineEdit(self.scrollAreaWidgetContents)
-        self.LineEdit_3.setObjectName(u"LineEdit_3")
-        self.LineEdit_3.setReadOnly(True)
-
-        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.LineEdit_3)
-
-        self.Label54 = QLabel(self.scrollAreaWidgetContents)
-        self.Label54.setObjectName(u"Label54")
-
-        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.Label54)
-
-        self.LineEdit_4 = QLineEdit(self.scrollAreaWidgetContents)
-        self.LineEdit_4.setObjectName(u"LineEdit_4")
-        self.LineEdit_4.setReadOnly(True)
-
-        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.LineEdit_4)
-
-        self.Label8 = QLabel(self.scrollAreaWidgetContents)
-        self.Label8.setObjectName(u"Label8")
-
-        self.formLayout_2.setWidget(4, QFormLayout.LabelRole, self.Label8)
-
-        self.LineEdit_5 = QLineEdit(self.scrollAreaWidgetContents)
-        self.LineEdit_5.setObjectName(u"LineEdit_5")
-        self.LineEdit_5.setReadOnly(True)
-
-        self.formLayout_2.setWidget(4, QFormLayout.FieldRole, self.LineEdit_5)
-
-        self.LineEdit_2 = QLineEdit(self.scrollAreaWidgetContents)
-        self.LineEdit_2.setObjectName(u"LineEdit_2")
-        self.LineEdit_2.setReadOnly(True)
-
-        self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.LineEdit_2)
-
-        self.Label_2 = QLabel(self.scrollAreaWidgetContents)
-        self.Label_2.setObjectName(u"Label_2")
-
-        self.formLayout_2.setWidget(5, QFormLayout.LabelRole, self.Label_2)
-
-        self.LineEdit_6 = QLineEdit(self.scrollAreaWidgetContents)
-        self.LineEdit_6.setObjectName(u"LineEdit_6")
-
-        self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.LineEdit_6)
-
-
-        self.gridLayout_2.addLayout(self.formLayout_2, 0, 0, 1, 1)
-
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-        self.verticalLayout_2.addWidget(self.scrollArea)
-
-
-        self.gridLayout_3.addWidget(self.groupBox, 0, 1, 1, 1)
-
-        self.widget_2 = QWidget(self.page_13)
-        self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMaximumSize(QSize(160, 16777215))
-        self.verticalLayout = QVBoxLayout(self.widget_2)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.treeWidget = QTreeWidget(self.widget_2)
-        __qtreewidgetitem = QTreeWidgetItem()
-        __qtreewidgetitem.setTextAlignment(0, Qt.AlignCenter);
-        self.treeWidget.setHeaderItem(__qtreewidgetitem)
-        icon9 = QIcon()
-        icon9.addFile(u":/logo/pic/yj04.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.frame = QFrame(self.centralwidget)
+        self.frame.setObjectName(u"frame")
+        self.frame.setMinimumSize(QSize(100, 0))
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_6 = QVBoxLayout(self.frame)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.btn_task = QPushButton(self.frame)
+        self.tabButtonGroup = QButtonGroup(Home)
+        self.tabButtonGroup.setObjectName(u"tabButtonGroup")
+        self.tabButtonGroup.addButton(self.btn_task)
+        self.btn_task.setObjectName(u"btn_task")
+        self.btn_task.setMinimumSize(QSize(0, 42))
         font = QFont()
-        font.setPointSize(13)
-        icon10 = QIcon()
-        icon10.addFile(u":/logo/pic/scan.png", QSize(), QIcon.Normal, QIcon.On)
-        __qtreewidgetitem1 = QTreeWidgetItem(self.treeWidget)
-        __qtreewidgetitem1.setFont(0, font);
-        __qtreewidgetitem1.setIcon(0, icon9);
-        __qtreewidgetitem2 = QTreeWidgetItem(__qtreewidgetitem1)
-        __qtreewidgetitem2.setIcon(0, icon10);
-        self.treeWidget.setObjectName(u"treeWidget")
-        self.treeWidget.setAutoExpandDelay(1)
-        self.treeWidget.setExpandsOnDoubleClick(True)
+        font.setPointSize(12)
+        self.btn_task.setFont(font)
+        self.btn_task.setCursor(QCursor(Qt.PointingHandCursor))
+        icon3 = QIcon()
+        icon3.addFile(u":/logo/pic/scanIco1.png", QSize(), QIcon.Normal, QIcon.On)
+        self.btn_task.setIcon(icon3)
+        self.btn_task.setCheckable(True)
+        self.btn_task.setChecked(True)
+        self.btn_task.setAutoExclusive(True)
 
-        self.verticalLayout.addWidget(self.treeWidget)
+        self.verticalLayout_6.addWidget(self.btn_task)
+
+        self.btn_data = QPushButton(self.frame)
+        self.tabButtonGroup.addButton(self.btn_data)
+        self.btn_data.setObjectName(u"btn_data")
+        self.btn_data.setMinimumSize(QSize(0, 42))
+        self.btn_data.setFont(font)
+        self.btn_data.setCursor(QCursor(Qt.PointingHandCursor))
+        icon4 = QIcon()
+        icon4.addFile(u":/logo/pic/data.png", QSize(), QIcon.Normal, QIcon.On)
+        self.btn_data.setIcon(icon4)
+        self.btn_data.setCheckable(True)
+        self.btn_data.setAutoExclusive(True)
+
+        self.verticalLayout_6.addWidget(self.btn_data)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_6.addItem(self.verticalSpacer)
 
 
-        self.gridLayout_3.addWidget(self.widget_2, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
 
-        self.stackedWidget.addWidget(self.page_13)
-        self.page_14 = QWidget()
-        self.page_14.setObjectName(u"page_14")
-        self.verticalLayout_3 = QVBoxLayout(self.page_14)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.label_2 = QLabel(self.page_14)
-        self.label_2.setObjectName(u"label_2")
+        self.stackedTab = QStackedWidget(self.centralwidget)
+        self.stackedTab.setObjectName(u"stackedTab")
+        self.stackedTab.setAutoFillBackground(False)
+        self.stackedTab.setFrameShape(QFrame.StyledPanel)
+        self.taskFrame = TaskFrame()
+        self.taskFrame.setObjectName(u"taskFrame")
+        self.verticalLayout_2 = QVBoxLayout(self.taskFrame)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(-1, 0, 0, -1)
+        self.stackedTab.addWidget(self.taskFrame)
+        self.listFrame = ListFrame()
+        self.listFrame.setObjectName(u"listFrame")
+        self.stackedTab.addWidget(self.listFrame)
+        self.scanFrame = ScanFrame()
+        self.scanFrame.setObjectName(u"scanFrame")
+        self.stackedTab.addWidget(self.scanFrame)
 
-        self.verticalLayout_3.addWidget(self.label_2, 0, Qt.AlignHCenter)
-
-        self.groupBox_3 = QGroupBox(self.page_14)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setMinimumSize(QSize(0, 200))
-
-        self.verticalLayout_3.addWidget(self.groupBox_3)
-
-        self.tabWidget = QTabWidget(self.page_14)
-        self.tabWidget.setObjectName(u"tabWidget")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.tabWidget.addTab(self.tab, "")
-        self.tab_2 = QWidget()
-        self.tab_2.setObjectName(u"tab_2")
-        self.tabWidget.addTab(self.tab_2, "")
-
-        self.verticalLayout_3.addWidget(self.tabWidget)
-
-        self.stackedWidget.addWidget(self.page_14)
-
-        self.gridLayout.addWidget(self.stackedWidget, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.stackedTab, 0, 1, 1, 1)
 
         Home.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Home)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 907, 24))
+        self.menubar.setGeometry(QRect(0, 0, 969, 24))
         Home.setMenuBar(self.menubar)
-        self.toolBar = QToolBar(Home)
-        self.toolBar.setObjectName(u"toolBar")
-        self.toolBar.setCursor(QCursor(Qt.PointingHandCursor))
-        self.toolBar.setFocusPolicy(Qt.ClickFocus)
-        Home.addToolBar(Qt.TopToolBarArea, self.toolBar)
-
-        self.toolBar.addAction(self.homeAction)
-        self.toolBar.addAction(self.scanAction)
 
         self.retranslateUi(Home)
-        self.pushButton_4.clicked.connect(Home.jumpPage)
-        self.pushButton_2.clicked.connect(Home.firstPage)
-        self.pushButton_3.clicked.connect(Home.endPage)
-        self.pushButton_5.clicked.connect(Home.prePage)
-        self.pushButton_6.clicked.connect(Home.nextPage)
-        self.tableWidget.itemSelectionChanged.connect(Home.dataRowSelected)
-        self.pushButton.clicked.connect(Home.openTaskForm)
-        self.toolBar.actionTriggered.connect(Home.toolbarClicked)
+        self.tabButtonGroup.buttonClicked.connect(Home.tabButtonPressed)
 
-        self.stackedWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(1)
+        self.stackedTab.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Home)
@@ -389,70 +151,18 @@ class Ui_Home(object):
 
     def retranslateUi(self, Home):
         Home.setWindowTitle(QCoreApplication.translate("Home", u"SN\u5e8f\u5217\u53f7\u626b\u7801\u88c5\u7bb1\u7cfb\u7edf", None))
+        self.homeAction.setText(QCoreApplication.translate("Home", u"home", None))
         self.scanAction.setText(QCoreApplication.translate("Home", u"scan", None))
 #if QT_CONFIG(tooltip)
         self.scanAction.setToolTip(QCoreApplication.translate("Home", u"\u5f00\u59cb\u626b\u7801", None))
 #endif // QT_CONFIG(tooltip)
-        self.homeAction.setText(QCoreApplication.translate("Home", u"home", None))
-        self.groupBox.setTitle("")
-        ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("Home", u"\u9500\u552e\u5355\u53f7", u"\u65b9\u6cd5"));
-        ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("Home", u"\u5ba2\u6237\u540d\u79f0", None));
-        ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("Home", u"\u5ba2\u6237\u8ba2\u5355\u53f7", None));
-        ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("Home", u"\u8ba2\u5355\u91d1\u989d", None));
-        ___qtablewidgetitem4 = self.tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("Home", u"\u4e1a\u52a1\u5458", None));
-        ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("Home", u"\u521b\u5efa\u65f6\u95f4", None));
 #if QT_CONFIG(tooltip)
-        self.pushButton_2.setToolTip(QCoreApplication.translate("Home", u"\u9996\u9875", None))
+        self.btn_task.setToolTip(QCoreApplication.translate("Home", u"\u663e\u793a\u4efb\u52a1\u5217\u8868,\u5e76\u51c6\u5907\u5f00\u59cb\u626b\u7801", None))
 #endif // QT_CONFIG(tooltip)
-        self.pushButton_2.setText("")
+        self.btn_task.setText(QCoreApplication.translate("Home", u"\u626b\u63cf\u4efb\u52a1", None))
 #if QT_CONFIG(tooltip)
-        self.pushButton_5.setToolTip(QCoreApplication.translate("Home", u"\u4e0a\u4e00\u9875", None))
+        self.btn_data.setToolTip(QCoreApplication.translate("Home", u"\u663e\u793a\u5df2\u626b\u63cf\u6570\u636e", None))
 #endif // QT_CONFIG(tooltip)
-        self.pushButton_5.setText("")
-#if QT_CONFIG(tooltip)
-        self.pushButton_6.setToolTip(QCoreApplication.translate("Home", u"\u4e0b\u4e00\u9875", None))
-#endif // QT_CONFIG(tooltip)
-        self.pushButton_6.setText("")
-#if QT_CONFIG(tooltip)
-        self.pushButton_3.setToolTip(QCoreApplication.translate("Home", u"\u672b\u9875", None))
-#endif // QT_CONFIG(tooltip)
-        self.pushButton_3.setText("")
-#if QT_CONFIG(tooltip)
-        self.pushButton_4.setToolTip(QCoreApplication.translate("Home", u"\u8df3\u8f6c\u5230", None))
-#endif // QT_CONFIG(tooltip)
-        self.pushButton_4.setText("")
-        self.label.setText(QCoreApplication.translate("Home", u"--", None))
-#if QT_CONFIG(tooltip)
-        self.pushButton.setToolTip(QCoreApplication.translate("Home", u"\u8bf7\u9009\u62e9\u4e00\u6761\u8bb0\u5f55\u5e76\u5f00\u59cb\u626b\u63cf", None))
-#endif // QT_CONFIG(tooltip)
-        self.pushButton.setText(QCoreApplication.translate("Home", u"\u5f00\u59cb\u626b\u63cf", None))
-        self.Label.setText(QCoreApplication.translate("Home", u"\u9500\u552e\u5355\u53f7", None))
-        self.LineEdit_1.setText("")
-        self.Label2.setText(QCoreApplication.translate("Home", u"\u5ba2\u6237\u540d\u79f0", None))
-        self.Label3.setText(QCoreApplication.translate("Home", u"\u5ba2\u6237\u8ba2\u5355\u53f7", None))
-        self.Label54.setText(QCoreApplication.translate("Home", u"\u8ba2\u5355\u91d1\u989d", None))
-        self.Label8.setText(QCoreApplication.translate("Home", u"\u4e1a\u52a1\u5458", None))
-        self.Label_2.setText(QCoreApplication.translate("Home", u"\u4ef7\u7a0e", None))
-        ___qtreewidgetitem = self.treeWidget.headerItem()
-        ___qtreewidgetitem.setText(0, QCoreApplication.translate("Home", u"\u83dc\u5355", None));
-
-        __sortingEnabled = self.treeWidget.isSortingEnabled()
-        self.treeWidget.setSortingEnabled(False)
-        ___qtreewidgetitem1 = self.treeWidget.topLevelItem(0)
-        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("Home", u"\u6211\u7684\u7ecf\u7ba1", None));
-        ___qtreewidgetitem2 = ___qtreewidgetitem1.child(0)
-        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("Home", u"\u626b\u7801\u4efb\u52a1", None));
-        self.treeWidget.setSortingEnabled(__sortingEnabled)
-
-        self.label_2.setText(QCoreApplication.translate("Home", u"\u8ba2\u5355\u4fe1\u606f", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Home", u"\u88c5\u7bb1", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("Home", u"\u88c5\u5361\u677f", None))
-        self.toolBar.setWindowTitle(QCoreApplication.translate("Home", u"toolBar", None))
+        self.btn_data.setText(QCoreApplication.translate("Home", u"\u5df2\u626b\u6570\u636e", None))
     # retranslateUi
 

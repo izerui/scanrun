@@ -9,8 +9,8 @@ import sys
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QApplication, QWidget
 
-from home import HomeWindow
-from login import LoginWindow
+from controller.home import HomeWindow
+from controller.login import LoginWindow
 
 
 class MainWindow(QWidget):
@@ -22,7 +22,6 @@ class MainWindow(QWidget):
         self.login = LoginWindow()
         self.login.loginSuccessSignal.connect(self.loadHomeWindow)
         self.login.show()
-        pass
 
     # 槽函数：显示登录后的主页
     @Slot()
@@ -30,7 +29,6 @@ class MainWindow(QWidget):
         self.home = HomeWindow()
         self.home.loginExistSignal.connect(self.loadLoginWindow)
         self.home.show()
-        pass
 
 
 if __name__ == '__main__':

@@ -1,10 +1,15 @@
 #!/bin/bash
 pwd
+
 echo '开始编译资源文件...'
-./venv/bin/pyside6-rcc images.qrc -o images_rc.py
+for i in *.qrc;
+do ./venv/bin/pyside6-rcc "$i" -o "$(basename $i .qrc)_rc.py"
+done
 echo '资源文件编译完成!'
+
 echo '开始编译ui文件...'
-./venv/bin/pyside6-uic ui/login.ui -o ui/ui_login.py
-./venv/bin/pyside6-uic ui/home.ui -o ui/ui_home.py
-./venv/bin/pyside6-uic ui/task_form.ui -o ui/ui_task_form.py
+for i in ./ui/*.ui;
+#do echo "$i" && "ui/ui_$(basename $i .ui).py"
+do ./venv/bin/pyside6-uic "$i" -o "ui/ui_$(basename $i .ui).py"
+done
 echo 'ui文件编译完成!'
