@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget
 
 from executor import HttpExecutor
-from ui.ui_scan import Ui_ScanFrame
+from ui.ui_scan_frame import Ui_ScanFrame
 
 
 class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):

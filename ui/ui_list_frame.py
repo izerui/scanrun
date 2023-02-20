@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'list.ui'
+## Form generated from reading UI file 'list_frame.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
