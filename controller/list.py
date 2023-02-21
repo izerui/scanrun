@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget
 
-from executor import HttpExecutor
+from utils.executor import HttpExecutor
 from ui.ui_list_frame import Ui_ListFrame
 
 

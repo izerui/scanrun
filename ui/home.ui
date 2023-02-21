@@ -57,7 +57,7 @@ QPushButton:pressed, QPushButton:checked {
      <number>12</number>
     </property>
     <item row="0" column="0">
-     <widget class="QFrame" name="frame">
+     <widget class="QFrame" name="leftFrame">
       <property name="minimumSize">
        <size>
         <width>100</width>

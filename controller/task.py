@@ -3,7 +3,7 @@ from PySide6.QtCore import Slot, Signal
 from PySide6.QtWidgets import QWidget, QHeaderView, QMessageBox, QTableWidgetItem
 
 from controller.dialog import TaskFormDialog
-from executor import HttpExecutor, PostThread
+from utils.executor import HttpExecutor, PostThread
 from ui.ui_task_frame import Ui_TaskFrame
 
 
@@ -28,11 +28,11 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
     def loadData(self):
         self.tableWidget.setRowCount(0)
         reqParam = {"docStatus": "DRAFT", "pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0}
-        self.execute_http('loadDataThread',
-                          PostThread('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
+        self.execute('loadDataThread',
+                     PostThread('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
                                      postCode='M1018'),
-                          self.dataResponse
-                          )
+                     self.dataResponse
+                     )
 
     def dataResponse(self, result):
         data = result['data']

@@ -4,8 +4,8 @@ import sys
 from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QWidget
 
-from executor import HttpExecutor, PostThread, GetThread
-from request import Request
+from utils.executor import HttpExecutor, PostThread
+from utils.request import Request
 from ui.ui_login import Ui_Login_Form
 
 
@@ -34,7 +34,7 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
             'password': self.passwordInput.text(),
             'type': 1
         }
-        self.execute_http(
+        self.execute(
             'loginThread',
             PostThread('https://yj2025.com/ierp/login', data),
             self.loginSuccess

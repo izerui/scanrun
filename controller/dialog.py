@@ -1,7 +1,7 @@
 from PySide6.QtCore import Slot, Signal
 from PySide6.QtWidgets import QDialog, QMessageBox
 
-from executor import HttpExecutor, PostThread
+from utils.executor import HttpExecutor, PostThread
 from ui.ui_task_form import Ui_TaskForm
 
 
@@ -14,7 +14,7 @@ class TaskFormDialog(QDialog, Ui_TaskForm, HttpExecutor):
         self.loadDepts()
 
     def loadDepts(self):
-        self.execute_http(
+        self.execute(
             'getDeptsThread',
             PostThread('https://yj2025.com/ierp/development-pc/v4/process/group?recordStatus=1&keyword='),
             self.deptsResponse

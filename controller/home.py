@@ -1,13 +1,10 @@
 # -*- coding: UTF-8 -*-
 
-from PySide6 import QtWidgets
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtGui import QAction
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem, QHeaderView
+from PySide6.QtWidgets import QMainWindow
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from controller.dialog import TaskFormDialog
-from executor import HttpExecutor, PostThread, GetThread
+from utils.executor import HttpExecutor, GetThread
 from ui.ui_home import Ui_Home
 
 
@@ -23,22 +20,21 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
         self.setupUi(self)
         # 开始扫描信号
         self.taskFrame.selectItemAndStart.connect(self.selectItemAndStart)
+        self.scanFrame.returnHome.connect(self.returnHome)
 
         # style
-        self.homeAction.setVisible(False)
-        self.stackedTab.setCurrentIndex(0)
+        self.switchTab(0)
 
         # self.loopGetUserInfo()
         schedule = BackgroundScheduler()
         schedule.add_job(self.loopGetUserInfo, trigger='interval', seconds=5)
         schedule.start()
 
+    # 进入扫码页面
     def selectItemAndStart(self, dict):
-        print(dict)
         self.stackedTab.setCurrentIndex(2)
-        self.scanAction.setVisible(False)
-        self.homeAction.setVisible(True)
-
+        self.leftFrame.setVisible(False)
+        self.scanFrame.loadData()
 
     # @Slot()
     # def toolbarClicked(self, *args: QAction):
@@ -60,17 +56,22 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
     def tabButtonPressed(self):
         checkedButtonText = self.tabButtonGroup.checkedButton().objectName()
         if checkedButtonText == 'btn_task':
-            self.stackedTab.setCurrentIndex(0)
+            self.switchTab(0)
         elif checkedButtonText == 'btn_data':
-            self.stackedTab.setCurrentIndex(1)
+            self.switchTab(1)
+
+    def switchTab(self, index):
+        self.stackedTab.setCurrentIndex(index)
+        self.leftFrame.setVisible(True)
+        if index > 1:
+            self.leftFrame.setVisible(False)
 
     def returnHome(self):
-        self.scanAction.setVisible(True)
-        self.homeAction.setVisible(False)
+        self.switchTab(0)
 
     # 每10分钟获取一次用户信息，保持session在线
     def loopGetUserInfo(self):
-        self.execute_http(
+        self.execute(
             'loopGetUserInfoThread',
             GetThread('https://yj2025.com/ierp/v2/user/info/1', postCode='M1200')
         )

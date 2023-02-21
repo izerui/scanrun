@@ -68,14 +68,14 @@ class Ui_Home(object):
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(12, 12, -1, 12)
-        self.frame = QFrame(self.centralwidget)
-        self.frame.setObjectName(u"frame")
-        self.frame.setMinimumSize(QSize(100, 0))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_6 = QVBoxLayout(self.frame)
+        self.leftFrame = QFrame(self.centralwidget)
+        self.leftFrame.setObjectName(u"leftFrame")
+        self.leftFrame.setMinimumSize(QSize(100, 0))
+        self.leftFrame.setFrameShape(QFrame.StyledPanel)
+        self.leftFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_6 = QVBoxLayout(self.leftFrame)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.btn_task = QPushButton(self.frame)
+        self.btn_task = QPushButton(self.leftFrame)
         self.tabButtonGroup = QButtonGroup(Home)
         self.tabButtonGroup.setObjectName(u"tabButtonGroup")
         self.tabButtonGroup.addButton(self.btn_task)
@@ -94,7 +94,7 @@ class Ui_Home(object):
 
         self.verticalLayout_6.addWidget(self.btn_task)
 
-        self.btn_data = QPushButton(self.frame)
+        self.btn_data = QPushButton(self.leftFrame)
         self.tabButtonGroup.addButton(self.btn_data)
         self.btn_data.setObjectName(u"btn_data")
         self.btn_data.setMinimumSize(QSize(0, 42))
@@ -113,7 +113,7 @@ class Ui_Home(object):
         self.verticalLayout_6.addItem(self.verticalSpacer)
 
 
-        self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.leftFrame, 0, 0, 1, 1)
 
         self.stackedTab = QStackedWidget(self.centralwidget)
         self.stackedTab.setObjectName(u"stackedTab")

@@ -110,7 +110,7 @@ QPushButton:pressed, QPushButton:checked {
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QToolButton" name="toolButton_7">
         <property name="minimumSize">
          <size>
           <width>24</width>
@@ -140,7 +140,7 @@ QPushButton:pressed, QPushButton:checked {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QToolButton" name="toolButton_8">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -170,7 +170,7 @@ QPushButton:pressed, QPushButton:checked {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_9">
+       <widget class="QToolButton" name="toolButton_9">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -200,7 +200,7 @@ QPushButton:pressed, QPushButton:checked {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_10">
+       <widget class="QToolButton" name="toolButton_10">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -237,7 +237,7 @@ QPushButton:pressed, QPushButton:checked {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_11">
+       <widget class="QToolButton" name="toolButton_11">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -494,82 +494,34 @@ QPushButton:pressed, QPushButton:checked {
  </resources>
  <connections>
   <connection>
-   <sender>pushButton_7</sender>
-   <signal>clicked()</signal>
+   <sender>tableWidget</sender>
+   <signal>itemSelectionChanged()</signal>
    <receiver>TaskFrame</receiver>
-   <slot>firstPage()</slot>
+   <slot>dataRowSelected()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>391</x>
-     <y>340</y>
+     <x>154</x>
+     <y>172</y>
     </hint>
     <hint type="destinationlabel">
-     <x>929</x>
-     <y>292</y>
+     <x>282</x>
+     <y>721</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_8</sender>
-   <signal>clicked()</signal>
+   <sender>tableWidget</sender>
+   <signal>itemDoubleClicked(QTableWidgetItem*)</signal>
    <receiver>TaskFrame</receiver>
-   <slot>prePage()</slot>
+   <slot>openTaskForm()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>429</x>
-     <y>337</y>
+     <x>339</x>
+     <y>226</y>
     </hint>
     <hint type="destinationlabel">
-     <x>936</x>
-     <y>247</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_9</sender>
-   <signal>clicked()</signal>
-   <receiver>TaskFrame</receiver>
-   <slot>nextPage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>465</x>
-     <y>336</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>924</x>
-     <y>196</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_10</sender>
-   <signal>clicked()</signal>
-   <receiver>TaskFrame</receiver>
-   <slot>endPage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>505</x>
-     <y>331</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>908</x>
-     <y>151</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_11</sender>
-   <signal>clicked()</signal>
-   <receiver>TaskFrame</receiver>
-   <slot>jumpPage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>561</x>
-     <y>332</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>905</x>
-     <y>116</y>
+     <x>326</x>
+     <y>708</y>
     </hint>
    </hints>
   </connection>
@@ -590,18 +542,82 @@ QPushButton:pressed, QPushButton:checked {
    </hints>
   </connection>
   <connection>
-   <sender>tableWidget</sender>
-   <signal>itemSelectionChanged()</signal>
+   <sender>toolButton_7</sender>
+   <signal>clicked()</signal>
    <receiver>TaskFrame</receiver>
-   <slot>dataRowSelected()</slot>
+   <slot>firstPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>154</x>
-     <y>172</y>
+     <x>417</x>
+     <y>331</y>
     </hint>
     <hint type="destinationlabel">
-     <x>282</x>
-     <y>721</y>
+     <x>834</x>
+     <y>284</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_8</sender>
+   <signal>clicked()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>prePage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>446</x>
+     <y>337</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>842</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_9</sender>
+   <signal>clicked()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>nextPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>484</x>
+     <y>336</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>840</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_10</sender>
+   <signal>clicked()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>endPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>511</x>
+     <y>335</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>838</x>
+     <y>189</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_11</sender>
+   <signal>clicked()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>jumpPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>561</x>
+     <y>334</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>835</x>
+     <y>159</y>
     </hint>
    </hints>
   </connection>
