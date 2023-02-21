@@ -150,14 +150,17 @@ class ScanTableUnit(BaseTableUnit):
                         creator_name TEXT,
                         unit_code    TEXT,
                         box_code     TEXT,
-                        pallet_code  TEXT
+                        pallet_code  TEXT,
+                        upload_status INTEGER,
+                        uploader     TEXT,
+                        upload_time  TEXT
                     )
                 '''
 
     def _insert_sql(self) -> str:
         return f'''
                 insert into {self._table_name()} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, laxian_name, create_time,
-                                   creator, creator_name, unit_code, box_code, pallet_code)
+                                   creator, creator_name, unit_code, box_code, pallet_code, upload_status, uploader, upload_time)
                         values (:chejian_code, :chejian_name, :ent_code, :business_key, :banzu_code, :banzu_name, :laxian_name, :create_time,
-                                   :creator, :creator_name, :unit_code, :box_code, :pallet_code)
+                                   :creator, :creator_name, :unit_code, :box_code, :pallet_code, :upload_status, :uploader, :upload_time)
             '''

@@ -33,7 +33,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 'creator_name': f'creator_name_{i}',
                 'unit_code': f'unit_code_{i}',
                 'box_code': f'box_code_{i}',
-                'pallet_code': f'pallet_code_{i}'
+                'pallet_code': f'pallet_code_{i}',
+                'upload_status': 0,
+                'uploader': 'sjdjf',
+                'upload_time': time.time()
             }
             scanTableUnit.insert(dict)
         list = scanTableUnit.queryForList('SELECT * FROM scan_data')
