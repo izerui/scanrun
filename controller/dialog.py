@@ -45,7 +45,6 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
                 'order_info': self.order_info,
                 'chejian_code': self.chejian.currentData()['departmentCode'],
                 'chejian_name': self.chejian.currentData()['departmentName'],
-                'laxian_name': self.laxian.text(),
                 'banzu_code': self.banzu.currentData()['departmentCode'],
                 'banzu_name': self.banzu.currentData()['departmentName']
             }

@@ -1,3 +1,5 @@
+import logging
+
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
 from PySide6.QtWidgets import QMessageBox
 
@@ -30,7 +32,8 @@ class DbUnit(object):
             query.exec(sql)
         if query.lastError().isValid():
             QMessageBox.critical(None, '异常', query.lastError().text())
-            raise query.lastError()
+            logging.exception(query.lastError())
+            # raise query.lastError()
         DbUnit.database.commit()
         return query
 
@@ -78,7 +81,10 @@ class BaseTableUnit(object):
     def _create_sql(self) -> str:
         raise RuntimeError('必须覆盖并实现_create_sql()方法')
 
-    def _insert_sql(self) -> str:
+    def _create_indexs(self) -> None:
+        return []
+
+    def _insert_sql(self, ignore: bool = False) -> str:
         raise RuntimeError('必须覆盖并实现_insert_sql()方法')
 
     def _checked(self):
@@ -89,9 +95,15 @@ class BaseTableUnit(object):
 
     def createTable(self):
         DbUnit.execute(self._create_sql())
+        if self._create_indexs():
+            for sql in self._create_indexs():
+                DbUnit.execute(sql)
 
     def insert(self, obj):
         DbUnit.execute(self._insert_sql(), obj)
+
+    def insertIgnore(self, obj):
+        DbUnit.execute(self._insert_sql(True), obj)
 
     def deleteById(self, id):
         DbUnit.execute(f'delete from {self._table_name()} where {self._primary_key()} = :id', {'id': id})
@@ -101,6 +113,7 @@ class BaseTableUnit(object):
 
     def dropTable(self):
         DbUnit.execute(f'drop table {self._table_name()}')
+
     def execute(self, sql, param):
         return DbUnit.execute(sql, param)
 
@@ -147,7 +160,6 @@ class ScanTableUnit(BaseTableUnit):
                         business_key TEXT,
                         banzu_code   TEXT,
                         banzu_name   TEXT,
-                        laxian_name  TEXT,
                         create_time  INTEGER,
                         creator      TEXT,
                         creator_name TEXT,
@@ -156,14 +168,22 @@ class ScanTableUnit(BaseTableUnit):
                         pallet_code  TEXT,
                         upload_status INTEGER,
                         uploader     TEXT,
-                        upload_time  TEXT
+                        upload_time  INTEGER
                     )
                 '''
 
-    def _insert_sql(self) -> str:
+    def _create_indexs(self) -> None:
+        return [
+            '''
+            create unique index scan_data_ent_code_business_key_unit_code_uindex
+            on scan_data (ent_code, business_key, unit_code);
+            '''
+        ]
+
+    def _insert_sql(self, ignore: bool = False) -> str:
         return f'''
-                insert into {self._table_name()} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, laxian_name, create_time,
+                insert {'OR IGNORE' if ignore  else ''} into {self._table_name()} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, create_time,
                                    creator, creator_name, unit_code, box_code, pallet_code, upload_status, uploader, upload_time)
-                        values (:chejian_code, :chejian_name, :ent_code, :business_key, :banzu_code, :banzu_name, :laxian_name, :create_time,
+                        values (:chejian_code, :chejian_name, :ent_code, :business_key, :banzu_code, :banzu_name, :create_time,
                                    :creator, :creator_name, :unit_code, :box_code, :pallet_code, :upload_status, :uploader, :upload_time)
             '''

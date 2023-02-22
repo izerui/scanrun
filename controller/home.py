@@ -43,7 +43,8 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
         else:
             self.stackedTab.setCurrentIndex(2)
             self.leftFrame.setVisible(False)
-            self.scanFrame.loadScanData(scan_info)
+            self.scanFrame.setScanInfo(scan_info)
+            self.scanFrame.loadScanData()
 
     # @Slot()
     # def toolbarClicked(self, *args: QAction):

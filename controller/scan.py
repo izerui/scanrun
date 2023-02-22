@@ -1,4 +1,5 @@
 import time
+from itertools import groupby
 
 import PySide6.QtGui
 from PySide6 import QtWidgets, QtCore
@@ -18,12 +19,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         super().__init__()
         self.setupUi(self)
         self.scanTableUnit = ScanTableUnit()
-        self.initDemoData()
+        # self.initDemoData()
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
     #     if event.key() == QtCore.Qt.Key.Key_Return.value:
     #         self.scan_code_input.setFocus()
     #         self.scan_code_input.selectAll()
+
+    def setScanInfo(self, scan_info):
+        self.scan_info = scan_info
 
     def initDemoData(self):
         # QDateTime.currentDateTime()
@@ -37,7 +41,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 'business_key': f'business_key_{i}',
                 'banzu_code': f'banzu_code_{i}',
                 'banzu_name': f'banzu_name_{i}',
-                'laxian_name': f'laxian_name_{i}',
                 'create_time': now,
                 'creator': f'creator_{i}',
                 'creator_name': f'creator_name_{i}',
@@ -46,9 +49,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 'pallet_code': f'pallet_code_{i}',
                 'upload_status': 0,
                 'uploader': 'sjdjf',
-                'upload_time': QDateTime.currentDateTime()
+                'upload_time': now
             }
-            self.scanTableUnit.insert(dict)
+            self.scanTableUnit.insertIgnore(dict)
         list = self.scanTableUnit.queryForList('SELECT * FROM scan_data')
         for l in list:
             print(l)
@@ -56,8 +59,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             self.scanTableUnit.update(l)
 
     # 查询本地数据库的已记录扫码数据
-    def loadScanData(self, scan_info: dict):
-        self.scan_info = scan_info
+    def loadScanData(self):
         self.renderFormValue()
         self.tableWidget.setShowGrid(True)
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -69,16 +71,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         i = 0
         for d in datas:
             self.tableWidget.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(d['laxian_name']))
-            self.tableWidget.setItem(i, 2, QTableWidgetItem(d['banzu_name']))
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time']/1000))))
-            self.tableWidget.setItem(i, 4, QTableWidgetItem(d['creator']))
-            self.tableWidget.setItem(i, 5, QTableWidgetItem(d['unit_code']))
-            self.tableWidget.setItem(i, 6, QTableWidgetItem(d['box_code']))
-            self.tableWidget.setItem(i, 7, QTableWidgetItem(d['pallet_code']))
-            self.tableWidget.setItem(i, 8, QTableWidgetItem(d['upload_status']))
-            self.tableWidget.setItem(i, 9, QTableWidgetItem(d['uploader']))
-            self.tableWidget.setItem(i, 10, QTableWidgetItem(d['upload_time']))
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
+            self.tableWidget.setItem(i, 2, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time']/1000))))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(d['creator_name']))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(d['unit_code']))
+            self.tableWidget.setItem(i, 5, QTableWidgetItem(d['box_code']))
+            self.tableWidget.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
+            self.tableWidget.setItem(i, 7, QTableWidgetItem(d['upload_status']))
+            self.tableWidget.setItem(i, 8, QTableWidgetItem(d['uploader']))
+            self.tableWidget.setItem(i, 9, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time']/1000)) if d['upload_time'] else None))
             i += 1
         # self.tableWidget.show()
         self.tableWidget.selectRow(0)
@@ -88,11 +89,17 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.order_no_input.setText(self.scan_info['order_info']['orderDocNo'])
         self.cus_order_no_input.setText(self.scan_info['order_info']['customerOrderDocNo'])
         self.chejian_name_input.setText(self.scan_info['chejian_name'])
-        self.laxian_name_input.setText(self.scan_info['laxian_name'])
         self.banzu_name_input.setText(self.scan_info['banzu_name'])
         self.task_count_input.setText(self.scan_info['order_info']['salePlanQuantity'])
         self.user_name_input.setText(Context.user['userName'])
         pass
+
+    @Slot()
+    def deleteSelection(self):
+        for rowIndex, group in groupby(self.tableWidget.selectedIndexes(), lambda x: x.row()):
+            print(rowIndex)
+            # print(rowIndex, self.datas[rowIndex]['id'])
+
 
     @Slot()
     def scan(self):
@@ -107,7 +114,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 'business_key': self.scan_info['order_info']['recordId'],
                 'banzu_code': self.scan_info['banzu_code'],
                 'banzu_name': self.scan_info['banzu_name'],
-                'laxian_name': self.scan_info['laxian_name'],
                 'create_time': now,
                 'creator': Context.user['userCode'],
                 'creator_name': Context.user['userName'],
@@ -118,4 +124,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 'uploader': None,
                 'upload_time': None
             }
-            self.scanTableUnit.insert(data)
+            self.scanTableUnit.insertIgnore(data)
+            self.scan_code_input.clear()
+            self.loadScanData()

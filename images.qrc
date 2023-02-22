@@ -19,5 +19,6 @@
     <file>pic/yj04.png</file>
     <file>pic/return_home.png</file>
     <file>pic/data.png</file>
+    <file>pic/delete.png</file>
   </qresource>
 </RCC>
