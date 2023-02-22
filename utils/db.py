@@ -85,7 +85,7 @@ class BaseTableUnit(object):
         if self._table_name() in DbUnit.database.tables():
             pass
         else:
-            self._create()
+            self.createTable()
 
     def createTable(self):
         DbUnit.execute(self._create_sql())
