@@ -27,9 +27,9 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setRowCount(0)
-        reqParam = {"docStatus": "DRAFT", "pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0}
+        reqParam = {"orderStatus":"UN_FINISH","pageIndex":1,"pageSize":20,"total":28761}
         self.execute('loadDataThread',
-                     PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/sale/order/list', json=reqParam,
+                     PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/sale/order/follow/stock/list', json=reqParam,
                                      postCode='M1018'),
                      self.dataResponse
                      )
@@ -44,7 +44,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             self.tableWidget.setItem(i, 0, QTableWidgetItem(d['orderDocNo']))
             self.tableWidget.setItem(i, 1, QTableWidgetItem(d['customer']['customerName']))
             self.tableWidget.setItem(i, 2, QTableWidgetItem(d['customerOrderDocNo']))
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(d['totalOrderAmount']))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(d['inventoryAmount']))
             self.tableWidget.setItem(i, 4, QTableWidgetItem(d['employeeName']))
             self.tableWidget.setItem(i, 5, QTableWidgetItem(d['createTime']))
             i += 1
@@ -109,9 +109,9 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.LineEdit_7.setText(self.selRow['orderDocNo'])
         self.LineEdit_11.setText(self.selRow['customer']['customerName'])
         self.LineEdit_8.setText(self.selRow['customerOrderDocNo'])
-        self.LineEdit_9.setText(self.selRow['totalOrderAmount'])
+        self.LineEdit_9.setText(self.selRow['inventoryAmount'])
         self.LineEdit_10.setText(self.selRow['employeeName'])
-        self.LineEdit_12.setText(self.selRow['tax']['taxContent'])
+        self.LineEdit_12.setText(self.selRow['unitPrice'])
 
     def dataResChangeView(self, data):
         self.pageEdit.setValue(data['number'] + 1)

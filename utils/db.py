@@ -87,7 +87,7 @@ class BaseTableUnit(object):
         else:
             self._create()
 
-    def _create(self):
+    def createTable(self):
         DbUnit.execute(self._create_sql())
 
     def insert(self, obj):
@@ -99,6 +99,8 @@ class BaseTableUnit(object):
     def deleteAll(self):
         DbUnit.execute(f'delete from {self._table_name()}')
 
+    def dropTable(self):
+        DbUnit.execute(f'drop table {self._table_name()}')
     def execute(self, sql, param):
         return DbUnit.execute(sql, param)
 
@@ -118,6 +120,7 @@ class BaseTableUnit(object):
         sql += ', '.join(sets)
         sql += f' where {self._primary_key()} = :{self._primary_key()}'
         DbUnit.execute(sql, item)
+
 
 # scan_data 表操作
 class ScanTableUnit(BaseTableUnit):

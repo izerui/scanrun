@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -474,6 +477,9 @@
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="text">
            <string>返回</string>
           </property>
@@ -600,8 +606,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>scan_code_input</sender>
+   <signal>returnPressed()</signal>
+   <receiver>ScanFrame</receiver>
+   <slot>scan()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>165</x>
+     <y>178</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>217</x>
+     <y>-54</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>returnHome()</slot>
+  <slot>scan()</slot>
  </slots>
 </ui>

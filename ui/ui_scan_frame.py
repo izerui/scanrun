@@ -26,6 +26,7 @@ class Ui_ScanFrame(object):
         if not ScanFrame.objectName():
             ScanFrame.setObjectName(u"ScanFrame")
         ScanFrame.resize(744, 538)
+        ScanFrame.setAutoFillBackground(False)
         ScanFrame.setStyleSheet(u"")
         self.gridLayout_3 = QGridLayout(ScanFrame)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
@@ -248,6 +249,7 @@ class Ui_ScanFrame(object):
         font1.setPointSize(13)
         self.pushButton.setFont(font1)
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.setFocusPolicy(Qt.NoFocus)
         icon = QIcon()
         icon.addFile(u":/logo/pic/return_home.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton.setIcon(icon)
@@ -315,6 +317,7 @@ class Ui_ScanFrame(object):
 
         self.retranslateUi(ScanFrame)
         self.pushButton.clicked.connect(ScanFrame.returnHome)
+        self.scan_code_input.returnPressed.connect(ScanFrame.scan)
 
         QMetaObject.connectSlotsByName(ScanFrame)
     # setupUi

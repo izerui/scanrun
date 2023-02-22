@@ -1,7 +1,8 @@
+import time
 
 import PySide6.QtGui
 from PySide6 import QtWidgets, QtCore
-from PySide6.QtCore import Signal, QDateTime
+from PySide6.QtCore import Signal, QDateTime, Slot
 from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
 
 from ui.ui_scan_frame import Ui_ScanFrame
@@ -17,14 +18,16 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         super().__init__()
         self.setupUi(self)
         self.scanTableUnit = ScanTableUnit()
+        self.initDemoData()
 
-    def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
-        if event.key() == QtCore.Qt.Key.Key_Return.value:
-            self.scan_code_input.setFocus()
-            self.scan_code_input.selectAll()
-
+    # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
+    #     if event.key() == QtCore.Qt.Key.Key_Return.value:
+    #         self.scan_code_input.setFocus()
+    #         self.scan_code_input.selectAll()
 
     def initDemoData(self):
+        # QDateTime.currentDateTime()
+        now = int(round(time.time() * 1000))
         self.scanTableUnit.deleteAll()
         for i in range(0, 2000):
             dict = {
@@ -35,7 +38,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 'banzu_code': f'banzu_code_{i}',
                 'banzu_name': f'banzu_name_{i}',
                 'laxian_name': f'laxian_name_{i}',
-                'create_time': QDateTime.currentDateTime(),
+                'create_time': now,
                 'creator': f'creator_{i}',
                 'creator_name': f'creator_name_{i}',
                 'unit_code': f'unit_code_{i}',
@@ -54,7 +57,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 查询本地数据库的已记录扫码数据
     def loadScanData(self, scan_info: dict):
-        self.renderFormValue(scan_info)
+        self.scan_info = scan_info
+        self.renderFormValue()
         self.tableWidget.setShowGrid(True)
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -67,7 +71,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             self.tableWidget.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
             self.tableWidget.setItem(i, 1, QTableWidgetItem(d['laxian_name']))
             self.tableWidget.setItem(i, 2, QTableWidgetItem(d['banzu_name']))
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(d['create_time']))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time']/1000))))
             self.tableWidget.setItem(i, 4, QTableWidgetItem(d['creator']))
             self.tableWidget.setItem(i, 5, QTableWidgetItem(d['unit_code']))
             self.tableWidget.setItem(i, 6, QTableWidgetItem(d['box_code']))
@@ -80,13 +84,38 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.tableWidget.selectRow(0)
 
     # 填充扫码页面的form表单信息
-    def renderFormValue(self, scan_info):
-        self.order_no_input.setText(scan_info['order_info']['orderDocNo'])
-        self.cus_order_no_input.setText(scan_info['order_info']['customerOrderDocNo'])
-        self.chejian_name_input.setText(scan_info['chejian_name'])
-        self.laxian_name_input.setText(scan_info['laxian_name'])
-        self.banzu_name_input.setText(scan_info['banzu_name'])
-        self.task_count_input.setText(scan_info['order_info']['totalOrderAmount'])
-        self.task_count_input.setText(scan_info['order_info']['totalOrderAmount'])
+    def renderFormValue(self):
+        self.order_no_input.setText(self.scan_info['order_info']['orderDocNo'])
+        self.cus_order_no_input.setText(self.scan_info['order_info']['customerOrderDocNo'])
+        self.chejian_name_input.setText(self.scan_info['chejian_name'])
+        self.laxian_name_input.setText(self.scan_info['laxian_name'])
+        self.banzu_name_input.setText(self.scan_info['banzu_name'])
+        self.task_count_input.setText(self.scan_info['order_info']['salePlanQuantity'])
         self.user_name_input.setText(Context.user['userName'])
         pass
+
+    @Slot()
+    def scan(self):
+        now = int(round(time.time() * 1000))
+        # time.strftime('%Y-%m-%d %H:%M%S', time.localtime(now/1000))
+        code = self.scan_code_input.text()
+        if code:
+            data = {
+                'chejian_code': self.scan_info['chejian_code'],
+                'chejian_name': self.scan_info['chejian_name'],
+                'ent_code': Context.user['entCode'],
+                'business_key': self.scan_info['order_info']['recordId'],
+                'banzu_code': self.scan_info['banzu_code'],
+                'banzu_name': self.scan_info['banzu_name'],
+                'laxian_name': self.scan_info['laxian_name'],
+                'create_time': now,
+                'creator': Context.user['userCode'],
+                'creator_name': Context.user['userName'],
+                'unit_code': code,
+                'box_code': None,
+                'pallet_code': None,
+                'upload_status': 0,
+                'uploader': None,
+                'upload_time': None
+            }
+            self.scanTableUnit.insert(data)
