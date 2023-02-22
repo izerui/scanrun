@@ -11,10 +11,14 @@ from PySide6.QtWidgets import QApplication, QWidget
 
 from controller.home import HomeWindow
 from controller.login import LoginWindow
+from utils.context import Context
 
 
 class MainWindow(QWidget):
 
+    def __init__(self):
+        super().__init__()
+        self.initDefaultSettings()
 
     # 槽函数：显示登录页
     @Slot()
@@ -29,6 +33,9 @@ class MainWindow(QWidget):
         self.home = HomeWindow()
         self.home.loginExistSignal.connect(self.loadLoginWindow)
         self.home.show()
+
+    def initDefaultSettings(self):
+        Context.setDefaultSettings('gateway/domain', 'https://yj2025.com')
 
 
 if __name__ == '__main__':

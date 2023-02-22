@@ -1,11 +1,13 @@
 # -*- coding: UTF-8 -*-
+import time
 
-from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtCore import Signal, Slot, QDateTime
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QStatusBar, QLabel
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from utils.executor import HttpExecutor, GetThread
 from ui.ui_home import Ui_Home
+from utils.context import Context
+from utils.executor import HttpExecutor, GetThread
 
 
 ####################
@@ -18,23 +20,30 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
         # 开始扫描信号
-        self.taskFrame.selectItemAndStart.connect(self.selectItemAndStart)
+        self.taskFrame.scanConfirmedSignal.connect(self.scanConfirmed)
         self.scanFrame.returnHome.connect(self.returnHome)
 
         # style
         self.switchTab(0)
 
-        # self.loopGetUserInfo()
+        self.loopGetUserInfo()
         schedule = BackgroundScheduler()
-        schedule.add_job(self.loopGetUserInfo, trigger='interval', seconds=5)
+        schedule.add_job(self.loopGetUserInfo, trigger='interval', minutes=10)
         schedule.start()
 
+
+
     # 进入扫码页面
-    def selectItemAndStart(self, dict):
-        self.stackedTab.setCurrentIndex(2)
-        self.leftFrame.setVisible(False)
-        self.scanFrame.loadData()
+    @Slot()
+    def scanConfirmed(self, scan_info: dict):
+        if not Context.user:
+            QMessageBox.critical(None, '提示', '未获取到登录用户信息')
+        else:
+            self.stackedTab.setCurrentIndex(2)
+            self.leftFrame.setVisible(False)
+            self.scanFrame.loadScanData(scan_info)
 
     # @Slot()
     # def toolbarClicked(self, *args: QAction):
@@ -44,13 +53,12 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
     #         self.openTaskForm()
     #     if args[0].text() == 'logout':
     #         self.logout()
-        # QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
+    # QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
 
     @Slot()
     def logout(self):
         self.loginExistSignal.emit('logout')
         self.close()
-
 
     @Slot()
     def tabButtonPressed(self):
@@ -73,5 +81,10 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
     def loopGetUserInfo(self):
         self.execute(
             'loopGetUserInfoThread',
-            GetThread('https://yj2025.com/ierp/v2/user/info/1', postCode='M1200')
+            GetThread(f'{Context.getSettings("gateway/domain")}/ierp/v2/user/info/1', postCode='M1200'),
+            self.userInfoResponse
         )
+
+    def userInfoResponse(self, result):
+        Context.user = result['data']
+        print(Context.user)

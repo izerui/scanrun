@@ -1,8 +1,9 @@
 import json
+import sys
 from typing import Callable
 
 from PySide6.QtCore import QThread, Signal
-from PySide6.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QMessageBox, QWidget
 from httpx import Response
 
 from utils.request import Request
@@ -25,25 +26,33 @@ class HttpExecutor(object):
 
     # 默认的异常回调
     def http_error_call(self, err):
-        QMessageBox.critical(None, '错误', err)
+        QMessageBox.critical(None, '错误', err['errMsg'])
+        if err['errCode'] == 'unLogin':
+            sys.exit()
 
 
 class HttpInterceptor(object):
 
     def handler(self, response):
         if response.status_code != 200:
-            self.error.emit(f'请求远程服务器失败,错误代码{response.status_code}')
+            self.error.emit({
+                'errCode': f'REQUEST_ERROR_{response.status_code}',
+                'errMsg': f'请求远程服务器失败,错误代码{response.status_code}'
+            })
         else:
             result = json.loads(response.text)
             if not result['success']:
-                self.error.emit(result['errMsg'])
+                self.error.emit({
+                    'errCode': result['errCode'],
+                    'errMsg': result['errMsg']
+                })
             else:
                 self.response.emit(result, response)
 
 
 class PostThread(QThread, HttpInterceptor):
     response = Signal(object, Response)
-    error = Signal(str)
+    error = Signal(dict)
 
     def __init__(self, url, data=None, json=None, **kwargs):
         super().__init__()
@@ -63,7 +72,7 @@ class PostThread(QThread, HttpInterceptor):
 
 class GetThread(QThread, HttpInterceptor):
     response = Signal(object, Response)
-    error = Signal(str)
+    error = Signal(dict)
 
     def __init__(self, url, params=None, **kwargs):
         super().__init__()

@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QFormLayout,
     QFrame, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QPushButton, QScrollArea,
-    QSizePolicy, QSpacerItem, QSpinBox, QTableWidget,
+    QLabel, QLineEdit, QPushButton, QSizePolicy,
+    QSpacerItem, QSpinBox, QSplitter, QTableWidget,
     QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
 import images_rc
 
@@ -43,9 +43,17 @@ class Ui_TaskFrame(object):
 "    border: 1px solid #3a8ee6;\n"
 "    color: #409eff;\n"
 "}")
-        self.verticalLayout = QVBoxLayout(TaskFrame)
+        self.gridLayout_2 = QGridLayout(TaskFrame)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.splitter = QSplitter(TaskFrame)
+        self.splitter.setObjectName(u"splitter")
+        self.splitter.setOrientation(Qt.Vertical)
+        self.verticalLayoutWidget = QWidget(self.splitter)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.tableWidget = QTableWidget(TaskFrame)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.tableWidget = QTableWidget(self.verticalLayoutWidget)
         if (self.tableWidget.columnCount() < 6):
             self.tableWidget.setColumnCount(6)
         __qtablewidgetitem = QTableWidgetItem()
@@ -67,7 +75,7 @@ class Ui_TaskFrame(object):
 
         self.verticalLayout.addWidget(self.tableWidget)
 
-        self.widget_2 = QWidget(TaskFrame)
+        self.widget_2 = QWidget(self.verticalLayoutWidget)
         self.widget_2.setObjectName(u"widget_2")
         self.widget_2.setMinimumSize(QSize(0, 0))
         self.horizontalLayout_2 = QHBoxLayout(self.widget_2)
@@ -192,104 +200,101 @@ class Ui_TaskFrame(object):
 
         self.verticalLayout.addWidget(self.widget_2)
 
-        self.scrollArea_2 = QScrollArea(TaskFrame)
-        self.scrollArea_2.setObjectName(u"scrollArea_2")
-        self.scrollArea_2.setMinimumSize(QSize(0, 200))
-        self.scrollArea_2.setMaximumSize(QSize(16777215, 200))
-        self.scrollArea_2.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 782, 202))
-        self.gridLayout_3 = QGridLayout(self.scrollAreaWidgetContents_2)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.splitter.addWidget(self.verticalLayoutWidget)
+        self.frame = QFrame(self.splitter)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.gridLayout = QGridLayout(self.frame)
+        self.gridLayout.setObjectName(u"gridLayout")
         self.formLayout_3 = QFormLayout()
         self.formLayout_3.setObjectName(u"formLayout_3")
         self.formLayout_3.setFieldGrowthPolicy(QFormLayout.ExpandingFieldsGrow)
         self.formLayout_3.setRowWrapPolicy(QFormLayout.WrapLongRows)
         self.formLayout_3.setLabelAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.formLayout_3.setHorizontalSpacing(3)
-        self.Label_3 = QLabel(self.scrollAreaWidgetContents_2)
+        self.Label_3 = QLabel(self.frame)
         self.Label_3.setObjectName(u"Label_3")
 
         self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.Label_3)
 
-        self.LineEdit_7 = QLineEdit(self.scrollAreaWidgetContents_2)
+        self.LineEdit_7 = QLineEdit(self.frame)
         self.LineEdit_7.setObjectName(u"LineEdit_7")
         self.LineEdit_7.setReadOnly(True)
 
         self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.LineEdit_7)
 
-        self.Label2_2 = QLabel(self.scrollAreaWidgetContents_2)
+        self.Label2_2 = QLabel(self.frame)
         self.Label2_2.setObjectName(u"Label2_2")
 
         self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.Label2_2)
 
-        self.Label3_2 = QLabel(self.scrollAreaWidgetContents_2)
-        self.Label3_2.setObjectName(u"Label3_2")
-
-        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.Label3_2)
-
-        self.LineEdit_8 = QLineEdit(self.scrollAreaWidgetContents_2)
-        self.LineEdit_8.setObjectName(u"LineEdit_8")
-        self.LineEdit_8.setReadOnly(True)
-
-        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.LineEdit_8)
-
-        self.Label54_2 = QLabel(self.scrollAreaWidgetContents_2)
-        self.Label54_2.setObjectName(u"Label54_2")
-
-        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.Label54_2)
-
-        self.LineEdit_9 = QLineEdit(self.scrollAreaWidgetContents_2)
-        self.LineEdit_9.setObjectName(u"LineEdit_9")
-        self.LineEdit_9.setReadOnly(True)
-
-        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.LineEdit_9)
-
-        self.Label8_2 = QLabel(self.scrollAreaWidgetContents_2)
-        self.Label8_2.setObjectName(u"Label8_2")
-
-        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.Label8_2)
-
-        self.LineEdit_10 = QLineEdit(self.scrollAreaWidgetContents_2)
-        self.LineEdit_10.setObjectName(u"LineEdit_10")
-        self.LineEdit_10.setReadOnly(True)
-
-        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.LineEdit_10)
-
-        self.LineEdit_11 = QLineEdit(self.scrollAreaWidgetContents_2)
+        self.LineEdit_11 = QLineEdit(self.frame)
         self.LineEdit_11.setObjectName(u"LineEdit_11")
         self.LineEdit_11.setReadOnly(True)
 
         self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.LineEdit_11)
 
-        self.Label_4 = QLabel(self.scrollAreaWidgetContents_2)
+        self.Label3_2 = QLabel(self.frame)
+        self.Label3_2.setObjectName(u"Label3_2")
+
+        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.Label3_2)
+
+        self.LineEdit_8 = QLineEdit(self.frame)
+        self.LineEdit_8.setObjectName(u"LineEdit_8")
+        self.LineEdit_8.setReadOnly(True)
+
+        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.LineEdit_8)
+
+        self.Label54_2 = QLabel(self.frame)
+        self.Label54_2.setObjectName(u"Label54_2")
+
+        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.Label54_2)
+
+        self.LineEdit_9 = QLineEdit(self.frame)
+        self.LineEdit_9.setObjectName(u"LineEdit_9")
+        self.LineEdit_9.setReadOnly(True)
+
+        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.LineEdit_9)
+
+        self.Label8_2 = QLabel(self.frame)
+        self.Label8_2.setObjectName(u"Label8_2")
+
+        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.Label8_2)
+
+        self.LineEdit_10 = QLineEdit(self.frame)
+        self.LineEdit_10.setObjectName(u"LineEdit_10")
+        self.LineEdit_10.setReadOnly(True)
+
+        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.LineEdit_10)
+
+        self.Label_4 = QLabel(self.frame)
         self.Label_4.setObjectName(u"Label_4")
 
         self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.Label_4)
 
-        self.LineEdit_12 = QLineEdit(self.scrollAreaWidgetContents_2)
+        self.LineEdit_12 = QLineEdit(self.frame)
         self.LineEdit_12.setObjectName(u"LineEdit_12")
 
         self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.LineEdit_12)
 
 
-        self.gridLayout_3.addLayout(self.formLayout_3, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.formLayout_3, 0, 0, 1, 1)
 
-        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
+        self.splitter.addWidget(self.frame)
 
-        self.verticalLayout.addWidget(self.scrollArea_2)
+        self.gridLayout_2.addWidget(self.splitter, 0, 0, 1, 1)
 
 
         self.retranslateUi(TaskFrame)
-        self.tableWidget.itemSelectionChanged.connect(TaskFrame.dataRowSelected)
-        self.tableWidget.itemDoubleClicked.connect(TaskFrame.openTaskForm)
-        self.pushButton_12.clicked.connect(TaskFrame.openTaskForm)
-        self.toolButton_7.clicked.connect(TaskFrame.firstPage)
         self.toolButton_8.clicked.connect(TaskFrame.prePage)
-        self.toolButton_9.clicked.connect(TaskFrame.nextPage)
+        self.tableWidget.itemDoubleClicked.connect(TaskFrame.openTaskForm)
         self.toolButton_10.clicked.connect(TaskFrame.endPage)
+        self.toolButton_9.clicked.connect(TaskFrame.nextPage)
         self.toolButton_11.clicked.connect(TaskFrame.jumpPage)
+        self.toolButton_7.clicked.connect(TaskFrame.firstPage)
+        self.tableWidget.itemSelectionChanged.connect(TaskFrame.dataRowSelected)
+        self.pushButton_12.clicked.connect(TaskFrame.openTaskForm)
 
         QMetaObject.connectSlotsByName(TaskFrame)
     # setupUi

@@ -2,34 +2,34 @@ from PySide6 import QtWidgets
 from PySide6.QtCore import Slot, Signal
 from PySide6.QtWidgets import QWidget, QHeaderView, QMessageBox, QTableWidgetItem
 
-from controller.dialog import TaskFormDialog
+from controller.dialog import ScanConfirmDialog
+from utils.context import Context
 from utils.executor import HttpExecutor, PostThread
 from ui.ui_task_frame import Ui_TaskFrame
 
 
 class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
 
-    selectItemAndStart = Signal(dict)
+    scanConfirmedSignal = Signal(dict)
 
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.initStyle()
         self.pageIndex = 0
         self.pageSize = 20
         self.totalPage = 0
         self.totalCount = 0
         self.firstPage()
 
-    def initStyle(self):
-        self.tableWidget.setShowGrid(True)
-        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def loadData(self):
+        self.tableWidget.setShowGrid(True)
+        # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setRowCount(0)
         reqParam = {"docStatus": "DRAFT", "pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0}
         self.execute('loadDataThread',
-                     PostThread('https://yj2025.com/ierp/sale-pc/v1/sale/order/list', json=reqParam,
+                     PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/sale/order/list', json=reqParam,
                                      postCode='M1018'),
                      self.dataResponse
                      )
@@ -38,7 +38,6 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         data = result['data']
         self.wrapPageData(data)
         self.dataResChangeView(data)
-        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setRowCount(len(data['content']))
         i = 0
         for d in data['content']:
@@ -97,9 +96,9 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
     @Slot()
     def openTaskForm(self):
         if self.selRow:
-            self.task = TaskFormDialog()
+            self.task = ScanConfirmDialog(self.selRow)
             # 两个信号连接，直接触发到home
-            self.task.formCreated.connect(self.selectItemAndStart)
+            self.task.scanConfirmedSignal.connect(self.scanConfirmedSignal)
             self.task.show()
         else:
             QMessageBox.warning(None, '提示', '请选择一条任务开始扫码')
