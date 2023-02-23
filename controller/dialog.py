@@ -39,14 +39,9 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
         if not self.banzu.currentData():
             QMessageBox.critical(None, '错误', '请选择班组')
         else:
-            self.order_info['box_inside_quantity'] = 10
-            self.order_info['pallet_inside_quantity'] = 6
-            scan_info = {
-                'order_info': self.order_info,
-                'chejian_code': self.chejian.currentData()['code'],
-                'chejian_name': self.chejian.currentData()['name'],
-                'banzu_code': self.banzu.currentData()['code'],
-                'banzu_name': self.banzu.currentData()['name']
-            }
-            self.scanConfirmedSignal.emit(scan_info)
+            self.order_info['chejian_code'] = self.chejian.currentData()['code']
+            self.order_info['chejian_name'] = self.chejian.currentData()['name']
+            self.order_info['banzu_code'] = self.banzu.currentData()['code']
+            self.order_info['banzu_name'] = self.banzu.currentData()['name']
+            self.scanConfirmedSignal.emit(self.order_info)
             self.close()

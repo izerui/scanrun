@@ -26,8 +26,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     #         self.scan_code_input.setFocus()
     #         self.scan_code_input.selectAll()
 
-    def setScanInfo(self, scan_info):
-        self.scan_info = scan_info
+    def setScanInfo(self, order_info):
+        self.order_info = order_info
         self.renderFormValue()
 
     def initDemoData(self):
@@ -87,15 +87,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 填充扫码页面的form表单信息
     def renderFormValue(self):
-        self.order_no_input.setText(self.scan_info['order_info']['saleOrderDocNo'])
-        self.cus_order_no_input.setText(self.scan_info['order_info']['customerOrderDocNo'])
-        self.chejian_name_input.setText(self.scan_info['chejian_name'])
-        self.banzu_name_input.setText(self.scan_info['banzu_name'])
-        self.task_count_input.setText(str(self.scan_info['order_info']['taskQuantity']))
+        self.order_no_input.setText(self.order_info['saleOrderDocNo'])
+        self.cus_order_no_input.setText(self.order_info['customerOrderDocNo'])
+        self.chejian_name_input.setText(self.order_info['chejian_name'])
+        self.banzu_name_input.setText(self.order_info['banzu_name'])
+        self.task_count_input.setText(str(self.order_info['taskQuantity']))
         self.user_name_input.setText(Context.user['userName'])
-        self.inventory_code_input.setText(self.scan_info['order_info']['inventoryCode'])
-        self.inventory_name_input.setText(self.scan_info['order_info']['inventoryName'])
-        self.unit_rule_label.setText(f'规则: 【箱 {self.scan_info["order_info"]["box_inside_quantity"]}】【卡板 {self.scan_info["order_info"]["pallet_inside_quantity"]}】')
+        self.inventory_code_input.setText(self.order_info['inventoryCode'])
+        self.inventory_name_input.setText(self.order_info['inventoryName'])
+        self.unit_rule_label.setText(f'规则: 【箱 {self.order_info["box_inside_quantity"]}】【卡板 {self.order_info["pallet_inside_quantity"]}】')
         pass
 
     @Slot()
@@ -115,12 +115,12 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         code = self.scan_code_input.text()
         if code:
             data = {
-                'chejian_code': self.scan_info['chejian_code'],
-                'chejian_name': self.scan_info['chejian_name'],
+                'chejian_code': self.order_info['chejian_code'],
+                'chejian_name': self.order_info['chejian_name'],
                 'ent_code': Context.user['entCode'],
-                'business_key': self.scan_info['order_info']['recordId'],
-                'banzu_code': self.scan_info['banzu_code'],
-                'banzu_name': self.scan_info['banzu_name'],
+                'business_key': self.order_info['recordId'],
+                'banzu_code': self.order_info['banzu_code'],
+                'banzu_name': self.order_info['banzu_name'],
                 'create_time': now,
                 'creator': Context.user['userCode'],
                 'creator_name': Context.user['userName'],
@@ -138,7 +138,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     def refreshCountView(self):
         param = {
             'ent_code': Context.user.get('entCode'),
-            'business_key': self.scan_info['order_info']['recordId'],
+            'business_key': self.order_info['recordId'],
         }
         obj = self.scanTableUnit.queryForObject('select count(0) as unit_count from scan_data where ent_code = :ent_code and business_key = :business_key', param)
         pass
