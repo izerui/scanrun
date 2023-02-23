@@ -48,6 +48,7 @@ class Ui_TaskFrame(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.splitter = QSplitter(TaskFrame)
         self.splitter.setObjectName(u"splitter")
+        self.splitter.setEnabled(True)
         self.splitter.setOrientation(Qt.Vertical)
         self.splitter.setOpaqueResize(True)
         self.splitter.setChildrenCollapsible(True)
@@ -236,6 +237,7 @@ class Ui_TaskFrame(object):
         self.splitter.addWidget(self.verticalLayoutWidget)
         self.scrollArea = QScrollArea(self.splitter)
         self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setEnabled(True)
         self.scrollArea.setMaximumSize(QSize(16777215, 16777215))
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
@@ -268,6 +270,7 @@ class Ui_TaskFrame(object):
 
         self.customerSerial = QLineEdit(self.scrollAreaWidgetContents)
         self.customerSerial.setObjectName(u"customerSerial")
+        self.customerSerial.setEnabled(True)
         self.customerSerial.setReadOnly(True)
 
         self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.customerSerial)
@@ -279,6 +282,7 @@ class Ui_TaskFrame(object):
 
         self.customerName = QLineEdit(self.scrollAreaWidgetContents)
         self.customerName.setObjectName(u"customerName")
+        self.customerName.setEnabled(True)
         self.customerName.setReadOnly(True)
 
         self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.customerName)
@@ -290,6 +294,7 @@ class Ui_TaskFrame(object):
 
         self.customerOrderDocNo = QLineEdit(self.scrollAreaWidgetContents)
         self.customerOrderDocNo.setObjectName(u"customerOrderDocNo")
+        self.customerOrderDocNo.setEnabled(True)
         self.customerOrderDocNo.setReadOnly(True)
 
         self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.customerOrderDocNo)
@@ -301,6 +306,7 @@ class Ui_TaskFrame(object):
 
         self.inventoryCode = QLineEdit(self.scrollAreaWidgetContents)
         self.inventoryCode.setObjectName(u"inventoryCode")
+        self.inventoryCode.setEnabled(True)
         self.inventoryCode.setReadOnly(True)
 
         self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.inventoryCode)
@@ -312,6 +318,8 @@ class Ui_TaskFrame(object):
 
         self.inventoryName = QLineEdit(self.scrollAreaWidgetContents)
         self.inventoryName.setObjectName(u"inventoryName")
+        self.inventoryName.setEnabled(True)
+        self.inventoryName.setReadOnly(True)
 
         self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.inventoryName)
 
@@ -322,6 +330,8 @@ class Ui_TaskFrame(object):
 
         self.inventorySpec = QLineEdit(self.scrollAreaWidgetContents)
         self.inventorySpec.setObjectName(u"inventorySpec")
+        self.inventorySpec.setEnabled(True)
+        self.inventorySpec.setReadOnly(True)
 
         self.formLayout_3.setWidget(6, QFormLayout.FieldRole, self.inventorySpec)
 
@@ -332,6 +342,8 @@ class Ui_TaskFrame(object):
 
         self.unitName = QLineEdit(self.scrollAreaWidgetContents)
         self.unitName.setObjectName(u"unitName")
+        self.unitName.setEnabled(True)
+        self.unitName.setReadOnly(True)
 
         self.formLayout_3.setWidget(7, QFormLayout.FieldRole, self.unitName)
 
@@ -342,6 +354,8 @@ class Ui_TaskFrame(object):
 
         self.customerMaterialCode = QLineEdit(self.scrollAreaWidgetContents)
         self.customerMaterialCode.setObjectName(u"customerMaterialCode")
+        self.customerMaterialCode.setEnabled(True)
+        self.customerMaterialCode.setReadOnly(True)
 
         self.formLayout_3.setWidget(8, QFormLayout.FieldRole, self.customerMaterialCode)
 
@@ -352,6 +366,8 @@ class Ui_TaskFrame(object):
 
         self.customerInventoryName = QLineEdit(self.scrollAreaWidgetContents)
         self.customerInventoryName.setObjectName(u"customerInventoryName")
+        self.customerInventoryName.setEnabled(True)
+        self.customerInventoryName.setReadOnly(True)
 
         self.formLayout_3.setWidget(9, QFormLayout.FieldRole, self.customerInventoryName)
 
@@ -362,6 +378,8 @@ class Ui_TaskFrame(object):
 
         self.customerInventorySpec = QLineEdit(self.scrollAreaWidgetContents)
         self.customerInventorySpec.setObjectName(u"customerInventorySpec")
+        self.customerInventorySpec.setEnabled(True)
+        self.customerInventorySpec.setReadOnly(True)
 
         self.formLayout_3.setWidget(10, QFormLayout.FieldRole, self.customerInventorySpec)
 
@@ -372,6 +390,8 @@ class Ui_TaskFrame(object):
 
         self.employeeName = QLineEdit(self.scrollAreaWidgetContents)
         self.employeeName.setObjectName(u"employeeName")
+        self.employeeName.setEnabled(True)
+        self.employeeName.setReadOnly(True)
 
         self.formLayout_3.setWidget(11, QFormLayout.FieldRole, self.employeeName)
 
@@ -382,6 +402,8 @@ class Ui_TaskFrame(object):
 
         self.creatorName = QLineEdit(self.scrollAreaWidgetContents)
         self.creatorName.setObjectName(u"creatorName")
+        self.creatorName.setEnabled(True)
+        self.creatorName.setReadOnly(True)
 
         self.formLayout_3.setWidget(12, QFormLayout.FieldRole, self.creatorName)
 
@@ -392,6 +414,8 @@ class Ui_TaskFrame(object):
 
         self.createTime = QLineEdit(self.scrollAreaWidgetContents)
         self.createTime.setObjectName(u"createTime")
+        self.createTime.setEnabled(True)
+        self.createTime.setReadOnly(True)
 
         self.formLayout_3.setWidget(13, QFormLayout.FieldRole, self.createTime)
 
@@ -402,6 +426,8 @@ class Ui_TaskFrame(object):
 
         self.deliveryDate = QLineEdit(self.scrollAreaWidgetContents)
         self.deliveryDate.setObjectName(u"deliveryDate")
+        self.deliveryDate.setEnabled(True)
+        self.deliveryDate.setReadOnly(True)
 
         self.formLayout_3.setWidget(14, QFormLayout.FieldRole, self.deliveryDate)
 
@@ -412,6 +438,8 @@ class Ui_TaskFrame(object):
 
         self.quantity = QLineEdit(self.scrollAreaWidgetContents)
         self.quantity.setObjectName(u"quantity")
+        self.quantity.setEnabled(True)
+        self.quantity.setReadOnly(True)
 
         self.formLayout_3.setWidget(15, QFormLayout.FieldRole, self.quantity)
 
@@ -422,6 +450,7 @@ class Ui_TaskFrame(object):
 
         self.taskQuantity = QLineEdit(self.scrollAreaWidgetContents)
         self.taskQuantity.setObjectName(u"taskQuantity")
+        self.taskQuantity.setReadOnly(True)
 
         self.formLayout_3.setWidget(16, QFormLayout.FieldRole, self.taskQuantity)
 
@@ -432,6 +461,7 @@ class Ui_TaskFrame(object):
 
         self.scanCodeQuantity = QLineEdit(self.scrollAreaWidgetContents)
         self.scanCodeQuantity.setObjectName(u"scanCodeQuantity")
+        self.scanCodeQuantity.setReadOnly(True)
 
         self.formLayout_3.setWidget(17, QFormLayout.FieldRole, self.scanCodeQuantity)
 
@@ -442,6 +472,7 @@ class Ui_TaskFrame(object):
 
         self.waitScanCodeQuantity = QLineEdit(self.scrollAreaWidgetContents)
         self.waitScanCodeQuantity.setObjectName(u"waitScanCodeQuantity")
+        self.waitScanCodeQuantity.setReadOnly(True)
 
         self.formLayout_3.setWidget(18, QFormLayout.FieldRole, self.waitScanCodeQuantity)
 
@@ -452,6 +483,7 @@ class Ui_TaskFrame(object):
 
         self.boxQuantity = QLineEdit(self.scrollAreaWidgetContents)
         self.boxQuantity.setObjectName(u"boxQuantity")
+        self.boxQuantity.setReadOnly(True)
 
         self.formLayout_3.setWidget(19, QFormLayout.FieldRole, self.boxQuantity)
 
@@ -462,6 +494,7 @@ class Ui_TaskFrame(object):
 
         self.palletQuantity = QLineEdit(self.scrollAreaWidgetContents)
         self.palletQuantity.setObjectName(u"palletQuantity")
+        self.palletQuantity.setReadOnly(True)
 
         self.formLayout_3.setWidget(20, QFormLayout.FieldRole, self.palletQuantity)
 

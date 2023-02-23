@@ -28,6 +28,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     def setScanInfo(self, scan_info):
         self.scan_info = scan_info
+        self.renderFormValue()
 
     def initDemoData(self):
         # QDateTime.currentDateTime()
@@ -60,7 +61,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 查询本地数据库的已记录扫码数据
     def loadScanData(self):
-        self.renderFormValue()
         self.refreshCountView()
         self.table0.setShowGrid(True)
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -87,12 +87,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 填充扫码页面的form表单信息
     def renderFormValue(self):
-        self.order_no_input.setText(self.scan_info['order_info']['orderDocNo'])
+        self.order_no_input.setText(self.scan_info['order_info']['saleOrderDocNo'])
         self.cus_order_no_input.setText(self.scan_info['order_info']['customerOrderDocNo'])
         self.chejian_name_input.setText(self.scan_info['chejian_name'])
         self.banzu_name_input.setText(self.scan_info['banzu_name'])
-        self.task_count_input.setText(self.scan_info['order_info']['salePlanQuantity'])
+        self.task_count_input.setText(str(self.scan_info['order_info']['taskQuantity']))
         self.user_name_input.setText(Context.user['userName'])
+        self.inventory_code_input.setText(self.scan_info['order_info']['inventoryCode'])
+        self.inventory_name_input.setText(self.scan_info['order_info']['inventoryName'])
+        self.unit_rule_label.setText(f'规则: 【箱 {self.scan_info["order_info"]["box_inside_quantity"]}】【卡板 {self.scan_info["order_info"]["pallet_inside_quantity"]}】')
         pass
 
     @Slot()

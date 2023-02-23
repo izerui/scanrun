@@ -34,6 +34,9 @@ QPushButton:pressed, QPushButton:checked {
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QSplitter" name="splitter">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -448,6 +451,9 @@ QPushButton:pressed, QPushButton:checked {
       </layout>
      </widget>
      <widget class="QScrollArea" name="scrollArea">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -510,6 +516,9 @@ QPushButton:pressed, QPushButton:checked {
           </item>
           <item row="1" column="1">
            <widget class="QLineEdit" name="customerSerial">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -524,6 +533,9 @@ QPushButton:pressed, QPushButton:checked {
           </item>
           <item row="2" column="1">
            <widget class="QLineEdit" name="customerName">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -538,6 +550,9 @@ QPushButton:pressed, QPushButton:checked {
           </item>
           <item row="3" column="1">
            <widget class="QLineEdit" name="customerOrderDocNo">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -552,6 +567,9 @@ QPushButton:pressed, QPushButton:checked {
           </item>
           <item row="4" column="1">
            <widget class="QLineEdit" name="inventoryCode">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -565,7 +583,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="5" column="1">
-           <widget class="QLineEdit" name="inventoryName"/>
+           <widget class="QLineEdit" name="inventoryName">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="label">
@@ -575,7 +600,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="6" column="1">
-           <widget class="QLineEdit" name="inventorySpec"/>
+           <widget class="QLineEdit" name="inventorySpec">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="7" column="0">
            <widget class="QLabel" name="label_3">
@@ -585,7 +617,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="7" column="1">
-           <widget class="QLineEdit" name="unitName"/>
+           <widget class="QLineEdit" name="unitName">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="8" column="0">
            <widget class="QLabel" name="label_4">
@@ -595,7 +634,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="8" column="1">
-           <widget class="QLineEdit" name="customerMaterialCode"/>
+           <widget class="QLineEdit" name="customerMaterialCode">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="9" column="0">
            <widget class="QLabel" name="label_5">
@@ -605,7 +651,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="9" column="1">
-           <widget class="QLineEdit" name="customerInventoryName"/>
+           <widget class="QLineEdit" name="customerInventoryName">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="10" column="0">
            <widget class="QLabel" name="label_6">
@@ -615,7 +668,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="10" column="1">
-           <widget class="QLineEdit" name="customerInventorySpec"/>
+           <widget class="QLineEdit" name="customerInventorySpec">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="11" column="0">
            <widget class="QLabel" name="label_7">
@@ -625,7 +685,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="11" column="1">
-           <widget class="QLineEdit" name="employeeName"/>
+           <widget class="QLineEdit" name="employeeName">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="12" column="0">
            <widget class="QLabel" name="label_8">
@@ -635,7 +702,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="12" column="1">
-           <widget class="QLineEdit" name="creatorName"/>
+           <widget class="QLineEdit" name="creatorName">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="13" column="0">
            <widget class="QLabel" name="label_10">
@@ -645,7 +719,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="13" column="1">
-           <widget class="QLineEdit" name="createTime"/>
+           <widget class="QLineEdit" name="createTime">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="14" column="0">
            <widget class="QLabel" name="label_11">
@@ -655,7 +736,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="14" column="1">
-           <widget class="QLineEdit" name="deliveryDate"/>
+           <widget class="QLineEdit" name="deliveryDate">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="15" column="0">
            <widget class="QLabel" name="label_12">
@@ -665,7 +753,14 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="15" column="1">
-           <widget class="QLineEdit" name="quantity"/>
+           <widget class="QLineEdit" name="quantity">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="16" column="0">
            <widget class="QLabel" name="label_9">
@@ -675,7 +770,11 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="16" column="1">
-           <widget class="QLineEdit" name="taskQuantity"/>
+           <widget class="QLineEdit" name="taskQuantity">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="17" column="0">
            <widget class="QLabel" name="label_13">
@@ -685,7 +784,11 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="17" column="1">
-           <widget class="QLineEdit" name="scanCodeQuantity"/>
+           <widget class="QLineEdit" name="scanCodeQuantity">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="18" column="0">
            <widget class="QLabel" name="label_14">
@@ -695,7 +798,11 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="18" column="1">
-           <widget class="QLineEdit" name="waitScanCodeQuantity"/>
+           <widget class="QLineEdit" name="waitScanCodeQuantity">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="19" column="0">
            <widget class="QLabel" name="label_15">
@@ -705,7 +812,11 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="19" column="1">
-           <widget class="QLineEdit" name="boxQuantity"/>
+           <widget class="QLineEdit" name="boxQuantity">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="20" column="0">
            <widget class="QLabel" name="label_16">
@@ -715,7 +826,11 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item row="20" column="1">
-           <widget class="QLineEdit" name="palletQuantity"/>
+           <widget class="QLineEdit" name="palletQuantity">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
