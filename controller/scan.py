@@ -95,7 +95,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.user_name_input.setText(Context.user['userName'])
         self.inventory_code_input.setText(self.order_info['inventoryCode'])
         self.inventory_name_input.setText(self.order_info['inventoryName'])
-        self.unit_rule_label.setText(f'规则: 【箱 {self.order_info["box_inside_quantity"]}】【卡板 {self.order_info["pallet_inside_quantity"]}】')
+        self.unit_rule_label.setText(f'规则: 【箱 {self.order_info["boxInsideQuantity"]}】【卡板 {self.order_info["palletInsideQuantity"]}】')
         pass
 
     @Slot()
