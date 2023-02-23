@@ -4,7 +4,7 @@ from itertools import groupby
 import PySide6.QtGui
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import Signal, QDateTime, Slot
-from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
+from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem, QMessageBox
 
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
@@ -61,28 +61,29 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     # 查询本地数据库的已记录扫码数据
     def loadScanData(self):
         self.renderFormValue()
-        self.tableWidget.setShowGrid(True)
+        self.refreshCountView()
+        self.table0.setShowGrid(True)
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.tableWidget.setRowCount(0)
+        self.table0.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.table0.setRowCount(0)
 
         datas = self.scanTableUnit.queryForList('SELECT * FROM scan_data order by create_time desc')
-        self.tableWidget.setRowCount(len(datas))
+        self.table0.setRowCount(len(datas))
         i = 0
         for d in datas:
-            self.tableWidget.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
-            self.tableWidget.setItem(i, 2, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time']/1000))))
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(d['creator_name']))
-            self.tableWidget.setItem(i, 4, QTableWidgetItem(d['unit_code']))
-            self.tableWidget.setItem(i, 5, QTableWidgetItem(d['box_code']))
-            self.tableWidget.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
-            self.tableWidget.setItem(i, 7, QTableWidgetItem(d['upload_status']))
-            self.tableWidget.setItem(i, 8, QTableWidgetItem(d['uploader']))
-            self.tableWidget.setItem(i, 9, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time']/1000)) if d['upload_time'] else None))
+            self.table0.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
+            self.table0.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
+            self.table0.setItem(i, 2, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time']/1000))))
+            self.table0.setItem(i, 3, QTableWidgetItem(d['creator_name']))
+            self.table0.setItem(i, 4, QTableWidgetItem(d['unit_code']))
+            self.table0.setItem(i, 5, QTableWidgetItem(d['box_code']))
+            self.table0.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
+            self.table0.setItem(i, 7, QTableWidgetItem(d['upload_status']))
+            self.table0.setItem(i, 8, QTableWidgetItem(d['uploader']))
+            self.table0.setItem(i, 9, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time']/1000)) if d['upload_time'] else None))
             i += 1
         # self.tableWidget.show()
-        self.tableWidget.selectRow(0)
+        self.table0.selectRow(0)
 
     # 填充扫码页面的form表单信息
     def renderFormValue(self):
@@ -103,6 +104,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     @Slot()
     def scan(self):
+        if self.tabWidget.currentIndex() > 0:
+            QMessageBox.warning(None, '警告', '请切换到未包装列表')
+            return
         now = int(round(time.time() * 1000))
         # time.strftime('%Y-%m-%d %H:%M%S', time.localtime(now/1000))
         code = self.scan_code_input.text()
@@ -127,3 +131,11 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             self.scanTableUnit.insertIgnore(data)
             self.scan_code_input.clear()
             self.loadScanData()
+
+    def refreshCountView(self):
+        param = {
+            'ent_code': Context.user.get('entCode'),
+            'business_key': self.scan_info['order_info']['recordId'],
+        }
+        obj = self.scanTableUnit.queryForObject('select count(0) as unit_count from scan_data where ent_code = :ent_code and business_key = :business_key', param)
+        pass

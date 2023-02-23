@@ -62,8 +62,10 @@ class PostThread(QThread, HttpInterceptor):
         self.kwargs = kwargs;
 
     def run(self):
-        # try:
-        response = Request.post(self.url, data=self.data, json=self.json, **self.kwargs)
+        try:
+            response = Request.post(self.url, data=self.data, json=self.json, **self.kwargs)
+        except Exception as e:
+            raise e;
         self.handler(response)
         # except Exception as e:
         #     traceback.print_exc(e)
@@ -81,8 +83,10 @@ class GetThread(QThread, HttpInterceptor):
         self.kwargs = kwargs;
 
     def run(self):
-        # try:
-        response = Request.get(self.url, params=self.params, **self.kwargs)
+        try:
+            response = Request.get(self.url, params=self.params, **self.kwargs)
+        except Exception as e:
+            raise e;
         self.handler(response)
         # except Exception as e:
         #     traceback.print_exc(e)

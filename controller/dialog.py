@@ -18,7 +18,7 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
     def loadDepts(self):
         self.execute(
             'getDeptsThread',
-            PostThread(f'{Context.getSettings("gateway/domain")}/ierp/development-pc/v4/process/group?recordStatus=1&keyword='),
+            PostThread(f'{Context.getSettings("gateway/domain")}/ierp/rbac-pc/department/enabled-list'),
             self.deptsResponse
         )
 
@@ -26,13 +26,13 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
     def deptsResponse(self, result):
         self.chejian.clear()
         for d in result['data']:
-            self.chejian.addItem(d['departmentName'], d)
+            self.chejian.addItem(d['name'], d)
 
     @Slot()
     def deptSelected(self):
         self.banzu.clear()
         for d in self.chejian.currentData()['children']:
-            self.banzu.addItem(d['departmentName'], d)
+            self.banzu.addItem(d['name'], d)
 
     @Slot()
     def accept(self) -> None:
@@ -43,10 +43,10 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
             self.order_info['pallet_inside_quantity'] = 6
             scan_info = {
                 'order_info': self.order_info,
-                'chejian_code': self.chejian.currentData()['departmentCode'],
-                'chejian_name': self.chejian.currentData()['departmentName'],
-                'banzu_code': self.banzu.currentData()['departmentCode'],
-                'banzu_name': self.banzu.currentData()['departmentName']
+                'chejian_code': self.chejian.currentData()['code'],
+                'chejian_name': self.chejian.currentData()['name'],
+                'banzu_code': self.banzu.currentData()['code'],
+                'banzu_name': self.banzu.currentData()['name']
             }
             self.scanConfirmedSignal.emit(scan_info)
             self.close()

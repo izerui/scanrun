@@ -119,11 +119,11 @@ class Ui_Login_Form(object):
 
     def retranslateUi(self, Login_Form):
         Login_Form.setWindowTitle(QCoreApplication.translate("Login_Form", u"SN\u5e8f\u5217\u53f7\u626b\u7801\u88c5\u7bb1\u7cfb\u7edf-\u767b\u5f55\u9875\u9762", None))
-        self.usernameInput.setText(QCoreApplication.translate("Login_Form", u"18073112120", None))
+        self.usernameInput.setText(QCoreApplication.translate("Login_Form", u"18814128446", None))
         self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d\uff1a", None))
         self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u767b\u5f55", None))
         self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6    \u7801\uff1a", None))
-        self.passwordInput.setText(QCoreApplication.translate("Login_Form", u"18073112120", None))
+        self.passwordInput.setText(QCoreApplication.translate("Login_Form", u"123456", None))
         self.passwordInput.setPlaceholderText("")
         self.outButton.setText(QCoreApplication.translate("Login_Form", u"\u9000\u51fa", None))
         self.title.setText(QCoreApplication.translate("Login_Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

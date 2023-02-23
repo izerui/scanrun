@@ -40,47 +40,7 @@ QPushButton:pressed, QPushButton:checked {
      <widget class="QWidget" name="verticalLayoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QTableWidget" name="tableWidget">
-         <property name="autoScroll">
-          <bool>true</bool>
-         </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::SingleSelection</enum>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
-         </property>
-         <column>
-          <property name="text">
-           <string comment="方法" extracomment="飞飞飞">销售单号</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>客户名称</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>客户订单号</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>订单金额</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>业务员</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>创建时间</string>
-          </property>
-         </column>
-        </widget>
+        <widget class="QTableView" name="tableView"/>
        </item>
        <item>
         <widget class="QWidget" name="widget_2" native="true">
@@ -490,28 +450,12 @@ QPushButton:pressed, QPushButton:checked {
    <slot>prePage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>446</x>
-     <y>337</y>
+     <x>459</x>
+     <y>297</y>
     </hint>
     <hint type="destinationlabel">
      <x>842</x>
      <y>252</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>tableWidget</sender>
-   <signal>itemDoubleClicked(QTableWidgetItem*)</signal>
-   <receiver>TaskFrame</receiver>
-   <slot>openTaskForm()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>339</x>
-     <y>226</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>326</x>
-     <y>708</y>
     </hint>
    </hints>
   </connection>
@@ -522,8 +466,8 @@ QPushButton:pressed, QPushButton:checked {
    <slot>endPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>511</x>
-     <y>335</y>
+     <x>523</x>
+     <y>297</y>
     </hint>
     <hint type="destinationlabel">
      <x>838</x>
@@ -538,8 +482,8 @@ QPushButton:pressed, QPushButton:checked {
    <slot>nextPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>336</y>
+     <x>491</x>
+     <y>297</y>
     </hint>
     <hint type="destinationlabel">
      <x>840</x>
@@ -554,8 +498,8 @@ QPushButton:pressed, QPushButton:checked {
    <slot>jumpPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>561</x>
-     <y>334</y>
+     <x>572</x>
+     <y>297</y>
     </hint>
     <hint type="destinationlabel">
      <x>835</x>
@@ -570,28 +514,12 @@ QPushButton:pressed, QPushButton:checked {
    <slot>firstPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>417</x>
-     <y>331</y>
+     <x>427</x>
+     <y>297</y>
     </hint>
     <hint type="destinationlabel">
      <x>834</x>
      <y>284</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>tableWidget</sender>
-   <signal>itemSelectionChanged()</signal>
-   <receiver>TaskFrame</receiver>
-   <slot>dataRowSelected()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>154</x>
-     <y>172</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>282</x>
-     <y>721</y>
     </hint>
    </hints>
   </connection>
@@ -602,12 +530,28 @@ QPushButton:pressed, QPushButton:checked {
    <slot>openTaskForm()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>733</x>
-     <y>342</y>
+     <x>793</x>
+     <y>301</y>
     </hint>
     <hint type="destinationlabel">
      <x>865</x>
      <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>openTaskForm()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>181</x>
+     <y>153</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>656</y>
     </hint>
    </hints>
   </connection>

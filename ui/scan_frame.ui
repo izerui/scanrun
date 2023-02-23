@@ -20,188 +20,134 @@
    <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
-   <item row="1" column="2">
-    <widget class="QFrame" name="frame">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+   <item row="2" column="0" colspan="3">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="1" column="2">
-       <widget class="QGroupBox" name="groupBox_2">
-        <property name="styleSheet">
-         <string notr="true">backgrond-color: rgb(170, 121, 66)</string>
-        </property>
-        <property name="title">
-         <string>已扫描卡板数量</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <property name="leftMargin">
-          <number>0</number>
+     <widget class="QWidget" name="tab0">
+      <attribute name="title">
+       <string>未包装</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QTableWidget" name="table0">
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
          </property>
-         <property name="topMargin">
-          <number>0</number>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
          </property>
-         <property name="rightMargin">
-          <number>0</number>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
          </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item row="0" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_3">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <property name="mode">
-            <enum>QLCDNumber::Dec</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="title">
-         <string>已扫描箱子数量</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item row="0" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_2">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <property name="smallDecimalPoint">
-            <bool>false</bool>
-           </property>
-           <property name="mode">
-            <enum>QLCDNumber::Dec</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QGroupBox" name="groupBox">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="title">
-         <string>已扫描产品数量</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_6">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item row="0" column="0">
-          <widget class="QLCDNumber" name="lcdNumber">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Academy Engraved LET</family>
-             <pointsize>24</pointsize>
-             <bold>true</bold>
-             <strikeout>false</strikeout>
-             <stylestrategy>PreferDefault</stylestrategy>
-             <kerning>true</kerning>
-            </font>
-           </property>
-           <property name="autoFillBackground">
-            <bool>false</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <property name="smallDecimalPoint">
-            <bool>false</bool>
-           </property>
-           <property name="mode">
-            <enum>QLCDNumber::Dec</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-           <property name="value" stdset="0">
-            <double>111.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
+         <column>
+          <property name="text">
+           <string>车间</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>班组</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>扫码时间</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>操作人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>产品码</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>箱码</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>卡板码</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>上传状态</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>上传人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>上传时间</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>删除</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normalon>:/logo/pic/delete.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab1">
+      <attribute name="title">
+       <string>已包装</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="0">
+        <widget class="QTableWidget" name="table1"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
@@ -497,108 +443,186 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0" colspan="3">
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="focusPolicy">
-      <enum>Qt::ClickFocus</enum>
+   <item row="1" column="2">
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
      </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::ExtendedSelection</enum>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-     <column>
-      <property name="text">
-       <string>车间</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>班组</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>扫码时间</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>操作人</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>产品码</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>箱码</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>卡板码</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>上传状态</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>上传人</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>上传时间</string>
-      </property>
-     </column>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="3">
-    <widget class="QWidget" name="widget" native="true">
-     <layout class="QGridLayout" name="gridLayout_4">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="text">
-         <string>删除</string>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="1" column="2">
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="styleSheet">
+         <string notr="true">backgrond-color: rgb(170, 121, 66)</string>
         </property>
-        <property name="icon">
-         <iconset>
-          <normalon>:/logo/pic/delete.png</normalon>
-         </iconset>
+        <property name="title">
+         <string>已扫描卡板数量</string>
         </property>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLCDNumber" name="lcdNumber_3">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="mode">
+            <enum>QLCDNumber::Dec</enum>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
-      <item row="0" column="0">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+      <item row="1" column="1">
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="title">
+         <string>已扫描箱子数量</string>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLCDNumber" name="lcdNumber_2">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="smallDecimalPoint">
+            <bool>false</bool>
+           </property>
+           <property name="mode">
+            <enum>QLCDNumber::Dec</enum>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2">
+       <widget class="QGroupBox" name="groupBox">
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
-       </spacer>
+        <property name="title">
+         <string>已扫描产品数量</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLCDNumber" name="lcdNumber">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Academy Engraved LET</family>
+             <pointsize>24</pointsize>
+             <bold>true</bold>
+             <strikeout>false</strikeout>
+             <stylestrategy>PreferDefault</stylestrategy>
+             <kerning>true</kerning>
+            </font>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="smallDecimalPoint">
+            <bool>false</bool>
+           </property>
+           <property name="mode">
+            <enum>QLCDNumber::Dec</enum>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+           <property name="value" stdset="0">
+            <double>111.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -609,7 +633,6 @@
   <tabstop>scan_code_input</tabstop>
   <tabstop>chejian_name_input</tabstop>
   <tabstop>order_no_input</tabstop>
-  <tabstop>tableWidget</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>cus_order_no_input</tabstop>
  </tabstops>

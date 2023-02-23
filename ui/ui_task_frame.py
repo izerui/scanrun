@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QFormLayout,
-    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QPushButton, QSizePolicy,
-    QSpacerItem, QSpinBox, QSplitter, QTableWidget,
-    QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QFormLayout, QFrame,
+    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+    QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QSplitter, QTableView, QToolButton,
+    QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_TaskFrame(object):
@@ -53,27 +53,10 @@ class Ui_TaskFrame(object):
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.tableWidget = QTableWidget(self.verticalLayoutWidget)
-        if (self.tableWidget.columnCount() < 6):
-            self.tableWidget.setColumnCount(6)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setAutoScroll(True)
-        self.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableView = QTableView(self.verticalLayoutWidget)
+        self.tableView.setObjectName(u"tableView")
 
-        self.verticalLayout.addWidget(self.tableWidget)
+        self.verticalLayout.addWidget(self.tableView)
 
         self.widget_2 = QWidget(self.verticalLayoutWidget)
         self.widget_2.setObjectName(u"widget_2")
@@ -288,31 +271,18 @@ class Ui_TaskFrame(object):
 
         self.retranslateUi(TaskFrame)
         self.toolButton_8.clicked.connect(TaskFrame.prePage)
-        self.tableWidget.itemDoubleClicked.connect(TaskFrame.openTaskForm)
         self.toolButton_10.clicked.connect(TaskFrame.endPage)
         self.toolButton_9.clicked.connect(TaskFrame.nextPage)
         self.toolButton_11.clicked.connect(TaskFrame.jumpPage)
         self.toolButton_7.clicked.connect(TaskFrame.firstPage)
-        self.tableWidget.itemSelectionChanged.connect(TaskFrame.dataRowSelected)
         self.pushButton_12.clicked.connect(TaskFrame.openTaskForm)
+        self.tableView.doubleClicked.connect(TaskFrame.openTaskForm)
 
         QMetaObject.connectSlotsByName(TaskFrame)
     # setupUi
 
     def retranslateUi(self, TaskFrame):
         TaskFrame.setWindowTitle(QCoreApplication.translate("TaskFrame", u"Form", None))
-        ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("TaskFrame", u"\u9500\u552e\u5355\u53f7", u"\u65b9\u6cd5"));
-        ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u540d\u79f0", None));
-        ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7", None));
-        ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("TaskFrame", u"\u8ba2\u5355\u91d1\u989d", None));
-        ___qtablewidgetitem4 = self.tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("TaskFrame", u"\u4e1a\u52a1\u5458", None));
-        ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("TaskFrame", u"\u521b\u5efa\u65f6\u95f4", None));
 #if QT_CONFIG(tooltip)
         self.toolButton_7.setToolTip(QCoreApplication.translate("TaskFrame", u"\u9996\u9875", None))
 #endif // QT_CONFIG(tooltip)
