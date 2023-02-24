@@ -88,4 +88,3 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
 
     def userInfoResponse(self, result):
         Context.user = result['data']
-        print(Context.user)

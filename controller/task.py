@@ -1,11 +1,11 @@
 from PySide6 import QtWidgets
 from PySide6.QtCore import Slot, Signal
-from PySide6.QtWidgets import QWidget, QHeaderView, QMessageBox, QTableWidgetItem, QLabel, QFormLayout, QLineEdit
+from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem, QLineEdit, QLabel, QFormLayout
 
 from controller.dialog import ScanConfirmDialog
+from ui.ui_task_frame import Ui_TaskFrame
 from utils.context import Context
 from utils.executor import HttpExecutor, PostThread
-from ui.ui_task_frame import Ui_TaskFrame
 
 
 class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
@@ -14,6 +14,9 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.splitter.setSizes([50000, 20000])
+        self.renderTable()
+        self.renderFormLabels()
         self.pageIndex = 0
         self.pageSize = 20
         self.totalPage = 0
@@ -21,9 +24,6 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.firstPage()
 
     def loadData(self):
-        self.tableWidget.setShowGrid(True)
-        # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setRowCount(0)
         reqParam = {"pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0, "activeStatus": "AUDITING",
                     "completedStatus": False}
@@ -40,8 +40,11 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.tableWidget.setRowCount(len(data['content']))
         i = 0
         for d in data['content']:
-            for j, head in enumerate(TaskFrame.heads):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(d[head['code']]))
+            j = 0
+            for head in Context.todoTaskTableHeads:
+                if ('hide' not in head or not head['hide']):
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(d[head['code']]))
+                    j += 1
             i += 1
         self.tableWidget.selectRow(0)
 
@@ -97,98 +100,40 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         else:
             QMessageBox.warning(None, '提示', '请选择一条任务开始扫码')
 
+    # 行选中事件
     @Slot()
     def dataRowSelected(self):
         self.selRow = self.dataList[self.tableWidget.currentRow() - 1]
-        for head in TaskFrame.heads:
-            getattr(self, head['code']).setText(str(self.selRow[head['code']]))
+        for head in Context.todoTaskTableHeads:
+            if getattr(self, f'form_edit_{head["code"]}'):
+                getattr(self, f'form_edit_{head["code"]}').setText(str(self.selRow[head['code']]))
 
     def dataResChangeView(self, data):
         self.pageEdit.setValue(data['number'] + 1)
         self.label_2.setText(f'页 共{self.totalPage}页  {self.totalCount}条记录')
 
-    heads = [{
-            'title': "销售单号",
-            'code': "saleOrderDocNo"
-        },
-            {
-                'title': "客户编码",
-                'code': "customerSerial"
-            },
-            {
-                'title': "客户名称",
-                'code': "customerName"
-            },
-            {
-                'title': "客户订单号",
-                'code': "customerOrderDocNo"
-            },
-            {
-                'title': "货品编码",
-                'code': "inventoryCode"
-            },
-            {
-                'title': "货品名称",
-                'code': "inventoryName"
-            },
-            {
-                'title': "规格型号",
-                'code': "inventorySpec"
-            },
-            {
-                'title': "单位",
-                'code': "unitName"
-            },
-            {
-                'title': "客户料号",
-                'code': "customerMaterialCode"
-            },
-            {
-                'title': "客户品名",
-                'code': "customerInventoryName"
-            },
-            {
-                'title': "客户型号",
-                'code': "customerInventorySpec"
-            },
-            {
-                'title': "业务员",
-                'code': "employeeName"
-            },
-            {
-                'title': "任务创建人",
-                'code': "creatorName"
-            },
-            {
-                'title': "任务创建日期",
-                'code': "createTime"
-            },
-            {
-                'title': "订单交期",
-                'code': "deliveryDate"
-            },
-            {
-                'title': "销售订单数量",
-                'code': "quantity"
-            },
-            {
-                'title': "任务数量",
-                'code': "taskQuantity"
-            },
-            {
-                'title': "已扫码数量",
-                'code': "scanCodeQuantity"
-            },
-            {
-                'title': "未扫码数量",
-                'code': "waitScanCodeQuantity"
-            },
-            {
-                'title': "装箱数量",
-                'code': "boxQuantity"
-            },
-            {
-                'title': "卡板数量",
-                'code': "palletQuantity"
-            }
-        ]
+    # 初始化表格列头及样式
+    def renderTable(self):
+        self.tableWidget.setShowGrid(True)
+        # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tableWidget.clear()
+        self.tableWidget.setColumnCount(len(list(filter(lambda x: 'hide' not in x or not x['hide'], Context.todoTaskTableHeads))))
+        i = 0
+        for head in Context.todoTaskTableHeads:
+            if not head.get('hide'):
+                self.tableWidget.setHorizontalHeaderItem(i, QTableWidgetItem(head.get('title')))
+                i += 1
+
+    # 初始化表单展示页
+    def renderFormLabels(self):
+        for i, head in enumerate(Context.todoTaskTableHeads):
+            label = QLabel(self.scrollAreaWidgetContents)
+            label.setObjectName(f'form_label_{head["code"]}')
+            label.setText(f'{head["title"]}:')
+            edit = QLineEdit(self.scrollAreaWidgetContents)
+            edit.setObjectName(f'form_edit_{head["code"]}')
+            edit.setReadOnly(True)
+            self.formLayout_3.setWidget(i, QFormLayout.LabelRole, label)
+            self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
+            setattr(self, f'form_edit_{head["code"]}', edit)

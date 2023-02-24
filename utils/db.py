@@ -68,15 +68,16 @@ class DbUnit(object):
 
 # 数据库操作的基类
 class BaseTableUnit(object):
-    def __init__(self):
+    def __init__(self, tableName):
         super().__init__()
+        self.tableName = tableName
         self._checked()
 
     def _primary_key(self) -> str:
         raise RuntimeError('必须覆盖并实现_primary_key()方法')
 
     def _table_name(self) -> str:
-        raise RuntimeError('必须覆盖并实现_table_name()方法')
+        return self.tableName
 
     def _create_sql(self) -> str:
         raise RuntimeError('必须覆盖并实现_create_sql()方法')
@@ -88,7 +89,7 @@ class BaseTableUnit(object):
         raise RuntimeError('必须覆盖并实现_insert_sql()方法')
 
     def _checked(self):
-        if self._table_name() in DbUnit.database.tables():
+        if self.tableName in DbUnit.database.tables():
             pass
         else:
             self.createTable()
@@ -106,13 +107,13 @@ class BaseTableUnit(object):
         DbUnit.execute(self._insert_sql(True), obj)
 
     def deleteById(self, id):
-        DbUnit.execute(f'delete from {self._table_name()} where {self._primary_key()} = :id', {'id': id})
+        DbUnit.execute(f'delete from {self.tableName} where {self._primary_key()} = :id', {'id': id})
 
     def deleteAll(self):
-        DbUnit.execute(f'delete from {self._table_name()}')
+        DbUnit.execute(f'delete from {self.tableName}')
 
     def dropTable(self):
-        DbUnit.execute(f'drop table {self._table_name()}')
+        DbUnit.execute(f'drop table {self.tableName}')
 
     def execute(self, sql, param):
         return DbUnit.execute(sql, param)
@@ -126,7 +127,7 @@ class BaseTableUnit(object):
     def update(self, item):
         if self._primary_key() not in item:
             raise RuntimeError(f'更新的对象不包含主键key: {self._primary_key()}')
-        sql = f'update scan_data set'
+        sql = f'update {self.tableName} set'
         sets = []
         for k in item:
             sets.append(f' {k} = :{k}')
@@ -135,21 +136,18 @@ class BaseTableUnit(object):
         DbUnit.execute(sql, item)
 
 
-# scan_data 表操作
+# 表操作
 class ScanTableUnit(BaseTableUnit):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, tableName):
+        super().__init__(tableName)
 
     def _primary_key(self) -> str:
         return 'id'
 
-    def _table_name(self) -> str:
-        return 'scan_data'
-
     def _create_sql(self) -> str:
         return f'''
-        create table {self._table_name()}
+        create table {self.tableName}
                     (
                         id           INTEGER
                             constraint id
@@ -174,15 +172,15 @@ class ScanTableUnit(BaseTableUnit):
 
     def _create_indexs(self) -> None:
         return [
-            '''
-            create unique index scan_data_ent_code_business_key_unit_code_uindex
-            on scan_data (ent_code, business_key, unit_code);
+            f'''
+            create unique index {self.tableName}_index0
+            on {self.tableName} (ent_code, business_key, unit_code);
             '''
         ]
 
     def _insert_sql(self, ignore: bool = False) -> str:
         return f'''
-                insert {'OR IGNORE' if ignore  else ''} into {self._table_name()} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, create_time,
+                insert {'OR IGNORE' if ignore  else ''} into {self.tableName} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, create_time,
                                    creator, creator_name, unit_code, box_code, pallet_code, upload_status, uploader, upload_time)
                         values (:chejian_code, :chejian_name, :ent_code, :business_key, :banzu_code, :banzu_name, :create_time,
                                    :creator, :creator_name, :unit_code, :box_code, :pallet_code, :upload_status, :uploader, :upload_time)

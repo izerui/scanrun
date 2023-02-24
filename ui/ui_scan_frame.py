@@ -39,8 +39,8 @@ class Ui_ScanFrame(object):
         self.verticalLayout = QVBoxLayout(self.tab0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.table0 = QTableWidget(self.tab0)
-        if (self.table0.columnCount() < 10):
-            self.table0.setColumnCount(10)
+        if (self.table0.columnCount() < 7):
+            self.table0.setColumnCount(7)
         __qtablewidgetitem = QTableWidgetItem()
         self.table0.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
@@ -55,16 +55,12 @@ class Ui_ScanFrame(object):
         self.table0.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
         self.table0.setHorizontalHeaderItem(6, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(7, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(8, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(9, __qtablewidgetitem9)
         self.table0.setObjectName(u"table0")
         self.table0.setFocusPolicy(Qt.ClickFocus)
+        self.table0.setAlternatingRowColors(True)
         self.table0.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.table0.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table0.horizontalHeader().setStretchLastSection(False)
 
         self.verticalLayout.addWidget(self.table0)
 
@@ -96,6 +92,28 @@ class Ui_ScanFrame(object):
         self.gridLayout_9 = QGridLayout(self.tab1)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.table1 = QTableWidget(self.tab1)
+        if (self.table1.columnCount() < 10):
+            self.table1.setColumnCount(10)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(0, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(1, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(2, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(3, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(4, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(5, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(6, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(7, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(8, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.table1.setHorizontalHeaderItem(9, __qtablewidgetitem16)
         self.table1.setObjectName(u"table1")
 
         self.gridLayout_9.addWidget(self.table1, 0, 0, 1, 1)
@@ -265,6 +283,7 @@ class Ui_ScanFrame(object):
         self.unit_rule_label = QLabel(self.frame_2)
         self.unit_rule_label.setObjectName(u"unit_rule_label")
         font3 = QFont()
+        font3.setFamilies([u".AppleSystemUIFont"])
         font3.setPointSize(14)
         font3.setBold(True)
         self.unit_rule_label.setFont(font3)
@@ -291,16 +310,16 @@ class Ui_ScanFrame(object):
         self.gridLayout_8 = QGridLayout(self.groupBox_2)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.lcdNumber_3 = QLCDNumber(self.groupBox_2)
-        self.lcdNumber_3.setObjectName(u"lcdNumber_3")
-        self.lcdNumber_3.setMinimumSize(QSize(0, 32))
-        self.lcdNumber_3.setStyleSheet(u"")
-        self.lcdNumber_3.setFrameShape(QFrame.Box)
-        self.lcdNumber_3.setFrameShadow(QFrame.Raised)
-        self.lcdNumber_3.setMode(QLCDNumber.Dec)
-        self.lcdNumber_3.setSegmentStyle(QLCDNumber.Flat)
+        self.lcd_pallet = QLCDNumber(self.groupBox_2)
+        self.lcd_pallet.setObjectName(u"lcd_pallet")
+        self.lcd_pallet.setMinimumSize(QSize(0, 32))
+        self.lcd_pallet.setStyleSheet(u"")
+        self.lcd_pallet.setFrameShape(QFrame.Box)
+        self.lcd_pallet.setFrameShadow(QFrame.Raised)
+        self.lcd_pallet.setMode(QLCDNumber.Dec)
+        self.lcd_pallet.setSegmentStyle(QLCDNumber.Flat)
 
-        self.gridLayout_8.addWidget(self.lcdNumber_3, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.lcd_pallet, 0, 0, 1, 1)
 
 
         self.gridLayout_5.addWidget(self.groupBox_2, 1, 2, 1, 1)
@@ -310,17 +329,17 @@ class Ui_ScanFrame(object):
         self.gridLayout_7 = QGridLayout(self.groupBox_3)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.lcdNumber_2 = QLCDNumber(self.groupBox_3)
-        self.lcdNumber_2.setObjectName(u"lcdNumber_2")
-        self.lcdNumber_2.setMinimumSize(QSize(0, 32))
-        self.lcdNumber_2.setStyleSheet(u"")
-        self.lcdNumber_2.setFrameShape(QFrame.Box)
-        self.lcdNumber_2.setFrameShadow(QFrame.Raised)
-        self.lcdNumber_2.setSmallDecimalPoint(False)
-        self.lcdNumber_2.setMode(QLCDNumber.Dec)
-        self.lcdNumber_2.setSegmentStyle(QLCDNumber.Flat)
+        self.lcd_box = QLCDNumber(self.groupBox_3)
+        self.lcd_box.setObjectName(u"lcd_box")
+        self.lcd_box.setMinimumSize(QSize(0, 32))
+        self.lcd_box.setStyleSheet(u"")
+        self.lcd_box.setFrameShape(QFrame.Box)
+        self.lcd_box.setFrameShadow(QFrame.Raised)
+        self.lcd_box.setSmallDecimalPoint(False)
+        self.lcd_box.setMode(QLCDNumber.Dec)
+        self.lcd_box.setSegmentStyle(QLCDNumber.Flat)
 
-        self.gridLayout_7.addWidget(self.lcdNumber_2, 0, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.lcd_box, 0, 0, 1, 1)
 
 
         self.gridLayout_5.addWidget(self.groupBox_3, 1, 1, 1, 1)
@@ -331,10 +350,10 @@ class Ui_ScanFrame(object):
         self.gridLayout_6 = QGridLayout(self.groupBox)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.lcdNumber = QLCDNumber(self.groupBox)
-        self.lcdNumber.setObjectName(u"lcdNumber")
-        self.lcdNumber.setMinimumSize(QSize(0, 32))
-        self.lcdNumber.setSizeIncrement(QSize(0, 0))
+        self.lcd_unit = QLCDNumber(self.groupBox)
+        self.lcd_unit.setObjectName(u"lcd_unit")
+        self.lcd_unit.setMinimumSize(QSize(0, 32))
+        self.lcd_unit.setSizeIncrement(QSize(0, 0))
         font4 = QFont()
         font4.setFamilies([u"Academy Engraved LET"])
         font4.setPointSize(24)
@@ -342,17 +361,17 @@ class Ui_ScanFrame(object):
         font4.setStrikeOut(False)
         font4.setKerning(True)
         font4.setStyleStrategy(QFont.PreferDefault)
-        self.lcdNumber.setFont(font4)
-        self.lcdNumber.setAutoFillBackground(False)
-        self.lcdNumber.setStyleSheet(u"")
-        self.lcdNumber.setFrameShape(QFrame.Box)
-        self.lcdNumber.setFrameShadow(QFrame.Raised)
-        self.lcdNumber.setSmallDecimalPoint(False)
-        self.lcdNumber.setMode(QLCDNumber.Dec)
-        self.lcdNumber.setSegmentStyle(QLCDNumber.Flat)
-        self.lcdNumber.setProperty("value", 111.000000000000000)
+        self.lcd_unit.setFont(font4)
+        self.lcd_unit.setAutoFillBackground(False)
+        self.lcd_unit.setStyleSheet(u"")
+        self.lcd_unit.setFrameShape(QFrame.Box)
+        self.lcd_unit.setFrameShadow(QFrame.Raised)
+        self.lcd_unit.setSmallDecimalPoint(False)
+        self.lcd_unit.setMode(QLCDNumber.Dec)
+        self.lcd_unit.setSegmentStyle(QLCDNumber.Flat)
+        self.lcd_unit.setProperty("value", 111.000000000000000)
 
-        self.gridLayout_6.addWidget(self.lcdNumber, 0, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.lcd_unit, 0, 0, 1, 1)
 
 
         self.gridLayout_5.addWidget(self.groupBox, 0, 1, 1, 2)
@@ -377,6 +396,7 @@ class Ui_ScanFrame(object):
         self.pushButton.clicked.connect(ScanFrame.returnHome)
         self.scan_code_input.returnPressed.connect(ScanFrame.scan)
         self.pushButton_2.clicked.connect(ScanFrame.deleteSelection)
+        self.tabWidget.currentChanged.connect(ScanFrame.tabChanged)
 
         self.tabWidget.setCurrentIndex(0)
 
@@ -391,26 +411,40 @@ class Ui_ScanFrame(object):
         ___qtablewidgetitem1 = self.table0.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("ScanFrame", u"\u73ed\u7ec4", None));
         ___qtablewidgetitem2 = self.table0.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("ScanFrame", u"\u626b\u7801\u65f6\u95f4", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("ScanFrame", u"\u64cd\u4f5c\u4eba", None));
         ___qtablewidgetitem3 = self.table0.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("ScanFrame", u"\u64cd\u4f5c\u4eba", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("ScanFrame", u"\u626b\u7801\u65f6\u95f4", None));
         ___qtablewidgetitem4 = self.table0.horizontalHeaderItem(4)
         ___qtablewidgetitem4.setText(QCoreApplication.translate("ScanFrame", u"\u4ea7\u54c1\u7801", None));
         ___qtablewidgetitem5 = self.table0.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("ScanFrame", u"\u7bb1\u7801", None));
         ___qtablewidgetitem6 = self.table0.horizontalHeaderItem(6)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("ScanFrame", u"\u5361\u677f\u7801", None));
-        ___qtablewidgetitem7 = self.table0.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u72b6\u6001", None));
-        ___qtablewidgetitem8 = self.table0.horizontalHeaderItem(8)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u4eba", None));
-        ___qtablewidgetitem9 = self.table0.horizontalHeaderItem(9)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u65f6\u95f4", None));
         self.pushButton_2.setText(QCoreApplication.translate("ScanFrame", u"\u5220\u9664", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab0), QCoreApplication.translate("ScanFrame", u"\u672a\u5305\u88c5", None))
+        ___qtablewidgetitem7 = self.table1.horizontalHeaderItem(0)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("ScanFrame", u"\u8f66\u95f4", None));
+        ___qtablewidgetitem8 = self.table1.horizontalHeaderItem(1)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("ScanFrame", u"\u73ed\u7ec4", None));
+        ___qtablewidgetitem9 = self.table1.horizontalHeaderItem(2)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("ScanFrame", u"\u64cd\u4f5c\u4eba", None));
+        ___qtablewidgetitem10 = self.table1.horizontalHeaderItem(3)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("ScanFrame", u"\u626b\u7801\u65f6\u95f4", None));
+        ___qtablewidgetitem11 = self.table1.horizontalHeaderItem(4)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("ScanFrame", u"\u4ea7\u54c1\u7801", None));
+        ___qtablewidgetitem12 = self.table1.horizontalHeaderItem(5)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("ScanFrame", u"\u7bb1\u7801", None));
+        ___qtablewidgetitem13 = self.table1.horizontalHeaderItem(6)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("ScanFrame", u"\u5361\u677f\u7801", None));
+        ___qtablewidgetitem14 = self.table1.horizontalHeaderItem(7)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u72b6\u6001", None));
+        ___qtablewidgetitem15 = self.table1.horizontalHeaderItem(8)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u4eba", None));
+        ___qtablewidgetitem16 = self.table1.horizontalHeaderItem(9)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u65f6\u95f4", None));
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab1), QCoreApplication.translate("ScanFrame", u"\u5df2\u5305\u88c5", None))
         self.pushButton.setText(QCoreApplication.translate("ScanFrame", u"\u8fd4\u56de", None))
-        self.scan_code_input.setText(QCoreApplication.translate("ScanFrame", u"32423643", None))
+        self.scan_code_input.setText("")
         self.label_3.setText(QCoreApplication.translate("ScanFrame", u"\u8f66\u95f4\uff1a", None))
         self.label_5.setText(QCoreApplication.translate("ScanFrame", u"\u4efb\u52a1\u6570\u91cf\uff1a", None))
         self.label_8.setText(QCoreApplication.translate("ScanFrame", u"\u64cd\u4f5c\u5458\uff1a", None))

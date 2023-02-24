@@ -38,12 +38,18 @@
          <property name="focusPolicy">
           <enum>Qt::ClickFocus</enum>
          </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::ExtendedSelection</enum>
          </property>
          <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>false</bool>
+         </attribute>
          <column>
           <property name="text">
            <string>车间</string>
@@ -56,12 +62,12 @@
          </column>
          <column>
           <property name="text">
-           <string>扫码时间</string>
+           <string>操作人</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>操作人</string>
+           <string>扫码时间</string>
           </property>
          </column>
          <column>
@@ -77,21 +83,6 @@
          <column>
           <property name="text">
            <string>卡板码</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>上传状态</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>上传人</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>上传时间</string>
           </property>
          </column>
         </widget>
@@ -153,7 +144,58 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_9">
        <item row="0" column="0">
-        <widget class="QTableWidget" name="table1"/>
+        <widget class="QTableWidget" name="table1">
+         <column>
+          <property name="text">
+           <string>车间</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>班组</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>操作人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>扫码时间</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>产品码</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>箱码</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>卡板码</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>上传状态</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>上传人</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>上传时间</string>
+          </property>
+         </column>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -243,7 +285,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>32423643</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -478,6 +520,7 @@
          <widget class="QLabel" name="unit_rule_label">
           <property name="font">
            <font>
+            <family>.AppleSystemUIFont</family>
             <pointsize>14</pointsize>
             <bold>true</bold>
            </font>
@@ -529,7 +572,7 @@
           <number>0</number>
          </property>
          <item row="0" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_3">
+          <widget class="QLCDNumber" name="lcd_pallet">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -575,7 +618,7 @@
           <number>0</number>
          </property>
          <item row="0" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_2">
+          <widget class="QLCDNumber" name="lcd_box">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -627,7 +670,7 @@
           <number>0</number>
          </property>
          <item row="0" column="0">
-          <widget class="QLCDNumber" name="lcdNumber">
+          <widget class="QLCDNumber" name="lcd_unit">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -740,10 +783,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>ScanFrame</receiver>
+   <slot>tabChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>402</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>422</x>
+     <y>-34</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>returnHome()</slot>
   <slot>scan()</slot>
   <slot>deleteSelection()</slot>
+  <slot>tabChanged()</slot>
  </slots>
 </ui>

@@ -18,7 +18,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.scanTableUnit = ScanTableUnit()
+
+        self.table0.setShowGrid(True)
+        # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.table0.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         # self.initDemoData()
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
@@ -28,6 +31,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     def setScanInfo(self, order_info):
         self.order_info = order_info
+        self.scanTableUnit = ScanTableUnit(f'scan_data_{str(self.order_info["saleInventoryRecordId"]).replace("-", "_")}')
         self.renderFormValue()
 
     def initDemoData(self):
@@ -59,30 +63,28 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             l['chejian_name'] = '修改的内容' + l['chejian_name']
             self.scanTableUnit.update(l)
 
-    # 查询本地数据库的已记录扫码数据
+    # 查询本地数据库的扫码数据
     def loadScanData(self):
         self.refreshCountView()
-        self.table0.setShowGrid(True)
-        # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.table0.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.table0.setRowCount(0)
-
-        datas = self.scanTableUnit.queryForList('SELECT * FROM scan_data order by create_time desc')
+        datas = self.scanTableUnit.queryForList(f'SELECT * FROM {self.scanTableUnit.tableName} order by create_time desc')
         self.table0.setRowCount(len(datas))
         i = 0
         for d in datas:
             self.table0.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
             self.table0.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
-            self.table0.setItem(i, 2, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time']/1000))))
-            self.table0.setItem(i, 3, QTableWidgetItem(d['creator_name']))
+            self.table0.setItem(i, 2, QTableWidgetItem(d['creator_name']))
+            self.table0.setItem(i, 3, QTableWidgetItem(
+                time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time'] / 1000))))
             self.table0.setItem(i, 4, QTableWidgetItem(d['unit_code']))
             self.table0.setItem(i, 5, QTableWidgetItem(d['box_code']))
             self.table0.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
             self.table0.setItem(i, 7, QTableWidgetItem(d['upload_status']))
             self.table0.setItem(i, 8, QTableWidgetItem(d['uploader']))
-            self.table0.setItem(i, 9, QTableWidgetItem(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time']/1000)) if d['upload_time'] else None))
+            self.table0.setItem(i, 9, QTableWidgetItem(
+                time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time'] / 1000)) if d[
+                    'upload_time'] else None))
             i += 1
-        # self.tableWidget.show()
         self.table0.selectRow(0)
 
     # 填充扫码页面的form表单信息
@@ -95,7 +97,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.user_name_input.setText(Context.user['userName'])
         self.inventory_code_input.setText(self.order_info['inventoryCode'])
         self.inventory_name_input.setText(self.order_info['inventoryName'])
-        self.unit_rule_label.setText(f'规则: 【箱 {self.order_info["boxInsideQuantity"]}】【卡板 {self.order_info["palletInsideQuantity"]}】')
+        self.unit_rule_label.setText(
+            f'规则: 【箱 {self.order_info["boxInsideQuantity"]}】【卡板 {self.order_info["palletInsideQuantity"]}】')
         pass
 
     @Slot()
@@ -104,6 +107,12 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             print(rowIndex)
             # print(rowIndex, self.datas[rowIndex]['id'])
 
+    @Slot()
+    def tabChanged(self):
+        if self.tabWidget.currentIndex() == 0:
+            self.loadScanData()
+        else:
+            self.laodScanedData()
 
     @Slot()
     def scan(self):
@@ -135,10 +144,20 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             self.scan_code_input.clear()
             self.loadScanData()
 
+    # 刷新总计计数
     def refreshCountView(self):
         param = {
             'ent_code': Context.user.get('entCode'),
             'business_key': self.order_info['recordId'],
         }
-        obj = self.scanTableUnit.queryForObject('select count(0) as unit_count from scan_data where ent_code = :ent_code and business_key = :business_key', param)
+        #  and business_key = :business_key
+        result = self.scanTableUnit.queryForObject(
+            f'select count(0) as unit_count, count(distinct box_code) as box_count, count(distinct pallet_code) as pallet_count from {self.scanTableUnit.tableName} where ent_code = :ent_code',
+            param)
+        self.lcd_unit.setProperty('value', result.get('unit_count'))
+        self.lcd_box.setProperty('value', result.get('box_code'))
+        self.lcd_pallet.setProperty('value', result.get('pallet_count'))
+        pass
+
+    def laodScanedData(self):
         pass
