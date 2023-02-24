@@ -199,7 +199,7 @@ class Ui_TaskFrame(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 834, 401))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 834, 69))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.formLayout_3 = QFormLayout()

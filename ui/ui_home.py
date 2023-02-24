@@ -29,7 +29,7 @@ class Ui_Home(object):
     def setupUi(self, Home):
         if not Home.objectName():
             Home.setObjectName(u"Home")
-        Home.resize(969, 697)
+        Home.resize(1054, 712)
         Home.setMinimumSize(QSize(800, 600))
         icon = QIcon()
         icon.addFile(u":/logo/pic/logo.png", QSize(), QIcon.Normal, QIcon.On)
@@ -137,7 +137,7 @@ class Ui_Home(object):
         Home.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Home)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 969, 24))
+        self.menubar.setGeometry(QRect(0, 0, 1054, 24))
         Home.setMenuBar(self.menubar)
 
         self.retranslateUi(Home)

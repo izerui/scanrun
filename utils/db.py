@@ -161,22 +161,22 @@ class ScanTableUnit(BaseTableUnit):
                         create_time  INTEGER,
                         creator      TEXT,
                         creator_name TEXT,
-                        unit_code    TEXT,
-                        box_code     TEXT,
+                        unit_code    TEXT not null unique,
+                        box_code     TEXT ,
                         pallet_code  TEXT,
-                        upload_status INTEGER,
+                        upload_status INTEGER not null default 0,
                         uploader     TEXT,
                         upload_time  INTEGER
                     )
                 '''
-
-    def _create_indexs(self) -> None:
-        return [
-            f'''
-            create unique index {self.tableName}_index0
-            on {self.tableName} (ent_code, business_key, unit_code);
-            '''
-        ]
+    # 自动创建表的时候，同步创建索引
+    # def _create_indexs(self) -> None:
+    #     return [
+    #         f'''
+    #         create unique index {self.tableName}_index0
+    #         on {self.tableName} (ent_code, business_key, unit_code);
+    #         '''
+    #     ]
 
     def _insert_sql(self, ignore: bool = False) -> str:
         return f'''
