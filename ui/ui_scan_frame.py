@@ -230,13 +230,15 @@ class Ui_ScanFrame(object):
 
         self.gridLayout.addWidget(self.cus_order_no_input, 1, 3, 1, 1)
 
-        self.prompt_label = QLabel(self.frame_2)
-        self.prompt_label.setObjectName(u"prompt_label")
+        self.warn_label = QLabel(self.frame_2)
+        self.warn_label.setObjectName(u"warn_label")
         font2 = QFont()
+        font2.setFamilies([u"Academy Engraved LET"])
         font2.setPointSize(24)
-        self.prompt_label.setFont(font2)
+        self.warn_label.setFont(font2)
+        self.warn_label.setStyleSheet(u"color: rgb(255, 38, 0);")
 
-        self.gridLayout.addWidget(self.prompt_label, 5, 3, 1, 1)
+        self.gridLayout.addWidget(self.warn_label, 5, 3, 1, 1)
 
         self.label_6 = QLabel(self.frame_2)
         self.label_6.setObjectName(u"label_6")
@@ -456,7 +458,7 @@ class Ui_ScanFrame(object):
         self.label_8.setText(QCoreApplication.translate("ScanFrame", u"\u64cd\u4f5c\u5458\uff1a", None))
         self.label_4.setText(QCoreApplication.translate("ScanFrame", u"\u8ba2\u5355\u53f7\uff1a", None))
         self.label_7.setText(QCoreApplication.translate("ScanFrame", u"\u5ba2\u6237\u5355\u53f7\uff1a", None))
-        self.prompt_label.setText(QCoreApplication.translate("ScanFrame", u"\u4ea7\u54c1", None))
+        self.warn_label.setText(QCoreApplication.translate("ScanFrame", u"\u4ea7\u54c1", None))
         self.label_6.setText(QCoreApplication.translate("ScanFrame", u"\u73ed\u7ec4\uff1a", None))
         self.label_2.setText(QCoreApplication.translate("ScanFrame", u"\u626b\u7801\uff1a", None))
         self.label.setText(QCoreApplication.translate("ScanFrame", u"\u6210\u54c1\u7f16\u7801\uff1a", None))
