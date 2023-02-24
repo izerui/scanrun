@@ -3,7 +3,8 @@ from itertools import groupby
 from typing import Callable
 
 from PySide6 import QtWidgets
-from PySide6.QtCore import Signal, Slot
+from PySide6.QtCore import Signal, Slot, QUrl
+from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange
 
 from ui.ui_scan_frame import Ui_ScanFrame
@@ -218,6 +219,12 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.warn_label.setText(message)
 
     def showWarning(self):
+        player = QMediaPlayer()
+        output = QAudioOutput()
+        player.setAudioOutput(output)
+        player.setSource(QUrl.fromLocalFile('/Users/liuyuhua/PycharmProjects/scanrun/pic/box.mp3'))
+        output.setVolume(50)
+        player.play()
         showUnit = lambda items: self.warn_label.setText('请扫描产品')
         showBox = lambda items: self.warn_label.setText('请扫描箱子')
         showPallet = lambda items: self.warn_label.setText('请扫描卡板')
