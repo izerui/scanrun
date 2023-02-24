@@ -1,4 +1,3 @@
-import os
 import time
 from itertools import groupby
 from typing import Callable
@@ -6,7 +5,6 @@ from typing import Callable
 from PySide6 import QtWidgets
 from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange
-from playsound import playsound
 
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
