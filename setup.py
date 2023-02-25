@@ -5,7 +5,7 @@ from cx_Freeze import setup, Executable
 # Dependencies are automatically detected, but it might need fine tuning.
 build_exe_options = {
     "excludes": ["tkinter", "unittest"],
-    "zip_include_packages": ["encodings", "PySide6", "shiboken6", "httpx", "APScheduler", "playsound"],
+    "zip_include_packages": ["encodings", "PySide6"],
 }
 
 # base="Win32GUI" should be used only for Windows GUI app
