@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import json
 import sys
+from platform import system
 from time import sleep
 from typing import Callable
 
@@ -145,7 +146,11 @@ class SoundThread(QThread):
     def __init__(self, soundFile):
         super().__init__()
         self.soundFile = soundFile
+        self.system = system()
 
     def run(self) -> None:
         sleep(0.5)
-        playsound(f'{sys.path[0]}{self.soundFile}', block=False)
+        if self.system == 'Windows':
+            playsound(f'{sys.path[0]}{self.soundFile}')
+        else:
+            playsound(f'{sys.path[0]}{self.soundFile}', block=False)
