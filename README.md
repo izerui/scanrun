@@ -7,11 +7,9 @@
 
 # 已安装依赖列表(不及时更新)
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * playsound: `pip install playsound -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-
 
 # 配置pycharm第三方工具,如果是vscode只需要安装插件: `Qt for Python`
 * pyside6-designer:
@@ -23,8 +21,9 @@
   > * working directory: `$FileDir$`
 
 # 打包 https://www.jianshu.com/p/e74047f7cc91
+> pyinstaller(安装到系统): `pip3 install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * Windows:
-  * 生成exe: `pyinstaller -D -w -i resources/Icon.ico main.py`
+  * 生成exe: `.\venv\Scripts/pyinstaller.exe -D -w -i .\resources\Icon.ico main.py`
 * Mac:
   > 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
   ```

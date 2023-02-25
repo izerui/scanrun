@@ -8,22 +8,17 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
-from PySide6.QtWidgets import (QApplication, QButtonGroup, QFrame, QGridLayout,
-    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect,
+                            QSize, Qt)
+from PySide6.QtGui import (QAction, QCursor, QFont, QIcon)
+from PySide6.QtWidgets import (QButtonGroup, QFrame, QGridLayout,
+                               QMenuBar, QPushButton, QSizePolicy,
+                               QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
 
 from controller.list import ListFrame
 from controller.scan import ScanFrame
 from controller.task import TaskFrame
-import images_rc
+
 
 class Ui_Home(object):
     def setupUi(self, Home):

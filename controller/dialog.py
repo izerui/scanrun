@@ -1,9 +1,9 @@
 from PySide6.QtCore import Slot, Signal
 from PySide6.QtWidgets import QDialog, QMessageBox
 
+from ui.ui_task_form import Ui_TaskForm
 from utils.context import Context
 from utils.executor import HttpExecutor, PostThread
-from ui.ui_task_form import Ui_TaskForm
 
 
 class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
