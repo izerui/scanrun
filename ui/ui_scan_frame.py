@@ -57,6 +57,7 @@ class Ui_ScanFrame(object):
         self.table0.setHorizontalHeaderItem(6, __qtablewidgetitem6)
         self.table0.setObjectName(u"table0")
         self.table0.setFocusPolicy(Qt.ClickFocus)
+        self.table0.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table0.setAlternatingRowColors(True)
         self.table0.setSelectionMode(QAbstractItemView.ExtendedSelection)
         self.table0.setSelectionBehavior(QAbstractItemView.SelectRows)
@@ -115,6 +116,8 @@ class Ui_ScanFrame(object):
         __qtablewidgetitem16 = QTableWidgetItem()
         self.table1.setHorizontalHeaderItem(9, __qtablewidgetitem16)
         self.table1.setObjectName(u"table1")
+        self.table1.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.table1.setSelectionBehavior(QAbstractItemView.SelectRows)
 
         self.gridLayout_9.addWidget(self.table1, 0, 0, 1, 1)
 
@@ -404,7 +407,8 @@ class Ui_ScanFrame(object):
         self.scan_code_input.returnPressed.connect(ScanFrame.scan)
         self.pushButton_2.clicked.connect(ScanFrame.deleteSelection)
         self.tabWidget.currentChanged.connect(ScanFrame.tabChanged)
-        self.table0.itemClicked.connect(ScanFrame.unUploadDataSelected)
+        self.table0.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
+        self.table1.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
 
         self.tabWidget.setCurrentIndex(0)
 

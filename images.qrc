@@ -21,9 +21,4 @@
     <file>pic/data.png</file>
     <file>pic/delete.png</file>
   </qresource>
-  <qresource prefix="/mp3">
-    <file>pic/box.mp3</file>
-    <file>pic/pallet.mp3</file>
-    <file>pic/unit.mp3</file>
-  </qresource>
 </RCC>

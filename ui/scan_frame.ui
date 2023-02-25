@@ -38,6 +38,9 @@
          <property name="focusPolicy">
           <enum>Qt::ClickFocus</enum>
          </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
          <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
@@ -145,6 +148,12 @@
       <layout class="QGridLayout" name="gridLayout_9">
        <item row="0" column="0">
         <widget class="QTableWidget" name="table1">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
          <column>
           <property name="text">
            <string>车间</string>
@@ -820,17 +829,33 @@
   </connection>
   <connection>
    <sender>table0</sender>
-   <signal>itemClicked(QTableWidgetItem*)</signal>
+   <signal>itemSelectionChanged()</signal>
    <receiver>ScanFrame</receiver>
-   <slot>unUploadDataSelected()</slot>
+   <slot>tableItemSelected()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>392</y>
+     <x>145</x>
+     <y>342</y>
     </hint>
     <hint type="destinationlabel">
-     <x>153</x>
-     <y>-52</y>
+     <x>166</x>
+     <y>-42</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>table1</sender>
+   <signal>itemSelectionChanged()</signal>
+   <receiver>ScanFrame</receiver>
+   <slot>tableItemSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>272</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>822</x>
+     <y>407</y>
     </hint>
    </hints>
   </connection>
@@ -840,6 +865,6 @@
   <slot>scan()</slot>
   <slot>deleteSelection()</slot>
   <slot>tabChanged()</slot>
-  <slot>unUploadDataSelected()</slot>
+  <slot>tableItemSelected()</slot>
  </slots>
 </ui>
