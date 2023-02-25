@@ -8,6 +8,7 @@
 # 已安装依赖列表(不及时更新)
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* pyinstaller: `pip3 install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * playsound: `pip install playsound -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 
@@ -21,7 +22,6 @@
   > * working directory: `$FileDir$`
 
 # 打包 https://www.jianshu.com/p/e74047f7cc91
-> pyinstaller(安装到系统): `pip3 install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * Windows:
   * 生成exe: `pyinstaller.exe -D -w -i .\resources\Icon.ico main.py`
 * Mac:
