@@ -1,9 +1,20 @@
+import sys
+
 from cx_Freeze import setup, Executable
 
-build_exe_options = {'packages': [], 'excludes': []}
+# Dependencies are automatically detected, but it might need fine tuning.
+build_exe_options = {
+    "excludes": ["tkinter", "unittest"],
+    "zip_include_packages": ["encodings", "PySide6"],
+}
 
-setup(name='scanrun',
-      version='1.0.0',
-      description='scanrun',
-      options={'build_exe': build_exe_options},
-      executables=[Executable('main.py')])
+# base="Win32GUI" should be used only for Windows GUI app
+base = "Win32GUI" if sys.platform == "win32" else None
+
+setup(
+    name="scanrun",
+    version="0.1",
+    description="My Scanrun Application!",
+    options={"build_exe": build_exe_options},
+    executables=[Executable("main.py", base=base)],
+)
