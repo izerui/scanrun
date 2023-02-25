@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import time
 from itertools import groupby
 from typing import Callable

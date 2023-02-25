@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import logging
 
 from PySide6.QtSql import QSqlDatabase, QSqlQuery

@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from PySide6.QtWidgets import QWidget
 
 from ui.ui_list_frame import Ui_ListFrame
