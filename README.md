@@ -8,9 +8,9 @@
 # 已安装依赖列表(不及时更新)
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* httpx: `pip install httpx`
-* httpx: `pip install APScheduler`
-* playsound: `pip install playsound`
+* httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* httpx: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* playsound: `pip install playsound -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 
 
 # 配置pycharm第三方工具,如果是vscode只需要安装插件: `Qt for Python`
