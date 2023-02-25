@@ -120,9 +120,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         undo_pallet_datas = list(filter(lambda x: not x['pallet_code'], pallet_datas))
         # 优先判断卡板，再判断箱子，否则持续录入产品
 
-        if len(undo_box_datas) == box_quantity:  # 够一箱
+        if len(undo_box_datas) > 0 and len(undo_box_datas) == box_quantity:  # 够一箱
             boxCall(items=undo_box_datas)
-        elif len(undo_pallet_datas) == pallet_quantity:  # 够一卡板
+        elif len(undo_pallet_datas) > 0 and len(undo_pallet_datas) == pallet_quantity:  # 够一卡板
             palletCall(items=undo_pallet_datas)
         else:
             unitCall(items=None)
@@ -169,20 +169,35 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                     'upload_time'] else None))
             i += 1
 
-    # 关联装箱
-    def correlationBox(self, items: list = None):
-        if not items:
-            self.warn()
-            return
-        code = self.scan_code_input.text()
+    def validateCode(self, code) -> bool:
         if not code:
             self.warn()
-            return
-        exist_box_count = self.scanTableUnit.queryForObject(f'select count(0) as exist_box_count from {self.scanTableUnit.tableName} where box_code = :box_code', {'box_code': code})['exist_box_count']
-        if exist_box_count > 0:
+            return False
+        exist_unit_count = self.scanTableUnit.queryForObject(
+            f'select count(0) as exist_unit_count from {self.scanTableUnit.tableName} where unit_code = :code',
+            {'code': code})['exist_unit_count']
+        exist_box_count = self.scanTableUnit.queryForObject(
+            f'select count(0) as exist_box_count from {self.scanTableUnit.tableName} where box_code = :code',
+            {'code': code})['exist_box_count']
+        exist_pallet_count = self.scanTableUnit.queryForObject(
+            f'select count(0) as exist_pallet_count from {self.scanTableUnit.tableName} where pallet_code = :code',
+            {'code': code})['exist_pallet_count']
+        if exist_unit_count > 0:
+            self.warn('产品码已存在')
+        elif exist_box_count > 0:
             self.warn('箱码已存在')
-            # 异常后，不需要下一步提示
-            self.continuePrompt = False
+        elif exist_pallet_count > 0:
+            self.warn('卡板码已存在')
+        else:
+            return True
+        # 异常后，不需要下一步提示
+        self.continuePrompt = False
+        return False
+
+    # 关联装箱
+    def correlationBox(self, items: list = None):
+        code = self.scan_code_input.text()
+        if not self.validateCode(code):
             return
         for item in items:
             item['box_code'] = code
@@ -190,20 +205,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 关联装卡板
     def correlationPallet(self, items: list = None):
-        if not items:
-            self.warn()
-            return
         code = self.scan_code_input.text()
-        if not code:
-            self.warn()
-            return
-        exist_pallet_count = self.scanTableUnit.queryForObject(
-            f'select count(0) as exist_pallet_count from {self.scanTableUnit.tableName} where pallet_code = :pallet_code',
-            {'pallet_code': code})['exist_pallet_count']
-        if exist_pallet_count > 0:
-            self.warn('卡板码已存在')
-            # 异常后，不需要下一步提示
-            self.continuePrompt = False
+        if not self.validateCode(code):
             return
         for item in items:
             item['complete'] = 1
@@ -213,16 +216,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     # 添加产品
     def insertUnit(self, items: list = None):
         code = self.scan_code_input.text()
-        if not code:
-            self.warn()
-            return
-        exist_unit_count = self.scanTableUnit.queryForObject(
-            f'select count(0) as exist_unit_count from {self.scanTableUnit.tableName} where unit_code = :unit_code',
-            {'unit_code': code})['exist_unit_count']
-        if exist_unit_count > 0:
-            self.warn('产品码已存在')
-            # 异常后，不需要下一步提示
-            self.continuePrompt = False
+        if not self.validateCode(code):
             return
         now = int(round(time.time() * 1000))
         # time.strftime('%Y-%m-%d %H:%M%S', time.localtime(now/1000))
