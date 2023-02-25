@@ -150,7 +150,10 @@ class SoundThread(QThread):
 
     def run(self) -> None:
         sleep(0.5)
-        if self.system == 'Windows':
-            playsound(f'{sys.path[0]}{self.soundFile}')
-        else:
-            playsound(f'{sys.path[0]}{self.soundFile}', block=False)
+        try:
+            if self.system == 'Windows':
+                playsound(f'{sys.path[0]}{self.soundFile}')
+            else:
+                playsound(f'{sys.path[0]}{self.soundFile}', block=False)
+        except Exception as e:
+            pass
