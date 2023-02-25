@@ -23,8 +23,7 @@
 
 # 打包 https://www.jianshu.com/p/e74047f7cc91
 * Windows: 
-  > cx_Freeze: `pip install cx_Freeze -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-  * 生成exe: `python setup.py build`
+  * 生成exe: `.\venv\Scripts\pyinstaller --onefile --windowed main.py`
 * Mac:
   > * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
   > * 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好

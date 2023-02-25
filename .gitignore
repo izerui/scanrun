@@ -1,4 +1,4 @@
 dist/
 venv/
 build/
-main.spec
+scanrun.spec

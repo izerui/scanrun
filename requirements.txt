@@ -3,7 +3,6 @@ anyio==3.6.2
 APScheduler==3.10.0
 backports.zoneinfo==0.2.1
 certifi==2022.12.7
-cx-Freeze==6.14.4
 h11==0.14.0
 httpcore==0.16.3
 httpx==0.23.3
