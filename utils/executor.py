@@ -4,10 +4,26 @@ import sys
 from typing import Callable
 
 from PySide6.QtCore import QThread, Signal
-from PySide6.QtWidgets import QMessageBox, QWidget
+from PySide6.QtWidgets import QMessageBox
 from httpx import Response
+from playsound import playsound
 
 from utils.request import Request
+
+
+class ThreadExecutor(object):
+
+    def __init__(self):
+        super().__init__()
+
+    def execute(self, thread_name: str, new_thread: QThread, callback: Callable = None):
+        if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
+            pass
+        else:
+            setattr(self, thread_name, new_thread)
+            if callback:
+                getattr(getattr(self, thread_name), 'callback').connect(callback)
+            getattr(self, thread_name).start()
 
 
 class HttpExecutor(object):
@@ -93,6 +109,7 @@ class GetThread(QThread, HttpInterceptor):
         #     traceback.print_exc(e)
         #     self.error.emit(str(e))
 
+
 #
 # class SqlExecutor(object):
 #     def __init__(self):
@@ -121,3 +138,12 @@ class GetThread(QThread, HttpInterceptor):
 #     def run(self) -> None:
 #         query = DbUnit.execute(self.sql, self.dict)
 #         self.result.emit(query)
+
+class SoundThread(QThread):
+
+    def __init__(self, soundFile):
+        super().__init__()
+        self.soundFile = soundFile
+
+    def run(self) -> None:
+        playsound(f'{sys.path[0]}/{self.soundFile}')
