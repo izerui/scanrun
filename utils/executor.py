@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import json
 import sys
+from time import sleep
 from typing import Callable
 
 from PySide6.QtCore import QThread, Signal
@@ -146,4 +147,5 @@ class SoundThread(QThread):
         self.soundFile = soundFile
 
     def run(self) -> None:
+        sleep(0.5)
         playsound(f'{sys.path[0]}{self.soundFile}', block=False)

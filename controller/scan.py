@@ -21,8 +21,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.setupUi(self)
         self.threadExecutor = ThreadExecutor()
         self.unitSoundThread = SoundThread(u'/pic/unit.mp3')
-        self.boxSoundThread = SoundThread(u'/pic/box.mp3')
+        self.boxSoundThread = SoundThread(u'/pic/box.wav')
         self.palletSoundThread = SoundThread(u'/pic/pallet.mp3')
+        self.errorSoundThread = SoundThread(u'/pic/error.mp3')
         self.table0.setShowGrid(True)
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.table0.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -99,9 +100,13 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     def scan(self):
         if self.tabWidget.currentIndex() > 0:
             self.warn('请切换到未包装列表')
+            if not self.errorSoundThread.isRunning():
+                self.errorSoundThread.start()
             return
         code = self.scan_code_input.text()
         if not code:
+            if not self.errorSoundThread.isRunning():
+                self.errorSoundThread.start()
             return
         self.judge(self.insertUnit, self.correlationBox, self.correlationPallet)
         self.scan_code_input.clear()
@@ -223,17 +228,17 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     def showWarning(self):
         def showUnit(items=None):
-            self.warn_label.setText('请扫描产品')
+            self.warn('请扫描产品')
             if not self.unitSoundThread.isRunning():
                 self.unitSoundThread.start()
 
         def showBox(items=None):
-            self.warn_label.setText('请扫描箱子')
+            self.warn('请扫描箱子')
             if not self.boxSoundThread.isRunning():
                 self.boxSoundThread.start()
 
         def showPallet(items=None):
-            self.warn_label.setText('请扫描卡板')
+            self.warn('请扫描卡板')
             if not self.palletSoundThread.isRunning():
                 self.palletSoundThread.start()
 
