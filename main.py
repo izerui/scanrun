@@ -14,6 +14,7 @@ from PySide6.QtWidgets import QApplication, QWidget
 from controller.home import HomeWindow
 from controller.login import LoginWindow
 from utils.context import Context
+from shiboken6 import *
 
 
 class MainWindow(QWidget):
