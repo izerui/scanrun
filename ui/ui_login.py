@@ -123,7 +123,7 @@ class Ui_Login_Form(object):
         self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d\uff1a", None))
         self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u767b\u5f55", None))
         self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6    \u7801\uff1a", None))
-        self.passwordInput.setText(QCoreApplication.translate("Login_Form", u"123456", None))
+        self.passwordInput.setText(QCoreApplication.translate("Login_Form", u"woshichaojimima001", None))
         self.passwordInput.setPlaceholderText("")
         self.outButton.setText(QCoreApplication.translate("Login_Form", u"\u9000\u51fa", None))
         self.title.setText(QCoreApplication.translate("Login_Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
