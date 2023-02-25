@@ -18,6 +18,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.splitter.setSizes([50000, 20000])
         self.renderTable()
         self.renderFormLabels()
+        self.show()
         self.pageIndex = 0
         self.pageSize = 20
         self.totalPage = 0
@@ -138,4 +139,3 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             self.formLayout_3.setWidget(i, QFormLayout.LabelRole, label)
             self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
             setattr(self, f'form_edit_{head["code"]}', edit)
-        self.formLayout_3.update()
