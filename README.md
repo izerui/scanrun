@@ -9,7 +9,7 @@
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* httpx: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * playsound: `pip install playsound -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 
 
