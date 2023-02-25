@@ -146,4 +146,4 @@ class SoundThread(QThread):
         self.soundFile = soundFile
 
     def run(self) -> None:
-        playsound(f'{sys.path[0]}/{self.soundFile}')
+        playsound(f'{sys.path[0]}/{self.soundFile}', block=False)

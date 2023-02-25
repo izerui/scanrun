@@ -4,10 +4,8 @@ from itertools import groupby
 from typing import Callable
 
 from PySide6 import QtWidgets
-from PySide6.QtCore import Signal, Slot, QUrl
-from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
+from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange
-from playsound import playsound
 
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
@@ -22,6 +20,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         super().__init__()
         self.setupUi(self)
         self.threadExecutor = ThreadExecutor()
+        self.unitSoundThread = SoundThread('/pic/unit.mp3')
+        self.boxSoundThread = SoundThread('/pic/box.mp3')
+        self.palletSoundThread = SoundThread('/pic/pallet.mp3')
         self.table0.setShowGrid(True)
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.table0.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -221,8 +222,19 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.warn_label.setText(message)
 
     def showWarning(self):
-        self.threadExecutor.execute('soundThread', SoundThread('pic/unit.mp3'))
-        showUnit = lambda items: self.warn_label.setText('请扫描产品')
-        showBox = lambda items: self.warn_label.setText('请扫描箱子')
-        showPallet = lambda items: self.warn_label.setText('请扫描卡板')
+        def showUnit(items=None):
+            self.warn_label.setText('请扫描产品')
+            if not self.unitSoundThread.isRunning():
+                self.unitSoundThread.start()
+
+        def showBox(items=None):
+            self.warn_label.setText('请扫描箱子')
+            if not self.boxSoundThread.isRunning():
+                self.boxSoundThread.start()
+
+        def showPallet(items=None):
+            self.warn_label.setText('请扫描卡板')
+            if not self.palletSoundThread.isRunning():
+                self.palletSoundThread.start()
+
         self.judge(showUnit, showBox, showPallet)

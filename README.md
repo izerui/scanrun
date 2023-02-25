@@ -11,6 +11,7 @@
 * APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * playsound: `pip install playsound -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller(打包选装): `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* 如果使用mac希望发出声音: `pip install PyObjC -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 
 # 配置pycharm第三方工具,如果是vscode只需要安装插件: `Qt for Python`
 * pyside6-designer:
