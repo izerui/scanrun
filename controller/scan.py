@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import os
 import time
 from itertools import groupby
 from typing import Callable
@@ -20,10 +21,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         super().__init__()
         self.setupUi(self)
         self.threadExecutor = ThreadExecutor()
-        self.unitSoundThread = SoundThread(u'/pic/unit.mp3')
-        self.boxSoundThread = SoundThread(u'/pic/box.wav')
-        self.palletSoundThread = SoundThread(u'/pic/pallet.mp3')
-        self.errorSoundThread = SoundThread(u'/pic/error.mp3')
+        self.unitSoundThread = SoundThread(f'{os.sep}pic{os.sep}unit.mp3')
+        self.boxSoundThread = SoundThread(f'{os.sep}pic{os.sep}box.wav')
+        self.palletSoundThread = SoundThread(f'{os.sep}pic{os.sep}pallet.mp3')
+        self.errorSoundThread = SoundThread(f'{os.sep}pic{os.sep}error.mp3')
         self.table0.setShowGrid(True)
         # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.table0.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
