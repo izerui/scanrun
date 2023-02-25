@@ -8,7 +8,6 @@
 # 已安装依赖列表(不及时更新)
 * PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * playsound: `pip install playsound -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 
@@ -22,10 +21,12 @@
   > * working directory: `$FileDir$`
 
 # 打包 https://www.jianshu.com/p/e74047f7cc91
-* Windows:
+* Windows: 
+  > cx_Freeze: `pip install cx_Freeze -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
   * 生成exe: `pyinstaller.exe -D -w -i .\resources\Icon.ico main.py`
 * Mac:
-  > 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
+  > * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+  > * 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
   ```
   mkdir tmp.iconset
   cd tmp.iconset
