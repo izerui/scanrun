@@ -79,20 +79,20 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             f'规则: 每箱({int(self.order_info["boxInsideQuantity"])})产品 / 每卡板({int(self.order_info["palletInsideQuantity"])})箱')
         pass
 
-    @Slot()
+    
     def deleteSelection(self):
         for rowIndex, group in groupby(self.tableWidget.selectedIndexes(), lambda x: x.row()):
             print(rowIndex)
             # print(rowIndex, self.datas[rowIndex]['id'])
 
-    @Slot()
+    
     def tabChanged(self):
         if self.tabWidget.currentIndex() == 0:
             self.loadScanData()
         else:
             self.laodScanedData()
 
-    @Slot()
+    
     def scan(self):
         if self.tabWidget.currentIndex() > 0:
             self.warn('请切换到未包装列表')
@@ -195,7 +195,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         }
         self.scanTableUnit.insertIgnore(data)
 
-    @Slot()
+    
     def unUploadDataSelected(self):
         if self.table0.currentColumn() == 5:
             sel_box_code = self.table0.currentItem().text()
@@ -214,7 +214,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                                                   self.table0.columnCount() - 1)
                 self.table0.setRangeSelected(rect, True)
 
-    @Slot()
+    
     def warn(self, message):
         self.warn_label.setText(message)
 

@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets
-from PySide6.QtCore import Slot, Signal
+from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem, QLineEdit, QLabel, QFormLayout
 
 from controller.dialog import ScanConfirmDialog
@@ -55,12 +55,12 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.totalCount = data['totalElements']
         self.pageSize = data['size']
 
-    @Slot()
+    
     def firstPage(self):
         self.pageIndex = 0
         self.loadData()
 
-    @Slot()
+    
     def prePage(self):
         if self.pageIndex > 0:
             self.pageIndex -= 1
@@ -68,7 +68,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         else:
             QMessageBox.warning(None, '提示', '已经是第一页')
 
-    @Slot()
+    
     def nextPage(self):
         if self.pageIndex + 1 < self.totalPage:
             self.pageIndex += 1
@@ -76,13 +76,13 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         else:
             QMessageBox.warning(None, '提示', '已经是最后一页')
 
-    @Slot()
+    
     def endPage(self):
         if self.totalPage - 1 > 0:
             self.pageIndex = self.totalPage - 1
         self.loadData()
 
-    @Slot()
+    
     def jumpPage(self):
         if self.pageEdit.value() >= self.totalPage:
             self.pageIndex = self.totalPage - 1
@@ -90,7 +90,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             self.pageIndex = self.pageEdit.value() - 1
         self.loadData()
 
-    @Slot()
+    
     def openTaskForm(self):
         if self.selRow:
             self.task = ScanConfirmDialog(self.selRow)
@@ -101,7 +101,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             QMessageBox.warning(None, '提示', '请选择一条任务开始扫码')
 
     # 行选中事件
-    @Slot()
+    
     def dataRowSelected(self):
         self.selRow = self.dataList[self.tableWidget.currentRow() - 1]
         for head in Context.todoTaskTableHeads:

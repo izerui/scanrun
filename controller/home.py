@@ -36,7 +36,7 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
 
 
     # 进入扫码页面
-    @Slot()
+    
     def scanConfirmed(self, scan_info: dict):
         if not Context.user:
             QMessageBox.critical(None, '提示', '未获取到登录用户信息')
@@ -46,7 +46,7 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
             self.scanFrame.setScanInfo(scan_info)
             self.scanFrame.loadScanData()
 
-    # @Slot()
+    # 
     # def toolbarClicked(self, *args: QAction):
     #     if args[0].text() == 'home':
     #         self.switchTabPage(0)
@@ -56,12 +56,12 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
     #         self.logout()
     # QMessageBox.information(None, '提示', '深圳云集智造系统有限公司')
 
-    @Slot()
+    
     def logout(self):
         self.loginExistSignal.emit('logout')
         self.close()
 
-    @Slot()
+    
     def tabButtonPressed(self):
         checkedButtonText = self.tabButtonGroup.checkedButton().objectName()
         if checkedButtonText == 'btn_task':

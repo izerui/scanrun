@@ -22,19 +22,19 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
             self.deptsResponse
         )
 
-    @Slot()
+    
     def deptsResponse(self, result):
         self.chejian.clear()
         for d in result['data']:
             self.chejian.addItem(d['name'], d)
 
-    @Slot()
+    
     def deptSelected(self):
         self.banzu.clear()
         for d in self.chejian.currentData()['children']:
             self.banzu.addItem(d['name'], d)
 
-    @Slot()
+    
     def accept(self) -> None:
         if not self.banzu.currentData():
             QMessageBox.critical(None, '错误', '请选择班组')

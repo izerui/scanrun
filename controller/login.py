@@ -26,7 +26,7 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
         else:
             self.subButton.setDisabled(True)
 
-    @Slot()
+    
     def loginForm(self):
         self.subButton.setDisabled(True)
         self.process_label.setVisible(True)
@@ -47,6 +47,6 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
         self.loginSuccessSignal.emit('success')
         self.close()
 
-    @Slot()
+    
     def existForm(self):
         sys.exit()
