@@ -27,8 +27,8 @@ class HttpExecutor(object):
     # 默认的异常回调
     def http_error_call(self, err):
         QMessageBox.critical(None, '错误', err['errMsg'])
-        if err['errCode'] == 'unLogin':
-            sys.exit()
+        # if err['errCode'] == 'unLogin':
+        #     sys.exit()
 
 
 class HttpInterceptor(object):
