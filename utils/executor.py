@@ -148,22 +148,23 @@ class SoundThread(QThread):
     def __init__(self, file):
         super().__init__()
         self.filePath = f'{sys.path[0]}{file}'
-        self.filePathName = os.path.splitext(self.filePath)[0]
-        self.fileExt = os.path.splitext(self.filePath)[-1]
+        # self.filePathName = os.path.splitext(self.filePath)[0]
+        # self.fileExt = os.path.splitext(self.filePath)[-1]
         self.system = system()
 
     def run(self) -> None:
         sleep(0.5)
-        tmpFile = None
+        # tmpFile = None
         try:
             if self.system == 'Windows':
-                tmpFile = f'{self.filePathName}__{self.fileExt}'
-                copyfile(self.filePath, tmpFile)
-                playsound(tmpFile)
+                # tmpFile = f'{self.filePathName}__{self.fileExt}'
+                # copyfile(self.filePath, tmpFile)
+                # playsound(tmpFile)
+                playsound(self.filePath)
             else:
                 playsound(self.filePath, block=False)
-        except Exception as e:
+        except:
             pass
-        finally:
-            if tmpFile:
-                os.remove(tmpFile)
+        # finally:
+        #     if tmpFile:
+        #         os.remove(tmpFile)
