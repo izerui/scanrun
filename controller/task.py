@@ -137,3 +137,4 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             self.formLayout_3.setWidget(i, QFormLayout.LabelRole, label)
             self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
             setattr(self, f'form_edit_{head["code"]}', edit)
+        self.formLayout_3.update()
