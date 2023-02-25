@@ -23,7 +23,7 @@
 # 打包 https://www.jianshu.com/p/e74047f7cc91
 > pyinstaller(安装到系统): `pip3 install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * Windows:
-  * 生成exe: `.\venv\Scripts/pyinstaller.exe -D -w -i .\resources\Icon.ico main.py`
+  * 生成exe: `pyinstaller.exe -D -w -i .\resources\Icon.ico main.py`
 * Mac:
   > 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
   ```
