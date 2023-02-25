@@ -1,7 +1,9 @@
 # -*- coding: UTF-8 -*-
 import json
+import os
 import sys
 from platform import system
+from shutil import copyfile
 from time import sleep
 from typing import Callable
 
@@ -143,17 +145,25 @@ class GetThread(QThread, HttpInterceptor):
 
 class SoundThread(QThread):
 
-    def __init__(self, soundFile):
+    def __init__(self, file):
         super().__init__()
-        self.soundFile = soundFile
+        self.filePath = f'{sys.path[0]}{file}'
+        self.filePathName = os.path.splitext(self.filePath)[0]
+        self.fileExt = os.path.splitext(self.filePath)[-1]
         self.system = system()
 
     def run(self) -> None:
         sleep(0.5)
+        tmpFile = None
         try:
             if self.system == 'Windows':
-                playsound(f'{sys.path[0]}{self.soundFile}')
+                tmpFile = f'{self.filePathName}__{self.fileExt}'
+                copyfile(self.filePath, tmpFile)
+                playsound(tmpFile)
             else:
-                playsound(f'{sys.path[0]}{self.soundFile}', block=False)
+                playsound(self.filePath, block=False)
         except Exception as e:
             pass
+        finally:
+            if tmpFile:
+                os.remove(tmpFile)
