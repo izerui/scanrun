@@ -23,8 +23,10 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
     def changeButtonState(self):
         if len(self.usernameInput.text()) > 0 and len(self.passwordInput.text()) > 0:
             self.subButton.setEnabled(True)
+            self.process_label.setVisible(False)
         else:
             self.subButton.setDisabled(True)
+            self.process_label.setVisible(True)
 
     @Slot()
     def loginForm(self):
