@@ -164,8 +164,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.lcd_unit.setProperty('value', self.scan_unit_count)
         self.lcd_box.setProperty('value', self.scan_box_count)
         self.lcd_pallet.setProperty('value', self.scan_pallet_count)
-        self.progressBar.setValue(self.scan_unit_count)
-
+        if self.scan_unit_count <= self.progressBar.maximum():
+            self.progressBar.setValue(self.scan_unit_count)
+        else:
+            self.progressBar.setValue(self.progressBar.maximum())
     def loadScanedData(self):
         self.refreshCountView()
 
