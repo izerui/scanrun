@@ -18,8 +18,12 @@ class Context(object):
         if not v:
             Context.settings.setValue(key, value)
     @staticmethod
-    def getSettings(key) -> None:
-        return Context.settings.value(key)
+    def getSettings(key, default_value=None) -> None:
+        value = Context.settings.value(key)
+        if not value:
+            return default_value
+        else:
+            return value
 
     @staticmethod
     def setSettings(key, value):

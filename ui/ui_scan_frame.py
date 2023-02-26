@@ -17,9 +17,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLayout,
     QGroupBox, QHBoxLayout, QHeaderView, QLCDNumber,
-    QLabel, QLayout, QLineEdit, QPushButton,
-    QSizePolicy, QTabWidget, QTableWidget, QTableWidgetItem,
-    QToolButton, QVBoxLayout, QWidget)
+    QLabel, QLayout, QLineEdit, QProgressBar,
+    QPushButton, QSizePolicy, QTabWidget, QTableWidget,
+    QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_ScanFrame(object):
@@ -31,6 +31,93 @@ class Ui_ScanFrame(object):
         ScanFrame.setStyleSheet(u"")
         self.gridLayout_3 = QGridLayout(ScanFrame)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.gridLayout_3.setContentsMargins(-1, 12, -1, 0)
+        self.frame = QFrame(ScanFrame)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.gridLayout_5 = QGridLayout(self.frame)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.groupBox_2 = QGroupBox(self.frame)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        font = QFont()
+        font.setPointSize(18)
+        self.groupBox_2.setFont(font)
+        self.groupBox_2.setStyleSheet(u"backgrond-color: rgb(170, 121, 66)")
+        self.gridLayout_8 = QGridLayout(self.groupBox_2)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.lcd_pallet = QLCDNumber(self.groupBox_2)
+        self.lcd_pallet.setObjectName(u"lcd_pallet")
+        self.lcd_pallet.setMinimumSize(QSize(0, 32))
+        self.lcd_pallet.setStyleSheet(u"")
+        self.lcd_pallet.setFrameShape(QFrame.Box)
+        self.lcd_pallet.setFrameShadow(QFrame.Raised)
+        self.lcd_pallet.setMode(QLCDNumber.Dec)
+        self.lcd_pallet.setSegmentStyle(QLCDNumber.Flat)
+
+        self.gridLayout_8.addWidget(self.lcd_pallet, 0, 0, 1, 1)
+
+
+        self.gridLayout_5.addWidget(self.groupBox_2, 1, 2, 1, 1)
+
+        self.groupBox_3 = QGroupBox(self.frame)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setFont(font)
+        self.gridLayout_7 = QGridLayout(self.groupBox_3)
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.lcd_box = QLCDNumber(self.groupBox_3)
+        self.lcd_box.setObjectName(u"lcd_box")
+        self.lcd_box.setMinimumSize(QSize(0, 32))
+        self.lcd_box.setStyleSheet(u"")
+        self.lcd_box.setFrameShape(QFrame.Box)
+        self.lcd_box.setFrameShadow(QFrame.Raised)
+        self.lcd_box.setSmallDecimalPoint(False)
+        self.lcd_box.setMode(QLCDNumber.Dec)
+        self.lcd_box.setSegmentStyle(QLCDNumber.Flat)
+
+        self.gridLayout_7.addWidget(self.lcd_box, 0, 0, 1, 1)
+
+
+        self.gridLayout_5.addWidget(self.groupBox_3, 1, 1, 1, 1)
+
+        self.groupBox = QGroupBox(self.frame)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setFont(font)
+        self.groupBox.setStyleSheet(u"")
+        self.gridLayout_6 = QGridLayout(self.groupBox)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.lcd_unit = QLCDNumber(self.groupBox)
+        self.lcd_unit.setObjectName(u"lcd_unit")
+        self.lcd_unit.setMinimumSize(QSize(0, 32))
+        self.lcd_unit.setSizeIncrement(QSize(0, 0))
+        font1 = QFont()
+        font1.setFamilies([u"Academy Engraved LET"])
+        font1.setPointSize(24)
+        font1.setBold(True)
+        font1.setStrikeOut(False)
+        font1.setKerning(True)
+        font1.setStyleStrategy(QFont.PreferDefault)
+        self.lcd_unit.setFont(font1)
+        self.lcd_unit.setAutoFillBackground(False)
+        self.lcd_unit.setStyleSheet(u"")
+        self.lcd_unit.setFrameShape(QFrame.Box)
+        self.lcd_unit.setFrameShadow(QFrame.Raised)
+        self.lcd_unit.setSmallDecimalPoint(False)
+        self.lcd_unit.setMode(QLCDNumber.Dec)
+        self.lcd_unit.setSegmentStyle(QLCDNumber.Flat)
+        self.lcd_unit.setProperty("value", 111.000000000000000)
+
+        self.gridLayout_6.addWidget(self.lcd_unit, 0, 0, 1, 1)
+
+
+        self.gridLayout_5.addWidget(self.groupBox, 0, 1, 1, 2)
+
+
+        self.gridLayout_3.addWidget(self.frame, 1, 2, 1, 1)
+
         self.tabWidget = QTabWidget(ScanFrame)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setFocusPolicy(Qt.NoFocus)
@@ -169,9 +256,9 @@ class Ui_ScanFrame(object):
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 0))
         self.pushButton.setMaximumSize(QSize(16777215, 16777215))
-        font = QFont()
-        font.setPointSize(13)
-        self.pushButton.setFont(font)
+        font2 = QFont()
+        font2.setPointSize(13)
+        self.pushButton.setFont(font2)
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton.setFocusPolicy(Qt.NoFocus)
         icon2 = QIcon()
@@ -184,9 +271,9 @@ class Ui_ScanFrame(object):
         self.scan_code_input.setObjectName(u"scan_code_input")
         self.scan_code_input.setMinimumSize(QSize(0, 0))
         self.scan_code_input.setMaximumSize(QSize(16777215, 16777215))
-        font1 = QFont()
-        font1.setPointSize(28)
-        self.scan_code_input.setFont(font1)
+        font3 = QFont()
+        font3.setPointSize(28)
+        self.scan_code_input.setFont(font3)
         self.scan_code_input.setMouseTracking(True)
         self.scan_code_input.setFocusPolicy(Qt.StrongFocus)
         self.scan_code_input.setStyleSheet(u"")
@@ -262,10 +349,10 @@ class Ui_ScanFrame(object):
 
         self.warn_label = QLabel(self.frame_2)
         self.warn_label.setObjectName(u"warn_label")
-        font2 = QFont()
-        font2.setFamilies([u"Academy Engraved LET"])
-        font2.setPointSize(24)
-        self.warn_label.setFont(font2)
+        font4 = QFont()
+        font4.setFamilies([u"Academy Engraved LET"])
+        font4.setPointSize(24)
+        self.warn_label.setFont(font4)
         self.warn_label.setStyleSheet(u"color: rgb(255, 38, 0);")
 
         self.gridLayout.addWidget(self.warn_label, 5, 3, 1, 1)
@@ -314,11 +401,11 @@ class Ui_ScanFrame(object):
 
         self.unit_rule_label = QLabel(self.frame_2)
         self.unit_rule_label.setObjectName(u"unit_rule_label")
-        font3 = QFont()
-        font3.setFamilies([u".AppleSystemUIFont"])
-        font3.setPointSize(14)
-        font3.setBold(True)
-        self.unit_rule_label.setFont(font3)
+        font5 = QFont()
+        font5.setFamilies([u".AppleSystemUIFont"])
+        font5.setPointSize(14)
+        font5.setBold(True)
+        self.unit_rule_label.setFont(font5)
         self.unit_rule_label.setCursor(QCursor(Qt.IBeamCursor))
         self.unit_rule_label.setStyleSheet(u"color: rgb(255, 38, 0);")
 
@@ -330,91 +417,11 @@ class Ui_ScanFrame(object):
 
         self.gridLayout_3.addWidget(self.frame_2, 1, 0, 1, 2)
 
-        self.frame = QFrame(ScanFrame)
-        self.frame.setObjectName(u"frame")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.gridLayout_5 = QGridLayout(self.frame)
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.groupBox_2 = QGroupBox(self.frame)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        font4 = QFont()
-        font4.setPointSize(18)
-        self.groupBox_2.setFont(font4)
-        self.groupBox_2.setStyleSheet(u"backgrond-color: rgb(170, 121, 66)")
-        self.gridLayout_8 = QGridLayout(self.groupBox_2)
-        self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.lcd_pallet = QLCDNumber(self.groupBox_2)
-        self.lcd_pallet.setObjectName(u"lcd_pallet")
-        self.lcd_pallet.setMinimumSize(QSize(0, 32))
-        self.lcd_pallet.setStyleSheet(u"")
-        self.lcd_pallet.setFrameShape(QFrame.Box)
-        self.lcd_pallet.setFrameShadow(QFrame.Raised)
-        self.lcd_pallet.setMode(QLCDNumber.Dec)
-        self.lcd_pallet.setSegmentStyle(QLCDNumber.Flat)
+        self.progressBar = QProgressBar(ScanFrame)
+        self.progressBar.setObjectName(u"progressBar")
+        self.progressBar.setValue(24)
 
-        self.gridLayout_8.addWidget(self.lcd_pallet, 0, 0, 1, 1)
-
-
-        self.gridLayout_5.addWidget(self.groupBox_2, 1, 2, 1, 1)
-
-        self.groupBox_3 = QGroupBox(self.frame)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setFont(font4)
-        self.gridLayout_7 = QGridLayout(self.groupBox_3)
-        self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.gridLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.lcd_box = QLCDNumber(self.groupBox_3)
-        self.lcd_box.setObjectName(u"lcd_box")
-        self.lcd_box.setMinimumSize(QSize(0, 32))
-        self.lcd_box.setStyleSheet(u"")
-        self.lcd_box.setFrameShape(QFrame.Box)
-        self.lcd_box.setFrameShadow(QFrame.Raised)
-        self.lcd_box.setSmallDecimalPoint(False)
-        self.lcd_box.setMode(QLCDNumber.Dec)
-        self.lcd_box.setSegmentStyle(QLCDNumber.Flat)
-
-        self.gridLayout_7.addWidget(self.lcd_box, 0, 0, 1, 1)
-
-
-        self.gridLayout_5.addWidget(self.groupBox_3, 1, 1, 1, 1)
-
-        self.groupBox = QGroupBox(self.frame)
-        self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setFont(font4)
-        self.groupBox.setStyleSheet(u"")
-        self.gridLayout_6 = QGridLayout(self.groupBox)
-        self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.lcd_unit = QLCDNumber(self.groupBox)
-        self.lcd_unit.setObjectName(u"lcd_unit")
-        self.lcd_unit.setMinimumSize(QSize(0, 32))
-        self.lcd_unit.setSizeIncrement(QSize(0, 0))
-        font5 = QFont()
-        font5.setFamilies([u"Academy Engraved LET"])
-        font5.setPointSize(24)
-        font5.setBold(True)
-        font5.setStrikeOut(False)
-        font5.setKerning(True)
-        font5.setStyleStrategy(QFont.PreferDefault)
-        self.lcd_unit.setFont(font5)
-        self.lcd_unit.setAutoFillBackground(False)
-        self.lcd_unit.setStyleSheet(u"")
-        self.lcd_unit.setFrameShape(QFrame.Box)
-        self.lcd_unit.setFrameShadow(QFrame.Raised)
-        self.lcd_unit.setSmallDecimalPoint(False)
-        self.lcd_unit.setMode(QLCDNumber.Dec)
-        self.lcd_unit.setSegmentStyle(QLCDNumber.Flat)
-        self.lcd_unit.setProperty("value", 111.000000000000000)
-
-        self.gridLayout_6.addWidget(self.lcd_unit, 0, 0, 1, 1)
-
-
-        self.gridLayout_5.addWidget(self.groupBox, 0, 1, 1, 2)
-
-
-        self.gridLayout_3.addWidget(self.frame, 1, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.progressBar, 3, 0, 1, 3)
 
 #if QT_CONFIG(shortcut)
         self.label_3.setBuddy(self.chejian_name_input)
@@ -447,6 +454,9 @@ class Ui_ScanFrame(object):
 
     def retranslateUi(self, ScanFrame):
         ScanFrame.setWindowTitle(QCoreApplication.translate("ScanFrame", u"Form", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u5361\u677f\u6570\u91cf", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u7bb1\u5b50\u6570\u91cf", None))
+        self.groupBox.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u4ea7\u54c1\u6570\u91cf", None))
         ___qtablewidgetitem = self.table0.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("ScanFrame", u"\u8f66\u95f4", None));
         ___qtablewidgetitem1 = self.table0.horizontalHeaderItem(1)
@@ -505,8 +515,5 @@ class Ui_ScanFrame(object):
         self.label.setText(QCoreApplication.translate("ScanFrame", u"\u6210\u54c1\u7f16\u7801\uff1a", None))
         self.label_9.setText(QCoreApplication.translate("ScanFrame", u"\u6210\u54c1\u540d\u79f0\uff1a", None))
         self.unit_rule_label.setText(QCoreApplication.translate("ScanFrame", u"--", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u5361\u677f\u6570\u91cf", None))
-        self.groupBox_3.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u7bb1\u5b50\u6570\u91cf", None))
-        self.groupBox.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u4ea7\u54c1\u6570\u91cf", None))
     # retranslateUi
 

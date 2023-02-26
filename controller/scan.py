@@ -1,7 +1,9 @@
 # -*- coding: UTF-8 -*-
 import os
+import string
 import time
 from itertools import groupby
+import random
 from typing import Callable
 
 from PySide6 import QtGui
@@ -35,6 +37,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     def setScanInfo(self, order_info):
         self.order_info = order_info
+        self.progressBar.setMinimum(0)
+        self.progressBar.setMaximum(int(self.order_info['taskQuantity']))
         self.box_inside_quantity = int(self.order_info['boxInsideQuantity'])
         self.pallet_inside_quantity = int(self.order_info['palletInsideQuantity'])
         self.scanTableUnit = ScanTableUnit(
@@ -146,20 +150,20 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 刷新总计计数
     def refreshCountView(self):
-        unit_count = \
+        self.scan_unit_count = \
             self.scanTableUnit.queryForObject(f'select count(0) as unit_count from {self.scanTableUnit.tableName}')[
                 'unit_count']
-        box_count = self.scanTableUnit.queryForObject(
+        self.scan_box_count = self.scanTableUnit.queryForObject(
             f'select count(distinct box_code) as box_count from {self.scanTableUnit.tableName} where box_code is not null and box_code != \'\'')[
             'box_count']
-        pallet_count = self.scanTableUnit.queryForObject(
+        self.scan_pallet_count = self.scanTableUnit.queryForObject(
             f'select count(distinct pallet_code) as pallet_count from {self.scanTableUnit.tableName} where pallet_code is not null and pallet_code != \'\'')[
             'pallet_count']
 
-        self.lcd_unit.setProperty('value', unit_count)
-        self.lcd_box.setProperty('value', box_count)
-        self.lcd_pallet.setProperty('value', pallet_count)
-        pass
+        self.lcd_unit.setProperty('value', self.scan_unit_count)
+        self.lcd_box.setProperty('value', self.scan_box_count)
+        self.lcd_pallet.setProperty('value', self.scan_pallet_count)
+        self.progressBar.setValue(self.scan_unit_count)
 
     def laodScanedData(self):
         self.refreshCountView()
@@ -179,7 +183,11 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             self.table1.setItem(i, 4, QTableWidgetItem(d['unit_code']))
             self.table1.setItem(i, 5, QTableWidgetItem(d['box_code']))
             self.table1.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
-            self.table1.setItem(i, 7, QTableWidgetItem(d['upload_status']))
+            upload_status = QTableWidgetItem()
+            upload_status.setIcon(
+                QtGui.QIcon(':/logo/pic/yes.png') if d['upload_status'] and d['upload_status'] == 1 else QtGui.QIcon(
+                    ':/logo/pic/no.png'))
+            self.table1.setItem(i, 7, upload_status)
             self.table1.setItem(i, 8, QTableWidgetItem(d['uploader']))
             self.table1.setItem(i, 9, QTableWidgetItem(
                 time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time'] / 1000)) if d[
@@ -313,6 +321,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 self.palletSoundThread.start()
 
         self.judge(showUnit, showBox, showPallet)
+        if Context.getSettings('scan/auto_code'):
+            ran_str = ''.join(random.sample(string.ascii_letters + string.digits, 8))
+            self.scan_code_input.setText(ran_str)
 
     @Slot()
     def uploadItems(self):

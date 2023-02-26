@@ -39,6 +39,7 @@ class MainWindow(QWidget):
 
     def initDefaultSettings(self):
         Context.setDefaultSettings('gateway/domain', 'https://yj2025.com')
+        Context.setDefaultSettings('scan/auto_code', False)
 
 
 if __name__ == '__main__':
