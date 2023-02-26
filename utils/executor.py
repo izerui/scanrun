@@ -1,17 +1,16 @@
 # -*- coding: UTF-8 -*-
 import json
-import os
 import sys
 from platform import system
-from shutil import copyfile
 from time import sleep
 from typing import Callable
 
-from PySide6.QtCore import QThread, Signal
+from PySide6.QtCore import QThread, Signal, QMutex
 from PySide6.QtWidgets import QMessageBox
 from httpx import Response
 from playsound import playsound
 
+from utils.db import ScanTableUnit
 from utils.request import Request
 
 
@@ -168,3 +167,34 @@ class SoundThread(QThread):
         # finally:
         #     if tmpFile:
         #         os.remove(tmpFile)
+
+
+class AsyncScanedDataLoader(QThread):
+    result = Signal(int, int, list)
+    def __init__(self, scanTableUnit: ScanTableUnit):
+        super().__init__()
+        self.scanTableUnit = scanTableUnit
+        self.stopStatus = False
+
+    def run(self) -> None:
+        start = 0
+        count = 1000
+        while True:
+            if self.stopStatus:
+                break
+            datas = self.scanTableUnit.queryForList(
+                f'SELECT * FROM {self.scanTableUnit.tableName} where complete = 1 order by create_time desc limit {start},{count}')
+            size = len(datas)
+            self.result.emit(start, size, datas)
+            start += size
+            if not datas:
+                break
+    def stop_wait(self):
+        self.stopStatus = True
+        while self.isRunning():
+            self.quit()
+            pass
+        print(self.isRunning())
+
+    def stop_no_wait(self):
+        self.stopStatus = True

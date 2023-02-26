@@ -56,6 +56,12 @@ class DbUnit(object):
         return list
 
     @staticmethod
+    def queryYieldList(sql, param: dict = None):
+        query = DbUnit.execute(sql, param)
+        while query.next():
+            yield DbUnit._wrapItem(query)
+
+    @staticmethod
     def _wrapItem(query: QSqlQuery) -> dict:
         item = {}
         for i in range(query.record().count()):
@@ -131,6 +137,9 @@ class BaseTableUnit(object):
 
     def queryForList(self, sql, param=None) -> list:
         return DbUnit.queryForList(sql, param)
+
+    def queryYieldList(self, sql, param=None) -> list:
+        return DbUnit.queryYieldList(sql, param)
 
     def queryForObject(self, sql, param=None) -> dict:
         return DbUnit.queryForObject(sql, param)

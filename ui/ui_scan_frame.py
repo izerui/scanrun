@@ -18,8 +18,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLayout,
     QGroupBox, QHBoxLayout, QHeaderView, QLCDNumber,
     QLabel, QLayout, QLineEdit, QProgressBar,
-    QPushButton, QSizePolicy, QTabWidget, QTableWidget,
-    QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
+    QPushButton, QSizePolicy, QTabWidget, QTableView,
+    QTableWidget, QTableWidgetItem, QToolButton, QVBoxLayout,
+    QWidget)
 import images_rc
 
 class Ui_ScanFrame(object):
@@ -43,7 +44,7 @@ class Ui_ScanFrame(object):
         font = QFont()
         font.setPointSize(18)
         self.groupBox_2.setFont(font)
-        self.groupBox_2.setStyleSheet(u"backgrond-color: rgb(170, 121, 66)")
+        self.groupBox_2.setStyleSheet(u"")
         self.gridLayout_8 = QGridLayout(self.groupBox_2)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
@@ -203,7 +204,7 @@ class Ui_ScanFrame(object):
         self.verticalLayout_2.addWidget(self.toolButton_3)
 
 
-        self.gridLayout_9.addWidget(self.widget_2, 0, 1, 1, 1, Qt.AlignTop)
+        self.gridLayout_9.addWidget(self.widget_2, 0, 2, 1, 1, Qt.AlignTop)
 
         self.table1 = QTableWidget(self.tab1)
         if (self.table1.columnCount() < 10):
@@ -233,7 +234,15 @@ class Ui_ScanFrame(object):
         self.table1.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table1.setSelectionBehavior(QAbstractItemView.SelectRows)
 
-        self.gridLayout_9.addWidget(self.table1, 0, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.table1, 0, 1, 1, 1)
+
+        self.tableView = QTableView(self.tab1)
+        self.tableView.setObjectName(u"tableView")
+        self.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableView.setAlternatingRowColors(True)
+        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
+
+        self.gridLayout_9.addWidget(self.tableView, 0, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab1, "")
 
@@ -441,10 +450,11 @@ class Ui_ScanFrame(object):
         self.scan_code_input.returnPressed.connect(ScanFrame.scan)
         self.tabWidget.currentChanged.connect(ScanFrame.tabChanged)
         self.table0.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
-        self.table1.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
         self.toolButton.clicked.connect(ScanFrame.deleteSelection)
         self.toolButton_2.clicked.connect(ScanFrame.deleteSelection)
         self.toolButton_3.clicked.connect(ScanFrame.uploadItems)
+        self.table1.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
+        self.tableView.clicked.connect(ScanFrame.tableItemSelected)
 
         self.tabWidget.setCurrentIndex(0)
 

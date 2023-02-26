@@ -10,6 +10,7 @@ from PySide6 import QtGui
 from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange, QTableWidget, QMessageBox
 
+from model.ScanModel import ScanModel
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
 from utils.db import ScanTableUnit
@@ -111,7 +112,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             self.scan_code_input.setFocus()
             self.loadScanData()
         else:
-            self.laodScanedData()
+            self.loadScanedData()
 
     @Slot()
     def scan(self):
@@ -165,34 +166,38 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.lcd_pallet.setProperty('value', self.scan_pallet_count)
         self.progressBar.setValue(self.scan_unit_count)
 
-    def laodScanedData(self):
+    def loadScanedData(self):
         self.refreshCountView()
-        self.table1.setRowCount(0)
-        self.datas = self.scanTableUnit.queryForList(
+
+        _datas = self.scanTableUnit.queryForList(
             f'SELECT * FROM {self.scanTableUnit.tableName} where complete = 1 order by create_time desc')
-        if self.datas is None:
-            self.datas = []
-        self.table1.setRowCount(len(self.datas))
-        i = 0
-        for d in self.datas:
-            self.table1.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
-            self.table1.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
-            self.table1.setItem(i, 2, QTableWidgetItem(d['creator_name']))
-            self.table1.setItem(i, 3, QTableWidgetItem(
-                time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time'] / 1000))))
-            self.table1.setItem(i, 4, QTableWidgetItem(d['unit_code']))
-            self.table1.setItem(i, 5, QTableWidgetItem(d['box_code']))
-            self.table1.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
-            upload_status = QTableWidgetItem()
-            upload_status.setIcon(
-                QtGui.QIcon(':/logo/pic/yes.png') if d['upload_status'] and d['upload_status'] == 1 else QtGui.QIcon(
-                    ':/logo/pic/no.png'))
-            self.table1.setItem(i, 7, upload_status)
-            self.table1.setItem(i, 8, QTableWidgetItem(d['uploader']))
-            self.table1.setItem(i, 9, QTableWidgetItem(
-                time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time'] / 1000)) if d[
-                    'upload_time'] else None))
-            i += 1
+
+        self.model = ScanModel(_datas)
+        self.tableView.setModel(self.model)
+        # self.datas = _datas
+        # if self.datas is None:
+        #     self.datas = []
+        # self.table1.setRowCount(len(self.datas))
+        # i = 0
+        # for d in self.datas:
+        #     self.table1.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
+        #     self.table1.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
+        #     self.table1.setItem(i, 2, QTableWidgetItem(d['creator_name']))
+        #     self.table1.setItem(i, 3, QTableWidgetItem(
+        #         time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time'] / 1000))))
+        #     self.table1.setItem(i, 4, QTableWidgetItem(d['unit_code']))
+        #     self.table1.setItem(i, 5, QTableWidgetItem(d['box_code']))
+        #     self.table1.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
+        #     upload_status = QTableWidgetItem()
+        #     upload_status.setIcon(
+        #         QtGui.QIcon(':/logo/pic/yes.png') if d['upload_status'] and d['upload_status'] == 1 else QtGui.QIcon(
+        #             ':/logo/pic/no.png'))
+        #     self.table1.setItem(i, 7, upload_status)
+        #     self.table1.setItem(i, 8, QTableWidgetItem(d['uploader']))
+        #     self.table1.setItem(i, 9, QTableWidgetItem(
+        #         time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time'] / 1000)) if d[
+        #             'upload_time'] else None))
+        #     i += 1
 
     def validateCode(self, code) -> bool:
         if not code:

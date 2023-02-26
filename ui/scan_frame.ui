@@ -43,7 +43,7 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">backgrond-color: rgb(170, 121, 66)</string>
+         <string notr="true"/>
         </property>
         <property name="title">
          <string>已扫描卡板数量</string>
@@ -350,7 +350,7 @@
        <string>已包装</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_9">
-       <item row="0" column="1" alignment="Qt::AlignTop">
+       <item row="0" column="2" alignment="Qt::AlignTop">
         <widget class="QWidget" name="widget_2" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="leftMargin">
@@ -419,7 +419,7 @@
          </layout>
         </widget>
        </item>
-       <item row="0" column="0">
+       <item row="0" column="1">
         <widget class="QTableWidget" name="table1">
          <property name="focusPolicy">
           <enum>Qt::ClickFocus</enum>
@@ -480,6 +480,19 @@
            <string>上传时间</string>
           </property>
          </column>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QTableView" name="tableView">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
         </widget>
        </item>
       </layout>
@@ -912,22 +925,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>table1</sender>
-   <signal>itemSelectionChanged()</signal>
-   <receiver>ScanFrame</receiver>
-   <slot>tableItemSelected()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>272</x>
-     <y>400</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>822</x>
-     <y>407</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>toolButton</sender>
    <signal>clicked()</signal>
    <receiver>ScanFrame</receiver>
@@ -975,6 +972,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>table1</sender>
+   <signal>itemSelectionChanged()</signal>
+   <receiver>ScanFrame</receiver>
+   <slot>tableItemSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>592</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>822</x>
+     <y>407</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tableView</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>ScanFrame</receiver>
+   <slot>tableItemSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>254</x>
+     <y>397</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>577</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>returnHome()</slot>
@@ -983,5 +1012,6 @@
   <slot>tabChanged()</slot>
   <slot>tableItemSelected()</slot>
   <slot>uploadItems()</slot>
+  <slot>scanedLoadMore()</slot>
  </slots>
 </ui>
