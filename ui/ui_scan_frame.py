@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLay
     QGroupBox, QHBoxLayout, QHeaderView, QLCDNumber,
     QLabel, QLayout, QLineEdit, QPushButton,
     QSizePolicy, QTabWidget, QTableWidget, QTableWidgetItem,
-    QToolButton, QWidget)
+    QToolButton, QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_ScanFrame(object):
@@ -66,21 +66,58 @@ class Ui_ScanFrame(object):
 
         self.horizontalLayout.addWidget(self.table0)
 
-        self.toolButton = QToolButton(self.tab0)
+        self.widget = QWidget(self.tab0)
+        self.widget.setObjectName(u"widget")
+        self.verticalLayout = QVBoxLayout(self.widget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.toolButton = QToolButton(self.widget)
         self.toolButton.setObjectName(u"toolButton")
         self.toolButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.toolButton.setFocusPolicy(Qt.ClickFocus)
         icon = QIcon()
         icon.addFile(u":/logo/pic/delete.png", QSize(), QIcon.Normal, QIcon.On)
         self.toolButton.setIcon(icon)
         self.toolButton.setIconSize(QSize(24, 24))
 
-        self.horizontalLayout.addWidget(self.toolButton, 0, Qt.AlignTop)
+        self.verticalLayout.addWidget(self.toolButton, 0, Qt.AlignTop)
+
+
+        self.horizontalLayout.addWidget(self.widget, 0, Qt.AlignTop)
 
         self.tabWidget.addTab(self.tab0, "")
         self.tab1 = QWidget()
         self.tab1.setObjectName(u"tab1")
         self.gridLayout_9 = QGridLayout(self.tab1)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.widget_2 = QWidget(self.tab1)
+        self.widget_2.setObjectName(u"widget_2")
+        self.verticalLayout_2 = QVBoxLayout(self.widget_2)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.toolButton_2 = QToolButton(self.widget_2)
+        self.toolButton_2.setObjectName(u"toolButton_2")
+        self.toolButton_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.toolButton_2.setFocusPolicy(Qt.ClickFocus)
+        self.toolButton_2.setIcon(icon)
+        self.toolButton_2.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_2.addWidget(self.toolButton_2)
+
+        self.toolButton_3 = QToolButton(self.widget_2)
+        self.toolButton_3.setObjectName(u"toolButton_3")
+        self.toolButton_3.setCursor(QCursor(Qt.PointingHandCursor))
+        self.toolButton_3.setFocusPolicy(Qt.ClickFocus)
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/upload.png", QSize(), QIcon.Normal, QIcon.On)
+        self.toolButton_3.setIcon(icon1)
+        self.toolButton_3.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_2.addWidget(self.toolButton_3)
+
+
+        self.gridLayout_9.addWidget(self.widget_2, 0, 1, 1, 1, Qt.AlignTop)
+
         self.table1 = QTableWidget(self.tab1)
         if (self.table1.columnCount() < 10):
             self.table1.setColumnCount(10)
@@ -105,6 +142,7 @@ class Ui_ScanFrame(object):
         __qtablewidgetitem16 = QTableWidgetItem()
         self.table1.setHorizontalHeaderItem(9, __qtablewidgetitem16)
         self.table1.setObjectName(u"table1")
+        self.table1.setFocusPolicy(Qt.ClickFocus)
         self.table1.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table1.setSelectionBehavior(QAbstractItemView.SelectRows)
 
@@ -136,9 +174,9 @@ class Ui_ScanFrame(object):
         self.pushButton.setFont(font)
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton.setFocusPolicy(Qt.NoFocus)
-        icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/return_home.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/logo/pic/return_home.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton.setIcon(icon2)
 
         self.gridLayout.addWidget(self.pushButton, 0, 0, 1, 1)
 
@@ -398,6 +436,8 @@ class Ui_ScanFrame(object):
         self.table0.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
         self.table1.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
         self.toolButton.clicked.connect(ScanFrame.deleteSelection)
+        self.toolButton_2.clicked.connect(ScanFrame.deleteSelection)
+        self.toolButton_3.clicked.connect(ScanFrame.uploadItems)
 
         self.tabWidget.setCurrentIndex(0)
 
@@ -421,8 +461,16 @@ class Ui_ScanFrame(object):
         ___qtablewidgetitem5.setText(QCoreApplication.translate("ScanFrame", u"\u7bb1\u7801", None));
         ___qtablewidgetitem6 = self.table0.horizontalHeaderItem(6)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("ScanFrame", u"\u5361\u677f\u7801", None));
+#if QT_CONFIG(tooltip)
+        self.toolButton.setToolTip(QCoreApplication.translate("ScanFrame", u"\u5220\u9664\u9009\u62e9\u7684\u6761\u76ee", None))
+#endif // QT_CONFIG(tooltip)
         self.toolButton.setText(QCoreApplication.translate("ScanFrame", u"...", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab0), QCoreApplication.translate("ScanFrame", u"\u672a\u5305\u88c5", None))
+#if QT_CONFIG(tooltip)
+        self.toolButton_2.setToolTip(QCoreApplication.translate("ScanFrame", u"\u5220\u9664\u9009\u62e9\u7684\u6761\u76ee", None))
+#endif // QT_CONFIG(tooltip)
+        self.toolButton_2.setText(QCoreApplication.translate("ScanFrame", u"...", None))
+        self.toolButton_3.setText(QCoreApplication.translate("ScanFrame", u"...", None))
         ___qtablewidgetitem7 = self.table1.horizontalHeaderItem(0)
         ___qtablewidgetitem7.setText(QCoreApplication.translate("ScanFrame", u"\u8f66\u95f4", None));
         ___qtablewidgetitem8 = self.table1.horizontalHeaderItem(1)

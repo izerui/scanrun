@@ -4,8 +4,9 @@ import time
 from itertools import groupby
 from typing import Callable
 
+from PySide6 import QtGui
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange, QTableWidget
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange, QTableWidget, QMessageBox
 
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
@@ -68,7 +69,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.cus_order_no_input.setText(self.order_info['customerOrderDocNo'])
         self.chejian_name_input.setText(self.order_info['chejian_name'])
         self.banzu_name_input.setText(self.order_info['banzu_name'])
-        self.task_count_input.setText(str(self.order_info['taskQuantity']))
+        self.task_count_input.setText(str(int(self.order_info['taskQuantity'])))
         self.user_name_input.setText(Context.user['userName'])
         self.inventory_code_input.setText(self.order_info['inventoryCode'])
         self.inventory_name_input.setText(self.order_info['inventoryName'])
@@ -79,8 +80,20 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     @Slot()
     def deleteSelection(self):
         selIds = self.getSelectionIds()
-        self.scanTableUnit.deleteByIds(selIds)
-        self.tabChanged()
+        if not selIds:
+            return
+        choiceBox = QMessageBox()
+        choiceBox.setIcon(QMessageBox.Icon.Question)
+        choiceBox.setWindowTitle('确认')
+        choiceBox.setText('确认删除选择的数据')
+        yes = choiceBox.addButton('确认', QMessageBox.ButtonRole.YesRole)
+        yes.setFocus()
+        no = choiceBox.addButton('取消', QMessageBox.ButtonRole.NoRole)
+        choiceBox.setDefaultButton(yes)
+        choiceBox.exec()
+        if choiceBox.clickedButton() == yes:
+            self.scanTableUnit.deleteByIds(selIds)
+            self.tabChanged()
 
     def getSelectionIds(self) -> list:
         selIds = []
@@ -124,7 +137,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         # 未卡板数据
         undo_pallet_datas = list(filter(lambda x: not x['pallet_code'], pallet_datas))
         # 优先判断卡板，再判断箱子，否则持续录入产品
-
         if len(undo_box_datas) > 0 and len(undo_box_datas) == box_quantity:  # 够一箱
             boxCall(items=undo_box_datas)
         elif len(undo_pallet_datas) > 0 and len(undo_pallet_datas) == pallet_quantity:  # 够一卡板
@@ -302,3 +314,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
         self.judge(showUnit, showBox, showPallet)
 
+    @Slot()
+    def uploadItems(self):
+        pass

@@ -20,5 +20,6 @@
     <file>pic/return_home.png</file>
     <file>pic/data.png</file>
     <file>pic/delete.png</file>
+    <file>pic/upload.png</file>
   </qresource>
 </RCC>
