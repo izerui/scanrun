@@ -151,8 +151,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 刷新总计计数
     def refreshCountView(self):
-        self.scan_unit_count = \
-            self.scanTableUnit.queryForObject(f'select count(0) as unit_count from {self.scanTableUnit.tableName}')[
+        self.scan_unit_count = self.scanTableUnit.queryForObject(f'select count(0) as unit_count from {self.scanTableUnit.tableName}')[
                 'unit_count']
         self.scan_box_count = self.scanTableUnit.queryForObject(
             f'select count(distinct box_code) as box_count from {self.scanTableUnit.tableName} where box_code is not null and box_code != \'\'')[

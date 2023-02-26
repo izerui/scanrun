@@ -3,7 +3,7 @@ from typing import Union, Any
 
 import PySide6.QtCore
 from PySide6 import QtCore, QtGui
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QVariantAnimation
 from PySide6.QtGui import QIcon
 
 
@@ -44,6 +44,7 @@ class ScanModel(QtCore.QAbstractTableModel):
             if 'label_hidden' in self.heads[col] and self.heads[col]['label_hidden']:
                 return None
             else:
+                text = None
                 if 'label_format_fun' in self.heads[col]:
                     label_format_fun = self.heads[col]['label_format_fun']
                     return label_format_fun(key, item)
