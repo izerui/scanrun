@@ -19,8 +19,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLay
     QGroupBox, QHBoxLayout, QHeaderView, QLCDNumber,
     QLabel, QLayout, QLineEdit, QProgressBar,
     QPushButton, QSizePolicy, QTabWidget, QTableView,
-    QTableWidget, QTableWidgetItem, QToolButton, QVBoxLayout,
-    QWidget)
+    QToolButton, QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_ScanFrame(object):
@@ -127,32 +126,14 @@ class Ui_ScanFrame(object):
         self.tab0.setObjectName(u"tab0")
         self.horizontalLayout = QHBoxLayout(self.tab0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.table0 = QTableWidget(self.tab0)
-        if (self.table0.columnCount() < 7):
-            self.table0.setColumnCount(7)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(5, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.table0.setHorizontalHeaderItem(6, __qtablewidgetitem6)
-        self.table0.setObjectName(u"table0")
-        self.table0.setFocusPolicy(Qt.ClickFocus)
-        self.table0.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.table0.setAlternatingRowColors(True)
-        self.table0.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        self.table0.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.table0.horizontalHeader().setStretchLastSection(False)
+        self.tableView0 = QTableView(self.tab0)
+        self.tableView0.setObjectName(u"tableView0")
+        self.tableView0.setFocusPolicy(Qt.ClickFocus)
+        self.tableView0.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableView0.setAlternatingRowColors(True)
+        self.tableView0.setSelectionBehavior(QAbstractItemView.SelectRows)
 
-        self.horizontalLayout.addWidget(self.table0)
+        self.horizontalLayout.addWidget(self.tableView0)
 
         self.widget = QWidget(self.tab0)
         self.widget.setObjectName(u"widget")
@@ -204,45 +185,16 @@ class Ui_ScanFrame(object):
         self.verticalLayout_2.addWidget(self.toolButton_3)
 
 
-        self.gridLayout_9.addWidget(self.widget_2, 0, 2, 1, 1, Qt.AlignTop)
+        self.gridLayout_9.addWidget(self.widget_2, 0, 1, 1, 1, Qt.AlignTop)
 
-        self.table1 = QTableWidget(self.tab1)
-        if (self.table1.columnCount() < 10):
-            self.table1.setColumnCount(10)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(0, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(1, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(2, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(3, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(4, __qtablewidgetitem11)
-        __qtablewidgetitem12 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(5, __qtablewidgetitem12)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(6, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(7, __qtablewidgetitem14)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(8, __qtablewidgetitem15)
-        __qtablewidgetitem16 = QTableWidgetItem()
-        self.table1.setHorizontalHeaderItem(9, __qtablewidgetitem16)
-        self.table1.setObjectName(u"table1")
-        self.table1.setFocusPolicy(Qt.ClickFocus)
-        self.table1.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.table1.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableView1 = QTableView(self.tab1)
+        self.tableView1.setObjectName(u"tableView1")
+        self.tableView1.setFocusPolicy(Qt.ClickFocus)
+        self.tableView1.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableView1.setAlternatingRowColors(True)
+        self.tableView1.setSelectionBehavior(QAbstractItemView.SelectRows)
 
-        self.gridLayout_9.addWidget(self.table1, 0, 1, 1, 1)
-
-        self.tableView = QTableView(self.tab1)
-        self.tableView.setObjectName(u"tableView")
-        self.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.tableView.setAlternatingRowColors(True)
-        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
-
-        self.gridLayout_9.addWidget(self.tableView, 0, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.tableView1, 0, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab1, "")
 
@@ -443,18 +395,14 @@ class Ui_ScanFrame(object):
         self.label.setBuddy(self.inventory_code_input)
         self.label_9.setBuddy(self.inventory_name_input)
 #endif // QT_CONFIG(shortcut)
-        QWidget.setTabOrder(self.scan_code_input, self.table1)
 
         self.retranslateUi(ScanFrame)
         self.pushButton.clicked.connect(ScanFrame.returnHome)
         self.scan_code_input.returnPressed.connect(ScanFrame.scan)
         self.tabWidget.currentChanged.connect(ScanFrame.tabChanged)
-        self.table0.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
         self.toolButton.clicked.connect(ScanFrame.deleteSelection)
         self.toolButton_2.clicked.connect(ScanFrame.deleteSelection)
         self.toolButton_3.clicked.connect(ScanFrame.uploadItems)
-        self.table1.itemSelectionChanged.connect(ScanFrame.tableItemSelected)
-        self.tableView.clicked.connect(ScanFrame.tableItemSelected)
 
         self.tabWidget.setCurrentIndex(0)
 
@@ -467,20 +415,6 @@ class Ui_ScanFrame(object):
         self.groupBox_2.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u5361\u677f\u6570\u91cf", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u7bb1\u5b50\u6570\u91cf", None))
         self.groupBox.setTitle(QCoreApplication.translate("ScanFrame", u"\u5df2\u626b\u63cf\u4ea7\u54c1\u6570\u91cf", None))
-        ___qtablewidgetitem = self.table0.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("ScanFrame", u"\u8f66\u95f4", None));
-        ___qtablewidgetitem1 = self.table0.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("ScanFrame", u"\u73ed\u7ec4", None));
-        ___qtablewidgetitem2 = self.table0.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("ScanFrame", u"\u64cd\u4f5c\u4eba", None));
-        ___qtablewidgetitem3 = self.table0.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("ScanFrame", u"\u626b\u7801\u65f6\u95f4", None));
-        ___qtablewidgetitem4 = self.table0.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("ScanFrame", u"\u4ea7\u54c1\u7801", None));
-        ___qtablewidgetitem5 = self.table0.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("ScanFrame", u"\u7bb1\u7801", None));
-        ___qtablewidgetitem6 = self.table0.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("ScanFrame", u"\u5361\u677f\u7801", None));
 #if QT_CONFIG(tooltip)
         self.toolButton.setToolTip(QCoreApplication.translate("ScanFrame", u"\u5220\u9664\u9009\u62e9\u7684\u6761\u76ee", None))
 #endif // QT_CONFIG(tooltip)
@@ -491,26 +425,6 @@ class Ui_ScanFrame(object):
 #endif // QT_CONFIG(tooltip)
         self.toolButton_2.setText(QCoreApplication.translate("ScanFrame", u"...", None))
         self.toolButton_3.setText(QCoreApplication.translate("ScanFrame", u"...", None))
-        ___qtablewidgetitem7 = self.table1.horizontalHeaderItem(0)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("ScanFrame", u"\u8f66\u95f4", None));
-        ___qtablewidgetitem8 = self.table1.horizontalHeaderItem(1)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("ScanFrame", u"\u73ed\u7ec4", None));
-        ___qtablewidgetitem9 = self.table1.horizontalHeaderItem(2)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("ScanFrame", u"\u64cd\u4f5c\u4eba", None));
-        ___qtablewidgetitem10 = self.table1.horizontalHeaderItem(3)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("ScanFrame", u"\u626b\u7801\u65f6\u95f4", None));
-        ___qtablewidgetitem11 = self.table1.horizontalHeaderItem(4)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("ScanFrame", u"\u4ea7\u54c1\u7801", None));
-        ___qtablewidgetitem12 = self.table1.horizontalHeaderItem(5)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("ScanFrame", u"\u7bb1\u7801", None));
-        ___qtablewidgetitem13 = self.table1.horizontalHeaderItem(6)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("ScanFrame", u"\u5361\u677f\u7801", None));
-        ___qtablewidgetitem14 = self.table1.horizontalHeaderItem(7)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u72b6\u6001", None));
-        ___qtablewidgetitem15 = self.table1.horizontalHeaderItem(8)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u4eba", None));
-        ___qtablewidgetitem16 = self.table1.horizontalHeaderItem(9)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("ScanFrame", u"\u4e0a\u4f20\u65f6\u95f4", None));
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab1), QCoreApplication.translate("ScanFrame", u"\u5df2\u5305\u88c5", None))
         self.pushButton.setText(QCoreApplication.translate("ScanFrame", u"\u8fd4\u56de", None))
         self.scan_code_input.setText("")

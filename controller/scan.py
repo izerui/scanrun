@@ -1,14 +1,14 @@
 # -*- coding: UTF-8 -*-
 import os
+import random
 import string
 import time
 from itertools import groupby
-import random
 from typing import Callable
 
-from PySide6 import QtGui
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange, QTableWidget, QMessageBox
+from PySide6.QtWidgets import QWidget, QMessageBox, \
+    QTableView
 
 from model.ScanModel import ScanModel
 from ui.ui_scan_frame import Ui_ScanFrame
@@ -17,26 +17,20 @@ from utils.db import ScanTableUnit
 from utils.executor import HttpExecutor, ThreadExecutor, SoundThread
 
 
-class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
+class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     returnHome = Signal()
 
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.threadExecutor = ThreadExecutor()
-        self.unitSoundThread = SoundThread(f'{os.sep}pic{os.sep}unit.mp3')
-        self.boxSoundThread = SoundThread(f'{os.sep}pic{os.sep}box.wav')
-        self.palletSoundThread = SoundThread(f'{os.sep}pic{os.sep}pallet.mp3')
-        self.errorSoundThread = SoundThread(f'{os.sep}pic{os.sep}error.mp3')
         self.continuePrompt = True
-        self.table0.setShowGrid(True)
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
     #     if event.key() == QtCore.Qt.Key.Key_Return.value:
     #         self.scan_code_input.setFocus()
     #         self.scan_code_input.selectAll()
 
-    def setScanInfo(self, order_info):
+    def initScanInfo(self, order_info):
         self.order_info = order_info
         self.progressBar.setMinimum(0)
         self.progressBar.setMaximum(int(self.order_info['taskQuantity']))
@@ -45,28 +39,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.scanTableUnit = ScanTableUnit(
             f'scan_data_{str(self.order_info["saleInventoryRecordId"]).replace("-", "_")}')
         self.renderFormValue()
-
-    # 查询本地数据库的扫码数据
-    def loadScanData(self):
-        self.refreshCountView()
-        self.table0.setRowCount(0)
-        self.datas = self.scanTableUnit.queryForList(
-            f'SELECT * FROM {self.scanTableUnit.tableName} where complete = 0 order by create_time desc')
-        if self.datas is None:
-            self.datas = []
-        self.table0.setRowCount(len(self.datas))
-        i = 0
-        for d in self.datas:
-            self.table0.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
-            self.table0.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
-            self.table0.setItem(i, 2, QTableWidgetItem(d['creator_name']))
-            self.table0.setItem(i, 3, QTableWidgetItem(
-                time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time'] / 1000))))
-            self.table0.setItem(i, 4, QTableWidgetItem(d['unit_code']))
-            self.table0.setItem(i, 5, QTableWidgetItem(d['box_code']))
-            self.table0.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
-            i += 1
-        self.nextPrompt()
 
     # 填充扫码页面的form表单信息
     def renderFormValue(self):
@@ -103,16 +75,16 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     def getSelectionIds(self) -> list:
         selIds = []
         for rowIndex, group in groupby(self.currentTable().selectedIndexes(), lambda x: x.row()):
-            selIds.append(self.datas[rowIndex]['id'])
+            selIds.append(self.model.datas[rowIndex]['id'])
         return selIds
 
     @Slot()
     def tabChanged(self):
         if self.tabWidget.currentIndex() == 0:
             self.scan_code_input.setFocus()
-            self.loadScanData()
+            self.loadData(0)
         else:
-            self.loadScanedData()
+            self.loadData(1)
 
     @Slot()
     def scan(self):
@@ -125,7 +97,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             return
         self.judge(self.insertUnit, self.correlationBox, self.correlationPallet)
         self.scan_code_input.clear()
-        self.loadScanData()
+        self.loadData(0)
 
     # 判断即将触发的动作
     def judge(self, unitCall: Callable, boxCall: Callable, palletCall: Callable):
@@ -134,9 +106,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         # 一卡板数量
         pallet_quantity = self.pallet_inside_quantity * self.box_inside_quantity
         # 取一箱数据
-        box_datas = self.datas[0:box_quantity]
+        box_datas = self.model.datas[0:box_quantity]
         # 取一卡板数据
-        pallet_datas = self.datas[0:pallet_quantity]
+        pallet_datas = self.model.datas[0:pallet_quantity]
         # 未装箱数据
         undo_box_datas = list(filter(lambda x: not x['box_code'], box_datas))
         # 未卡板数据
@@ -151,14 +123,12 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     # 刷新总计计数
     def refreshCountView(self):
-        self.scan_unit_count = self.scanTableUnit.queryForObject(f'select count(0) as unit_count from {self.scanTableUnit.tableName}')[
-                'unit_count']
+        self.scan_unit_count = self.scanTableUnit.queryForObject(
+            f'select count(0) as unit_count from {self.scanTableUnit.tableName}')
         self.scan_box_count = self.scanTableUnit.queryForObject(
-            f'select count(distinct box_code) as box_count from {self.scanTableUnit.tableName} where box_code is not null and box_code != \'\'')[
-            'box_count']
+            f'select count(distinct box_code) as box_count from {self.scanTableUnit.tableName} where box_code is not null and box_code != \'\'')
         self.scan_pallet_count = self.scanTableUnit.queryForObject(
-            f'select count(distinct pallet_code) as pallet_count from {self.scanTableUnit.tableName} where pallet_code is not null and pallet_code != \'\'')[
-            'pallet_count']
+            f'select count(distinct pallet_code) as pallet_count from {self.scanTableUnit.tableName} where pallet_code is not null and pallet_code != \'\'')
 
         self.lcd_unit.setProperty('value', self.scan_unit_count)
         self.lcd_box.setProperty('value', self.scan_box_count)
@@ -167,38 +137,17 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             self.progressBar.setValue(self.scan_unit_count)
         else:
             self.progressBar.setValue(self.progressBar.maximum())
-    def loadScanedData(self):
+
+    def loadData(self, complete):
         self.refreshCountView()
-
         _datas = self.scanTableUnit.queryForList(
-            f'SELECT * FROM {self.scanTableUnit.tableName} where complete = 1 order by create_time desc')
-
-        self.model = ScanModel(_datas)
-        self.tableView.setModel(self.model)
-        # self.datas = _datas
-        # if self.datas is None:
-        #     self.datas = []
-        # self.table1.setRowCount(len(self.datas))
-        # i = 0
-        # for d in self.datas:
-        #     self.table1.setItem(i, 0, QTableWidgetItem(d['chejian_name']))
-        #     self.table1.setItem(i, 1, QTableWidgetItem(d['banzu_name']))
-        #     self.table1.setItem(i, 2, QTableWidgetItem(d['creator_name']))
-        #     self.table1.setItem(i, 3, QTableWidgetItem(
-        #         time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['create_time'] / 1000))))
-        #     self.table1.setItem(i, 4, QTableWidgetItem(d['unit_code']))
-        #     self.table1.setItem(i, 5, QTableWidgetItem(d['box_code']))
-        #     self.table1.setItem(i, 6, QTableWidgetItem(d['pallet_code']))
-        #     upload_status = QTableWidgetItem()
-        #     upload_status.setIcon(
-        #         QtGui.QIcon(':/logo/pic/yes.png') if d['upload_status'] and d['upload_status'] == 1 else QtGui.QIcon(
-        #             ':/logo/pic/no.png'))
-        #     self.table1.setItem(i, 7, upload_status)
-        #     self.table1.setItem(i, 8, QTableWidgetItem(d['uploader']))
-        #     self.table1.setItem(i, 9, QTableWidgetItem(
-        #         time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(d['upload_time'] / 1000)) if d[
-        #             'upload_time'] else None))
-        #     i += 1
+            f'SELECT * FROM {self.scanTableUnit.tableName} where complete = {complete} order by create_time desc'
+        )
+        self.model = ScanModel(complete, _datas)
+        self.currentTable().setModel(self.model)
+        # 如果是扫码列表页面，则进行下一步提示
+        if complete == 0:
+            self.nextPrompt()
 
     def validateCode(self, code) -> bool:
         if not code:
@@ -206,13 +155,13 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
             return False
         exist_unit_count = self.scanTableUnit.queryForObject(
             f'select count(0) as exist_unit_count from {self.scanTableUnit.tableName} where unit_code = :code',
-            {'code': code})['exist_unit_count']
+            {'code': code})
         exist_box_count = self.scanTableUnit.queryForObject(
             f'select count(0) as exist_box_count from {self.scanTableUnit.tableName} where box_code = :code',
-            {'code': code})['exist_box_count']
+            {'code': code})
         exist_pallet_count = self.scanTableUnit.queryForObject(
             f'select count(0) as exist_pallet_count from {self.scanTableUnit.tableName} where pallet_code = :code',
-            {'code': code})['exist_pallet_count']
+            {'code': code})
         if exist_unit_count > 0:
             self.warn('产品码已存在')
         elif exist_box_count > 0:
@@ -272,28 +221,28 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         self.scanTableUnit.insertIgnore(data)
 
     # 获取当前的table0、table1
-    def currentTable(self) -> QTableWidget:
-        return getattr(self, f'table{self.tabWidget.currentIndex()}')
+    def currentTable(self) -> QTableView:
+        return getattr(self, f'tableView{self.tabWidget.currentIndex()}')
 
-    @Slot()
-    def tableItemSelected(self):
-        currentTable = self.currentTable()
-        if currentTable.currentColumn() == 5:
-            sel_box_code = currentTable.currentItem().text()
-            box_datas = list(filter(lambda x: x['box_code'] == sel_box_code, self.datas))
-            if box_datas:
-                rect = QTableWidgetSelectionRange(self.datas.index(box_datas[0]), 0,
-                                                  self.datas.index(box_datas[len(box_datas) - 1]),
-                                                  currentTable.columnCount() - 1)
-                currentTable.setRangeSelected(rect, True)
-        elif currentTable.currentColumn() == 6:
-            sel_pallet_code = currentTable.currentItem().text()
-            pallet_datas = list(filter(lambda x: x['pallet_code'] == sel_pallet_code, self.datas))
-            if pallet_datas:
-                rect = QTableWidgetSelectionRange(self.datas.index(pallet_datas[0]), 0,
-                                                  self.datas.index(pallet_datas[len(pallet_datas) - 1]),
-                                                  currentTable.columnCount() - 1)
-                currentTable.setRangeSelected(rect, True)
+    # @Slot()
+    # def tableItemSelected(self):
+    #     currentTable = self.currentTable()
+    #     if currentTable.currentColumn() == 5:
+    #         sel_box_code = currentTable.currentItem().text()
+    #         box_datas = list(filter(lambda x: x['box_code'] == sel_box_code, self.model.datas))
+    #         if box_datas:
+    #             rect = QTableWidgetSelectionRange(self.model.datas.index(box_datas[0]), 0,
+    #                                               self.model.datas.index(box_datas[len(box_datas) - 1]),
+    #                                               currentTable.columnCount() - 1)
+    #             currentTable.setRangeSelected(rect, True)
+    #     elif currentTable.currentColumn() == 6:
+    #         sel_pallet_code = currentTable.currentItem().text()
+    #         pallet_datas = list(filter(lambda x: x['pallet_code'] == sel_pallet_code, self.model.datas))
+    #         if pallet_datas:
+    #             rect = QTableWidgetSelectionRange(self.model.datas.index(pallet_datas[0]), 0,
+    #                                               self.model.datas.index(pallet_datas[len(pallet_datas) - 1]),
+    #                                               currentTable.columnCount() - 1)
+    #             currentTable.setRangeSelected(rect, True)
 
     def tip(self, message):
         self.warn_label.setText(message)
@@ -301,8 +250,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        if not self.errorSoundThread.isRunning():
-            self.errorSoundThread.start()
+        self.runAsync('errorSoundThread', SoundThread(f'{os.sep}pic{os.sep}error.mp3'))
 
     # 下一步提示
     def nextPrompt(self):
@@ -313,18 +261,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            if not self.unitSoundThread.isRunning():
-                self.unitSoundThread.start()
+            self.runAsync('unitSoundThread', SoundThread(f'{os.sep}pic{os.sep}unit.mp3'))
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            if not self.boxSoundThread.isRunning():
-                self.boxSoundThread.start()
+            self.runAsync('boxSoundThread', SoundThread(f'{os.sep}pic{os.sep}box.wav'))
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            if not self.palletSoundThread.isRunning():
-                self.palletSoundThread.start()
+            self.runAsync('palletSoundThread', SoundThread(f'{os.sep}pic{os.sep}pallet.mp3'))
 
         self.judge(showUnit, showBox, showPallet)
         if Context.getSettings('scan/auto_code'):

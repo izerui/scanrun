@@ -242,7 +242,7 @@
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QTableWidget" name="table0">
+        <widget class="QTableView" name="tableView0">
          <property name="focusPolicy">
           <enum>Qt::ClickFocus</enum>
          </property>
@@ -252,50 +252,9 @@
          <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::ExtendedSelection</enum>
-         </property>
          <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
-         <attribute name="horizontalHeaderStretchLastSection">
-          <bool>false</bool>
-         </attribute>
-         <column>
-          <property name="text">
-           <string>车间</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>班组</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>操作人</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>扫码时间</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>产品码</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>箱码</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>卡板码</string>
-          </property>
-         </column>
         </widget>
        </item>
        <item alignment="Qt::AlignTop">
@@ -350,7 +309,7 @@
        <string>已包装</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_9">
-       <item row="0" column="2" alignment="Qt::AlignTop">
+       <item row="0" column="1" alignment="Qt::AlignTop">
         <widget class="QWidget" name="widget_2" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="leftMargin">
@@ -419,71 +378,11 @@
          </layout>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QTableWidget" name="table1">
+       <item row="0" column="0">
+        <widget class="QTableView" name="tableView1">
          <property name="focusPolicy">
           <enum>Qt::ClickFocus</enum>
          </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectRows</enum>
-         </property>
-         <column>
-          <property name="text">
-           <string>车间</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>班组</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>操作人</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>扫码时间</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>产品码</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>箱码</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>卡板码</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>上传状态</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>上传人</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>上传时间</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QTableView" name="tableView">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -854,7 +753,6 @@
  </widget>
  <tabstops>
   <tabstop>scan_code_input</tabstop>
-  <tabstop>table1</tabstop>
  </tabstops>
  <resources>
   <include location="../images.qrc"/>
@@ -909,22 +807,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>table0</sender>
-   <signal>itemSelectionChanged()</signal>
-   <receiver>ScanFrame</receiver>
-   <slot>tableItemSelected()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>145</x>
-     <y>342</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>166</x>
-     <y>-42</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>toolButton</sender>
    <signal>clicked()</signal>
    <receiver>ScanFrame</receiver>
@@ -969,38 +851,6 @@
     <hint type="destinationlabel">
      <x>765</x>
      <y>348</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>table1</sender>
-   <signal>itemSelectionChanged()</signal>
-   <receiver>ScanFrame</receiver>
-   <slot>tableItemSelected()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>592</x>
-     <y>400</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>822</x>
-     <y>407</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>tableView</sender>
-   <signal>clicked(QModelIndex)</signal>
-   <receiver>ScanFrame</receiver>
-   <slot>tableItemSelected()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>254</x>
-     <y>397</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>264</x>
-     <y>577</y>
     </hint>
    </hints>
   </connection>

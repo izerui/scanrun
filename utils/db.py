@@ -21,10 +21,11 @@ class DbUnit(object):
         database.open()
 
     @staticmethod
-    def execute(sql, param: dict = None) -> QSqlQuery:
+    def execute(sql, param: dict = None, auto_transaction=True) -> QSqlQuery:
         query = QSqlQuery(DbUnit.database)
         query.clear()
-        DbUnit.database.transaction()
+        if auto_transaction:
+            DbUnit.database.transaction()
         if param:
             query.prepare(sql)
             for key in param:
@@ -36,28 +37,37 @@ class DbUnit(object):
             QMessageBox.critical(None, '异常', query.lastError().text())
             logging.exception(query.lastError())
             # raise query.lastError()
-        DbUnit.database.commit()
+        if auto_transaction:
+            DbUnit.database.commit()
         return query
 
     @staticmethod
-    def queryForObject(sql, param: dict = None) -> dict:
-        query = DbUnit.execute(sql, param)
+    def queryForObject(sql, param: dict = None, auto_transaction=True) -> dict:
+        query = DbUnit.execute(sql, param, auto_transaction)
+        if query.next():
+            return query.record().value(0)
+        else:
+            return None
+
+    @staticmethod
+    def queryForMap(sql, param: dict = None, auto_transaction=True) -> dict:
+        query = DbUnit.execute(sql, param, auto_transaction)
         if query.next():
             return DbUnit._wrapItem(query)
         else:
             return None
 
     @staticmethod
-    def queryForList(sql, param: dict = None) -> list:
-        query = DbUnit.execute(sql, param)
+    def queryForList(sql, param: dict = None, auto_transaction=True) -> list:
+        query = DbUnit.execute(sql, param, auto_transaction)
         list = []
         while query.next():
             list.append(DbUnit._wrapItem(query))
         return list
 
     @staticmethod
-    def queryYieldList(sql, param: dict = None):
-        query = DbUnit.execute(sql, param)
+    def queryYieldList(sql, param: dict = None, auto_transaction=True):
+        query = DbUnit.execute(sql, param, auto_transaction)
         while query.next():
             yield DbUnit._wrapItem(query)
 
@@ -123,7 +133,7 @@ class BaseTableUnit(object):
         if len(ids) == 1:
             self.deleteById(ids[0])
         else:
-            inQL = f"({','.join([str(x) for x in ids ])})"
+            inQL = f"({','.join([str(x) for x in ids])})"
             DbUnit.execute(f'delete from {self.tableName} where {self._primary_key()} in {inQL}')
 
     def deleteAll(self):
@@ -141,7 +151,10 @@ class BaseTableUnit(object):
     def queryYieldList(self, sql, param=None) -> list:
         return DbUnit.queryYieldList(sql, param)
 
-    def queryForObject(self, sql, param=None) -> dict:
+    def queryForMap(self, sql, param=None) -> dict:
+        return DbUnit.queryForMap(sql, param)
+
+    def queryForObject(self, sql, param=None) -> None:
         return DbUnit.queryForObject(sql, param)
 
     def update(self, item):

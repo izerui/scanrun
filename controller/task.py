@@ -29,11 +29,11 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.tableWidget.setRowCount(0)
         reqParam = {"pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0, "activeStatus": "AUDITING",
                     "completedStatus": False}
-        self.execute('loadDataThread',
-                     PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/task/list',
+        self.http('loadDataThread',
+                  PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/task/list',
                                 json=reqParam),
-                     self.dataResponse
-                     )
+                  self.dataResponse
+                  )
 
     def dataResponse(self, result):
         data = result['data']

@@ -9,9 +9,10 @@ from PySide6.QtGui import QIcon
 
 class ScanModel(QtCore.QAbstractTableModel):
 
-    def __init__(self, datas):
+    def __init__(self, type: int, datas):
         super().__init__()
-        self.heads = [
+        self.type = type
+        self._heads = [
             {'title': '车间', 'code': 'chejian_name'},
             {'title': '班组', 'code': 'banzu_name'},
             {'title': '操作人', 'code': 'creator'},
@@ -19,18 +20,19 @@ class ScanModel(QtCore.QAbstractTableModel):
             {'title': '产品码', 'code': 'unit_code'},
             {'title': '箱玛', 'code': 'box_code'},
             {'title': '卡板码', 'code': 'pallet_code'},
-            {'title': '上传状态', 'code': 'upload_status', 'label_hidden': True, 'icon_fun': self.upload_icon_fun},
-            {'title': '上传人', 'code': 'uploader'},
-            {'title': '上传时间', 'code': 'upload_time'}
+            {'title': '上传状态', 'code': 'upload_status', 'hidden': self.type == 0, 'label_hidden': True,
+             'icon_fun': self.upload_icon_fun},
+            {'title': '上传人', 'code': 'uploader', 'hidden': self.type == 0},
+            {'title': '上传时间', 'code': 'upload_time', 'hidden': self.type == 0}
         ]
-        self.datas = []
-        for d in datas:
-            self.datas.append(d)
+        self._heads = list(filter(lambda x: 'hidden' not in x or not x['hidden'], self._heads))
+        self.datas = datas
+
 
     def headerData(self, section: int, orientation: PySide6.QtCore.Qt.Orientation, role: int = ...) -> Any:
         if role == QtCore.Qt.DisplayRole:
             if orientation == PySide6.QtCore.Qt.Orientation.Horizontal:
-                return self.heads[section]['title']
+                return self._heads[section]['title']
             else:
                 return str(section + 1)
 
@@ -39,24 +41,24 @@ class ScanModel(QtCore.QAbstractTableModel):
         row = index.row()
         col = index.column()
         item = self.datas[row]
-        key = self.heads[col]['code']
+        key = self._heads[col]['code']
         if role == Qt.DisplayRole:
-            if 'label_hidden' in self.heads[col] and self.heads[col]['label_hidden']:
+            if 'label_hidden' in self._heads[col] and self._heads[col]['label_hidden']:
                 return None
             else:
                 text = None
-                if 'label_format_fun' in self.heads[col]:
-                    label_format_fun = self.heads[col]['label_format_fun']
+                if 'label_format_fun' in self._heads[col]:
+                    label_format_fun = self._heads[col]['label_format_fun']
                     return label_format_fun(key, item)
                 else:
                     return str(item[key])
         elif role == Qt.DecorationRole:
-            if 'icon_fun' in self.heads[col]:
-                icon_fun = self.heads[col]['icon_fun']
+            if 'icon_fun' in self._heads[col]:
+                icon_fun = self._heads[col]['icon_fun']
                 return icon_fun(key, item)
 
     def columnCount(self, parent: Union[PySide6.QtCore.QModelIndex, PySide6.QtCore.QPersistentModelIndex] = ...) -> int:
-        return len(self.heads)
+        return len(self._heads)
 
     def rowCount(self, parent: Union[PySide6.QtCore.QModelIndex, PySide6.QtCore.QPersistentModelIndex] = ...) -> int:
         return len(self.datas)

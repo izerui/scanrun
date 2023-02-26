@@ -19,7 +19,7 @@ class ThreadExecutor(object):
     def __init__(self):
         super().__init__()
 
-    def execute(self, thread_name: str, new_thread: QThread, callback: Callable = None):
+    def runAsync(self, thread_name: str, new_thread: QThread, callback: Callable = None):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
             pass
         else:
@@ -34,7 +34,7 @@ class HttpExecutor(object):
         super().__init__()
 
     # 异步执行一个http请求线程
-    def execute(self, thread_name: str, new_thread: QThread, result_call: Callable = None):
+    def http(self, thread_name: str, new_thread: QThread, result_call: Callable = None):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
             pass
         else:

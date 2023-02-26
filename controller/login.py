@@ -37,7 +37,7 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
             'password': self.passwordInput.text(),
             'type': 1
         }
-        self.execute(
+        self.http(
             'loginThread',
             PostThread(f'{Context.getSettings("gateway/domain")}/ierp/login', data),
             self.loginSuccess

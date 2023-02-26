@@ -42,8 +42,8 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
         else:
             self.stackedTab.setCurrentIndex(2)
             self.leftFrame.setVisible(False)
-            self.scanFrame.setScanInfo(scan_info)
-            self.scanFrame.loadScanData()
+            self.scanFrame.initScanInfo(scan_info)
+            self.scanFrame.loadData(0)
 
     # @Slot()
     # def toolbarClicked(self, *args: QAction):
@@ -79,7 +79,7 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
 
     # 每10分钟获取一次用户信息，保持session在线
     def loopGetUserInfo(self):
-        self.execute(
+        self.http(
             'loopGetUserInfoThread',
             GetThread(f'{Context.getSettings("gateway/domain")}/ierp/v2/user/info/1', postCode='M1200'),
             self.userInfoResponse
