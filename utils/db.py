@@ -23,6 +23,7 @@ class DbUnit(object):
     @staticmethod
     def execute(sql, param: dict = None) -> QSqlQuery:
         query = QSqlQuery(DbUnit.database)
+        query.clear()
         DbUnit.database.transaction()
         if param:
             query.prepare(sql)
@@ -110,6 +111,15 @@ class BaseTableUnit(object):
     def deleteById(self, id):
         DbUnit.execute(f'delete from {self.tableName} where {self._primary_key()} = :id', {'id': id})
 
+    def deleteByIds(self, ids: list):
+        if not ids:
+            return
+        if len(ids) == 1:
+            self.deleteById(ids[0])
+        else:
+            inQL = f"({','.join([str(x) for x in ids ])})"
+            DbUnit.execute(f'delete from {self.tableName} where {self._primary_key()} in {inQL}')
+
     def deleteAll(self):
         DbUnit.execute(f'delete from {self.tableName}')
 
@@ -171,6 +181,7 @@ class ScanTableUnit(BaseTableUnit):
                         upload_time  INTEGER
                     )
                 '''
+
     # 自动创建表的时候，同步创建索引
     # def _create_indexs(self) -> None:
     #     return [
@@ -182,7 +193,7 @@ class ScanTableUnit(BaseTableUnit):
 
     def _insert_sql(self, ignore: bool = False) -> str:
         return f'''
-                insert {'OR IGNORE' if ignore  else ''} into {self.tableName} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, create_time,
+                insert {'OR IGNORE' if ignore else ''} into {self.tableName} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, create_time,
                                    creator, creator_name, unit_code, box_code, pallet_code, complete, upload_status, uploader, upload_time)
                         values (:chejian_code, :chejian_name, :ent_code, :business_key, :banzu_code, :banzu_name, :create_time,
                                    :creator, :creator_name, :unit_code, :box_code, :pallet_code, :complete, :upload_status, :uploader, :upload_time)

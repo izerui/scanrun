@@ -4,9 +4,8 @@ import time
 from itertools import groupby
 from typing import Callable
 
-from PySide6 import QtWidgets
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QTableWidgetSelectionRange, QTableWidget
 
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
@@ -79,9 +78,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
 
     @Slot()
     def deleteSelection(self):
-        for rowIndex, group in groupby(self.tableWidget.selectedIndexes(), lambda x: x.row()):
-            print(rowIndex)
-            # print(rowIndex, self.datas[rowIndex]['id'])
+        selIds = self.getSelectionIds()
+        self.scanTableUnit.deleteByIds(selIds)
+        self.tabChanged()
+
+    def getSelectionIds(self) -> list:
+        selIds = []
+        for rowIndex, group in groupby(self.currentTable().selectedIndexes(), lambda x: x.row()):
+            selIds.append(self.datas[rowIndex]['id'])
+        return selIds
 
     @Slot()
     def tabChanged(self):
@@ -240,9 +245,13 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         }
         self.scanTableUnit.insertIgnore(data)
 
+    # 获取当前的table0、table1
+    def currentTable(self) -> QTableWidget:
+        return getattr(self, f'table{self.tabWidget.currentIndex()}')
+
     @Slot()
     def tableItemSelected(self):
-        currentTable = getattr(self, f'table{self.tabWidget.currentIndex()}')
+        currentTable = self.currentTable()
         if currentTable.currentColumn() == 5:
             sel_box_code = currentTable.currentItem().text()
             box_datas = list(filter(lambda x: x['box_code'] == sel_box_code, self.datas))
@@ -275,6 +284,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
         if not self.continuePrompt:
             self.continuePrompt = True
             return
+
         def showUnit(items=None):
             self.tip('请扫描产品')
             if not self.unitSoundThread.isRunning():
@@ -291,3 +301,4 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor):
                 self.palletSoundThread.start()
 
         self.judge(showUnit, showBox, showPallet)
+
