@@ -15,7 +15,7 @@ class ScanModel(QtCore.QAbstractTableModel):
         self._heads = [
             {'title': '车间', 'code': 'chejian_name'},
             {'title': '班组', 'code': 'banzu_name'},
-            {'title': '操作人', 'code': 'creator'},
+            {'title': '操作人', 'code': 'creator_name'},
             {'title': '扫码时间', 'code': 'create_time', 'label_format_fun': self.date_time_fun},
             {'title': '产品码', 'code': 'unit_code'},
             {'title': '箱玛', 'code': 'box_code'},

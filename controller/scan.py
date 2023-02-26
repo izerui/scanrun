@@ -81,7 +81,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     @Slot()
     def tabChanged(self):
         if self.tabWidget.currentIndex() == 0:
-            self.scan_code_input.setFocus()
             self.loadData(0)
         else:
             self.loadData(1)
@@ -148,6 +147,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         # 如果是扫码列表页面，则进行下一步提示
         if complete == 0:
             self.nextPrompt()
+            self.scan_code_input.setFocus()
+            self.scan_code_input.selectAll()
 
     def validateCode(self, code) -> bool:
         if not code:
