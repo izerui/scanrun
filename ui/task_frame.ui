@@ -49,6 +49,153 @@ QPushButton:pressed, QPushButton:checked {
      <widget class="QWidget" name="verticalLayoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <layout class="QGridLayout" name="searchLayout">
+         <item row="0" column="3">
+          <widget class="QComboBox" name="comboBox_2">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_03">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>客户料号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QComboBox" name="comboBox_3">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBox_1">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="inputMethodHints">
+            <set>Qt::ImhNone</set>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_02">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>客户订单号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_04">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>客户编码:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_01">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>销售单号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7">
+          <widget class="QComboBox" name="comboBox_4">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QTableView" name="tableView">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
@@ -115,6 +262,9 @@ QPushButton:pressed, QPushButton:checked {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
             <property name="toolTip">
              <string>首页</string>
             </property>
@@ -144,6 +294,9 @@ QPushButton:pressed, QPushButton:checked {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
             <property name="toolTip">
              <string>上一页</string>
@@ -175,6 +328,9 @@ QPushButton:pressed, QPushButton:checked {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
             <property name="toolTip">
              <string>下一页</string>
             </property>
@@ -204,6 +360,9 @@ QPushButton:pressed, QPushButton:checked {
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
             <property name="toolTip">
              <string>末页</string>
@@ -242,6 +401,9 @@ QPushButton:pressed, QPushButton:checked {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
             <property name="toolTip">
              <string>跳转到</string>
             </property>
@@ -268,6 +430,9 @@ QPushButton:pressed, QPushButton:checked {
               <width>16777215</width>
               <height>24</height>
              </size>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
             <property name="maximum">
              <number>9999</number>
@@ -317,6 +482,9 @@ QPushButton:pressed, QPushButton:checked {
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
             <property name="toolTip">
              <string>请选择一条记录并开始扫描</string>
             </property>
@@ -358,6 +526,9 @@ QPushButton:pressed, QPushButton:checked {
         <height>16777215</height>
        </size>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
@@ -397,6 +568,9 @@ QPushButton:pressed, QPushButton:checked {
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources>
   <include location="../images.qrc"/>
  </resources>
@@ -409,7 +583,7 @@ QPushButton:pressed, QPushButton:checked {
    <hints>
     <hint type="sourcelabel">
      <x>496</x>
-     <y>254</y>
+     <y>586</y>
     </hint>
     <hint type="destinationlabel">
      <x>842</x>
@@ -425,7 +599,7 @@ QPushButton:pressed, QPushButton:checked {
    <hints>
     <hint type="sourcelabel">
      <x>560</x>
-     <y>254</y>
+     <y>586</y>
     </hint>
     <hint type="destinationlabel">
      <x>838</x>
@@ -441,7 +615,7 @@ QPushButton:pressed, QPushButton:checked {
    <hints>
     <hint type="sourcelabel">
      <x>528</x>
-     <y>254</y>
+     <y>586</y>
     </hint>
     <hint type="destinationlabel">
      <x>840</x>
@@ -457,7 +631,7 @@ QPushButton:pressed, QPushButton:checked {
    <hints>
     <hint type="sourcelabel">
      <x>609</x>
-     <y>254</y>
+     <y>586</y>
     </hint>
     <hint type="destinationlabel">
      <x>835</x>
@@ -473,7 +647,7 @@ QPushButton:pressed, QPushButton:checked {
    <hints>
     <hint type="sourcelabel">
      <x>464</x>
-     <y>254</y>
+     <y>586</y>
     </hint>
     <hint type="destinationlabel">
      <x>834</x>
@@ -489,7 +663,7 @@ QPushButton:pressed, QPushButton:checked {
    <hints>
     <hint type="sourcelabel">
      <x>830</x>
-     <y>258</y>
+     <y>590</y>
     </hint>
     <hint type="destinationlabel">
      <x>859</x>

@@ -11,6 +11,7 @@ from PySide6.QtWidgets import QWidget, QMessageBox, \
     QTableView
 
 from action.upload import UploadAction
+from controller.component import ConfirmMessageBox
 from model.ScanModel import ScanModel
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
@@ -40,6 +41,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         self.scanTableUnit = ScanTableUnit(
             f'scan_data_{str(self.order_info["saleInventoryRecordId"]).replace("-", "_")}')
         self.renderFormValue()
+        self.tabWidget.setCurrentIndex(0)
 
     # 填充扫码页面的form表单信息
     def renderFormValue(self):
@@ -60,18 +62,11 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         selIds = self.getSelectionIds()
         if not selIds:
             return
-        choiceBox = QMessageBox()
-        choiceBox.setIcon(QMessageBox.Icon.Question)
-        choiceBox.setWindowTitle('确认')
-        choiceBox.setText('确认删除选择的数据')
-        yes = choiceBox.addButton('确认', QMessageBox.ButtonRole.YesRole)
-        yes.setFocus()
-        no = choiceBox.addButton('取消', QMessageBox.ButtonRole.NoRole)
-        choiceBox.setDefaultButton(yes)
-        choiceBox.exec()
-        if choiceBox.clickedButton() == yes:
-            self.scanTableUnit.deleteByIds(selIds)
+        confirm = ConfirmMessageBox('确认', '确认删除选中的数据?')
+        confirm.show(lambda : (
+            self.scanTableUnit.deleteByIds(selIds),
             self.tabChanged()
+        ))
 
     def getSelectionIds(self) -> list:
         selIds = []
@@ -292,5 +287,9 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
     @Slot()
     def uploadItems(self):
-        self.uploadAction = UploadAction(self.model, self.order_info, self.scanTableUnit, self.progressBar)
-        self.uploadAction.start()
+        def call():
+            self.uploadAction = UploadAction(self.model, self.order_info, self.scanTableUnit, self.progressBar)
+            self.uploadAction.start()
+        confirm = ConfirmMessageBox('确认', '开始上传数据?')
+        confirm.show(call)
+
