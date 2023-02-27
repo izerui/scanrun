@@ -292,5 +292,5 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
     @Slot()
     def uploadItems(self):
-        self.uploadAction = UploadAction(self.model, self.scanTableUnit)
+        self.uploadAction = UploadAction(self.model, self.order_info, self.scanTableUnit, self.progressBar)
         self.uploadAction.start()
