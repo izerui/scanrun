@@ -36,7 +36,7 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
             self.banzu.addItem(d['name'], d)
 
     @Slot()
-    def accept(self) -> None:
+    def accept(self):
         if not self.banzu.currentData():
             QMessageBox.critical(None, '错误', '请选择班组')
         else:

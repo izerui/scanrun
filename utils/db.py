@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import logging
+from typing import Any
 
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
 from PySide6.QtWidgets import QMessageBox
@@ -100,7 +101,7 @@ class BaseTableUnit(object):
     def _create_sql(self) -> str:
         raise RuntimeError('必须覆盖并实现_create_sql()方法')
 
-    def _create_indexs(self) -> None:
+    def _create_indexs(self) -> list:
         return []
 
     def _insert_sql(self, ignore: bool = False) -> str:
@@ -154,7 +155,7 @@ class BaseTableUnit(object):
     def queryForMap(self, sql, param=None) -> dict:
         return DbUnit.queryForMap(sql, param)
 
-    def queryForObject(self, sql, param=None) -> None:
+    def queryForObject(self, sql, param=None) -> Any:
         return DbUnit.queryForObject(sql, param)
 
     def update(self, item):

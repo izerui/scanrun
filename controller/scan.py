@@ -6,7 +6,7 @@ import time
 from itertools import groupby
 from typing import Callable
 
-from PySide6.QtCore import Signal, Slot
+from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
 from PySide6.QtWidgets import QWidget, QMessageBox, \
     QTableView
 
@@ -144,11 +144,21 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         )
         self.model = ScanModel(complete, _datas)
         self.currentTable().setModel(self.model)
+
+        self.tableSelectionModel = QItemSelectionModel(self.model)
+        self.currentTable().setSelectionModel(self.tableSelectionModel)
+        self.tableSelectionModel.selectionChanged.connect(self.selectionChanged)
         # 如果是扫码列表页面，则进行下一步提示
         if complete == 0:
             self.nextPrompt()
             self.scan_code_input.setFocus()
             self.scan_code_input.selectAll()
+
+    def selectionChanged(self, sel:QItemSelection, desel:QItemSelection):
+        group = groupby(sel.indexes(), lambda x: x.row())
+        for i, rows in group:
+            print(self.model.datas[i])
+        pass
 
     def validateCode(self, code) -> bool:
         if not code:

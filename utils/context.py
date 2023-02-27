@@ -1,4 +1,6 @@
 # -*- coding: UTF-8 -*-
+from typing import Any
+
 from PySide6.QtCore import QSettings
 
 
@@ -18,7 +20,7 @@ class Context(object):
         if not v:
             Context.settings.setValue(key, value)
     @staticmethod
-    def getSettings(key, default_value=None) -> None:
+    def getSettings(key, default_value=None) -> Any:
         value = Context.settings.value(key)
         if not value:
             return default_value
