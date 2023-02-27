@@ -6,9 +6,9 @@ import time
 from itertools import groupby
 from typing import Callable
 
-from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
+from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection, QModelIndex, QRect
 from PySide6.QtWidgets import QWidget, QMessageBox, \
-    QTableView
+    QTableView, QTableWidgetSelectionRange
 
 from model.ScanModel import ScanModel
 from ui.ui_scan_frame import Ui_ScanFrame
@@ -154,6 +154,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             self.scan_code_input.setFocus()
             self.scan_code_input.selectAll()
 
+    @Slot()
     def selectionChanged(self, sel:QItemSelection, desel:QItemSelection):
         group = groupby(sel.indexes(), lambda x: x.row())
         for i, rows in group:

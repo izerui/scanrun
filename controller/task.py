@@ -19,7 +19,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.setupUi(self)
         self.splitter.setSizes([50000, 20000])
         self.renderFormLabels()
-        self.show()
+        self.selRow = None
         self.pageIndex = 0
         self.pageSize = 20
         self.totalPage = 0
@@ -55,11 +55,10 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         for i, rows in group:
             selEndRow = i
             break
-        if selEndRow:
-            self.selRow = self.model.datas[selEndRow]
-            for head in self.model.originHeads:
-                if getattr(self, f'form_edit_{head["code"]}'):
-                    getattr(self, f'form_edit_{head["code"]}').setText(str(self.model.datas[selEndRow][head['code']]))
+        self.selRow = self.model.datas[selEndRow]
+        for head in self.model.originHeads:
+            if getattr(self, f'form_edit_{head["code"]}'):
+                getattr(self, f'form_edit_{head["code"]}').setText(str(self.model.datas[selEndRow][head['code']]))
 
     def wrapPageData(self, data):
         self.dataList = data['content']
@@ -127,3 +126,4 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             self.formLayout_3.setWidget(i, QFormLayout.LabelRole, label)
             self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
             setattr(self, f'form_edit_{head["code"]}', edit)
+        self.show()
