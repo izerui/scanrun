@@ -1,4 +1,7 @@
 # -*- coding: UTF-8 -*-
+import json
+from typing import Callable
+
 import httpx
 
 
@@ -59,6 +62,23 @@ class Request(object):
         async with httpx.AsyncClient() as client:
             resp = await client.post(url, data=data, json=json, **kwargs)
             return resp
+
+    @staticmethod
+    def getError(response):
+        if response.status_code != 200:
+            return {
+                'errCode': f'REQUEST_ERROR_{response.status_code}',
+                'errMsg': f'请求远程服务器失败,错误代码{response.status_code}'
+            }
+        else:
+            result = json.loads(response.text)
+            if not result['success']:
+                return {
+                    'errCode': result['errCode'],
+                    'errMsg': result['errMsg']
+                }
+            else:
+                return None
 
     @classmethod
     def setCookies(cls, value):

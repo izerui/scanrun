@@ -116,7 +116,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
 
     # 初始化表单展示页
     def renderFormLabels(self):
-        for i, head in enumerate(Context.todoTaskTableHeads):
+        for i, head in enumerate(TaskModel(None).originHeads):
             label = QLabel(self.scrollAreaWidgetContents)
             label.setObjectName(f'form_label_{head["code"]}')
             label.setText(f'{head["title"]}:')

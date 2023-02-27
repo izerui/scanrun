@@ -159,6 +159,15 @@ class BaseTableUnit(object):
         return DbUnit.queryForObject(sql, param)
 
     def update(self, item):
+        DbUnit.execute(self._genUpdateSQL(item), item)
+
+    def updateBatch(self, items):
+        DbUnit.database.transaction()
+        for item in items:
+            DbUnit.execute(self._genUpdateSQL(item), item, False)
+        DbUnit.database.commit()
+
+    def _genUpdateSQL(self, item) -> str:
         if self._primary_key() not in item:
             raise RuntimeError(f'更新的对象不包含主键key: {self._primary_key()}')
         sql = f'update {self.tableName} set'
@@ -167,7 +176,7 @@ class BaseTableUnit(object):
             sets.append(f' {k} = :{k}')
         sql += ', '.join(sets)
         sql += f' where {self._primary_key()} = :{self._primary_key()}'
-        DbUnit.execute(sql, item)
+        return sql
 
 
 # 表操作

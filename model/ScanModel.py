@@ -18,7 +18,7 @@ class ScanModel(BaseModel):
             {'title': '上传状态', 'code': 'upload_status', 'hidden': type == 0, 'label_hidden': True,
              'icon_fun': self.icon_fun},
             {'title': '上传人', 'code': 'uploader', 'hidden': type == 0},
-            {'title': '上传时间', 'code': 'upload_time', 'hidden': type == 0}
+            {'title': '上传时间', 'code': 'upload_time', 'hidden': type == 0, 'label_format_fun': self.date_time_fun}
         ]
         super().__init__(_heads, datas)
 

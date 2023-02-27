@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QMainWindow, QMessageBox
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from ui.ui_home import Ui_Home
-from utils.context import Context
+from utils.context import Context, User
 from utils.executor import HttpExecutor, GetThread
 
 
@@ -86,4 +86,5 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
         )
 
     def userInfoResponse(self, result):
-        Context.user = result['data']
+        data = result['data']
+        Context.user = User(data['entCode'], data['entName'], data['userCode'], data['userName'])

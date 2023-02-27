@@ -6,15 +6,16 @@ import time
 from itertools import groupby
 from typing import Callable
 
-from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection, QModelIndex, QRect
+from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
 from PySide6.QtWidgets import QWidget, QMessageBox, \
-    QTableView, QTableWidgetSelectionRange
+    QTableView
 
+from action.upload import UploadAction
 from model.ScanModel import ScanModel
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
 from utils.db import ScanTableUnit
-from utils.executor import HttpExecutor, ThreadExecutor, SoundThread
+from utils.executor import HttpExecutor, ThreadExecutor, SoundThread, PostThread
 
 
 class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
@@ -47,7 +48,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         self.chejian_name_input.setText(self.order_info['chejian_name'])
         self.banzu_name_input.setText(self.order_info['banzu_name'])
         self.task_count_input.setText(str(int(self.order_info['taskQuantity'])))
-        self.user_name_input.setText(Context.user['userName'])
+        self.user_name_input.setText(Context.user.userName)
         self.inventory_code_input.setText(self.order_info['inventoryCode'])
         self.inventory_name_input.setText(self.order_info['inventoryName'])
         self.unit_rule_label.setText(
@@ -155,10 +156,11 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             self.scan_code_input.selectAll()
 
     @Slot()
-    def selectionChanged(self, sel:QItemSelection, desel:QItemSelection):
+    def selectionChanged(self, sel: QItemSelection, desel: QItemSelection):
         group = groupby(sel.indexes(), lambda x: x.row())
         for i, rows in group:
-            print(self.model.datas[i])
+            # print(self.model.datas[i])
+            pass
         pass
 
     def validateCode(self, code) -> bool:
@@ -215,13 +217,13 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         data = {
             'chejian_code': self.order_info['chejian_code'],
             'chejian_name': self.order_info['chejian_name'],
-            'ent_code': Context.user['entCode'],
+            'ent_code': Context.user.entCode,
             'business_key': self.order_info['recordId'],
             'banzu_code': self.order_info['banzu_code'],
             'banzu_name': self.order_info['banzu_name'],
             'create_time': now,
-            'creator': Context.user['userCode'],
-            'creator_name': Context.user['userName'],
+            'creator': Context.user.userCode,
+            'creator_name': Context.user.userName,
             'unit_code': code,
             'box_code': None,
             'pallet_code': None,
@@ -290,4 +292,5 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
     @Slot()
     def uploadItems(self):
-        pass
+        self.uploadAction = UploadAction(self.model, self.scanTableUnit)
+        self.uploadAction.start()
