@@ -67,12 +67,12 @@ class Ui_TaskFrame(object):
 
         self.searchLayout.addWidget(self.comboBox_2, 0, 3, 1, 1)
 
-        self.label_4 = QLabel(self.verticalLayoutWidget)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setMaximumSize(QSize(120, 16777215))
-        self.label_4.setLayoutDirection(Qt.LeftToRight)
+        self.label_03 = QLabel(self.verticalLayoutWidget)
+        self.label_03.setObjectName(u"label_03")
+        self.label_03.setMaximumSize(QSize(120, 16777215))
+        self.label_03.setLayoutDirection(Qt.LeftToRight)
 
-        self.searchLayout.addWidget(self.label_4, 0, 4, 1, 1, Qt.AlignRight)
+        self.searchLayout.addWidget(self.label_03, 0, 4, 1, 1, Qt.AlignRight)
 
         self.comboBox_3 = QComboBox(self.verticalLayoutWidget)
         self.comboBox_3.setObjectName(u"comboBox_3")
@@ -83,36 +83,36 @@ class Ui_TaskFrame(object):
 
         self.searchLayout.addWidget(self.comboBox_3, 0, 5, 1, 1)
 
-        self.comboBox = QComboBox(self.verticalLayoutWidget)
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setMinimumSize(QSize(150, 0))
-        self.comboBox.setFocusPolicy(Qt.ClickFocus)
-        self.comboBox.setLayoutDirection(Qt.LeftToRight)
-        self.comboBox.setInputMethodHints(Qt.ImhNone)
-        self.comboBox.setEditable(True)
+        self.comboBox_1 = QComboBox(self.verticalLayoutWidget)
+        self.comboBox_1.setObjectName(u"comboBox_1")
+        self.comboBox_1.setMinimumSize(QSize(150, 0))
+        self.comboBox_1.setFocusPolicy(Qt.ClickFocus)
+        self.comboBox_1.setLayoutDirection(Qt.LeftToRight)
+        self.comboBox_1.setInputMethodHints(Qt.ImhNone)
+        self.comboBox_1.setEditable(True)
 
-        self.searchLayout.addWidget(self.comboBox, 0, 1, 1, 1)
+        self.searchLayout.addWidget(self.comboBox_1, 0, 1, 1, 1)
 
-        self.label_3 = QLabel(self.verticalLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setMaximumSize(QSize(120, 16777215))
-        self.label_3.setLayoutDirection(Qt.LeftToRight)
+        self.label_02 = QLabel(self.verticalLayoutWidget)
+        self.label_02.setObjectName(u"label_02")
+        self.label_02.setMaximumSize(QSize(120, 16777215))
+        self.label_02.setLayoutDirection(Qt.LeftToRight)
 
-        self.searchLayout.addWidget(self.label_3, 0, 2, 1, 1, Qt.AlignRight)
+        self.searchLayout.addWidget(self.label_02, 0, 2, 1, 1, Qt.AlignRight)
 
-        self.label_5 = QLabel(self.verticalLayoutWidget)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setMaximumSize(QSize(120, 16777215))
-        self.label_5.setLayoutDirection(Qt.LeftToRight)
+        self.label_04 = QLabel(self.verticalLayoutWidget)
+        self.label_04.setObjectName(u"label_04")
+        self.label_04.setMaximumSize(QSize(120, 16777215))
+        self.label_04.setLayoutDirection(Qt.LeftToRight)
 
-        self.searchLayout.addWidget(self.label_5, 0, 6, 1, 1, Qt.AlignRight)
+        self.searchLayout.addWidget(self.label_04, 0, 6, 1, 1, Qt.AlignRight)
 
-        self.label = QLabel(self.verticalLayoutWidget)
-        self.label.setObjectName(u"label")
-        self.label.setMaximumSize(QSize(120, 16777215))
-        self.label.setLayoutDirection(Qt.LeftToRight)
+        self.label_01 = QLabel(self.verticalLayoutWidget)
+        self.label_01.setObjectName(u"label_01")
+        self.label_01.setMaximumSize(QSize(120, 16777215))
+        self.label_01.setLayoutDirection(Qt.LeftToRight)
 
-        self.searchLayout.addWidget(self.label, 0, 0, 1, 1, Qt.AlignRight)
+        self.searchLayout.addWidget(self.label_01, 0, 0, 1, 1, Qt.AlignRight)
 
         self.comboBox_4 = QComboBox(self.verticalLayoutWidget)
         self.comboBox_4.setObjectName(u"comboBox_4")
@@ -308,10 +308,10 @@ class Ui_TaskFrame(object):
 
     def retranslateUi(self, TaskFrame):
         TaskFrame.setWindowTitle(QCoreApplication.translate("TaskFrame", u"Form", None))
-        self.label_4.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u6599\u53f7:", None))
-        self.label_3.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
-        self.label_5.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
-        self.label.setText(QCoreApplication.translate("TaskFrame", u"\u9500\u552e\u5355\u53f7:", None))
+        self.label_03.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u6599\u53f7:", None))
+        self.label_02.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
+        self.label_04.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
+        self.label_01.setText(QCoreApplication.translate("TaskFrame", u"\u9500\u552e\u5355\u53f7:", None))
 #if QT_CONFIG(tooltip)
         self.toolButton_7.setToolTip(QCoreApplication.translate("TaskFrame", u"\u9996\u9875", None))
 #endif // QT_CONFIG(tooltip)
