@@ -18,8 +18,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QFormLayout,
     QFrame, QGridLayout, QHBoxLayout, QHeaderView,
     QLabel, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QSpinBox, QSplitter, QTableWidget,
-    QTableWidgetItem, QToolButton, QVBoxLayout, QWidget)
+    QSpacerItem, QSpinBox, QSplitter, QTableView,
+    QToolButton, QVBoxLayout, QWidget)
 import images_rc
 
 class Ui_TaskFrame(object):
@@ -56,15 +56,14 @@ class Ui_TaskFrame(object):
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.tableWidget = QTableWidget(self.verticalLayoutWidget)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setAutoScroll(True)
-        self.tableWidget.setAlternatingRowColors(True)
-        self.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.tableWidget.horizontalHeader().setStretchLastSection(False)
+        self.tableView = QTableView(self.verticalLayoutWidget)
+        self.tableView.setObjectName(u"tableView")
+        self.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableView.setAlternatingRowColors(True)
+        self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
 
-        self.verticalLayout.addWidget(self.tableWidget)
+        self.verticalLayout.addWidget(self.tableView)
 
         self.widget_2 = QWidget(self.verticalLayoutWidget)
         self.widget_2.setObjectName(u"widget_2")
@@ -220,12 +219,10 @@ class Ui_TaskFrame(object):
 
         self.retranslateUi(TaskFrame)
         self.toolButton_8.clicked.connect(TaskFrame.prePage)
-        self.tableWidget.itemDoubleClicked.connect(TaskFrame.openTaskForm)
         self.toolButton_10.clicked.connect(TaskFrame.endPage)
         self.toolButton_9.clicked.connect(TaskFrame.nextPage)
         self.toolButton_11.clicked.connect(TaskFrame.jumpPage)
         self.toolButton_7.clicked.connect(TaskFrame.firstPage)
-        self.tableWidget.itemSelectionChanged.connect(TaskFrame.dataRowSelected)
         self.pushButton_12.clicked.connect(TaskFrame.openTaskForm)
 
         QMetaObject.connectSlotsByName(TaskFrame)

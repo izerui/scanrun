@@ -49,9 +49,9 @@ QPushButton:pressed, QPushButton:checked {
      <widget class="QWidget" name="verticalLayoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QTableWidget" name="tableWidget">
-         <property name="autoScroll">
-          <bool>true</bool>
+        <widget class="QTableView" name="tableView">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
          </property>
          <property name="alternatingRowColors">
           <bool>true</bool>
@@ -62,9 +62,6 @@ QPushButton:pressed, QPushButton:checked {
          <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
-         <attribute name="horizontalHeaderStretchLastSection">
-          <bool>false</bool>
-         </attribute>
         </widget>
        </item>
        <item>
@@ -421,22 +418,6 @@ QPushButton:pressed, QPushButton:checked {
    </hints>
   </connection>
   <connection>
-   <sender>tableWidget</sender>
-   <signal>itemDoubleClicked(QTableWidgetItem*)</signal>
-   <receiver>TaskFrame</receiver>
-   <slot>openTaskForm()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>352</x>
-     <y>216</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>326</x>
-     <y>681</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>toolButton_10</sender>
    <signal>clicked()</signal>
    <receiver>TaskFrame</receiver>
@@ -497,22 +478,6 @@ QPushButton:pressed, QPushButton:checked {
     <hint type="destinationlabel">
      <x>834</x>
      <y>284</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>tableWidget</sender>
-   <signal>itemSelectionChanged()</signal>
-   <receiver>TaskFrame</receiver>
-   <slot>dataRowSelected()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>154</x>
-     <y>172</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>282</x>
-     <y>681</y>
     </hint>
    </hints>
   </connection>

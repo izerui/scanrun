@@ -1,9 +1,11 @@
 # -*- coding: UTF-8 -*-
-from PySide6 import QtWidgets
-from PySide6.QtCore import Slot, Signal
-from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidgetItem, QLineEdit, QLabel, QFormLayout
+from itertools import groupby
+
+from PySide6.QtCore import Slot, Signal, QItemSelectionModel
+from PySide6.QtWidgets import QWidget, QMessageBox, QLineEdit, QLabel, QFormLayout
 
 from controller.dialog import ScanConfirmDialog
+from model.TaskModel import TaskModel
 from ui.ui_task_frame import Ui_TaskFrame
 from utils.context import Context
 from utils.executor import HttpExecutor, PostThread
@@ -16,7 +18,6 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         super().__init__()
         self.setupUi(self)
         self.splitter.setSizes([50000, 20000])
-        self.renderTable()
         self.renderFormLabels()
         self.show()
         self.pageIndex = 0
@@ -26,29 +27,39 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.firstPage()
 
     def loadData(self):
-        self.tableWidget.setRowCount(0)
         reqParam = {"pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0, "activeStatus": "AUDITING",
                     "completedStatus": False}
         self.http('loadDataThread',
                   PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/task/list',
-                                json=reqParam),
+                             json=reqParam),
                   self.dataResponse
                   )
 
     def dataResponse(self, result):
         data = result['data']
+
+        self.model = TaskModel(data['content'])
+        self.tableView.setModel(self.model)
+        self.selectionModel = QItemSelectionModel(self.model)
+        self.tableView.setSelectionModel(self.selectionModel)
+        self.selectionModel.selectionChanged.connect(self.dataRowSelected)
+
         self.wrapPageData(data)
-        self.dataResChangeView(data)
-        self.tableWidget.setRowCount(len(data['content']))
-        i = 0
-        for d in data['content']:
-            j = 0
-            for head in Context.todoTaskTableHeads:
-                if ('hide' not in head or not head['hide']):
-                    self.tableWidget.setItem(i, j, QTableWidgetItem(d[head['code']]))
-                    j += 1
-            i += 1
-        self.tableWidget.selectRow(0)
+
+
+    # 行选中事件
+    @Slot()
+    def dataRowSelected(self, sel, desel):
+        group = groupby(sel.indexes(), lambda x: x.row())
+        selEndRow = None
+        for i, rows in group:
+            selEndRow = i
+            break
+        if selEndRow:
+            self.selRow = self.model.datas[selEndRow]
+            for head in self.model.originHeads:
+                if getattr(self, f'form_edit_{head["code"]}'):
+                    getattr(self, f'form_edit_{head["code"]}').setText(str(self.model.datas[selEndRow][head['code']]))
 
     def wrapPageData(self, data):
         self.dataList = data['content']
@@ -56,6 +67,8 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.totalPage = data['totalPages']
         self.totalCount = data['totalElements']
         self.pageSize = data['size']
+        self.pageEdit.setValue(data['number'] + 1)
+        self.label_2.setText(f'页 共{self.totalPage}页  {self.totalCount}条记录')
 
     @Slot()
     def firstPage(self):
@@ -101,31 +114,6 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             self.task.show()
         else:
             QMessageBox.warning(None, '提示', '请选择一条任务开始扫码')
-
-    # 行选中事件
-    @Slot()
-    def dataRowSelected(self):
-        self.selRow = self.dataList[self.tableWidget.currentRow() - 1]
-        for head in Context.todoTaskTableHeads:
-            if getattr(self, f'form_edit_{head["code"]}'):
-                getattr(self, f'form_edit_{head["code"]}').setText(str(self.selRow[head['code']]))
-
-    def dataResChangeView(self, data):
-        self.pageEdit.setValue(data['number'] + 1)
-        self.label_2.setText(f'页 共{self.totalPage}页  {self.totalCount}条记录')
-
-    # 初始化表格列头及样式
-    def renderTable(self):
-        self.tableWidget.setShowGrid(True)
-        # self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.tableWidget.clear()
-        self.tableWidget.setColumnCount(len(list(filter(lambda x: 'hide' not in x or not x['hide'], Context.todoTaskTableHeads))))
-        i = 0
-        for head in Context.todoTaskTableHeads:
-            if not head.get('hide'):
-                self.tableWidget.setHorizontalHeaderItem(i, QTableWidgetItem(head.get('title')))
-                i += 1
 
     # 初始化表单展示页
     def renderFormLabels(self):
