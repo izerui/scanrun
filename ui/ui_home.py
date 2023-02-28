@@ -70,7 +70,7 @@ class Ui_Home(object):
         self.gridLayout.setContentsMargins(12, 12, -1, 12)
         self.leftFrame = QFrame(self.centralwidget)
         self.leftFrame.setObjectName(u"leftFrame")
-        self.leftFrame.setMinimumSize(QSize(100, 0))
+        self.leftFrame.setMinimumSize(QSize(120, 0))
         self.leftFrame.setFrameShape(QFrame.StyledPanel)
         self.leftFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_6 = QVBoxLayout(self.leftFrame)

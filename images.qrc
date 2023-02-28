@@ -23,5 +23,7 @@
     <file>pic/upload.png</file>
     <file>pic/yes.png</file>
     <file>pic/no.png</file>
+    <file>pic/search.png</file>
+    <file>pic/reset.png</file>
   </qresource>
 </RCC>

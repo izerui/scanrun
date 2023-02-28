@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QComboBox,
-    QFormLayout, QFrame, QGridLayout, QHBoxLayout,
-    QHeaderView, QLabel, QPushButton, QScrollArea,
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractSpinBox, QApplication, QFormLayout,
+    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
+    QLabel, QLineEdit, QPushButton, QScrollArea,
     QSizePolicy, QSpacerItem, QSpinBox, QSplitter,
     QTableView, QToolButton, QVBoxLayout, QWidget)
 import images_rc
@@ -26,7 +26,7 @@ class Ui_TaskFrame(object):
     def setupUi(self, TaskFrame):
         if not TaskFrame.objectName():
             TaskFrame.setObjectName(u"TaskFrame")
-        TaskFrame.resize(860, 682)
+        TaskFrame.resize(931, 682)
         TaskFrame.setStyleSheet(u"QPushButton {\n"
 "    background-color: #ffffff;\n"
 "    border: 1px solid #dcdfe6;\n"
@@ -58,14 +58,14 @@ class Ui_TaskFrame(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.searchLayout = QGridLayout()
         self.searchLayout.setObjectName(u"searchLayout")
-        self.comboBox_2 = QComboBox(self.verticalLayoutWidget)
-        self.comboBox_2.setObjectName(u"comboBox_2")
-        self.comboBox_2.setMinimumSize(QSize(150, 0))
-        self.comboBox_2.setFocusPolicy(Qt.ClickFocus)
-        self.comboBox_2.setLayoutDirection(Qt.LeftToRight)
-        self.comboBox_2.setEditable(True)
+        self.pushButton = QPushButton(self.verticalLayoutWidget)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        icon = QIcon()
+        icon.addFile(u":/logo/pic/search.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton.setIcon(icon)
 
-        self.searchLayout.addWidget(self.comboBox_2, 0, 3, 1, 1)
+        self.searchLayout.addWidget(self.pushButton, 0, 8, 1, 1, Qt.AlignLeft)
 
         self.label_03 = QLabel(self.verticalLayoutWidget)
         self.label_03.setObjectName(u"label_03")
@@ -74,24 +74,12 @@ class Ui_TaskFrame(object):
 
         self.searchLayout.addWidget(self.label_03, 0, 4, 1, 1, Qt.AlignRight)
 
-        self.comboBox_3 = QComboBox(self.verticalLayoutWidget)
-        self.comboBox_3.setObjectName(u"comboBox_3")
-        self.comboBox_3.setMinimumSize(QSize(150, 0))
-        self.comboBox_3.setFocusPolicy(Qt.ClickFocus)
-        self.comboBox_3.setLayoutDirection(Qt.LeftToRight)
-        self.comboBox_3.setEditable(True)
+        self.CUSTOMER_MATERIAL = QLineEdit(self.verticalLayoutWidget)
+        self.CUSTOMER_MATERIAL.setObjectName(u"CUSTOMER_MATERIAL")
+        self.CUSTOMER_MATERIAL.setMinimumSize(QSize(0, 0))
+        self.CUSTOMER_MATERIAL.setFocusPolicy(Qt.ClickFocus)
 
-        self.searchLayout.addWidget(self.comboBox_3, 0, 5, 1, 1)
-
-        self.comboBox_1 = QComboBox(self.verticalLayoutWidget)
-        self.comboBox_1.setObjectName(u"comboBox_1")
-        self.comboBox_1.setMinimumSize(QSize(150, 0))
-        self.comboBox_1.setFocusPolicy(Qt.ClickFocus)
-        self.comboBox_1.setLayoutDirection(Qt.LeftToRight)
-        self.comboBox_1.setInputMethodHints(Qt.ImhNone)
-        self.comboBox_1.setEditable(True)
-
-        self.searchLayout.addWidget(self.comboBox_1, 0, 1, 1, 1)
+        self.searchLayout.addWidget(self.CUSTOMER_MATERIAL, 0, 5, 1, 1)
 
         self.label_02 = QLabel(self.verticalLayoutWidget)
         self.label_02.setObjectName(u"label_02")
@@ -99,6 +87,13 @@ class Ui_TaskFrame(object):
         self.label_02.setLayoutDirection(Qt.LeftToRight)
 
         self.searchLayout.addWidget(self.label_02, 0, 2, 1, 1, Qt.AlignRight)
+
+        self.CUSTOMER_SERIAL = QLineEdit(self.verticalLayoutWidget)
+        self.CUSTOMER_SERIAL.setObjectName(u"CUSTOMER_SERIAL")
+        self.CUSTOMER_SERIAL.setMinimumSize(QSize(0, 0))
+        self.CUSTOMER_SERIAL.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.CUSTOMER_SERIAL, 0, 7, 1, 1)
 
         self.label_04 = QLabel(self.verticalLayoutWidget)
         self.label_04.setObjectName(u"label_04")
@@ -114,20 +109,35 @@ class Ui_TaskFrame(object):
 
         self.searchLayout.addWidget(self.label_01, 0, 0, 1, 1, Qt.AlignRight)
 
-        self.comboBox_4 = QComboBox(self.verticalLayoutWidget)
-        self.comboBox_4.setObjectName(u"comboBox_4")
-        self.comboBox_4.setMinimumSize(QSize(150, 0))
-        self.comboBox_4.setFocusPolicy(Qt.ClickFocus)
-        self.comboBox_4.setLayoutDirection(Qt.LeftToRight)
-        self.comboBox_4.setEditable(True)
+        self.ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
+        self.ORDER_DOC_NO.setObjectName(u"ORDER_DOC_NO")
+        self.ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
+        self.ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
 
-        self.searchLayout.addWidget(self.comboBox_4, 0, 7, 1, 1)
+        self.searchLayout.addWidget(self.ORDER_DOC_NO, 0, 1, 1, 1)
+
+        self.CUSTOMER_ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
+        self.CUSTOMER_ORDER_DOC_NO.setObjectName(u"CUSTOMER_ORDER_DOC_NO")
+        self.CUSTOMER_ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
+        self.CUSTOMER_ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.CUSTOMER_ORDER_DOC_NO, 0, 3, 1, 1)
+
+        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/reset.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_2.setIcon(icon1)
+
+        self.searchLayout.addWidget(self.pushButton_2, 0, 9, 1, 1)
 
 
         self.verticalLayout.addLayout(self.searchLayout)
 
         self.tableView = QTableView(self.verticalLayoutWidget)
         self.tableView.setObjectName(u"tableView")
+        self.tableView.setFocusPolicy(Qt.StrongFocus)
         self.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableView.setAlternatingRowColors(True)
         self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
@@ -151,9 +161,9 @@ class Ui_TaskFrame(object):
         self.toolButton_7.setMaximumSize(QSize(24, 24))
         self.toolButton_7.setCursor(QCursor(Qt.PointingHandCursor))
         self.toolButton_7.setFocusPolicy(Qt.ClickFocus)
-        icon = QIcon()
-        icon.addFile(u":/logo/pic/first.png", QSize(), QIcon.Normal, QIcon.On)
-        self.toolButton_7.setIcon(icon)
+        icon2 = QIcon()
+        icon2.addFile(u":/logo/pic/first.png", QSize(), QIcon.Normal, QIcon.On)
+        self.toolButton_7.setIcon(icon2)
 
         self.horizontalLayout_2.addWidget(self.toolButton_7)
 
@@ -163,9 +173,9 @@ class Ui_TaskFrame(object):
         self.toolButton_8.setMaximumSize(QSize(24, 24))
         self.toolButton_8.setCursor(QCursor(Qt.PointingHandCursor))
         self.toolButton_8.setFocusPolicy(Qt.ClickFocus)
-        icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/pre.png", QSize(), QIcon.Normal, QIcon.On)
-        self.toolButton_8.setIcon(icon1)
+        icon3 = QIcon()
+        icon3.addFile(u":/logo/pic/pre.png", QSize(), QIcon.Normal, QIcon.On)
+        self.toolButton_8.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.toolButton_8)
 
@@ -175,9 +185,9 @@ class Ui_TaskFrame(object):
         self.toolButton_9.setMaximumSize(QSize(24, 24))
         self.toolButton_9.setCursor(QCursor(Qt.PointingHandCursor))
         self.toolButton_9.setFocusPolicy(Qt.ClickFocus)
-        icon2 = QIcon()
-        icon2.addFile(u":/logo/pic/next.png", QSize(), QIcon.Normal, QIcon.On)
-        self.toolButton_9.setIcon(icon2)
+        icon4 = QIcon()
+        icon4.addFile(u":/logo/pic/next.png", QSize(), QIcon.Normal, QIcon.On)
+        self.toolButton_9.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.toolButton_9)
 
@@ -187,9 +197,9 @@ class Ui_TaskFrame(object):
         self.toolButton_10.setMaximumSize(QSize(24, 24))
         self.toolButton_10.setCursor(QCursor(Qt.PointingHandCursor))
         self.toolButton_10.setFocusPolicy(Qt.ClickFocus)
-        icon3 = QIcon()
-        icon3.addFile(u":/logo/pic/end.png", QSize(), QIcon.Normal, QIcon.On)
-        self.toolButton_10.setIcon(icon3)
+        icon5 = QIcon()
+        icon5.addFile(u":/logo/pic/end.png", QSize(), QIcon.Normal, QIcon.On)
+        self.toolButton_10.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.toolButton_10)
 
@@ -206,9 +216,9 @@ class Ui_TaskFrame(object):
         self.toolButton_11.setMaximumSize(QSize(24, 24))
         self.toolButton_11.setCursor(QCursor(Qt.PointingHandCursor))
         self.toolButton_11.setFocusPolicy(Qt.ClickFocus)
-        icon4 = QIcon()
-        icon4.addFile(u":/logo/pic/jump.png", QSize(), QIcon.Normal, QIcon.On)
-        self.toolButton_11.setIcon(icon4)
+        icon6 = QIcon()
+        icon6.addFile(u":/logo/pic/jump.png", QSize(), QIcon.Normal, QIcon.On)
+        self.toolButton_11.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.toolButton_11)
 
@@ -250,9 +260,9 @@ class Ui_TaskFrame(object):
         self.pushButton_12.setFont(font)
         self.pushButton_12.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_12.setFocusPolicy(Qt.ClickFocus)
-        icon5 = QIcon()
-        icon5.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_12.setIcon(icon5)
+        icon7 = QIcon()
+        icon7.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_12.setIcon(icon7)
         self.pushButton_12.setIconSize(QSize(20, 20))
 
         self.horizontalLayout_2.addWidget(self.pushButton_12)
@@ -276,7 +286,7 @@ class Ui_TaskFrame(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 834, 69))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 905, 69))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.formLayout_3 = QFormLayout()
@@ -302,16 +312,24 @@ class Ui_TaskFrame(object):
         self.toolButton_11.clicked.connect(TaskFrame.jumpPage)
         self.toolButton_7.clicked.connect(TaskFrame.firstPage)
         self.pushButton_12.clicked.connect(TaskFrame.openTaskForm)
+        self.ORDER_DOC_NO.textChanged.connect(TaskFrame.completerLineEdit)
+        self.CUSTOMER_ORDER_DOC_NO.textChanged.connect(TaskFrame.completerLineEdit)
+        self.CUSTOMER_MATERIAL.textChanged.connect(TaskFrame.completerLineEdit)
+        self.CUSTOMER_SERIAL.textChanged.connect(TaskFrame.completerLineEdit)
+        self.pushButton.clicked.connect(TaskFrame.firstPage)
+        self.pushButton_2.clicked.connect(TaskFrame.resetEdits)
 
         QMetaObject.connectSlotsByName(TaskFrame)
     # setupUi
 
     def retranslateUi(self, TaskFrame):
         TaskFrame.setWindowTitle(QCoreApplication.translate("TaskFrame", u"Form", None))
+        self.pushButton.setText(QCoreApplication.translate("TaskFrame", u"\u5f00\u59cb\u67e5\u8be2", None))
         self.label_03.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u6599\u53f7:", None))
         self.label_02.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
         self.label_04.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
         self.label_01.setText(QCoreApplication.translate("TaskFrame", u"\u9500\u552e\u5355\u53f7:", None))
+        self.pushButton_2.setText(QCoreApplication.translate("TaskFrame", u"\u91cd\u7f6e\u67e5\u8be2", None))
 #if QT_CONFIG(tooltip)
         self.toolButton_7.setToolTip(QCoreApplication.translate("TaskFrame", u"\u9996\u9875", None))
 #endif // QT_CONFIG(tooltip)

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>860</width>
+    <width>931</width>
     <height>682</height>
    </rect>
   </property>
@@ -50,22 +50,18 @@ QPushButton:pressed, QPushButton:checked {
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <layout class="QGridLayout" name="searchLayout">
-         <item row="0" column="3">
-          <widget class="QComboBox" name="comboBox_2">
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
+         <item row="0" column="8" alignment="Qt::AlignLeft">
+          <widget class="QPushButton" name="pushButton">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
+           <property name="text">
+            <string>开始查询</string>
            </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="editable">
-            <bool>true</bool>
+           <property name="icon">
+            <iconset>
+             <normalon>:/logo/pic/search.png</normalon>
+            </iconset>
            </property>
           </widget>
          </item>
@@ -86,43 +82,15 @@ QPushButton:pressed, QPushButton:checked {
           </widget>
          </item>
          <item row="0" column="5">
-          <widget class="QComboBox" name="comboBox_3">
+          <widget class="QLineEdit" name="CUSTOMER_MATERIAL">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
            <property name="focusPolicy">
             <enum>Qt::ClickFocus</enum>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="editable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QComboBox" name="comboBox_1">
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="inputMethodHints">
-            <set>Qt::ImhNone</set>
-           </property>
-           <property name="editable">
-            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -139,6 +107,19 @@ QPushButton:pressed, QPushButton:checked {
            </property>
            <property name="text">
             <string>客户订单号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="7">
+          <widget class="QLineEdit" name="CUSTOMER_SERIAL">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
            </property>
           </widget>
          </item>
@@ -174,22 +155,44 @@ QPushButton:pressed, QPushButton:checked {
            </property>
           </widget>
          </item>
-         <item row="0" column="7">
-          <widget class="QComboBox" name="comboBox_4">
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="ORDER_DOC_NO">
            <property name="minimumSize">
             <size>
-             <width>150</width>
+             <width>0</width>
              <height>0</height>
             </size>
            </property>
            <property name="focusPolicy">
             <enum>Qt::ClickFocus</enum>
            </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="CUSTOMER_ORDER_DOC_NO">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
            </property>
-           <property name="editable">
-            <bool>true</bool>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="9">
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="text">
+            <string>重置查询</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normalon>:/logo/pic/reset.png</normalon>
+            </iconset>
            </property>
           </widget>
          </item>
@@ -197,6 +200,9 @@ QPushButton:pressed, QPushButton:checked {
        </item>
        <item>
         <widget class="QTableView" name="tableView">
+         <property name="focusPolicy">
+          <enum>Qt::StrongFocus</enum>
+         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -537,7 +543,7 @@ QPushButton:pressed, QPushButton:checked {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>834</width>
+         <width>905</width>
          <height>69</height>
         </rect>
        </property>
@@ -582,7 +588,7 @@ QPushButton:pressed, QPushButton:checked {
    <slot>prePage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>496</x>
+     <x>567</x>
      <y>586</y>
     </hint>
     <hint type="destinationlabel">
@@ -598,7 +604,7 @@ QPushButton:pressed, QPushButton:checked {
    <slot>endPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>560</x>
+     <x>631</x>
      <y>586</y>
     </hint>
     <hint type="destinationlabel">
@@ -614,7 +620,7 @@ QPushButton:pressed, QPushButton:checked {
    <slot>nextPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>528</x>
+     <x>599</x>
      <y>586</y>
     </hint>
     <hint type="destinationlabel">
@@ -630,7 +636,7 @@ QPushButton:pressed, QPushButton:checked {
    <slot>jumpPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>609</x>
+     <x>680</x>
      <y>586</y>
     </hint>
     <hint type="destinationlabel">
@@ -646,7 +652,7 @@ QPushButton:pressed, QPushButton:checked {
    <slot>firstPage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>464</x>
+     <x>535</x>
      <y>586</y>
     </hint>
     <hint type="destinationlabel">
@@ -671,6 +677,102 @@ QPushButton:pressed, QPushButton:checked {
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ORDER_DOC_NO</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>completerLineEdit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-10</x>
+     <y>73</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CUSTOMER_ORDER_DOC_NO</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>completerLineEdit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>331</x>
+     <y>25</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-30</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CUSTOMER_MATERIAL</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>completerLineEdit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>512</x>
+     <y>25</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-17</x>
+     <y>112</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CUSTOMER_SERIAL</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>completerLineEdit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>699</x>
+     <y>25</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-29</x>
+     <y>126</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>758</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1069</x>
+     <y>61</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>resetEdits()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>862</x>
+     <y>35</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>999</x>
+     <y>35</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>firstPage()</slot>
@@ -680,5 +782,7 @@ QPushButton:pressed, QPushButton:checked {
   <slot>jumpPage()</slot>
   <slot>openTaskForm()</slot>
   <slot>dataRowSelected()</slot>
+  <slot>completerLineEdit()</slot>
+  <slot>resetEdits()</slot>
  </slots>
 </ui>
