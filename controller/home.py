@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-
+import PySide6.QtGui
 from PySide6.QtCore import Signal, Slot
 from PySide6.QtWidgets import QMainWindow, QMessageBox
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -31,8 +31,6 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
         schedule = BackgroundScheduler()
         schedule.add_job(self.loopGetUserInfo, trigger='interval', minutes=10)
         schedule.start()
-
-
 
     # 进入扫码页面
     @Slot()

@@ -61,6 +61,7 @@ class Ui_ListFrame(object):
         self.pushButton = QPushButton(self.verticalLayoutWidget)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.setFocusPolicy(Qt.ClickFocus)
         icon = QIcon()
         icon.addFile(u":/logo/pic/search.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton.setIcon(icon)
@@ -126,6 +127,7 @@ class Ui_ListFrame(object):
         self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_2.setFocusPolicy(Qt.ClickFocus)
         icon1 = QIcon()
         icon1.addFile(u":/logo/pic/reset.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton_2.setIcon(icon1)
@@ -154,6 +156,18 @@ class Ui_ListFrame(object):
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setObjectName(u"label_2")
+
+        self.horizontalLayout_2.addWidget(self.label_2)
+
+        self.line_7 = QFrame(self.widget_2)
+        self.line_7.setObjectName(u"line_7")
+        self.line_7.setFrameShape(QFrame.VLine)
+        self.line_7.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_2.addWidget(self.line_7)
 
         self.toolButton_7 = QToolButton(self.widget_2)
         self.toolButton_7.setObjectName(u"toolButton_7")
@@ -240,18 +254,6 @@ class Ui_ListFrame(object):
 
         self.horizontalLayout_2.addWidget(self.line_6)
 
-        self.label_2 = QLabel(self.widget_2)
-        self.label_2.setObjectName(u"label_2")
-
-        self.horizontalLayout_2.addWidget(self.label_2)
-
-        self.line_7 = QFrame(self.widget_2)
-        self.line_7.setObjectName(u"line_7")
-        self.line_7.setFrameShape(QFrame.VLine)
-        self.line_7.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_2.addWidget(self.line_7)
-
 
         self.verticalLayout.addWidget(self.widget_2)
 
@@ -291,6 +293,10 @@ class Ui_ListFrame(object):
         self.toolButton_9.clicked.connect(ListFrame.nextPage)
         self.toolButton_10.clicked.connect(ListFrame.endPage)
         self.toolButton_11.clicked.connect(ListFrame.jumpPage)
+        self.ORDER_DOC_NO.textChanged.connect(ListFrame.completerLineEdit)
+        self.CUSTOMER_ORDER_DOC_NO.textChanged.connect(ListFrame.completerLineEdit)
+        self.CUSTOMER_MATERIAL.textChanged.connect(ListFrame.completerLineEdit)
+        self.CUSTOMER_SERIAL.textChanged.connect(ListFrame.completerLineEdit)
 
         QMetaObject.connectSlotsByName(ListFrame)
     # setupUi
@@ -303,6 +309,7 @@ class Ui_ListFrame(object):
         self.label_04.setText(QCoreApplication.translate("ListFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
         self.label_01.setText(QCoreApplication.translate("ListFrame", u"\u9500\u552e\u5355\u53f7:", None))
         self.pushButton_2.setText(QCoreApplication.translate("ListFrame", u"\u91cd\u7f6e\u67e5\u8be2", None))
+        self.label_2.setText(QCoreApplication.translate("ListFrame", u"--", None))
 #if QT_CONFIG(tooltip)
         self.toolButton_7.setToolTip(QCoreApplication.translate("ListFrame", u"\u9996\u9875", None))
 #endif // QT_CONFIG(tooltip)
@@ -323,6 +330,5 @@ class Ui_ListFrame(object):
         self.toolButton_11.setToolTip(QCoreApplication.translate("ListFrame", u"\u8df3\u8f6c\u5230", None))
 #endif // QT_CONFIG(tooltip)
         self.toolButton_11.setText("")
-        self.label_2.setText(QCoreApplication.translate("ListFrame", u"--", None))
     # retranslateUi
 

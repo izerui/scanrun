@@ -55,6 +55,9 @@ QPushButton:pressed, QPushButton:checked {
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
            <property name="text">
             <string>开始查询</string>
            </property>
@@ -186,6 +189,9 @@ QPushButton:pressed, QPushButton:checked {
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
            <property name="text">
             <string>重置查询</string>
            </property>
@@ -250,6 +256,20 @@ QPushButton:pressed, QPushButton:checked {
              </size>
             </property>
            </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>--</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QToolButton" name="toolButton_7">
@@ -448,20 +468,6 @@ QPushButton:pressed, QPushButton:checked {
             </property>
             <property name="displayIntegerBase">
              <number>10</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line_6">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>--</string>
             </property>
            </widget>
           </item>

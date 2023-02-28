@@ -61,6 +61,7 @@ class Ui_TaskFrame(object):
         self.pushButton = QPushButton(self.verticalLayoutWidget)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.setFocusPolicy(Qt.ClickFocus)
         icon = QIcon()
         icon.addFile(u":/logo/pic/search.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton.setIcon(icon)
@@ -126,6 +127,7 @@ class Ui_TaskFrame(object):
         self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_2.setFocusPolicy(Qt.ClickFocus)
         icon1 = QIcon()
         icon1.addFile(u":/logo/pic/reset.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton_2.setIcon(icon1)
@@ -154,6 +156,18 @@ class Ui_TaskFrame(object):
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+        self.label_2 = QLabel(self.widget_2)
+        self.label_2.setObjectName(u"label_2")
+
+        self.horizontalLayout_2.addWidget(self.label_2)
+
+        self.line_6 = QFrame(self.widget_2)
+        self.line_6.setObjectName(u"line_6")
+        self.line_6.setFrameShape(QFrame.VLine)
+        self.line_6.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_2.addWidget(self.line_6)
 
         self.toolButton_7 = QToolButton(self.widget_2)
         self.toolButton_7.setObjectName(u"toolButton_7")
@@ -232,18 +246,6 @@ class Ui_TaskFrame(object):
         self.pageEdit.setDisplayIntegerBase(10)
 
         self.horizontalLayout_2.addWidget(self.pageEdit)
-
-        self.line_6 = QFrame(self.widget_2)
-        self.line_6.setObjectName(u"line_6")
-        self.line_6.setFrameShape(QFrame.VLine)
-        self.line_6.setFrameShadow(QFrame.Sunken)
-
-        self.horizontalLayout_2.addWidget(self.line_6)
-
-        self.label_2 = QLabel(self.widget_2)
-        self.label_2.setObjectName(u"label_2")
-
-        self.horizontalLayout_2.addWidget(self.label_2)
 
         self.line_7 = QFrame(self.widget_2)
         self.line_7.setObjectName(u"line_7")
@@ -330,6 +332,7 @@ class Ui_TaskFrame(object):
         self.label_04.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
         self.label_01.setText(QCoreApplication.translate("TaskFrame", u"\u9500\u552e\u5355\u53f7:", None))
         self.pushButton_2.setText(QCoreApplication.translate("TaskFrame", u"\u91cd\u7f6e\u67e5\u8be2", None))
+        self.label_2.setText(QCoreApplication.translate("TaskFrame", u"--", None))
 #if QT_CONFIG(tooltip)
         self.toolButton_7.setToolTip(QCoreApplication.translate("TaskFrame", u"\u9996\u9875", None))
 #endif // QT_CONFIG(tooltip)
@@ -350,7 +353,6 @@ class Ui_TaskFrame(object):
         self.toolButton_11.setToolTip(QCoreApplication.translate("TaskFrame", u"\u8df3\u8f6c\u5230", None))
 #endif // QT_CONFIG(tooltip)
         self.toolButton_11.setText("")
-        self.label_2.setText(QCoreApplication.translate("TaskFrame", u"--", None))
 #if QT_CONFIG(tooltip)
         self.pushButton_12.setToolTip(QCoreApplication.translate("TaskFrame", u"\u8bf7\u9009\u62e9\u4e00\u6761\u8bb0\u5f55\u5e76\u5f00\u59cb\u626b\u63cf", None))
 #endif // QT_CONFIG(tooltip)

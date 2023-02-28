@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 from itertools import groupby
 
-from PySide6.QtCore import Slot, QItemSelectionModel
-from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QMessageBox
+from PySide6.QtCore import Slot, QItemSelectionModel, Qt
+from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QMessageBox, QCompleter
 
 from model.UploadedModel import UploadedModel
 from ui.ui_list_frame import Ui_ListFrame
@@ -73,7 +73,7 @@ class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
         self.totalCount = data['totalElements']
         self.pageSize = data['size']
         self.pageEdit.setValue(data['number'] + 1)
-        self.label_2.setText(f'页 共{self.totalPage}页  {self.totalCount}条记录')
+        self.label_2.setText(f'共 {self.totalCount}条记录 {self.totalPage}页')
 
     @Slot()
     def firstPage(self):
@@ -130,3 +130,33 @@ class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
             edit.clear()
             self.firstPage()
             self.tableView.setFocus()
+
+    @Slot()
+    def completerLineEdit(self):
+        print(self.focusWidget().objectName())
+        if self.focusWidget() in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL,
+                                  self.CUSTOMER_SERIAL]:
+            edit: QLineEdit = self.focusWidget()
+            text = edit.text() if edit.text() else ''
+            search = {"completedStatus": False, "selectType": edit.objectName(), "selectBoxKey": text}
+            self.http('orderDocNoComboxThread',
+                      PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/task/select',
+                                 json=search), self.orderDocNoComboxResponse)
+
+    def orderDocNoComboxResponse(self, result):
+        if self.focusWidget() in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL,
+                                  self.CUSTOMER_SERIAL]:
+            datas = result['data']
+            print(repr(datas))
+            if datas is None:
+                datas = []
+            edit: QLineEdit = self.focusWidget()
+            tips = list(map(lambda x: x['label'], datas))
+            completer = QCompleter(tips, edit)
+            # QCompleter.PopupCompletion 当前完成情况显示在弹出窗口中。
+            # QCompleter.InlineCompletion 完成显示为内联（作为选定文本）。
+            # QCompleter.UnfilteredPopupCompletion 所有可能的完成都显示在一个弹出窗口中，最有可能的建议被指示为当前。
+            completer.setCompletionMode(QCompleter.CompletionMode.UnfilteredPopupCompletion)
+            edit.setCompleter(completer)
+            completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+            completer.complete()
