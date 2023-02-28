@@ -535,14 +535,126 @@ QPushButton:pressed, QPushButton:checked {
  <resources>
   <include location="../images.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ListFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>751</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-56</x>
+     <y>98</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>ListFrame</receiver>
+   <slot>resetEdits()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>853</x>
+     <y>35</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-43</x>
+     <y>129</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>ListFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>643</x>
+     <y>579</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>628</x>
+     <y>708</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_8</sender>
+   <signal>clicked()</signal>
+   <receiver>ListFrame</receiver>
+   <slot>prePage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>674</x>
+     <y>582</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>672</x>
+     <y>700</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_9</sender>
+   <signal>clicked()</signal>
+   <receiver>ListFrame</receiver>
+   <slot>nextPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>709</x>
+     <y>579</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>708</x>
+     <y>718</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_10</sender>
+   <signal>clicked()</signal>
+   <receiver>ListFrame</receiver>
+   <slot>endPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>738</x>
+     <y>577</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>736</x>
+     <y>720</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_11</sender>
+   <signal>clicked()</signal>
+   <receiver>ListFrame</receiver>
+   <slot>jumpPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>792</x>
+     <y>582</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>789</x>
+     <y>731</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>firstPage()</slot>
   <slot>prePage()</slot>
   <slot>nextPage()</slot>
   <slot>endPage()</slot>
   <slot>jumpPage()</slot>
-  <slot>openTaskForm()</slot>
   <slot>dataRowSelected()</slot>
   <slot>completerLineEdit()</slot>
   <slot>resetEdits()</slot>

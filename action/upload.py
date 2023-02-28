@@ -65,7 +65,7 @@ class UploadAction(HttpExecutor):
                 'boxCode': item['box_code'],
                 'palletCode': item['pallet_code'],
                 'uploader': item['uploader'],
-                'uploader_name': item['uploader_name'],
+                'uploaderName': item['uploader_name'],
                 'uploadTime': item['upload_time']
             })
             self.upload_current_finished_count += 1

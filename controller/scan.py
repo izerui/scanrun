@@ -220,13 +220,13 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             'creator': Context.user.userCode,
             'creator_name': Context.user.userName,
             'unit_code': code,
-            'box_code': None,
-            'pallet_code': None,
+            'box_code': '',
+            'pallet_code': '',
             'complete': 0,
             'upload_status': 0,
-            'uploader': None,
-            'uploader_name': None,
-            'upload_time': None
+            'uploader': '',
+            'uploader_name': '',
+            'upload_time': ''
         }
         self.scanTableUnit.insertIgnore(data)
 

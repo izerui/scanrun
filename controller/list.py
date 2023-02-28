@@ -1,8 +1,13 @@
 # -*- coding: UTF-8 -*-
-from PySide6.QtWidgets import QWidget
+from itertools import groupby
 
+from PySide6.QtCore import Slot, QItemSelectionModel
+from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QMessageBox
+
+from model.UploadedModel import UploadedModel
 from ui.ui_list_frame import Ui_ListFrame
-from utils.executor import HttpExecutor
+from utils.context import Context
+from utils.executor import HttpExecutor, PostThread
 
 
 class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
@@ -10,3 +15,118 @@ class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.splitter.setSizes([50000, 20000])
+        self.renderFormLabels()
+        self.selRow = None
+        self.pageIndex = 0
+        self.pageSize = 20
+        self.totalPage = 0
+        self.totalCount = 0
+        self.firstPage()
+
+    def loadData(self):
+        reqParam = {"pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0, "activeStatus": "AUDITING",
+                    "completedStatus": False}
+        if self.ORDER_DOC_NO.text():
+            reqParam['saleOrderDocNo'] = self.ORDER_DOC_NO.text()
+        if self.CUSTOMER_ORDER_DOC_NO.text():
+            reqParam['customerOrderDocNo'] = self.CUSTOMER_ORDER_DOC_NO.text()
+        if self.CUSTOMER_MATERIAL.text():
+            reqParam['customerMaterialCode'] = self.CUSTOMER_MATERIAL.text()
+        if self.CUSTOMER_SERIAL.text():
+            reqParam['customerCode'] = self.CUSTOMER_SERIAL.text()
+        self.http('loadDataThread',
+                  PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/list',
+                             json=reqParam),
+                  self.dataResponse
+                  )
+
+    def dataResponse(self, result):
+        data = result['data']
+        self.model = UploadedModel(data['content'])
+        self.tableView.setModel(self.model)
+        self.selectionModel = QItemSelectionModel(self.model)
+        self.tableView.setSelectionModel(self.selectionModel)
+        self.selectionModel.selectionChanged.connect(self.dataRowSelected)
+        self.tableView.selectRow(0)
+        self.wrapPageData(data)
+
+    # 行选中事件
+    @Slot()
+    def dataRowSelected(self, sel, desel):
+        group = groupby(sel.indexes(), lambda x: x.row())
+        selEndRow = None
+        for i, rows in group:
+            selEndRow = i
+            break
+        if selEndRow is None:
+            return
+        self.selRow = self.model.datas[selEndRow]
+        for head in self.model.heads:
+            if getattr(self, f'form_edit_{head["code"]}'):
+                getattr(self, f'form_edit_{head["code"]}').setText(str(self.model.datas[selEndRow][head['code']]))
+
+    def wrapPageData(self, data):
+        self.dataList = data['content']
+        self.pageIndex = data['number']
+        self.totalPage = data['totalPages']
+        self.totalCount = data['totalElements']
+        self.pageSize = data['size']
+        self.pageEdit.setValue(data['number'] + 1)
+        self.label_2.setText(f'页 共{self.totalPage}页  {self.totalCount}条记录')
+
+    @Slot()
+    def firstPage(self):
+        self.pageIndex = 0
+        self.loadData()
+
+    @Slot()
+    def prePage(self):
+        if self.pageIndex > 0:
+            self.pageIndex -= 1
+            self.loadData()
+        else:
+            QMessageBox.warning(None, '提示', '已经是第一页')
+
+    @Slot()
+    def nextPage(self):
+        if self.pageIndex + 1 < self.totalPage:
+            self.pageIndex += 1
+            self.loadData()
+        else:
+            QMessageBox.warning(None, '提示', '已经是最后一页')
+
+    @Slot()
+    def endPage(self):
+        if self.totalPage - 1 > 0:
+            self.pageIndex = self.totalPage - 1
+        self.loadData()
+
+    @Slot()
+    def jumpPage(self):
+        if self.pageEdit.value() >= self.totalPage:
+            self.pageIndex = self.totalPage - 1
+        else:
+            self.pageIndex = self.pageEdit.value() - 1
+        self.loadData()
+
+    # 初始化表单展示页
+    def renderFormLabels(self):
+        for i, head in enumerate(UploadedModel(None).heads):
+            label = QLabel(self.scrollAreaWidgetContents)
+            label.setObjectName(f'form_label_{head["code"]}')
+            label.setText(f'{head["title"]}:')
+            edit = QLineEdit(self.scrollAreaWidgetContents)
+            edit.setObjectName(f'form_edit_{head["code"]}')
+            edit.setReadOnly(True)
+            self.formLayout_3.setWidget(i, QFormLayout.LabelRole, label)
+            self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
+            setattr(self, f'form_edit_{head["code"]}', edit)
+        self.show()
+
+    @Slot()
+    def resetEdits(self):
+        for edit in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL, self.CUSTOMER_SERIAL]:
+            edit.clear()
+            self.firstPage()
+            self.tableView.setFocus()

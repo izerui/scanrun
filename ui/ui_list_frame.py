@@ -284,6 +284,13 @@ class Ui_ListFrame(object):
 
 
         self.retranslateUi(ListFrame)
+        self.pushButton.clicked.connect(ListFrame.firstPage)
+        self.pushButton_2.clicked.connect(ListFrame.resetEdits)
+        self.toolButton_7.clicked.connect(ListFrame.firstPage)
+        self.toolButton_8.clicked.connect(ListFrame.prePage)
+        self.toolButton_9.clicked.connect(ListFrame.nextPage)
+        self.toolButton_10.clicked.connect(ListFrame.endPage)
+        self.toolButton_11.clicked.connect(ListFrame.jumpPage)
 
         QMetaObject.connectSlotsByName(ListFrame)
     # setupUi
