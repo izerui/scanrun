@@ -247,6 +247,11 @@ class Ui_ListFrame(object):
 
         self.horizontalLayout_2.addWidget(self.pageEdit)
 
+        self.label = QLabel(self.widget_2)
+        self.label.setObjectName(u"label")
+
+        self.horizontalLayout_2.addWidget(self.label)
+
         self.line_6 = QFrame(self.widget_2)
         self.line_6.setObjectName(u"line_6")
         self.line_6.setFrameShape(QFrame.VLine)
@@ -330,5 +335,6 @@ class Ui_ListFrame(object):
         self.toolButton_11.setToolTip(QCoreApplication.translate("ListFrame", u"\u8df3\u8f6c\u5230", None))
 #endif // QT_CONFIG(tooltip)
         self.toolButton_11.setText("")
+        self.label.setText(QCoreApplication.translate("ListFrame", u"\u9875", None))
     # retranslateUi
 

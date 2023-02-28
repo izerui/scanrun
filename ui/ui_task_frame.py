@@ -247,6 +247,11 @@ class Ui_TaskFrame(object):
 
         self.horizontalLayout_2.addWidget(self.pageEdit)
 
+        self.label = QLabel(self.widget_2)
+        self.label.setObjectName(u"label")
+
+        self.horizontalLayout_2.addWidget(self.label)
+
         self.line_7 = QFrame(self.widget_2)
         self.line_7.setObjectName(u"line_7")
         self.line_7.setFrameShape(QFrame.VLine)
@@ -353,6 +358,7 @@ class Ui_TaskFrame(object):
         self.toolButton_11.setToolTip(QCoreApplication.translate("TaskFrame", u"\u8df3\u8f6c\u5230", None))
 #endif // QT_CONFIG(tooltip)
         self.toolButton_11.setText("")
+        self.label.setText(QCoreApplication.translate("TaskFrame", u"\u9875", None))
 #if QT_CONFIG(tooltip)
         self.pushButton_12.setToolTip(QCoreApplication.translate("TaskFrame", u"\u8bf7\u9009\u62e9\u4e00\u6761\u8bb0\u5f55\u5e76\u5f00\u59cb\u626b\u63cf", None))
 #endif // QT_CONFIG(tooltip)
