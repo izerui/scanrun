@@ -210,6 +210,7 @@ class ScanTableUnit(BaseTableUnit):
                         complete     INTEGER not null default 0,
                         upload_status INTEGER not null default 0,
                         uploader     TEXT,
+                        uploader_name     TEXT,
                         upload_time  INTEGER
                     )
                 '''
@@ -226,7 +227,7 @@ class ScanTableUnit(BaseTableUnit):
     def _insert_sql(self, ignore: bool = False) -> str:
         return f'''
                 insert {'OR IGNORE' if ignore else ''} into {self.tableName} ( chejian_code, chejian_name, ent_code, business_key, banzu_code, banzu_name, create_time,
-                                   creator, creator_name, unit_code, box_code, pallet_code, complete, upload_status, uploader, upload_time)
+                                   creator, creator_name, unit_code, box_code, pallet_code, complete, upload_status, uploader, uploader_name, upload_time)
                         values (:chejian_code, :chejian_name, :ent_code, :business_key, :banzu_code, :banzu_name, :create_time,
-                                   :creator, :creator_name, :unit_code, :box_code, :pallet_code, :complete, :upload_status, :uploader, :upload_time)
+                                   :creator, :creator_name, :unit_code, :box_code, :pallet_code, :complete, :upload_status, :uploader, :uploader_name, :upload_time)
             '''

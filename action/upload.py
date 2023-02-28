@@ -51,6 +51,7 @@ class UploadAction(HttpExecutor):
         for item in self.upload_current_items:
             item['upload_status'] = 1
             item['uploader'] = Context.user.userCode
+            item['uploader_name'] = Context.user.userName
             item['upload_time'] = int(round(time.time() * 1000))
             uploadRequest['data'].append({
                 'chejianCode': item['chejian_code'],
@@ -64,6 +65,7 @@ class UploadAction(HttpExecutor):
                 'boxCode': item['box_code'],
                 'palletCode': item['pallet_code'],
                 'uploader': item['uploader'],
+                'uploader_name': item['uploader_name'],
                 'uploadTime': item['upload_time']
             })
             self.upload_current_finished_count += 1

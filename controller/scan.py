@@ -225,6 +225,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             'complete': 0,
             'upload_status': 0,
             'uploader': None,
+            'uploader_name': None,
             'upload_time': None
         }
         self.scanTableUnit.insertIgnore(data)

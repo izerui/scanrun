@@ -46,7 +46,6 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
 
     def dataResponse(self, result):
         data = result['data']
-
         self.model = TaskModel(data['content'])
         self.tableView.setModel(self.model)
         self.selectionModel = QItemSelectionModel(self.model)
