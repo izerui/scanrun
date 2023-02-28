@@ -472,6 +472,13 @@ QPushButton:pressed, QPushButton:checked {
            </widget>
           </item>
           <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>页</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="Line" name="line_7">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
