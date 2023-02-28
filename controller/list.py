@@ -73,7 +73,7 @@ class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
         self.totalCount = data['totalElements']
         self.pageSize = data['size']
         self.pageEdit.setValue(data['number'] + 1)
-        self.label_2.setText(f'共 {self.totalCount}条记录 {self.totalPage}页')
+        self.label_2.setText(f'共 {self.totalCount}条 {self.totalPage}页')
 
     @Slot()
     def firstPage(self):
