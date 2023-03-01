@@ -12,6 +12,7 @@ from playsound import playsound
 
 from utils.db import ScanTableUnit
 from utils.request import Request
+import simpleaudio as sa
 
 
 class ThreadExecutor(object):
@@ -152,21 +153,12 @@ class SoundThread(QThread):
         self.system = system()
 
     def run(self) -> None:
-        # sleep(0.5)
-        # tmpFile = None
         try:
-            if self.system == 'Windows':
-                # tmpFile = f'{self.filePathName}__{self.fileExt}'
-                # copyfile(self.filePath, tmpFile)
-                # playsound(tmpFile)
-                playsound(self.filePath)
-            else:
-                playsound(self.filePath, block=False)
+            wave_obj = sa.WaveObject.from_wave_file(self.filePath)
+            play_obj = wave_obj.play()
+            play_obj.wait_done()
         except:
             pass
-        # finally:
-        #     if tmpFile:
-        #         os.remove(tmpFile)
 
 
 class AsyncScanedDataLoader(QThread):
