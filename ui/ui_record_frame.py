@@ -15,11 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCalendarWidget, QDateTimeEdit,
-    QFormLayout, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QPushButton, QScrollArea,
-    QSizePolicy, QSplitter, QTableView, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QDateTimeEdit, QFormLayout,
+    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+    QLineEdit, QPushButton, QScrollArea, QSizePolicy,
+    QSplitter, QTableView, QVBoxLayout, QWidget)
 
 from controller.component import PagingWidget
 import images_rc
@@ -133,6 +132,16 @@ class Ui_RecordFrame(object):
 
         self.searchLayout.addWidget(self.pushButton_2, 0, 9, 1, 1)
 
+        self.dateTimeEdit = QDateTimeEdit(self.verticalLayoutWidget)
+        self.dateTimeEdit.setObjectName(u"dateTimeEdit")
+        self.dateTimeEdit.setWrapping(False)
+        self.dateTimeEdit.setProperty("showGroupSeparator", True)
+        self.dateTimeEdit.setDateTime(QDateTime(QDate(2000, 1, 1), QTime(0, 0, 1)))
+        self.dateTimeEdit.setCurrentSection(QDateTimeEdit.DaySection)
+        self.dateTimeEdit.setCalendarPopup(True)
+
+        self.searchLayout.addWidget(self.dateTimeEdit, 1, 7, 1, 1)
+
         self.CUSTOMER_MATERIAL = QLineEdit(self.verticalLayoutWidget)
         self.CUSTOMER_MATERIAL.setObjectName(u"CUSTOMER_MATERIAL")
         self.CUSTOMER_MATERIAL.setMinimumSize(QSize(0, 0))
@@ -158,23 +167,6 @@ class Ui_RecordFrame(object):
         self.PALLET_CODE.setFocusPolicy(Qt.ClickFocus)
 
         self.searchLayout.addWidget(self.PALLET_CODE, 1, 5, 1, 1)
-
-        self.dateTimeEdit = QDateTimeEdit(self.verticalLayoutWidget)
-        self.dateTimeEdit.setObjectName(u"dateTimeEdit")
-        self.dateTimeEdit.setWrapping(False)
-        self.dateTimeEdit.setProperty("showGroupSeparator", True)
-        self.dateTimeEdit.setDateTime(QDateTime(QDate(2000, 1, 1), QTime(0, 0, 1)))
-        self.dateTimeEdit.setCurrentSection(QDateTimeEdit.DaySection)
-        self.dateTimeEdit.setCalendarPopup(True)
-
-        self.searchLayout.addWidget(self.dateTimeEdit, 1, 7, 1, 1)
-
-        self.calendarWidget = QCalendarWidget(self.verticalLayoutWidget)
-        self.calendarWidget.setObjectName(u"calendarWidget")
-        self.calendarWidget.setGridVisible(False)
-        self.calendarWidget.setSelectionMode(QCalendarWidget.NoSelection)
-
-        self.searchLayout.addWidget(self.calendarWidget, 1, 8, 1, 1)
 
 
         self.verticalLayout.addLayout(self.searchLayout)
@@ -251,7 +243,7 @@ class Ui_RecordFrame(object):
         self.label_2.setText(QCoreApplication.translate("RecordFrame", u"\u7bb1\u7801:", None))
         self.label_01.setText(QCoreApplication.translate("RecordFrame", u"\u9500\u552e\u5355\u53f7:", None))
         self.pushButton_2.setText(QCoreApplication.translate("RecordFrame", u"\u91cd\u7f6e\u67e5\u8be2", None))
-        self.label_02.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
         self.dateTimeEdit.setDisplayFormat(QCoreApplication.translate("RecordFrame", u"yyyy-MM-dd", None))
+        self.label_02.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
     # retranslateUi
 
