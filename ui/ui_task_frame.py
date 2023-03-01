@@ -27,22 +27,7 @@ class Ui_TaskFrame(object):
         if not TaskFrame.objectName():
             TaskFrame.setObjectName(u"TaskFrame")
         TaskFrame.resize(931, 682)
-        TaskFrame.setStyleSheet(u"QPushButton {\n"
-"    background-color: #ffffff;\n"
-"    border: 1px solid #dcdfe6;\n"
-"    padding: 10px;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #ecf5ff;\n"
-"    color: #409eff;\n"
-"}\n"
-"\n"
-"QPushButton:pressed, QPushButton:checked {\n"
-"    border: 1px solid #3a8ee6;\n"
-"    color: #409eff;\n"
-"}")
+        TaskFrame.setStyleSheet(u"")
         self.gridLayout = QGridLayout(TaskFrame)
         self.gridLayout.setObjectName(u"gridLayout")
         self.splitter = QSplitter(TaskFrame)
@@ -270,7 +255,7 @@ class Ui_TaskFrame(object):
         icon7 = QIcon()
         icon7.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.On)
         self.pushButton_12.setIcon(icon7)
-        self.pushButton_12.setIconSize(QSize(20, 20))
+        self.pushButton_12.setIconSize(QSize(16, 16))
 
         self.horizontalLayout_2.addWidget(self.pushButton_12)
 

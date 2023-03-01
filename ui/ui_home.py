@@ -34,22 +34,7 @@ class Ui_Home(object):
         icon = QIcon()
         icon.addFile(u":/logo/pic/logo.png", QSize(), QIcon.Normal, QIcon.On)
         Home.setWindowIcon(icon)
-        Home.setStyleSheet(u"QPushButton {\n"
-"    background-color: #ffffff;\n"
-"    border: 1px solid #dcdfe6;\n"
-"    padding: 10px;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #ecf5ff;\n"
-"    color: #409eff;\n"
-"}\n"
-"\n"
-"QPushButton:pressed, QPushButton:checked {\n"
-"    border: 1px solid #3a8ee6;\n"
-"    color: #409eff;\n"
-"}")
+        Home.setStyleSheet(u"")
         Home.setUnifiedTitleAndToolBarOnMac(False)
         self.homeAction = QAction(Home)
         self.homeAction.setObjectName(u"homeAction")

@@ -14,22 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton {
-    background-color: #ffffff;
-    border: 1px solid #dcdfe6;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-QPushButton:hover {
-    background-color: #ecf5ff;
-    color: #409eff;
-}
-
-QPushButton:pressed, QPushButton:checked {
-    border: 1px solid #3a8ee6;
-    color: #409eff;
-}</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -517,8 +502,8 @@ QPushButton:pressed, QPushButton:checked {
             </property>
             <property name="iconSize">
              <size>
-              <width>20</width>
-              <height>20</height>
+              <width>16</width>
+              <height>16</height>
              </size>
             </property>
            </widget>

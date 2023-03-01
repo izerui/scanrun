@@ -27,22 +27,7 @@ class Ui_ListFrame(object):
         if not ListFrame.objectName():
             ListFrame.setObjectName(u"ListFrame")
         ListFrame.resize(931, 682)
-        ListFrame.setStyleSheet(u"QPushButton {\n"
-"    background-color: #ffffff;\n"
-"    border: 1px solid #dcdfe6;\n"
-"    padding: 10px;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #ecf5ff;\n"
-"    color: #409eff;\n"
-"}\n"
-"\n"
-"QPushButton:pressed, QPushButton:checked {\n"
-"    border: 1px solid #3a8ee6;\n"
-"    color: #409eff;\n"
-"}")
+        ListFrame.setStyleSheet(u"")
         self.gridLayout = QGridLayout(ListFrame)
         self.gridLayout.setObjectName(u"gridLayout")
         self.splitter = QSplitter(ListFrame)
