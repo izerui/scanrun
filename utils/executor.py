@@ -156,7 +156,7 @@ class SoundThread(QThread):
         try:
             wave_obj = sa.WaveObject.from_wave_file(self.filePath)
             play_obj = wave_obj.play()
-            play_obj.wait_done()
+            # play_obj.wait_done()
         except:
             pass
 
