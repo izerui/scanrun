@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from itertools import groupby
 
-from PySide6.QtCore import Slot, QItemSelectionModel, Qt
+from PySide6.QtCore import Slot, QItemSelectionModel, Qt, QDate
 from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QMessageBox, QCompleter
 
 from model.UploadedModel import UploadedModel
@@ -20,9 +20,12 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
         self.renderFormLabels()
         self.selRow = None
         self.firstPage()
+        self.autoCompleterEditors = [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL,
+                                  self.CUSTOMER_SERIAL, self.UNIT_CODE, self.BOX_CODE, self.PALLET_CODE]
+        self.dateTimeEdit.setDate(QDate())
 
     def loadData(self):
-        reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0, "activeStatus": "AUDITING",
+        reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0,
                     "completedStatus": False}
         if self.ORDER_DOC_NO.text():
             reqParam['saleOrderDocNo'] = self.ORDER_DOC_NO.text()
@@ -32,6 +35,8 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
             reqParam['customerMaterialCode'] = self.CUSTOMER_MATERIAL.text()
         if self.CUSTOMER_SERIAL.text():
             reqParam['customerCode'] = self.CUSTOMER_SERIAL.text()
+        if self.UNIT_CODE.text():
+            reqParam['unitCode'] = self.UNIT_CODE.text()
         self.http('loadDataThread',
                   PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/list',
                              json=reqParam),
@@ -79,7 +84,7 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
 
     @Slot()
     def resetEdits(self):
-        for edit in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL, self.CUSTOMER_SERIAL]:
+        for edit in self.autoCompleterEditors:
             edit.clear()
             self.firstPage()
             self.tableView.setFocus()
@@ -91,18 +96,16 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
     @Slot()
     def completerLineEdit(self):
         print(self.focusWidget().objectName())
-        if self.focusWidget() in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL,
-                                  self.CUSTOMER_SERIAL]:
+        if self.focusWidget() in self.autoCompleterEditors:
             edit: QLineEdit = self.focusWidget()
             text = edit.text() if edit.text() else ''
-            search = {"completedStatus": False, "selectType": edit.objectName(), "selectBoxKey": text}
+            search = {"selectType": edit.objectName(), "selectBoxKey": text}
             self.http('orderDocNoComboxThread',
-                      PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/task/select',
+                      PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/select',
                                  json=search), self.orderDocNoComboxResponse)
 
     def orderDocNoComboxResponse(self, result):
-        if self.focusWidget() in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL,
-                                  self.CUSTOMER_SERIAL]:
+        if self.focusWidget() in self.autoCompleterEditors:
             datas = result['data']
             print(repr(datas))
             if datas is None:

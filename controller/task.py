@@ -24,10 +24,10 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.renderFormLabels()
         self.selRow = None
         self.firstPage()
+        self.autoCompleterEditors = [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL, self.CUSTOMER_SERIAL]
 
     def loadData(self):
-        reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0, "activeStatus": "AUDITING",
-                    "completedStatus": False}
+        reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0, "completedStatus": False}
         if self.ORDER_DOC_NO.text():
             reqParam['saleOrderDocNo'] = self.ORDER_DOC_NO.text()
         if self.CUSTOMER_ORDER_DOC_NO.text():
@@ -94,7 +94,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
     @Slot()
     def completerLineEdit(self):
         print(self.focusWidget().objectName())
-        if self.focusWidget() in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL, self.CUSTOMER_SERIAL]:
+        if self.focusWidget() in self.autoCompleterEditors:
             edit:QLineEdit = self.focusWidget()
             text = edit.text() if edit.text() else ''
             search = {"completedStatus": False, "selectType": edit.objectName(), "selectBoxKey": text}
@@ -103,7 +103,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
                                  json=search), self.orderDocNoComboxResponse)
 
     def orderDocNoComboxResponse(self, result):
-        if self.focusWidget() in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL, self.CUSTOMER_SERIAL]:
+        if self.focusWidget() in self.autoCompleterEditors:
             datas = result['data']
             print(repr(datas))
             if datas is None:
@@ -121,7 +121,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
 
     @Slot()
     def resetEdits(self):
-        for edit in [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL, self.CUSTOMER_SERIAL]:
+        for edit in self.autoCompleterEditors:
             edit.clear()
             self.firstPage()
             self.tableView.setFocus()

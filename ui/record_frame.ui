@@ -35,6 +35,20 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <layout class="QGridLayout" name="searchLayout">
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="UNIT_CODE">
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="6">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>日期:</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="8" alignment="Qt::AlignLeft">
           <widget class="QPushButton" name="pushButton">
            <property name="cursor">
@@ -50,64 +64,6 @@
             <iconset>
              <normalon>:/logo/pic/search.png</normalon>
             </iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4" alignment="Qt::AlignRight">
-          <widget class="QLabel" name="label_03">
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>客户料号:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <widget class="QLineEdit" name="CUSTOMER_MATERIAL">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2" alignment="Qt::AlignRight">
-          <widget class="QLabel" name="label_02">
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>客户订单号:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="7">
-          <widget class="QLineEdit" name="CUSTOMER_SERIAL">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
            </property>
           </widget>
          </item>
@@ -127,6 +83,43 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="4" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_03">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>客户料号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>卡板码:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>产品码:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>箱码:</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0" alignment="Qt::AlignRight">
           <widget class="QLabel" name="label_01">
            <property name="maximumSize">
@@ -143,8 +136,8 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="ORDER_DOC_NO">
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="CUSTOMER_ORDER_DOC_NO">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -156,8 +149,21 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QLineEdit" name="CUSTOMER_ORDER_DOC_NO">
+         <item row="0" column="7">
+          <widget class="QLineEdit" name="CUSTOMER_SERIAL">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="ORDER_DOC_NO">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -184,6 +190,78 @@
             <iconset>
              <normalon>:/logo/pic/reset.png</normalon>
             </iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="7">
+          <widget class="QDateTimeEdit" name="dateTimeEdit">
+           <property name="wrapping">
+            <bool>false</bool>
+           </property>
+           <property name="showGroupSeparator" stdset="0">
+            <bool>true</bool>
+           </property>
+           <property name="dateTime">
+            <datetime>
+             <hour>0</hour>
+             <minute>0</minute>
+             <second>1</second>
+             <year>2000</year>
+             <month>1</month>
+             <day>1</day>
+            </datetime>
+           </property>
+           <property name="currentSection">
+            <enum>QDateTimeEdit::DaySection</enum>
+           </property>
+           <property name="displayFormat">
+            <string>yyyy-MM-dd</string>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QLineEdit" name="CUSTOMER_MATERIAL">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="BOX_CODE">
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_02">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>客户订单号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLineEdit" name="PALLET_CODE">
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
            </property>
           </widget>
          </item>
@@ -378,6 +456,70 @@
     <hint type="destinationlabel">
      <x>629</x>
      <y>-48</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>UNIT_CODE</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>RecordFrame</receiver>
+   <slot>completerLineEdit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>91</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>66</x>
+     <y>725</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>RecordFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>751</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>711</x>
+     <y>776</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>BOX_CODE</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>RecordFrame</receiver>
+   <slot>completerLineEdit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>64</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>270</x>
+     <y>698</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PALLET_CODE</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>RecordFrame</receiver>
+   <slot>completerLineEdit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>445</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>454</x>
+     <y>813</y>
     </hint>
    </hints>
   </connection>

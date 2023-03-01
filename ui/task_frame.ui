@@ -35,8 +35,8 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <layout class="QGridLayout" name="searchLayout">
-         <item row="0" column="3">
-          <widget class="QLineEdit" name="CUSTOMER_ORDER_DOC_NO">
+         <item row="0" column="7">
+          <widget class="QLineEdit" name="CUSTOMER_SERIAL">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -48,21 +48,32 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="8" alignment="Qt::AlignLeft">
-          <widget class="QPushButton" name="pushButton">
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
+         <item row="0" column="5">
+          <widget class="QLineEdit" name="CUSTOMER_MATERIAL">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
            </property>
            <property name="focusPolicy">
             <enum>Qt::ClickFocus</enum>
            </property>
-           <property name="text">
-            <string>查询</string>
+          </widget>
+         </item>
+         <item row="0" column="0" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_01">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
            </property>
-           <property name="icon">
-            <iconset>
-             <normalon>:/logo/pic/search.png</normalon>
-            </iconset>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>销售单号:</string>
            </property>
           </widget>
          </item>
@@ -92,98 +103,6 @@
            </property>
            <property name="text">
             <string>客户编码:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="9">
-          <widget class="QPushButton" name="pushButton_2">
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-           <property name="text">
-            <string>重置</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normalon>:/logo/pic/reset.png</normalon>
-            </iconset>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4" alignment="Qt::AlignRight">
-          <widget class="QLabel" name="label_03">
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>客户料号:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="7">
-          <widget class="QLineEdit" name="CUSTOMER_SERIAL">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0" alignment="Qt::AlignRight">
-          <widget class="QLabel" name="label_01">
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>销售单号:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <widget class="QLineEdit" name="CUSTOMER_MATERIAL">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="focusPolicy">
-            <enum>Qt::ClickFocus</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2" alignment="Qt::AlignRight">
-          <widget class="QLabel" name="label_02">
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>客户订单号:</string>
            </property>
           </widget>
          </item>
@@ -222,6 +141,87 @@
              <width>16</width>
              <height>16</height>
             </size>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_03">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>客户料号:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="8" alignment="Qt::AlignLeft">
+          <widget class="QPushButton" name="pushButton">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="text">
+            <string>查询</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normalon>:/logo/pic/search.png</normalon>
+            </iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="9">
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+           <property name="text">
+            <string>重置</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normalon>:/logo/pic/reset.png</normalon>
+            </iconset>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="CUSTOMER_ORDER_DOC_NO">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::ClickFocus</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" alignment="Qt::AlignRight">
+          <widget class="QLabel" name="label_02">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>客户订单号:</string>
            </property>
           </widget>
          </item>
@@ -418,6 +418,22 @@
     <hint type="destinationlabel">
      <x>859</x>
      <y>78</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>679</x>
+     <y>27</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>679</y>
     </hint>
    </hints>
   </connection>
