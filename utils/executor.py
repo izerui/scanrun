@@ -152,7 +152,7 @@ class SoundThread(QThread):
         self.system = system()
 
     def run(self) -> None:
-        sleep(0.5)
+        # sleep(0.5)
         # tmpFile = None
         try:
             if self.system == 'Windows':
