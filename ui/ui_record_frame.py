@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'task_frame.ui'
+## Form generated from reading UI file 'record_frame.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -16,22 +16,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFormLayout, QGridLayout,
-    QHeaderView, QLabel, QLineEdit, QPushButton,
-    QScrollArea, QSizePolicy, QSplitter, QTableView,
-    QVBoxLayout, QWidget)
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QPushButton, QScrollArea, QSizePolicy, QSplitter,
+    QTableView, QVBoxLayout, QWidget)
 
 from controller.component import PagingWidget
 import images_rc
 
-class Ui_TaskFrame(object):
-    def setupUi(self, TaskFrame):
-        if not TaskFrame.objectName():
-            TaskFrame.setObjectName(u"TaskFrame")
-        TaskFrame.resize(931, 682)
-        TaskFrame.setStyleSheet(u"")
-        self.gridLayout = QGridLayout(TaskFrame)
+class Ui_RecordFrame(object):
+    def setupUi(self, RecordFrame):
+        if not RecordFrame.objectName():
+            RecordFrame.setObjectName(u"RecordFrame")
+        RecordFrame.resize(931, 682)
+        RecordFrame.setStyleSheet(u"")
+        self.gridLayout = QGridLayout(RecordFrame)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.splitter = QSplitter(TaskFrame)
+        self.splitter = QSplitter(RecordFrame)
         self.splitter.setObjectName(u"splitter")
         self.splitter.setEnabled(True)
         self.splitter.setOrientation(Qt.Vertical)
@@ -44,13 +44,6 @@ class Ui_TaskFrame(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.searchLayout = QGridLayout()
         self.searchLayout.setObjectName(u"searchLayout")
-        self.CUSTOMER_ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
-        self.CUSTOMER_ORDER_DOC_NO.setObjectName(u"CUSTOMER_ORDER_DOC_NO")
-        self.CUSTOMER_ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
-        self.CUSTOMER_ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
-
-        self.searchLayout.addWidget(self.CUSTOMER_ORDER_DOC_NO, 0, 3, 1, 1)
-
         self.pushButton = QPushButton(self.verticalLayoutWidget)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
@@ -61,50 +54,12 @@ class Ui_TaskFrame(object):
 
         self.searchLayout.addWidget(self.pushButton, 0, 8, 1, 1, Qt.AlignLeft)
 
-        self.ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
-        self.ORDER_DOC_NO.setObjectName(u"ORDER_DOC_NO")
-        self.ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
-        self.ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
-
-        self.searchLayout.addWidget(self.ORDER_DOC_NO, 0, 1, 1, 1)
-
-        self.label_04 = QLabel(self.verticalLayoutWidget)
-        self.label_04.setObjectName(u"label_04")
-        self.label_04.setMaximumSize(QSize(120, 16777215))
-        self.label_04.setLayoutDirection(Qt.LeftToRight)
-
-        self.searchLayout.addWidget(self.label_04, 0, 6, 1, 1, Qt.AlignRight)
-
-        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_2.setFocusPolicy(Qt.ClickFocus)
-        icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/reset.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_2.setIcon(icon1)
-
-        self.searchLayout.addWidget(self.pushButton_2, 0, 9, 1, 1)
-
         self.label_03 = QLabel(self.verticalLayoutWidget)
         self.label_03.setObjectName(u"label_03")
         self.label_03.setMaximumSize(QSize(120, 16777215))
         self.label_03.setLayoutDirection(Qt.LeftToRight)
 
         self.searchLayout.addWidget(self.label_03, 0, 4, 1, 1, Qt.AlignRight)
-
-        self.CUSTOMER_SERIAL = QLineEdit(self.verticalLayoutWidget)
-        self.CUSTOMER_SERIAL.setObjectName(u"CUSTOMER_SERIAL")
-        self.CUSTOMER_SERIAL.setMinimumSize(QSize(0, 0))
-        self.CUSTOMER_SERIAL.setFocusPolicy(Qt.ClickFocus)
-
-        self.searchLayout.addWidget(self.CUSTOMER_SERIAL, 0, 7, 1, 1)
-
-        self.label_01 = QLabel(self.verticalLayoutWidget)
-        self.label_01.setObjectName(u"label_01")
-        self.label_01.setMaximumSize(QSize(120, 16777215))
-        self.label_01.setLayoutDirection(Qt.LeftToRight)
-
-        self.searchLayout.addWidget(self.label_01, 0, 0, 1, 1, Qt.AlignRight)
 
         self.CUSTOMER_MATERIAL = QLineEdit(self.verticalLayoutWidget)
         self.CUSTOMER_MATERIAL.setObjectName(u"CUSTOMER_MATERIAL")
@@ -120,20 +75,50 @@ class Ui_TaskFrame(object):
 
         self.searchLayout.addWidget(self.label_02, 0, 2, 1, 1, Qt.AlignRight)
 
-        self.pushButton_12 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_12.setObjectName(u"pushButton_12")
-        self.pushButton_12.setMaximumSize(QSize(16777215, 16777215))
-        font = QFont()
-        font.setPointSize(11)
-        self.pushButton_12.setFont(font)
-        self.pushButton_12.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_12.setFocusPolicy(Qt.ClickFocus)
-        icon2 = QIcon()
-        icon2.addFile(u":/logo/pic/scanIco.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_12.setIcon(icon2)
-        self.pushButton_12.setIconSize(QSize(16, 16))
+        self.CUSTOMER_SERIAL = QLineEdit(self.verticalLayoutWidget)
+        self.CUSTOMER_SERIAL.setObjectName(u"CUSTOMER_SERIAL")
+        self.CUSTOMER_SERIAL.setMinimumSize(QSize(0, 0))
+        self.CUSTOMER_SERIAL.setFocusPolicy(Qt.ClickFocus)
 
-        self.searchLayout.addWidget(self.pushButton_12, 0, 10, 1, 1)
+        self.searchLayout.addWidget(self.CUSTOMER_SERIAL, 0, 7, 1, 1)
+
+        self.label_04 = QLabel(self.verticalLayoutWidget)
+        self.label_04.setObjectName(u"label_04")
+        self.label_04.setMaximumSize(QSize(120, 16777215))
+        self.label_04.setLayoutDirection(Qt.LeftToRight)
+
+        self.searchLayout.addWidget(self.label_04, 0, 6, 1, 1, Qt.AlignRight)
+
+        self.label_01 = QLabel(self.verticalLayoutWidget)
+        self.label_01.setObjectName(u"label_01")
+        self.label_01.setMaximumSize(QSize(120, 16777215))
+        self.label_01.setLayoutDirection(Qt.LeftToRight)
+
+        self.searchLayout.addWidget(self.label_01, 0, 0, 1, 1, Qt.AlignRight)
+
+        self.ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
+        self.ORDER_DOC_NO.setObjectName(u"ORDER_DOC_NO")
+        self.ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
+        self.ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.ORDER_DOC_NO, 0, 1, 1, 1)
+
+        self.CUSTOMER_ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
+        self.CUSTOMER_ORDER_DOC_NO.setObjectName(u"CUSTOMER_ORDER_DOC_NO")
+        self.CUSTOMER_ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
+        self.CUSTOMER_ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.CUSTOMER_ORDER_DOC_NO, 0, 3, 1, 1)
+
+        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_2.setFocusPolicy(Qt.ClickFocus)
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/reset.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_2.setIcon(icon1)
+
+        self.searchLayout.addWidget(self.pushButton_2, 0, 9, 1, 1)
 
 
         self.verticalLayout.addLayout(self.searchLayout)
@@ -151,6 +136,9 @@ class Ui_TaskFrame(object):
         self.paging = PagingWidget(self.verticalLayoutWidget)
         self.paging.setObjectName(u"paging")
         self.paging.setMinimumSize(QSize(0, 12))
+        self.horizontalLayout_2 = QHBoxLayout(self.paging)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
 
         self.verticalLayout.addWidget(self.paging)
 
@@ -182,28 +170,23 @@ class Ui_TaskFrame(object):
         self.gridLayout.addWidget(self.splitter, 0, 0, 1, 1)
 
 
-        self.retranslateUi(TaskFrame)
-        self.ORDER_DOC_NO.textChanged.connect(TaskFrame.completerLineEdit)
-        self.CUSTOMER_ORDER_DOC_NO.textChanged.connect(TaskFrame.completerLineEdit)
-        self.CUSTOMER_MATERIAL.textChanged.connect(TaskFrame.completerLineEdit)
-        self.CUSTOMER_SERIAL.textChanged.connect(TaskFrame.completerLineEdit)
-        self.pushButton_2.clicked.connect(TaskFrame.resetEdits)
-        self.pushButton_12.clicked.connect(TaskFrame.openTaskForm)
+        self.retranslateUi(RecordFrame)
+        self.pushButton_2.clicked.connect(RecordFrame.resetEdits)
+        self.ORDER_DOC_NO.textChanged.connect(RecordFrame.completerLineEdit)
+        self.CUSTOMER_ORDER_DOC_NO.textChanged.connect(RecordFrame.completerLineEdit)
+        self.CUSTOMER_MATERIAL.textChanged.connect(RecordFrame.completerLineEdit)
+        self.CUSTOMER_SERIAL.textChanged.connect(RecordFrame.completerLineEdit)
 
-        QMetaObject.connectSlotsByName(TaskFrame)
+        QMetaObject.connectSlotsByName(RecordFrame)
     # setupUi
 
-    def retranslateUi(self, TaskFrame):
-        TaskFrame.setWindowTitle(QCoreApplication.translate("TaskFrame", u"Form", None))
-        self.pushButton.setText(QCoreApplication.translate("TaskFrame", u"\u67e5\u8be2", None))
-        self.label_04.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
-        self.pushButton_2.setText(QCoreApplication.translate("TaskFrame", u"\u91cd\u7f6e", None))
-        self.label_03.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u6599\u53f7:", None))
-        self.label_01.setText(QCoreApplication.translate("TaskFrame", u"\u9500\u552e\u5355\u53f7:", None))
-        self.label_02.setText(QCoreApplication.translate("TaskFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
-#if QT_CONFIG(tooltip)
-        self.pushButton_12.setToolTip(QCoreApplication.translate("TaskFrame", u"\u8bf7\u9009\u62e9\u4e00\u6761\u8bb0\u5f55\u5e76\u5f00\u59cb\u626b\u63cf", None))
-#endif // QT_CONFIG(tooltip)
-        self.pushButton_12.setText(QCoreApplication.translate("TaskFrame", u"\u5f00\u59cb\u626b\u63cf", None))
+    def retranslateUi(self, RecordFrame):
+        RecordFrame.setWindowTitle(QCoreApplication.translate("RecordFrame", u"Form", None))
+        self.pushButton.setText(QCoreApplication.translate("RecordFrame", u"\u5f00\u59cb\u67e5\u8be2", None))
+        self.label_03.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u6599\u53f7:", None))
+        self.label_02.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
+        self.label_04.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
+        self.label_01.setText(QCoreApplication.translate("RecordFrame", u"\u9500\u552e\u5355\u53f7:", None))
+        self.pushButton_2.setText(QCoreApplication.translate("RecordFrame", u"\u91cd\u7f6e\u67e5\u8be2", None))
     # retranslateUi
 

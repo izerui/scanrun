@@ -5,27 +5,24 @@ from PySide6.QtCore import Slot, QItemSelectionModel, Qt
 from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QMessageBox, QCompleter
 
 from model.UploadedModel import UploadedModel
-from ui.ui_list_frame import Ui_ListFrame
+from ui.ui_record_frame import Ui_RecordFrame
 from utils.context import Context
 from utils.executor import HttpExecutor, PostThread
 
 
-class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
+class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
 
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.paging.loadData.connect(self.loadData)
         self.splitter.setSizes([50000, 20000])
         self.renderFormLabels()
         self.selRow = None
-        self.pageIndex = 0
-        self.pageSize = 20
-        self.totalPage = 0
-        self.totalCount = 0
         self.firstPage()
 
     def loadData(self):
-        reqParam = {"pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0, "activeStatus": "AUDITING",
+        reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0, "activeStatus": "AUDITING",
                     "completedStatus": False}
         if self.ORDER_DOC_NO.text():
             reqParam['saleOrderDocNo'] = self.ORDER_DOC_NO.text()
@@ -49,7 +46,7 @@ class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
         self.tableView.setSelectionModel(self.selectionModel)
         self.selectionModel.selectionChanged.connect(self.dataRowSelected)
         self.tableView.selectRow(0)
-        self.wrapPageData(data)
+        self.paging.setPage(data)
 
     # 行选中事件
     @Slot()
@@ -65,50 +62,6 @@ class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
         for head in self.model.heads:
             if getattr(self, f'form_edit_{head["code"]}'):
                 getattr(self, f'form_edit_{head["code"]}').setText(str(self.model.datas[selEndRow][head['code']]))
-
-    def wrapPageData(self, data):
-        self.dataList = data['content']
-        self.pageIndex = data['number']
-        self.totalPage = data['totalPages']
-        self.totalCount = data['totalElements']
-        self.pageSize = data['size']
-        self.pageEdit.setValue(data['number'] + 1)
-        self.label_2.setText(f'共 {self.totalCount}条 {self.totalPage}页')
-
-    @Slot()
-    def firstPage(self):
-        self.pageIndex = 0
-        self.loadData()
-
-    @Slot()
-    def prePage(self):
-        if self.pageIndex > 0:
-            self.pageIndex -= 1
-            self.loadData()
-        else:
-            QMessageBox.warning(None, '提示', '已经是第一页')
-
-    @Slot()
-    def nextPage(self):
-        if self.pageIndex + 1 < self.totalPage:
-            self.pageIndex += 1
-            self.loadData()
-        else:
-            QMessageBox.warning(None, '提示', '已经是最后一页')
-
-    @Slot()
-    def endPage(self):
-        if self.totalPage - 1 > 0:
-            self.pageIndex = self.totalPage - 1
-        self.loadData()
-
-    @Slot()
-    def jumpPage(self):
-        if self.pageEdit.value() >= self.totalPage:
-            self.pageIndex = self.totalPage - 1
-        else:
-            self.pageIndex = self.pageEdit.value() - 1
-        self.loadData()
 
     # 初始化表单展示页
     def renderFormLabels(self):
@@ -130,6 +83,10 @@ class ListFrame(QWidget, Ui_ListFrame, HttpExecutor):
             edit.clear()
             self.firstPage()
             self.tableView.setFocus()
+
+    def firstPage(self):
+        self.paging.pageIndex = 0
+        self.loadData()
 
     @Slot()
     def completerLineEdit(self):

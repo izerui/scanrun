@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QButtonGroup, QFrame, QGridLayout,
     QMainWindow, QMenuBar, QPushButton, QSizePolicy,
     QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
 
-from controller.list import ListFrame
+from controller.record import RecordFrame
 from controller.scan import ScanFrame
 from controller.task import TaskFrame
 import images_rc
@@ -110,9 +110,9 @@ class Ui_Home(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(-1, 0, 0, -1)
         self.stackedTab.addWidget(self.taskFrame)
-        self.listFrame = ListFrame()
-        self.listFrame.setObjectName(u"listFrame")
-        self.stackedTab.addWidget(self.listFrame)
+        self.recordFrame = RecordFrame()
+        self.recordFrame.setObjectName(u"recordFrame")
+        self.stackedTab.addWidget(self.recordFrame)
         self.scanFrame = ScanFrame()
         self.scanFrame.setObjectName(u"scanFrame")
         self.stackedTab.addWidget(self.scanFrame)

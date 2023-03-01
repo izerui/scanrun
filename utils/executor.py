@@ -2,17 +2,15 @@
 import json
 import sys
 from platform import system
-from time import sleep
 from typing import Callable
 
-from PySide6.QtCore import QThread, Signal, QMutex
+import simpleaudio as sa
+from PySide6.QtCore import QThread, Signal
 from PySide6.QtWidgets import QMessageBox
 from httpx import Response
-from playsound import playsound
 
 from utils.db import ScanTableUnit
 from utils.request import Request
-import simpleaudio as sa
 
 
 class ThreadExecutor(object):
@@ -163,6 +161,7 @@ class SoundThread(QThread):
 
 class AsyncScanedDataLoader(QThread):
     result = Signal(int, int, list)
+
     def __init__(self, scanTableUnit: ScanTableUnit):
         super().__init__()
         self.scanTableUnit = scanTableUnit
@@ -181,6 +180,7 @@ class AsyncScanedDataLoader(QThread):
             start += size
             if not datas:
                 break
+
     def stop_wait(self):
         self.stopStatus = True
         while self.isRunning():

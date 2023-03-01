@@ -18,17 +18,15 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.paging.loadData.connect(self.loadData)
+
         self.splitter.setSizes([50000, 20000])
         self.renderFormLabels()
         self.selRow = None
-        self.pageIndex = 0
-        self.pageSize = 20
-        self.totalPage = 0
-        self.totalCount = 0
         self.firstPage()
 
     def loadData(self):
-        reqParam = {"pageIndex": self.pageIndex, "pageSize": self.pageSize, "total": 0, "activeStatus": "AUDITING",
+        reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0, "activeStatus": "AUDITING",
                     "completedStatus": False}
         if self.ORDER_DOC_NO.text():
             reqParam['saleOrderDocNo'] = self.ORDER_DOC_NO.text()
@@ -52,7 +50,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.tableView.setSelectionModel(self.selectionModel)
         self.selectionModel.selectionChanged.connect(self.dataRowSelected)
         self.tableView.selectRow(0)
-        self.wrapPageData(data)
+        self.paging.setPage(data)
 
     # 行选中事件
     @Slot()
@@ -68,50 +66,6 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         for head in self.model.originHeads:
             if getattr(self, f'form_edit_{head["code"]}'):
                 getattr(self, f'form_edit_{head["code"]}').setText(str(self.model.datas[selEndRow][head['code']]))
-
-    def wrapPageData(self, data):
-        self.dataList = data['content']
-        self.pageIndex = data['number']
-        self.totalPage = data['totalPages']
-        self.totalCount = data['totalElements']
-        self.pageSize = data['size']
-        self.pageEdit.setValue(data['number'] + 1)
-        self.label_2.setText(f'共 {self.totalCount}条 {self.totalPage}页')
-
-    @Slot()
-    def firstPage(self):
-        self.pageIndex = 0
-        self.loadData()
-
-    @Slot()
-    def prePage(self):
-        if self.pageIndex > 0:
-            self.pageIndex -= 1
-            self.loadData()
-        else:
-            QMessageBox.warning(None, '提示', '已经是第一页')
-
-    @Slot()
-    def nextPage(self):
-        if self.pageIndex + 1 < self.totalPage:
-            self.pageIndex += 1
-            self.loadData()
-        else:
-            QMessageBox.warning(None, '提示', '已经是最后一页')
-
-    @Slot()
-    def endPage(self):
-        if self.totalPage - 1 > 0:
-            self.pageIndex = self.totalPage - 1
-        self.loadData()
-
-    @Slot()
-    def jumpPage(self):
-        if self.pageEdit.value() >= self.totalPage:
-            self.pageIndex = self.totalPage - 1
-        else:
-            self.pageIndex = self.pageEdit.value() - 1
-        self.loadData()
 
     @Slot()
     def openTaskForm(self):
@@ -171,3 +125,8 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             edit.clear()
             self.firstPage()
             self.tableView.setFocus()
+
+    @Slot()
+    def firstPage(self):
+        self.paging.pageIndex = 0
+        self.loadData()
