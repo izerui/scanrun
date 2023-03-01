@@ -1,9 +1,11 @@
 from typing import Callable
 
-from PySide6.QtCore import Signal, Slot
+from PySide6.QtCore import Signal, Slot, QDate
 from PySide6.QtWidgets import QMessageBox, QWidget
 
+from ui.ui_date_range import Ui_DateRange
 from ui.ui_paging import Ui_PagingWidget
+
 
 # 确认对话框
 class ConfirmMessageBox(QMessageBox):
@@ -24,11 +26,12 @@ class ConfirmMessageBox(QMessageBox):
             success()
         return exe
 
+
 # 分页组件
 class PagingWidget(QWidget, Ui_PagingWidget):
     loadData = Signal()
 
-    def __init__(self, parent):
+    def __init__(self, parent=None):
         super().__init__()
         self.setupUi(self)
         self.pageIndex = 0
@@ -78,3 +81,34 @@ class PagingWidget(QWidget, Ui_PagingWidget):
         else:
             self.pageIndex = self.pageEdit.value() - 1
         self.loadData.emit()
+
+
+class DateRange(QWidget, Ui_DateRange):
+    dateRangeSignal = Signal(QDate, QDate)
+
+    def __init__(self, layout=None):
+        super().__init__()
+        self.setupUi(self)
+        self.resetDate()
+
+    @Slot()
+    def beginChanged(self):
+        self.end.setFocus()
+        # self.end.calendarWidget().show()
+        pass
+
+    @Slot()
+    def endChanged(self):
+        beginDate = self.begin.date().toPython()
+        endDate = self.end.date().toPython()
+        if beginDate and endDate:
+            self.dateRangeSignal.emit(beginDate, endDate)
+
+    def isValid(self) -> bool:
+        if self.begin.date() and self.end.date():
+            return True
+        return False
+
+    def resetDate(self):
+        self.begin.setDate(QDate.currentDate())
+        self.end.setDate(QDate.currentDate())

@@ -15,12 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QDateTimeEdit, QFormLayout,
-    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFormLayout, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QLayout,
     QLineEdit, QPushButton, QScrollArea, QSizePolicy,
     QSplitter, QTableView, QVBoxLayout, QWidget)
 
-from controller.component import PagingWidget
+from controller.component import (DateRange, PagingWidget)
 import images_rc
 
 class Ui_RecordFrame(object):
@@ -44,33 +44,33 @@ class Ui_RecordFrame(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.searchLayout = QGridLayout()
         self.searchLayout.setObjectName(u"searchLayout")
-        self.UNIT_CODE = QLineEdit(self.verticalLayoutWidget)
-        self.UNIT_CODE.setObjectName(u"UNIT_CODE")
-        self.UNIT_CODE.setFocusPolicy(Qt.ClickFocus)
+        self.searchLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.CUSTOMER_SERIAL = QLineEdit(self.verticalLayoutWidget)
+        self.CUSTOMER_SERIAL.setObjectName(u"CUSTOMER_SERIAL")
+        self.CUSTOMER_SERIAL.setMinimumSize(QSize(0, 0))
+        self.CUSTOMER_SERIAL.setFocusPolicy(Qt.ClickFocus)
 
-        self.searchLayout.addWidget(self.UNIT_CODE, 1, 1, 1, 1)
+        self.searchLayout.addWidget(self.CUSTOMER_SERIAL, 1, 1, 1, 1)
+
+        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_2.setFocusPolicy(Qt.ClickFocus)
+        icon = QIcon()
+        icon.addFile(u":/logo/pic/reset.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton_2.setIcon(icon)
+
+        self.searchLayout.addWidget(self.pushButton_2, 1, 6, 1, 1)
+
+        self.label = QLabel(self.verticalLayoutWidget)
+        self.label.setObjectName(u"label")
+
+        self.searchLayout.addWidget(self.label, 1, 2, 1, 1, Qt.AlignRight)
 
         self.label_4 = QLabel(self.verticalLayoutWidget)
         self.label_4.setObjectName(u"label_4")
 
-        self.searchLayout.addWidget(self.label_4, 1, 6, 1, 1)
-
-        self.pushButton = QPushButton(self.verticalLayoutWidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton.setFocusPolicy(Qt.ClickFocus)
-        icon = QIcon()
-        icon.addFile(u":/logo/pic/search.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton.setIcon(icon)
-
-        self.searchLayout.addWidget(self.pushButton, 0, 8, 1, 1, Qt.AlignLeft)
-
-        self.label_04 = QLabel(self.verticalLayoutWidget)
-        self.label_04.setObjectName(u"label_04")
-        self.label_04.setMaximumSize(QSize(120, 16777215))
-        self.label_04.setLayoutDirection(Qt.LeftToRight)
-
-        self.searchLayout.addWidget(self.label_04, 0, 6, 1, 1, Qt.AlignRight)
+        self.searchLayout.addWidget(self.label_4, 2, 2, 1, 1, Qt.AlignRight)
 
         self.label_03 = QLabel(self.verticalLayoutWidget)
         self.label_03.setObjectName(u"label_03")
@@ -79,68 +79,12 @@ class Ui_RecordFrame(object):
 
         self.searchLayout.addWidget(self.label_03, 0, 4, 1, 1, Qt.AlignRight)
 
-        self.label_3 = QLabel(self.verticalLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
+        self.label_04 = QLabel(self.verticalLayoutWidget)
+        self.label_04.setObjectName(u"label_04")
+        self.label_04.setMaximumSize(QSize(120, 16777215))
+        self.label_04.setLayoutDirection(Qt.LeftToRight)
 
-        self.searchLayout.addWidget(self.label_3, 1, 4, 1, 1)
-
-        self.label = QLabel(self.verticalLayoutWidget)
-        self.label.setObjectName(u"label")
-
-        self.searchLayout.addWidget(self.label, 1, 0, 1, 1)
-
-        self.label_2 = QLabel(self.verticalLayoutWidget)
-        self.label_2.setObjectName(u"label_2")
-
-        self.searchLayout.addWidget(self.label_2, 1, 2, 1, 1)
-
-        self.label_01 = QLabel(self.verticalLayoutWidget)
-        self.label_01.setObjectName(u"label_01")
-        self.label_01.setMaximumSize(QSize(120, 16777215))
-        self.label_01.setLayoutDirection(Qt.LeftToRight)
-
-        self.searchLayout.addWidget(self.label_01, 0, 0, 1, 1, Qt.AlignRight)
-
-        self.CUSTOMER_ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
-        self.CUSTOMER_ORDER_DOC_NO.setObjectName(u"CUSTOMER_ORDER_DOC_NO")
-        self.CUSTOMER_ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
-        self.CUSTOMER_ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
-
-        self.searchLayout.addWidget(self.CUSTOMER_ORDER_DOC_NO, 0, 3, 1, 1)
-
-        self.CUSTOMER_SERIAL = QLineEdit(self.verticalLayoutWidget)
-        self.CUSTOMER_SERIAL.setObjectName(u"CUSTOMER_SERIAL")
-        self.CUSTOMER_SERIAL.setMinimumSize(QSize(0, 0))
-        self.CUSTOMER_SERIAL.setFocusPolicy(Qt.ClickFocus)
-
-        self.searchLayout.addWidget(self.CUSTOMER_SERIAL, 0, 7, 1, 1)
-
-        self.ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
-        self.ORDER_DOC_NO.setObjectName(u"ORDER_DOC_NO")
-        self.ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
-        self.ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
-
-        self.searchLayout.addWidget(self.ORDER_DOC_NO, 0, 1, 1, 1)
-
-        self.pushButton_2 = QPushButton(self.verticalLayoutWidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_2.setFocusPolicy(Qt.ClickFocus)
-        icon1 = QIcon()
-        icon1.addFile(u":/logo/pic/reset.png", QSize(), QIcon.Normal, QIcon.On)
-        self.pushButton_2.setIcon(icon1)
-
-        self.searchLayout.addWidget(self.pushButton_2, 0, 9, 1, 1)
-
-        self.dateTimeEdit = QDateTimeEdit(self.verticalLayoutWidget)
-        self.dateTimeEdit.setObjectName(u"dateTimeEdit")
-        self.dateTimeEdit.setWrapping(False)
-        self.dateTimeEdit.setProperty("showGroupSeparator", True)
-        self.dateTimeEdit.setDateTime(QDateTime(QDate(2000, 1, 1), QTime(0, 0, 1)))
-        self.dateTimeEdit.setCurrentSection(QDateTimeEdit.DaySection)
-        self.dateTimeEdit.setCalendarPopup(True)
-
-        self.searchLayout.addWidget(self.dateTimeEdit, 1, 7, 1, 1)
+        self.searchLayout.addWidget(self.label_04, 1, 0, 1, 1, Qt.AlignRight)
 
         self.CUSTOMER_MATERIAL = QLineEdit(self.verticalLayoutWidget)
         self.CUSTOMER_MATERIAL.setObjectName(u"CUSTOMER_MATERIAL")
@@ -149,11 +93,49 @@ class Ui_RecordFrame(object):
 
         self.searchLayout.addWidget(self.CUSTOMER_MATERIAL, 0, 5, 1, 1)
 
+        self.ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
+        self.ORDER_DOC_NO.setObjectName(u"ORDER_DOC_NO")
+        self.ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
+        self.ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.ORDER_DOC_NO, 0, 1, 1, 1)
+
         self.BOX_CODE = QLineEdit(self.verticalLayoutWidget)
         self.BOX_CODE.setObjectName(u"BOX_CODE")
         self.BOX_CODE.setFocusPolicy(Qt.ClickFocus)
 
-        self.searchLayout.addWidget(self.BOX_CODE, 1, 3, 1, 1)
+        self.searchLayout.addWidget(self.BOX_CODE, 1, 5, 1, 1)
+
+        self.PALLET_CODE = QLineEdit(self.verticalLayoutWidget)
+        self.PALLET_CODE.setObjectName(u"PALLET_CODE")
+        self.PALLET_CODE.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.PALLET_CODE, 2, 1, 1, 1)
+
+        self.dateRange = DateRange(self.verticalLayoutWidget)
+        self.dateRange.setObjectName(u"dateRange")
+        self.dateRange.setMaximumSize(QSize(300, 16777215))
+        self.dateRange.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.dateRange, 2, 3, 1, 3)
+
+        self.UNIT_CODE = QLineEdit(self.verticalLayoutWidget)
+        self.UNIT_CODE.setObjectName(u"UNIT_CODE")
+        self.UNIT_CODE.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.UNIT_CODE, 1, 3, 1, 1)
+
+        self.label_3 = QLabel(self.verticalLayoutWidget)
+        self.label_3.setObjectName(u"label_3")
+
+        self.searchLayout.addWidget(self.label_3, 2, 0, 1, 1)
+
+        self.CUSTOMER_ORDER_DOC_NO = QLineEdit(self.verticalLayoutWidget)
+        self.CUSTOMER_ORDER_DOC_NO.setObjectName(u"CUSTOMER_ORDER_DOC_NO")
+        self.CUSTOMER_ORDER_DOC_NO.setMinimumSize(QSize(0, 0))
+        self.CUSTOMER_ORDER_DOC_NO.setFocusPolicy(Qt.ClickFocus)
+
+        self.searchLayout.addWidget(self.CUSTOMER_ORDER_DOC_NO, 0, 3, 1, 1)
 
         self.label_02 = QLabel(self.verticalLayoutWidget)
         self.label_02.setObjectName(u"label_02")
@@ -162,11 +144,27 @@ class Ui_RecordFrame(object):
 
         self.searchLayout.addWidget(self.label_02, 0, 2, 1, 1, Qt.AlignRight)
 
-        self.PALLET_CODE = QLineEdit(self.verticalLayoutWidget)
-        self.PALLET_CODE.setObjectName(u"PALLET_CODE")
-        self.PALLET_CODE.setFocusPolicy(Qt.ClickFocus)
+        self.label_01 = QLabel(self.verticalLayoutWidget)
+        self.label_01.setObjectName(u"label_01")
+        self.label_01.setMaximumSize(QSize(120, 16777215))
+        self.label_01.setLayoutDirection(Qt.LeftToRight)
 
-        self.searchLayout.addWidget(self.PALLET_CODE, 1, 5, 1, 1)
+        self.searchLayout.addWidget(self.label_01, 0, 0, 1, 1, Qt.AlignRight)
+
+        self.label_2 = QLabel(self.verticalLayoutWidget)
+        self.label_2.setObjectName(u"label_2")
+
+        self.searchLayout.addWidget(self.label_2, 1, 4, 1, 1, Qt.AlignRight)
+
+        self.pushButton = QPushButton(self.verticalLayoutWidget)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.setFocusPolicy(Qt.ClickFocus)
+        icon1 = QIcon()
+        icon1.addFile(u":/logo/pic/search.png", QSize(), QIcon.Normal, QIcon.On)
+        self.pushButton.setIcon(icon1)
+
+        self.searchLayout.addWidget(self.pushButton, 0, 6, 1, 1)
 
 
         self.verticalLayout.addLayout(self.searchLayout)
@@ -220,30 +218,29 @@ class Ui_RecordFrame(object):
 
         self.retranslateUi(RecordFrame)
         self.pushButton_2.clicked.connect(RecordFrame.resetEdits)
-        self.ORDER_DOC_NO.textChanged.connect(RecordFrame.completerLineEdit)
-        self.CUSTOMER_ORDER_DOC_NO.textChanged.connect(RecordFrame.completerLineEdit)
         self.CUSTOMER_MATERIAL.textChanged.connect(RecordFrame.completerLineEdit)
-        self.CUSTOMER_SERIAL.textChanged.connect(RecordFrame.completerLineEdit)
-        self.UNIT_CODE.textChanged.connect(RecordFrame.completerLineEdit)
+        self.CUSTOMER_ORDER_DOC_NO.textChanged.connect(RecordFrame.completerLineEdit)
         self.pushButton.clicked.connect(RecordFrame.firstPage)
-        self.BOX_CODE.textChanged.connect(RecordFrame.completerLineEdit)
+        self.CUSTOMER_SERIAL.textChanged.connect(RecordFrame.completerLineEdit)
         self.PALLET_CODE.textChanged.connect(RecordFrame.completerLineEdit)
+        self.BOX_CODE.textChanged.connect(RecordFrame.completerLineEdit)
+        self.ORDER_DOC_NO.textChanged.connect(RecordFrame.completerLineEdit)
+        self.UNIT_CODE.textChanged.connect(RecordFrame.completerLineEdit)
 
         QMetaObject.connectSlotsByName(RecordFrame)
     # setupUi
 
     def retranslateUi(self, RecordFrame):
         RecordFrame.setWindowTitle(QCoreApplication.translate("RecordFrame", u"Form", None))
-        self.label_4.setText(QCoreApplication.translate("RecordFrame", u"\u65e5\u671f:", None))
-        self.pushButton.setText(QCoreApplication.translate("RecordFrame", u"\u5f00\u59cb\u67e5\u8be2", None))
-        self.label_04.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
-        self.label_03.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u6599\u53f7:", None))
-        self.label_3.setText(QCoreApplication.translate("RecordFrame", u"\u5361\u677f\u7801:", None))
-        self.label.setText(QCoreApplication.translate("RecordFrame", u"\u4ea7\u54c1\u7801:", None))
-        self.label_2.setText(QCoreApplication.translate("RecordFrame", u"\u7bb1\u7801:", None))
-        self.label_01.setText(QCoreApplication.translate("RecordFrame", u"\u9500\u552e\u5355\u53f7:", None))
         self.pushButton_2.setText(QCoreApplication.translate("RecordFrame", u"\u91cd\u7f6e\u67e5\u8be2", None))
-        self.dateTimeEdit.setDisplayFormat(QCoreApplication.translate("RecordFrame", u"yyyy-MM-dd", None))
+        self.label.setText(QCoreApplication.translate("RecordFrame", u"\u4ea7\u54c1\u7801:", None))
+        self.label_4.setText(QCoreApplication.translate("RecordFrame", u"\u65e5\u671f:", None))
+        self.label_03.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u6599\u53f7:", None))
+        self.label_04.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u7f16\u7801:", None))
+        self.label_3.setText(QCoreApplication.translate("RecordFrame", u"\u5361\u677f\u7801:", None))
         self.label_02.setText(QCoreApplication.translate("RecordFrame", u"\u5ba2\u6237\u8ba2\u5355\u53f7:", None))
+        self.label_01.setText(QCoreApplication.translate("RecordFrame", u"\u9500\u552e\u5355\u53f7:", None))
+        self.label_2.setText(QCoreApplication.translate("RecordFrame", u"\u7bb1\u7801:", None))
+        self.pushButton.setText(QCoreApplication.translate("RecordFrame", u"\u5f00\u59cb\u67e5\u8be2", None))
     # retranslateUi
 

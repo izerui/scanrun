@@ -16,13 +16,13 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
         super().__init__()
         self.setupUi(self)
         self.paging.loadData.connect(self.loadData)
+        # self.dateRange.dateRangeSignal.connect(self.dateRangeChanged)
         self.splitter.setSizes([50000, 20000])
         self.renderFormLabels()
         self.selRow = None
         self.firstPage()
         self.autoCompleterEditors = [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL,
                                   self.CUSTOMER_SERIAL, self.UNIT_CODE, self.BOX_CODE, self.PALLET_CODE]
-        self.dateTimeEdit.setDate(QDate())
 
     def loadData(self):
         reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0,
@@ -37,6 +37,9 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
             reqParam['customerCode'] = self.CUSTOMER_SERIAL.text()
         if self.UNIT_CODE.text():
             reqParam['unitCode'] = self.UNIT_CODE.text()
+        if self.dateRange.isValid():
+            reqParam['beginOperaDate'] = self.dateRange.begin.date().toString('yyyy-MM-dd')
+            reqParam['endOperaDate'] = self.dateRange.end.date().toString('yyyy-MM-dd')
         self.http('loadDataThread',
                   PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/list',
                              json=reqParam),
@@ -88,6 +91,7 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
             edit.clear()
             self.firstPage()
             self.tableView.setFocus()
+        self.dateRange.resetDate()
 
     def firstPage(self):
         self.paging.pageIndex = 0
