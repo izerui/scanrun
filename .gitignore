@@ -1,6 +1,5 @@
 dist/
 venv/
 build/
-scanrun.spec
 scan_data.db
 settings.ini
