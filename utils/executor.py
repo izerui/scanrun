@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import json
+import logging
 import sys
 from platform import system
 from typing import Callable
@@ -84,6 +85,7 @@ class PostThread(QThread, HttpInterceptor):
         try:
             response = Request.post(self.url, data=self.data, json=self.json, **self.kwargs)
         except Exception as e:
+            logging.exception(e)
             raise e;
         self.handler(response)
         # except Exception as e:
@@ -105,6 +107,7 @@ class GetThread(QThread, HttpInterceptor):
         try:
             response = Request.get(self.url, params=self.params, **self.kwargs)
         except Exception as e:
+            logging.exception(e)
             raise e;
         self.handler(response)
         # except Exception as e:
