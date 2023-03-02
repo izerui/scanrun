@@ -4,3 +4,4 @@ build/
 scanrun.spec
 scan_data.db
 settings.ini
+__pycache__/

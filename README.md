@@ -1,5 +1,11 @@
 # 扫码装箱程序
 
+# 初始化
+1. 初始化 python 虚拟环境: `python -m venv venv`，并切换到当前环境。
+2. 安装所有依赖项: `pip install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+3. 运行： `python main.py` 
+
+
 # 脚本
 * 生成`requirements.txt`: `pip freeze > requirements.txt`
 * 通过`requirements.txt`安装依赖: `pip install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
@@ -25,6 +31,7 @@
 # 打包 https://www.jianshu.com/p/e74047f7cc91
 * Windows: 
   * 生成exe: `.\venv\Scripts\pyinstaller --onefile --windowed main.py`
+  * 使用winrar打包: https://xinyuehtx.github.io/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8winrar%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%AE%89%E8%A3%85%E5%8C%85.html
 * Mac:
   > * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
   > * 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
