@@ -12,7 +12,7 @@
 * 执行各个目录中的`build.sh`文件来编译资源文件和ui文件
 
 # 已安装依赖列表(不及时更新)
-* PySide6: `pip install PySide6 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* PySide6(6.1.3=win7+): `pip install PySide6==6.1.3 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * simpleaudio: `pip install simpleaudio -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
