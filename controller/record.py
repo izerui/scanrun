@@ -73,16 +73,19 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
 
     # 初始化表单展示页
     def renderFormLabels(self):
-        for i, head in enumerate(UploadedModel(None).heads):
+        for i, head in enumerate(UploadedModel(None).originHeads):
             label = QLabel(self.scrollAreaWidgetContents)
             label.setObjectName(f'form_label_{head["code"]}')
             label.setText(f'{head["title"]}:')
             edit = QLineEdit(self.scrollAreaWidgetContents)
             edit.setObjectName(f'form_edit_{head["code"]}')
             edit.setReadOnly(True)
-            self.formLayout_3.setWidget(i, QFormLayout.LabelRole, label)
-            self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
+            setattr(self, f'form_label_{head["code"]}', label)
             setattr(self, f'form_edit_{head["code"]}', edit)
+            self.formLayout_3.addRow(label, edit)
+            # self.formLayout_3.setWidget(i, QFormLayout.LabelRole, getattr(self, f'form_edit_{head["code"]}'))
+            # self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
+
         self.show()
 
     @Slot()

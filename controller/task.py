@@ -86,9 +86,12 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             edit = QLineEdit(self.scrollAreaWidgetContents)
             edit.setObjectName(f'form_edit_{head["code"]}')
             edit.setReadOnly(True)
-            self.formLayout_3.setWidget(i, QFormLayout.LabelRole, label)
-            self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
+            setattr(self, f'form_label_{head["code"]}', label)
             setattr(self, f'form_edit_{head["code"]}', edit)
+            self.formLayout_3.addRow(label, edit)
+            # self.formLayout_3.setWidget(i, QFormLayout.LabelRole, getattr(self, f'form_edit_{head["code"]}'))
+            # self.formLayout_3.setWidget(i, QFormLayout.FieldRole, edit)
+
         self.show()
 
     @Slot()
