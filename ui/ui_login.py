@@ -3,20 +3,15 @@
 ################################################################################
 ## Form generated from reading UI file 'login.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.1.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
-    QLineEdit, QPushButton, QSizePolicy, QWidget)
+from PySide6.QtCore import *  # type: ignore
+from PySide6.QtGui import *  # type: ignore
+from PySide6.QtWidgets import *  # type: ignore
+
 import images_rc
 
 class Ui_Login_Form(object):
@@ -56,7 +51,7 @@ class Ui_Login_Form(object):
             icon = QIcon.fromTheme(iconThemeName)
         else:
             icon.addFile(u":/logo/pic/login.png", QSize(), QIcon.Normal, QIcon.On)
-
+        
         self.subButton.setIcon(icon)
         self.label_2 = QLabel(self.frame)
         self.label_2.setObjectName(u"label_2")

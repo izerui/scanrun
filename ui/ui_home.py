@@ -3,26 +3,19 @@
 ################################################################################
 ## Form generated from reading UI file 'home.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.1.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
-from PySide6.QtWidgets import (QApplication, QButtonGroup, QFrame, QGridLayout,
-    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtCore import *  # type: ignore
+from PySide6.QtGui import *  # type: ignore
+from PySide6.QtWidgets import *  # type: ignore
 
+from controller.task import TaskFrame
 from controller.record import RecordFrame
 from controller.scan import ScanFrame
-from controller.task import TaskFrame
+
 import images_rc
 
 class Ui_Home(object):
