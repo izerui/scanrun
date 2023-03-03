@@ -1,7 +1,7 @@
 # 扫码装箱程序
 
 # 初始化
-1. 初始化 python 虚拟环境: `python -m venv venv`，并切换到当前环境。
+1. 初始化 python 虚拟环境: `python -m venv venv`，并切换到当前环境 `source ./venv/bin/activate`。
 2. 安装所有依赖项: `pip install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 3. 运行： `python main.py` 
 
