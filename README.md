@@ -29,11 +29,12 @@
   > * working directory: `$FileDir$`
 
 # 打包 https://www.jianshu.com/p/e74047f7cc91
+> 需要安装 pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+
 * Windows: 
-  * 生成exe: `.\venv\Scripts\pyinstaller --onefile --windowed main.py`
-  * 使用winrar打包: https://xinyuehtx.github.io/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8winrar%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%AE%89%E8%A3%85%E5%8C%85.html
+  * 生成exe: `.\build.bat`
+  * 使用winrar生成安装程序: https://xinyuehtx.github.io/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8winrar%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%AE%89%E8%A3%85%E5%8C%85.html
 * Mac:
-  > * pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
   > * 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
   ```
   mkdir tmp.iconset
@@ -49,8 +50,8 @@
   sips -z 512 512   pic.png --out tmp.iconset/icon_512x512.png
   sips -z 1024 1024   pic.png --out tmp.iconset/icon_512x512@2x.png
   ```
-  * 生成图表: `iconutil -c icns resources/tmp.iconset -o resources/Icon.icns`
-  * 生成app: `pyinstaller -D -w -i resources/Icon.icns main.py`
+  * 生成图标: `iconutil -c icns resources/tmp.iconset -o resources/Icon.icns`
+  * 生成app: `./build.sh`
 
 # qt-designer 使用说明
 * 资源浏览器管理qrc资源
