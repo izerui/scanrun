@@ -1,7 +1,7 @@
 from typing import Callable
 
-from PySide6.QtCore import Signal, Slot, QDate
-from PySide6.QtWidgets import QMessageBox, QWidget
+from PySide2.QtCore import Signal, Slot, QDate
+from PySide2.QtWidgets import QMessageBox, QWidget
 
 from ui.ui_date_range import Ui_DateRange
 from ui.ui_paging import Ui_PagingWidget

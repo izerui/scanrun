@@ -3,14 +3,14 @@
 ################################################################################
 ## Form generated from reading UI file 'scan_frame.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.1.3
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import *  # type: ignore
-from PySide6.QtGui import *  # type: ignore
-from PySide6.QtWidgets import *  # type: ignore
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 import images_rc
 
@@ -86,7 +86,7 @@ class Ui_ScanFrame(object):
         self.lcd_unit.setMinimumSize(QSize(0, 32))
         self.lcd_unit.setSizeIncrement(QSize(0, 0))
         font1 = QFont()
-        font1.setFamilies([u"Academy Engraved LET"])
+        font1.setFamily(u"Academy Engraved LET")
         font1.setPointSize(24)
         font1.setBold(True)
         font1.setStrikeOut(False)
@@ -306,7 +306,7 @@ class Ui_ScanFrame(object):
         self.warn_label = QLabel(self.frame_2)
         self.warn_label.setObjectName(u"warn_label")
         font4 = QFont()
-        font4.setFamilies([u"Academy Engraved LET"])
+        font4.setFamily(u"Academy Engraved LET")
         font4.setPointSize(24)
         self.warn_label.setFont(font4)
         self.warn_label.setStyleSheet(u"color: rgb(255, 38, 0);")
@@ -358,7 +358,7 @@ class Ui_ScanFrame(object):
         self.unit_rule_label = QLabel(self.frame_2)
         self.unit_rule_label.setObjectName(u"unit_rule_label")
         font5 = QFont()
-        font5.setFamilies([u".AppleSystemUIFont"])
+        font5.setFamily(u".AppleSystemUIFont")
         font5.setPointSize(14)
         font5.setBold(True)
         self.unit_rule_label.setFont(font5)

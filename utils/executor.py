@@ -6,8 +6,8 @@ from platform import system
 from typing import Callable
 
 import simpleaudio as sa
-from PySide6.QtCore import QThread, Signal
-from PySide6.QtWidgets import QMessageBox
+from PySide2.QtCore import QThread, Signal
+from PySide2.QtWidgets import QMessageBox
 from httpx import Response
 
 from utils.db import ScanTableUnit

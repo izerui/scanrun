@@ -6,8 +6,8 @@ import time
 from itertools import groupby
 from typing import Callable
 
-from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
-from PySide6.QtWidgets import QWidget, QMessageBox, \
+from PySide2.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
+from PySide2.QtWidgets import QWidget, QMessageBox, \
     QTableView
 
 from action.upload import UploadAction

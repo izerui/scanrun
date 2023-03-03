@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
-import PySide6.QtGui
-from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QMainWindow, QMessageBox
+from PySide2.QtCore import Signal, Slot
+from PySide2.QtWidgets import QMainWindow, QMessageBox
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from ui.ui_home import Ui_Home

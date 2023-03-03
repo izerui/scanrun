@@ -2,8 +2,8 @@
 import logging
 from typing import Any
 
-from PySide6.QtSql import QSqlDatabase, QSqlQuery
-from PySide6.QtWidgets import QMessageBox
+from PySide2.QtSql import QSqlDatabase, QSqlQuery
+from PySide2.QtWidgets import QMessageBox
 
 
 # 数据库执行工具类

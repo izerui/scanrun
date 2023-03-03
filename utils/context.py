@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from typing import Any
 
-from PySide6.QtCore import QSettings
+from PySide2.QtCore import QSettings
 
 
 class User:

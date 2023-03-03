@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
-from PySide6.QtCore import Slot, Signal
-from PySide6.QtWidgets import QDialog, QMessageBox
+from PySide2.QtCore import Slot, Signal
+from PySide2.QtWidgets import QDialog, QMessageBox
 
 from ui.ui_task_form import Ui_TaskForm
 from utils.context import Context

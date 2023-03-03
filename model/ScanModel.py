@@ -1,5 +1,5 @@
-from PySide6 import QtGui
-from PySide6.QtGui import QIcon
+from PySide2 import QtGui
+from PySide2.QtGui import QIcon
 
 from model.BaseModel import BaseModel
 

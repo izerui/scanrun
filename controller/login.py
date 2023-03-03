@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 import sys
 
-from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QWidget
+from PySide2.QtCore import Signal, Slot
+from PySide2.QtWidgets import QWidget
 
 from ui.ui_login import Ui_Login_Form
 from utils.context import Context

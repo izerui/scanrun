@@ -3,14 +3,14 @@
 ################################################################################
 ## Form generated from reading UI file 'login.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.1.3
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import *  # type: ignore
-from PySide6.QtGui import *  # type: ignore
-from PySide6.QtWidgets import *  # type: ignore
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
 
 import images_rc
 
@@ -80,7 +80,7 @@ class Ui_Login_Form(object):
         sizePolicy.setHeightForWidth(self.title.sizePolicy().hasHeightForWidth())
         self.title.setSizePolicy(sizePolicy)
         font1 = QFont()
-        font1.setFamilies([u"Academy Engraved LET"])
+        font1.setFamily(u"Academy Engraved LET")
         font1.setPointSize(24)
         font1.setBold(False)
         self.title.setFont(font1)

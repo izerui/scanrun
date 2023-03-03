@@ -2,8 +2,8 @@
 from itertools import groupby
 from time import sleep
 
-from PySide6.QtCore import Slot, Signal, QItemSelectionModel, Qt
-from PySide6.QtWidgets import QWidget, QMessageBox, QLineEdit, QLabel, QFormLayout, QCompleter
+from PySide2.QtCore import Slot, Signal, QItemSelectionModel, Qt
+from PySide2.QtWidgets import QWidget, QMessageBox, QLineEdit, QLabel, QFormLayout, QCompleter
 
 from controller.dialog import ScanConfirmDialog
 from model.TaskModel import TaskModel

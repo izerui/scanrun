@@ -8,13 +8,12 @@
 
 import sys
 
-from PySide6.QtCore import Slot
-from PySide6.QtWidgets import QApplication, QWidget
+from PySide2.QtCore import Slot
+from PySide2.QtWidgets import QApplication, QWidget
 
 from controller.home import HomeWindow
 from controller.login import LoginWindow
 from utils.context import Context
-from shiboken6 import *
 
 
 class MainWindow(QWidget):
@@ -47,4 +46,4 @@ if __name__ == '__main__':
     window = MainWindow()
     window.loadLoginWindow()
     # app.setStyle(QStyleFactory.create('macOS'))
-    sys.exit(app.exec())
+    sys.exit(app.exec_())

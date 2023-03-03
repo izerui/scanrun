@@ -1,10 +1,10 @@
 import time
 from typing import Union, Any
 
-import PySide6.QtCore
-from PySide6 import QtCore
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon
+import PySide2.QtCore
+from PySide2 import QtCore
+from PySide2.QtCore import Qt
+from PySide2.QtGui import QIcon
 
 ##
 # 在PyQt中，模型可以针对不同的组件（或者组件的不同部分，比如存储数据、界面展示数据、按钮的提示等）提供不同的数据。例如，Qt.DisplayRole用于视图的文本显示。通常来说，模型中的数据项包含一系列不同的数据角色，数据角色定义在 Qt.ItemDataRole 枚举中，老猿掌握的包括下列枚举值：
@@ -28,14 +28,14 @@ class BaseModel(QtCore.QAbstractTableModel):
         self.originHeads = heads
         self.heads = list(filter(lambda x: 'hidden' not in x or not x['hidden'], heads))
 
-    def headerData(self, section: int, orientation: PySide6.QtCore.Qt.Orientation, role: int = ...) -> Any:
+    def headerData(self, section: int, orientation: PySide2.QtCore.Qt.Orientation, role: int = ...) -> Any:
         if role == QtCore.Qt.DisplayRole:
-            if orientation == PySide6.QtCore.Qt.Orientation.Horizontal:
+            if orientation == PySide2.QtCore.Qt.Orientation.Horizontal:
                 return self.heads[section]['title']
             else:
                 return str(section + 1)
 
-    def data(self, index: Union[PySide6.QtCore.QModelIndex, PySide6.QtCore.QPersistentModelIndex],
+    def data(self, index: Union[PySide2.QtCore.QModelIndex, PySide2.QtCore.QPersistentModelIndex],
              role: int = ...) -> Any:
         row = index.row()
         col = index.column()
@@ -58,10 +58,10 @@ class BaseModel(QtCore.QAbstractTableModel):
                 icon_fun = self.heads[col]['icon_fun']
                 return icon_fun(key, item)
 
-    def columnCount(self, parent: Union[PySide6.QtCore.QModelIndex, PySide6.QtCore.QPersistentModelIndex] = ...) -> int:
+    def columnCount(self, parent: Union[PySide2.QtCore.QModelIndex, PySide2.QtCore.QPersistentModelIndex] = ...) -> int:
         return len(self.heads)
 
-    def rowCount(self, parent: Union[PySide6.QtCore.QModelIndex, PySide6.QtCore.QPersistentModelIndex] = ...) -> int:
+    def rowCount(self, parent: Union[PySide2.QtCore.QModelIndex, PySide2.QtCore.QPersistentModelIndex] = ...) -> int:
         return len(self.datas)
 
     def icon_fun(self, key, item) -> QIcon:

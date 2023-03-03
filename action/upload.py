@@ -1,6 +1,6 @@
 import time
 
-from PySide6.QtWidgets import QMessageBox, QProgressBar
+from PySide2.QtWidgets import QMessageBox, QProgressBar
 
 from model import ScanModel
 from utils.context import Context
