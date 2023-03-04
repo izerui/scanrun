@@ -5,6 +5,8 @@ import sys
 from platform import system
 from typing import Callable
 
+import librosa
+import simpleaudio
 import simpleaudio as sa
 from PySide6.QtCore import QThread, Signal
 from PySide6.QtWidgets import QMessageBox
@@ -146,20 +148,21 @@ class GetThread(QThread, HttpInterceptor):
 
 class SoundThread(QThread):
 
-    def __init__(self, file):
+    def __init__(self, sound):
         super().__init__()
-        self.filePath = f'{sys.path[0]}{file}'
-        # self.filePathName = os.path.splitext(self.filePath)[0]
-        # self.fileExt = os.path.splitext(self.filePath)[-1]
-        self.system = system()
+        self.sound = sound
 
     def run(self) -> None:
+        player = simpleaudio.play_buffer(
+            self.sound[0],
+            num_channels=1,
+            bytes_per_sample=4,
+            sample_rate=self.sound[1]
+        )
         try:
-            wave_obj = sa.WaveObject.from_wave_file(self.filePath)
-            play_obj = wave_obj.play()
-            # play_obj.wait_done()
-        except:
-            pass
+            player.wait_done()
+        except KeyboardInterrupt:
+            player.stop()
 
 
 class AsyncScanedDataLoader(QThread):

@@ -15,6 +15,7 @@
 * PySide6(6.1.3=win7+): `pip install PySide6==6.1.3 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* librosa: `pip install librosa -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * simpleaudio: `pip install simpleaudio -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * pyinstaller(打包选装): `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
 * 如果使用mac希望发出声音: `pip install PyObjC -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
