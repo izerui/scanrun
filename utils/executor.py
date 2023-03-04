@@ -34,14 +34,14 @@ class HttpExecutor(object):
         super().__init__()
 
     # 异步执行一个http请求线程
-    def http(self, thread_name: str, new_thread: QThread, result_call: Callable = None):
+    def http(self, thread_name: str, new_thread: QThread, response: Callable = None, error: Callable = lambda err: QMessageBox.critical(None, '错误', err['errMsg'])):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
             pass
         else:
             setattr(self, thread_name, new_thread)
-            if result_call:
-                getattr(getattr(self, thread_name), 'response').connect(result_call)
-            getattr(getattr(self, thread_name), 'error').connect(self.http_error_call)
+            if response:
+                getattr(getattr(self, thread_name), 'response').connect(response)
+            getattr(getattr(self, thread_name), 'error').connect(error)
             getattr(self, thread_name).start()
 
     # 默认的异常回调
