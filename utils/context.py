@@ -31,10 +31,10 @@ class Context(object):
     rootPath = f'{sys.path[0]}{os.sep}'
     mediaPath = f'{rootPath}media{os.sep}'
 
-    errorSoundTulp: Tuple = librosa.load(f'{mediaPath}error.wav')
-    unitSoundTulp: Tuple = librosa.load(f'{mediaPath}unit.wav')
-    boxSoundTulp: Tuple = librosa.load(f'{mediaPath}box.wav')
-    palletSoundTulp: Tuple = librosa.load(f'{mediaPath}pallet.wav')
+    errorSoundTulp: str = f'{mediaPath}error.wav'
+    unitSoundTulp: str = f'{mediaPath}unit.wav'
+    boxSoundTulp: str = f'{mediaPath}box.wav'
+    palletSoundTulp: str = f'{mediaPath}pallet.wav'
 
     @staticmethod
     def setDefaultSettings(key, value):
