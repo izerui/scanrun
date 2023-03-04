@@ -2,7 +2,7 @@
 import sys
 
 from PySide6.QtCore import Signal, Slot
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QMessageBox
 
 from ui.ui_login import Ui_Login_Form
 from utils.context import Context
@@ -21,12 +21,11 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
 
     # 改变提交按钮状态
     def changeButtonState(self):
+        self.process_label.setVisible(False)
         if len(self.usernameInput.text()) > 0 and len(self.passwordInput.text()) > 0:
             self.subButton.setEnabled(True)
-            self.process_label.setVisible(False)
         else:
             self.subButton.setDisabled(True)
-            self.process_label.setVisible(True)
 
     @Slot()
     def loginForm(self):
@@ -40,7 +39,11 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
         self.http(
             'loginThread',
             PostThread(f'{Context.getSettings("gateway/domain")}/ierp/login', data),
-            self.loginSuccess
+            self.loginSuccess,
+            lambda err: (
+                QMessageBox.critical(None, '错误', err['errMsg']),
+                self.process_label.setVisible(False)
+            )
         )
 
     def loginSuccess(self, result, response):
