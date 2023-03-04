@@ -17,7 +17,17 @@ class LoginWindow(QWidget, Ui_Login_Form, HttpExecutor):
         super().__init__()
         self.setupUi(self)
         self.process_label.setVisible(False)
+        self.readDefaultText()
         self.changeButtonState()
+
+    def readDefaultText(self):
+        username = Context.getSettings('login/username')
+        if username:
+            self.usernameInput.setText(username)
+        password = Context.getSettings('login/password')
+        if password:
+            self.passwordInput.setText(password)
+
 
     # 改变提交按钮状态
     def changeButtonState(self):

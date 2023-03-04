@@ -2,12 +2,10 @@
 import os
 import random
 import string
-import sys
 import time
 from itertools import groupby
 from typing import Callable
 
-import librosa
 from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
 from PySide6.QtWidgets import QWidget, QMessageBox, \
     QTableView
@@ -28,10 +26,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         super().__init__()
         self.setupUi(self)
         self.continuePrompt = True
-        self.error_sound = librosa.load(f'{sys.path[0]}{os.sep}media{os.sep}error.wav')
-        self.unit_sound = librosa.load(f'{sys.path[0]}{os.sep}media{os.sep}unit.wav')
-        self.box_sound = librosa.load(f'{sys.path[0]}{os.sep}media{os.sep}box.wav')
-        self.pallet_sound = librosa.load(f'{sys.path[0]}{os.sep}media{os.sep}pallet.wav')
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
     #     if event.key() == QtCore.Qt.Key.Key_Return.value:
@@ -69,7 +63,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         if not selIds:
             return
         confirm = ConfirmMessageBox('确认', '确认删除选中的数据?')
-        confirm.show(lambda : (
+        confirm.show(lambda: (
             self.scanTableUnit.deleteByIds(selIds),
             self.tabChanged()
         ))
@@ -266,7 +260,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        self.runAsync('errorSoundThread', SoundThread(self.error_sound))
+        self.runAsync('errorSoundThread', SoundThread(Context.errorSoundTulp))
 
     # 下一步提示
     def nextPrompt(self):
@@ -277,16 +271,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            self.runAsync('unitSoundThread', SoundThread(self.unit_sound))
+            self.runAsync('unitSoundThread', SoundThread(Context.unitSoundTulp))
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            self.runAsync('boxSoundThread', SoundThread(self.box_sound))
+            self.runAsync('boxSoundThread', SoundThread(Context.boxSoundTulp))
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            self.runAsync('palletSoundThread', SoundThread(self.pallet_sound))
-
+            self.runAsync('palletSoundThread', SoundThread(Context.palletSoundTulp))
 
         self.judge(showUnit, showBox, showPallet)
         if Context.getSettings('scan/auto_code'):
@@ -298,6 +291,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         def call():
             self.uploadAction = UploadAction(self.model, self.order_info, self.scanTableUnit, self.progressBar)
             self.uploadAction.start()
+
         confirm = ConfirmMessageBox('确认', '开始上传数据?')
         confirm.show(call)
-

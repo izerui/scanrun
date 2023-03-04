@@ -3,6 +3,7 @@ import json
 import logging
 import sys
 from platform import system
+from threading import Thread
 from typing import Callable
 
 import librosa
@@ -20,6 +21,7 @@ class ThreadExecutor(object):
 
     def __init__(self):
         super().__init__()
+
 
     def runAsync(self, thread_name: str, new_thread: QThread, callback: Callable = None):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
@@ -116,83 +118,23 @@ class GetThread(QThread, HttpInterceptor):
         #     traceback.print_exc(e)
         #     self.error.emit(str(e))
 
-
-#
-# class SqlExecutor(object):
-#     def __init__(self):
-#         super().__init__()
-#
-#     # 异步执行一个sql查询
-#     def execute(self, thread_name: str, new_thread: QThread, result_call: Callable = None):
-#         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
-#             pass
-#         else:
-#             setattr(self, thread_name, new_thread)
-#             if result_call:
-#                 getattr(getattr(self, thread_name), 'response').connect(result_call)
-#             getattr(getattr(self, thread_name), 'error').connect(self.http_error_call)
-#             getattr(self, thread_name).start()
-#
-#
-# class SqlThread(QThread):
-#     result = Signal(QSqlQuery)
-#
-#     def __init__(self, sql, dict=None):
-#         super().__init__()
-#         self.sql = sql
-#         self.dict = dict
-#
-#     def run(self) -> None:
-#         query = DbUnit.execute(self.sql, self.dict)
-#         self.result.emit(query)
-
 class SoundThread(QThread):
 
-    def __init__(self, sound):
+    def __init__(self, sound_tuple):
         super().__init__()
-        self.sound = sound
+        self.sound_tuple = sound_tuple
+        # self.filePathName = os.path.splitext(self.filePath)[0]
+        # self.fileExt = os.path.splitext(self.filePath)[-1]
+        # self.system = system()
 
     def run(self) -> None:
         player = simpleaudio.play_buffer(
-            self.sound[0],
+            self.sound_tuple[0],
             num_channels=1,
             bytes_per_sample=4,
-            sample_rate=self.sound[1]
+            sample_rate=self.sound_tuple[1]
         )
         try:
             player.wait_done()
         except KeyboardInterrupt:
             player.stop()
-
-
-class AsyncScanedDataLoader(QThread):
-    result = Signal(int, int, list)
-
-    def __init__(self, scanTableUnit: ScanTableUnit):
-        super().__init__()
-        self.scanTableUnit = scanTableUnit
-        self.stopStatus = False
-
-    def run(self) -> None:
-        start = 0
-        count = 1000
-        while True:
-            if self.stopStatus:
-                break
-            datas = self.scanTableUnit.queryForList(
-                f'SELECT * FROM {self.scanTableUnit.tableName} where complete = 1 order by create_time desc limit {start},{count}')
-            size = len(datas)
-            self.result.emit(start, size, datas)
-            start += size
-            if not datas:
-                break
-
-    def stop_wait(self):
-        self.stopStatus = True
-        while self.isRunning():
-            self.quit()
-            pass
-        print(self.isRunning())
-
-    def stop_no_wait(self):
-        self.stopStatus = True
