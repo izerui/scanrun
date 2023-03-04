@@ -3,20 +3,15 @@
 ################################################################################
 ## Form generated from reading UI file 'login.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.1.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QLabel,
-    QLineEdit, QPushButton, QSizePolicy, QWidget)
+from PySide6.QtCore import *  # type: ignore
+from PySide6.QtGui import *  # type: ignore
+from PySide6.QtWidgets import *  # type: ignore
+
 import images_rc
 
 class Ui_Login_Form(object):
@@ -56,7 +51,7 @@ class Ui_Login_Form(object):
             icon = QIcon.fromTheme(iconThemeName)
         else:
             icon.addFile(u":/logo/pic/login.png", QSize(), QIcon.Normal, QIcon.On)
-
+        
         self.subButton.setIcon(icon)
         self.label_2 = QLabel(self.frame)
         self.label_2.setObjectName(u"label_2")
@@ -85,7 +80,6 @@ class Ui_Login_Form(object):
         sizePolicy.setHeightForWidth(self.title.sizePolicy().hasHeightForWidth())
         self.title.setSizePolicy(sizePolicy)
         font1 = QFont()
-        font1.setFamilies([u"Academy Engraved LET"])
         font1.setPointSize(24)
         font1.setBold(False)
         self.title.setFont(font1)
@@ -119,11 +113,11 @@ class Ui_Login_Form(object):
 
     def retranslateUi(self, Login_Form):
         Login_Form.setWindowTitle(QCoreApplication.translate("Login_Form", u"SN\u5e8f\u5217\u53f7\u626b\u7801\u88c5\u7bb1\u7cfb\u7edf-\u767b\u5f55\u9875\u9762", None))
-        self.usernameInput.setText(QCoreApplication.translate("Login_Form", u"18814128446", None))
+        self.usernameInput.setText("")
         self.label.setText(QCoreApplication.translate("Login_Form", u"\u7528\u6237\u540d\uff1a", None))
         self.subButton.setText(QCoreApplication.translate("Login_Form", u"\u767b\u5f55", None))
         self.label_2.setText(QCoreApplication.translate("Login_Form", u"\u5bc6    \u7801\uff1a", None))
-        self.passwordInput.setText(QCoreApplication.translate("Login_Form", u"woshichaojimima0001", None))
+        self.passwordInput.setText("")
         self.passwordInput.setPlaceholderText("")
         self.outButton.setText(QCoreApplication.translate("Login_Form", u"\u9000\u51fa", None))
         self.title.setText(QCoreApplication.translate("Login_Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

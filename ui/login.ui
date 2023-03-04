@@ -47,7 +47,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>18814128446</string>
+       <string/>
       </property>
       <property name="maxLength">
        <number>24</number>
@@ -137,7 +137,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>woshichaojimima0001</string>
+       <string/>
       </property>
       <property name="maxLength">
        <number>24</number>
@@ -196,7 +196,6 @@
       </property>
       <property name="font">
        <font>
-        <family>Academy Engraved LET</family>
         <pointsize>24</pointsize>
         <bold>false</bold>
        </font>
