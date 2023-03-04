@@ -43,8 +43,7 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
         self.http('loadDataThread',
                   PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/list',
                              json=reqParam),
-                  self.dataResponse,
-
+                  self.dataResponse
                   )
 
     def dataResponse(self, result):
