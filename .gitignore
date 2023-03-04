@@ -5,3 +5,4 @@ scanrun.spec
 scan_data.db
 settings.ini
 __pycache__/
+Autosave/
