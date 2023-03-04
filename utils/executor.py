@@ -25,6 +25,7 @@ class ThreadExecutor(object):
 
     def runAsync(self, thread_name: str, new_thread: QThread, callback: Callable = None):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
+            logging.warn(f'{thread_name} 正在运行...')
             pass
         else:
             setattr(self, thread_name, new_thread)
@@ -40,6 +41,7 @@ class HttpExecutor(object):
     # 异步执行一个http请求线程
     def http(self, thread_name: str, new_thread: QThread, response: Callable = None, error: Callable = lambda err: QMessageBox.critical(None, '错误', err['errMsg'])):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
+            logging.warn(f'{thread_name} 正在运行...')
             pass
         else:
             setattr(self, thread_name, new_thread)
