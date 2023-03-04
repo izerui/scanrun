@@ -122,16 +122,21 @@ class GetThread(QThread, HttpInterceptor):
 
 class SoundThread(QThread):
 
-    def __init__(self, filePath):
+    def __init__(self, sound_tuple):
         super().__init__()
-        self.filePath = filePath
+        self.sound_tuple = sound_tuple
         # self.filePathName = os.path.splitext(self.filePath)[0]
         # self.fileExt = os.path.splitext(self.filePath)[-1]
         # self.system = system()
 
     def run(self) -> None:
+        player = simpleaudio.play_buffer(
+            self.sound_tuple[0],
+            num_channels=1,
+            bytes_per_sample=4,
+            sample_rate=self.sound_tuple[1]
+        )
         try:
-            wave_obj = sa.WaveObject.from_wave_file(self.filePath)
-            play_obj = wave_obj.play()
-        except:
-            pass
+            player.wait_done()
+        except KeyboardInterrupt:
+            player.stop()
