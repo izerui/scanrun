@@ -103334,7 +103334,7 @@ g_HandleSystemReboot();
 <PostBuildProg/>
 <PostBuildCmdLine/>
 <PostBuildWait>0</PostBuildWait>
-<Filename>setup.exe</Filename>
+<Filename>扫码装箱安装程序.exe</Filename>
 <OutputFolder>D:\</OutputFolder>
 <SegmentSizeMode>0</SegmentSizeMode>
 <CustomSegSize>0</CustomSegSize>
