@@ -1,6 +1,4 @@
 # -*- coding: UTF-8 -*-
-import asyncio
-import os
 import random
 import string
 import time
@@ -8,8 +6,7 @@ from itertools import groupby
 from typing import Callable
 
 from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
-from PySide6.QtWidgets import QWidget, QMessageBox, \
-    QTableView
+from PySide6.QtWidgets import QWidget, QTableView
 
 from action.upload import UploadAction
 from controller.component import ConfirmMessageBox
@@ -17,7 +14,7 @@ from model.ScanModel import ScanModel
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
 from utils.db import ScanTableUnit
-from utils.executor import HttpExecutor, ThreadExecutor, SoundThread, PostThread
+from utils.executor import HttpExecutor, ThreadExecutor
 
 
 class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
