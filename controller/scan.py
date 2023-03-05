@@ -268,7 +268,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        self.errorSound.play()
+        try:
+            self.errorSound.play()
+        except Exception as e:
+            logging.error(e)
 
     # 下一步提示
     def nextPrompt(self):
@@ -279,15 +282,24 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            self.unitSound.play()
+            try:
+                self.unitSound.play()
+            except Exception as e:
+                logging.error(e)
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            self.boxSound.play()
+            try:
+                self.boxSound.play()
+            except Exception as e:
+                logging.error(e)
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            self.palletSound.play()
+            try:
+                self.palletSound.play()
+            except Exception as e:
+                logging.error(e)
 
         self.judge(showUnit, showBox, showPallet)
         if Context.getSettings('scan/auto_code'):
