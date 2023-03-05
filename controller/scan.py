@@ -261,7 +261,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        asyncio.run(Context.playError())
+        Context.errorSound.play()
+        # asyncio.run_coroutine_threadsafe(Context.playError())
         # self.runAsync('errorSoundThread', SoundThread(Context.errorSound))
 
     # 下一步提示
@@ -273,17 +274,20 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            asyncio.run(Context.playUnit())
+            Context.unitSound.play()
+            # asyncio.run(Context.playUnit())
             # self.runAsync('unitSoundThread', SoundThread(Context.unitSound))
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            asyncio.run(Context.playBox())
+            Context.boxSound.play()
+            # asyncio.run(Context.playBox())
             # self.runAsync('boxSoundThread', SoundThread(Context.boxSound))
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            asyncio.run(Context.playPallet())
+            Context.palletSound.play()
+            # asyncio.run(Context.playPallet())
             # self.runAsync('palletSoundThread', SoundThread(Context.palletSound))
 
         self.judge(showUnit, showBox, showPallet)

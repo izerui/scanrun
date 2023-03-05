@@ -44,22 +44,23 @@ class Context(object):
     unitSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}unit.wav')
     boxSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}box.wav')
     palletSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}pallet.wav')
+    # loop = asyncio.get_event_loop()
+    # @staticmethod
+    # async def playError():
+    #     asyncio.run_coroutine_threadsafe(Context.errorSound.play(), Context.loop)
+    #
+    # @staticmethod
+    # async def playUnit():
+    #     asyncio.run_coroutine_threadsafe(Context.unitSound.play(), Context.loop)
+    #
+    # @staticmethod
+    # async def playBox():
+    #     asyncio.run_coroutine_threadsafe(Context.boxSound.play(), Context.loop)
+    #
+    # @staticmethod
+    # async def playPallet():
+    #     asyncio.run_coroutine_threadsafe(Context.palletSound.play(), Context.loop)
 
-    @staticmethod
-    async def playError():
-        playObj = Context.errorSound.play()
-
-    @staticmethod
-    async def playUnit():
-        playObj = Context.unitSound.play()
-
-    @staticmethod
-    async def playBox():
-        playObj = Context.boxSound.play()
-
-    @staticmethod
-    async def playPallet():
-        playObj = Context.palletSound.play()
     @staticmethod
     def setDefaultSettings(key, value):
         v = Context.settings.value(key)
