@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import asyncio
 import os
 import sys
 from typing import Any, Tuple
@@ -44,6 +45,21 @@ class Context(object):
     boxSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}box.wav')
     palletSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}pallet.wav')
 
+    @staticmethod
+    async def playError():
+        playObj = Context.errorSound.play()
+
+    @staticmethod
+    async def playUnit():
+        playObj = Context.unitSound.play()
+
+    @staticmethod
+    async def playBox():
+        playObj = Context.boxSound.play()
+
+    @staticmethod
+    async def playPallet():
+        playObj = Context.palletSound.play()
     @staticmethod
     def setDefaultSettings(key, value):
         v = Context.settings.value(key)

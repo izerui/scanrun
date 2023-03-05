@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import asyncio
 import os
 import random
 import string
@@ -260,7 +261,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        self.runAsync('errorSoundThread', SoundThread(Context.errorSound))
+        asyncio.run(Context.playError())
+        # self.runAsync('errorSoundThread', SoundThread(Context.errorSound))
 
     # 下一步提示
     def nextPrompt(self):
@@ -271,15 +273,18 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            self.runAsync('unitSoundThread', SoundThread(Context.unitSound))
+            asyncio.run(Context.playUnit())
+            # self.runAsync('unitSoundThread', SoundThread(Context.unitSound))
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            self.runAsync('boxSoundThread', SoundThread(Context.boxSound))
+            asyncio.run(Context.playBox())
+            # self.runAsync('boxSoundThread', SoundThread(Context.boxSound))
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            self.runAsync('palletSoundThread', SoundThread(Context.palletSound))
+            asyncio.run(Context.playPallet())
+            # self.runAsync('palletSoundThread', SoundThread(Context.palletSound))
 
         self.judge(showUnit, showBox, showPallet)
         if Context.getSettings('scan/auto_code'):
