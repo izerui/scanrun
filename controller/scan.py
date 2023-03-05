@@ -3,6 +3,7 @@ import logging
 import os
 import random
 import string
+import sys
 import time
 from itertools import groupby
 from typing import Callable
@@ -28,10 +29,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         self.setupUi(self)
         self.continuePrompt = True
         try:
-            self.errorSound = sa.WaveObject.from_wave_file(f'{Context.rootPath}{os.sep}media{os.sep}error.wav')
-            self.unitSound = sa.WaveObject.from_wave_file(f'{Context.rootPath}{os.sep}media{os.sep}unit.wav')
-            self.boxSound = sa.WaveObject.from_wave_file(f'{Context.rootPath}{os.sep}media{os.sep}box.wav')
-            self.palletSound = sa.WaveObject.from_wave_file(f'{Context.rootPath}{os.sep}media{os.sep}pallet.wav')
+            self.errorSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}error.wav')
+            self.unitSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}unit.wav')
+            self.boxSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}box.wav')
+            self.palletSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}pallet.wav')
         except Exception as e:
             logging.error(e)
 

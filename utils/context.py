@@ -1,6 +1,4 @@
 # -*- coding: UTF-8 -*-
-import os
-import sys
 from typing import Any
 
 from PySide6.QtCore import QSettings
@@ -26,8 +24,6 @@ class Context(object):
 
     settings: QSettings = QSettings('settings.ini', QSettings.IniFormat)
     settings.setFallbacksEnabled(False)
-
-    rootPath = os.chdir(sys.path[0])
 
     @staticmethod
     def setDefaultSettings(key, value):
