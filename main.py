@@ -47,7 +47,7 @@ class MainWindow(QWidget):
         if isDebug:
             logging.basicConfig(format=LOG_FORMAT)
         else:
-            logging.basicConfig(filename='error.log', level=logging.ERROR, format=LOG_FORMAT)
+            logging.basicConfig(filename=f'{os.environ["HOME"]}{os.sep}scanrun-error.log', level=logging.ERROR, format=LOG_FORMAT)
 
 
 if __name__ == '__main__':
