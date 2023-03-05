@@ -1,21 +1,14 @@
 # -*- coding: UTF-8 -*-
 import json
 import logging
-import sys
-from platform import system
-from threading import Thread
 from time import sleep
 from typing import Callable
 
-import librosa
-import simpleaudio
-import simpleaudio as sa
 from PySide6.QtCore import QThread, Signal
 from PySide6.QtWidgets import QMessageBox
 from httpx import Response
 from simpleaudio import WaveObject, PlayObject
 
-from utils.db import ScanTableUnit
 from utils.request import Request
 
 

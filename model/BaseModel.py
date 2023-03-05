@@ -6,6 +6,7 @@ from PySide6 import QtCore
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
 
+
 ##
 # 在PyQt中，模型可以针对不同的组件（或者组件的不同部分，比如存储数据、界面展示数据、按钮的提示等）提供不同的数据。例如，Qt.DisplayRole用于视图的文本显示。通常来说，模型中的数据项包含一系列不同的数据角色，数据角色定义在 Qt.ItemDataRole 枚举中，老猿掌握的包括下列枚举值：
 # Qt.DisplayRole：文本表格中要渲染显示的数据，当存储的内部字典值要显示为可理解的文字含义数据时对应数据与实际存储数据会不一致

@@ -1,9 +1,8 @@
 # -*- coding: UTF-8 -*-
 from itertools import groupby
-from time import sleep
 
 from PySide6.QtCore import Slot, Signal, QItemSelectionModel, Qt
-from PySide6.QtWidgets import QWidget, QMessageBox, QLineEdit, QLabel, QFormLayout, QCompleter
+from PySide6.QtWidgets import QWidget, QMessageBox, QLineEdit, QLabel, QCompleter
 
 from controller.dialog import ScanConfirmDialog
 from model.TaskModel import TaskModel
