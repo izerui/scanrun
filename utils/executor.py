@@ -1,13 +1,12 @@
 # -*- coding: UTF-8 -*-
 import json
 import logging
-from time import sleep
 from typing import Callable
 
 from PySide6.QtCore import QThread, Signal
 from PySide6.QtWidgets import QMessageBox
 from httpx import Response
-from simpleaudio import WaveObject, PlayObject
+from simpleaudio import WaveObject
 
 from utils.request import Request
 
@@ -16,7 +15,6 @@ class ThreadExecutor(object):
 
     def __init__(self):
         super().__init__()
-
 
     def runAsync(self, thread_name: str, new_thread: QThread, callback: Callable = None):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
@@ -34,7 +32,8 @@ class HttpExecutor(object):
         super().__init__()
 
     # 异步执行一个http请求线程
-    def http(self, thread_name: str, new_thread: QThread, response: Callable = None, error: Callable = lambda err: QMessageBox.critical(None, '错误', err['errMsg'])):
+    def http(self, thread_name: str, new_thread: QThread, response: Callable = None,
+             error: Callable = lambda err: QMessageBox.critical(None, '错误', err['errMsg'])):
         if hasattr(self, thread_name) and getattr(self, thread_name).isRunning():
             logging.warn(f'{thread_name} 正在运行...')
             pass
@@ -115,9 +114,10 @@ class GetThread(QThread, HttpInterceptor):
         #     traceback.print_exc(e)
         #     self.error.emit(str(e))
 
+
 class SoundThread(QThread):
 
-    def __init__(self, sound:WaveObject):
+    def __init__(self, sound: WaveObject):
         super().__init__()
         self.sound = sound
         # self.filePathName = os.path.splitext(self.filePath)[0]
@@ -126,8 +126,6 @@ class SoundThread(QThread):
 
     def run(self) -> None:
         try:
-            playObj: PlayObject = self.sound.play()
-            while playObj.is_playing():
-                sleep(0.01)
+            self.sound.play()
         except:
             pass

@@ -17,7 +17,7 @@ from model.ScanModel import ScanModel
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
 from utils.db import ScanTableUnit
-from utils.executor import HttpExecutor, ThreadExecutor
+from utils.executor import HttpExecutor, ThreadExecutor, SoundThread
 
 
 class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
@@ -268,10 +268,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        try:
-            self.errorSound.play()
-        except Exception as e:
-            logging.error(e)
+        self.runAsync('errorSoundThread', SoundThread(self.errorSound))
 
     # 下一步提示
     def nextPrompt(self):
@@ -282,24 +279,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            try:
-                self.unitSound.play()
-            except Exception as e:
-                logging.error(e)
+            self.runAsync('unitSoundThread', SoundThread(self.unitSound))
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            try:
-                self.boxSound.play()
-            except Exception as e:
-                logging.error(e)
+            self.runAsync('boxSoundThread', SoundThread(self.boxSound))
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            try:
-                self.palletSound.play()
-            except Exception as e:
-                logging.error(e)
+            self.runAsync('palletSoundThread', SoundThread(self.palletSound))
 
         self.judge(showUnit, showBox, showPallet)
         if Context.getSettings('scan/auto_code'):
