@@ -76,7 +76,7 @@ class Ui_TaskFrame(object):
         self.pushButton_12.setObjectName(u"pushButton_12")
         self.pushButton_12.setMaximumSize(QSize(16777215, 16777215))
         font = QFont()
-        font.setPointSize(11)
+        font.setPointSize(13)
         self.pushButton_12.setFont(font)
         self.pushButton_12.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton_12.setFocusPolicy(Qt.ClickFocus)
