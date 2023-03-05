@@ -6,6 +6,9 @@ from typing import Any, Tuple
 import librosa
 from PySide6.QtCore import QSettings
 
+import simpleaudio as sa
+from simpleaudio import WaveObject
+
 
 class User:
     __slots__ = ['entCode', 'entName', 'userCode', 'userName']
@@ -31,10 +34,15 @@ class Context(object):
     rootPath = f'{sys.path[0]}{os.sep}'
     mediaPath = f'{rootPath}media{os.sep}'
 
-    errorSoundTulp: Tuple = librosa.load(f'{mediaPath}error.wav')
-    unitSoundTulp: Tuple = librosa.load(f'{mediaPath}unit.wav')
-    boxSoundTulp: Tuple = librosa.load(f'{mediaPath}box.wav')
-    palletSoundTulp: Tuple = librosa.load(f'{mediaPath}pallet.wav')
+    # errorSound: Tuple = librosa.load(f'{mediaPath}error.wav')
+    # unitSound: Tuple = librosa.load(f'{mediaPath}unit.wav')
+    # boxSound: Tuple = librosa.load(f'{mediaPath}box.wav')
+    # palletSound: Tuple = librosa.load(f'{mediaPath}pallet.wav')
+
+    errorSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}error.wav')
+    unitSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}unit.wav')
+    boxSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}box.wav')
+    palletSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}pallet.wav')
 
     @staticmethod
     def setDefaultSettings(key, value):

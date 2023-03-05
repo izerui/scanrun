@@ -12,6 +12,7 @@ import simpleaudio as sa
 from PySide6.QtCore import QThread, Signal
 from PySide6.QtWidgets import QMessageBox
 from httpx import Response
+from simpleaudio import WaveObject
 
 from utils.db import ScanTableUnit
 from utils.request import Request
@@ -122,21 +123,16 @@ class GetThread(QThread, HttpInterceptor):
 
 class SoundThread(QThread):
 
-    def __init__(self, sound_tuple):
+    def __init__(self, sound:WaveObject):
         super().__init__()
-        self.sound_tuple = sound_tuple
+        self.sound = sound
         # self.filePathName = os.path.splitext(self.filePath)[0]
         # self.fileExt = os.path.splitext(self.filePath)[-1]
         # self.system = system()
 
     def run(self) -> None:
-        player = simpleaudio.play_buffer(
-            self.sound_tuple[0],
-            num_channels=1,
-            bytes_per_sample=4,
-            sample_rate=self.sound_tuple[1]
-        )
         try:
-            player.wait_done()
-        except KeyboardInterrupt:
-            player.stop()
+            self.sound.play()
+            self.wait_done()
+        except:
+            pass

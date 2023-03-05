@@ -260,7 +260,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        self.runAsync('errorSoundThread', SoundThread(Context.errorSoundTulp))
+        self.runAsync('errorSoundThread', SoundThread(Context.errorSound))
 
     # 下一步提示
     def nextPrompt(self):
@@ -271,15 +271,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            self.runAsync('unitSoundThread', SoundThread(Context.unitSoundTulp))
+            self.runAsync('unitSoundThread', SoundThread(Context.unitSound))
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            self.runAsync('boxSoundThread', SoundThread(Context.boxSoundTulp))
+            self.runAsync('boxSoundThread', SoundThread(Context.boxSound))
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            self.runAsync('palletSoundThread', SoundThread(Context.palletSoundTulp))
+            self.runAsync('palletSoundThread', SoundThread(Context.palletSound))
 
         self.judge(showUnit, showBox, showPallet)
         if Context.getSettings('scan/auto_code'):
