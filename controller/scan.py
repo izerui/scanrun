@@ -34,7 +34,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             self.boxSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}box.wav')
             self.palletSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}pallet.wav')
         except Exception as e:
-            logging.exception(e)
+            logging.error(e)
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
     #     if event.key() == QtCore.Qt.Key.Key_Return.value:
