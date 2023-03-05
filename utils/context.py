@@ -1,11 +1,7 @@
 # -*- coding: UTF-8 -*-
-import os
-import sys
 from typing import Any
 
-import simpleaudio as sa
 from PySide6.QtCore import QSettings
-from simpleaudio import WaveObject
 
 
 class User:
@@ -28,14 +24,6 @@ class Context(object):
 
     settings: QSettings = QSettings('settings.ini', QSettings.IniFormat)
     settings.setFallbacksEnabled(False)
-
-    rootPath = f'{sys.path[0]}{os.sep}'
-    mediaPath = f'{rootPath}media{os.sep}'
-
-    errorSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}error.wav')
-    unitSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}unit.wav')
-    boxSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}box.wav')
-    palletSound: WaveObject = sa.WaveObject.from_wave_file(f'{mediaPath}pallet.wav')
 
     @staticmethod
     def setDefaultSettings(key, value):

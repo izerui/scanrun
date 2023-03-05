@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
+import os
 import random
 import string
+import sys
 import time
 from itertools import groupby
 from typing import Callable
@@ -24,6 +26,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         super().__init__()
         self.setupUi(self)
         self.continuePrompt = True
+        self.errorSound = f'{sys.path[0]}{os.sep}media{os.sep}error.wav'
+        self.unitSound = f'{sys.path[0]}{os.sep}media{os.sep}unit.wav'
+        self.boxSound = f'{sys.path[0]}{os.sep}media{os.sep}box.wav'
+        self.palletSound = f'{sys.path[0]}{os.sep}media{os.sep}pallet.wav'
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
     #     if event.key() == QtCore.Qt.Key.Key_Return.value:
@@ -258,9 +264,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     def warn(self, message=None):
         if message:
             self.warn_label.setText(message)
-        Context.errorSound.play()
-        # asyncio.run_coroutine_threadsafe(Context.playError())
-        # self.runAsync('errorSoundThread', SoundThread(Context.errorSound))
+        self.errorSound.play()
 
     # 下一步提示
     def nextPrompt(self):
@@ -271,21 +275,15 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
 
         def showUnit(items=None):
             self.tip('请扫描产品')
-            Context.unitSound.play()
-            # asyncio.run(Context.playUnit())
-            # self.runAsync('unitSoundThread', SoundThread(Context.unitSound))
+            self.unitSound.play()
 
         def showBox(items=None):
             self.tip('请扫描箱子')
-            Context.boxSound.play()
-            # asyncio.run(Context.playBox())
-            # self.runAsync('boxSoundThread', SoundThread(Context.boxSound))
+            self.boxSound.play()
 
         def showPallet(items=None):
             self.tip('请扫描卡板')
-            Context.palletSound.play()
-            # asyncio.run(Context.playPallet())
-            # self.runAsync('palletSoundThread', SoundThread(Context.palletSound))
+            self.palletSound.play()
 
         self.judge(showUnit, showBox, showPallet)
         if Context.getSettings('scan/auto_code'):
