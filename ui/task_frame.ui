@@ -117,6 +117,7 @@
            <property name="font">
             <font>
              <pointsize>13</pointsize>
+             <kerning>true</kerning>
             </font>
            </property>
            <property name="cursor">
