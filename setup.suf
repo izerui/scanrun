@@ -103154,7 +103154,7 @@ g_HandleSystemReboot();
 <EnableSilentMode>0</EnableSilentMode>
 <StartInSilentMode>0</StartInSilentMode>
 <VerifyArchive>0</VerifyArchive>
-<UserProfile>0</UserProfile>
+<UserProfile>1</UserProfile>
 <UserPrivilegeLevel>2</UserPrivilegeLevel>
 <MainWindowSettings>
 <ShowBackGroundWindow>0</ShowBackGroundWindow>
@@ -103412,7 +103412,7 @@ g_HandleSystemReboot();
 <SegmentSizeMode>0</SegmentSizeMode>
 <CustomSegSize>0</CustomSegSize>
 <CustomSegSizeMode>0</CustomSegSizeMode>
-<Platform>1</Platform>
+<Platform>0</Platform>
 <CollectLaunchUserInfo>0</CollectLaunchUserInfo>
 <CodeSignSetups>0</CodeSignSetups>
 <CodeSignLocation/>
