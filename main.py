@@ -47,7 +47,10 @@ class MainWindow(QWidget):
         if isDebug:
             logging.basicConfig(format=LOG_FORMAT)
         else:
-            logging.basicConfig(filename=f'{os.environ["HOME"]}{os.sep}scanrun-error.log', level=logging.ERROR, format=LOG_FORMAT)
+            loggerRootPath = f'{os.environ["HOME"]}{os.sep}'
+            if not loggerRootPath:
+                loggerRootPath = ''
+            logging.basicConfig(filename=f'{loggerRootPath}scanrun-error.log', level=logging.ERROR, format=LOG_FORMAT)
 
 
 if __name__ == '__main__':
