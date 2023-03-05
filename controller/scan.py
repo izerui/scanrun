@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import logging
 import os
 import random
 import string
@@ -27,10 +28,13 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         super().__init__()
         self.setupUi(self)
         self.continuePrompt = True
-        self.errorSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}error.wav')
-        self.unitSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}unit.wav')
-        self.boxSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}box.wav')
-        self.palletSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}pallet.wav')
+        try:
+            self.errorSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}error.wav')
+            self.unitSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}unit.wav')
+            self.boxSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}box.wav')
+            self.palletSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}pallet.wav')
+        except Exception as e:
+            logging.exception(e)
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
     #     if event.key() == QtCore.Qt.Key.Key_Return.value:
