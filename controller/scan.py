@@ -3,7 +3,6 @@ import logging
 import os
 import random
 import string
-import sys
 import time
 from itertools import groupby
 from typing import Callable
