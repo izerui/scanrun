@@ -85,7 +85,7 @@ class PostThread(QThread, HttpInterceptor):
         try:
             response = Request.post(self.url, data=self.data, json=self.json, **self.kwargs)
         except Exception as e:
-            logging.exception(e)
+            logging.error(e)
             raise e;
         self.handler(response)
         # except Exception as e:
@@ -107,7 +107,7 @@ class GetThread(QThread, HttpInterceptor):
         try:
             response = Request.get(self.url, params=self.params, **self.kwargs)
         except Exception as e:
-            logging.exception(e)
+            logging.error(e)
             raise e;
         self.handler(response)
         # except Exception as e:
