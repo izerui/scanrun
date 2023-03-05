@@ -33,7 +33,7 @@
 
 * Windows: 
   * 生成exe: `.\build.bat`
-  * 使用winrar生成安装程序: https://xinyuehtx.github.io/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8winrar%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%AE%89%E8%A3%85%E5%8C%85.html
+  * 使用`setupfactory`打开安装文件`setup.suf`，清空文件后，再次添加并执行构建 
 * Mac:
   > * 全部拷贝到命令行回车执行，执行结束之后去tmp.iconset查看十张图片是否生成好
   ```
