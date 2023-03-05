@@ -127,5 +127,5 @@ class SoundThread(QThread):
     def run(self) -> None:
         try:
             self.sound.play()
-        except:
-            pass
+        except Exception as e:
+            logging.error(e)
