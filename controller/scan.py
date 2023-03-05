@@ -7,6 +7,7 @@ import time
 from itertools import groupby
 from typing import Callable
 
+import simpleaudio as sa
 from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
 from PySide6.QtWidgets import QWidget, QTableView
 
@@ -26,10 +27,10 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         super().__init__()
         self.setupUi(self)
         self.continuePrompt = True
-        self.errorSound = f'{sys.path[0]}{os.sep}media{os.sep}error.wav'
-        self.unitSound = f'{sys.path[0]}{os.sep}media{os.sep}unit.wav'
-        self.boxSound = f'{sys.path[0]}{os.sep}media{os.sep}box.wav'
-        self.palletSound = f'{sys.path[0]}{os.sep}media{os.sep}pallet.wav'
+        self.errorSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}error.wav')
+        self.unitSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}unit.wav')
+        self.boxSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}box.wav')
+        self.palletSound = sa.WaveObject.from_wave_file(f'{sys.path[0]}{os.sep}media{os.sep}pallet.wav')
 
     # def keyPressEvent(self, event: PySide6.QtGui.QKeyEvent) -> None:
     #     if event.key() == QtCore.Qt.Key.Key_Return.value:
