@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import logging
+import platform
 
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QApplication, QWidget
@@ -47,10 +48,13 @@ class MainWindow(QWidget):
         if isDebug:
             logging.basicConfig(format=LOG_FORMAT)
         else:
-            loggerRootPath = f'{os.environ["HOME"]}{os.sep}'
-            if not loggerRootPath:
-                loggerRootPath = ''
-            logging.basicConfig(filename=f'{loggerRootPath}scanrun-error.log', level=logging.ERROR, format=LOG_FORMAT)
+            system = platform.system()
+            if system == 'Windows':
+                logging.basicConfig(filename=f'error.log', level=logging.ERROR,
+                                    format=LOG_FORMAT)
+            else:
+                logging.basicConfig(filename=f'{os.environ["HOME"]}{os.sep}scanrun-error.log', level=logging.ERROR,
+                                    format=LOG_FORMAT)
 
 
 if __name__ == '__main__':
