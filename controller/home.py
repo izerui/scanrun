@@ -93,4 +93,4 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
             self.taskFrame.firstPage()
             pass
         elif self.stackedTab.currentIndex == 1:
-            pass
+            self.recordFrame.firstPage()
