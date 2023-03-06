@@ -126,8 +126,8 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
     def resetEdits(self):
         for edit in self.autoCompleterEditors:
             edit.clear()
-            self.firstPage()
-            self.tableView.setFocus()
+        self.firstPage()
+        self.tableView.setFocus()
 
     @Slot()
     def firstPage(self):
