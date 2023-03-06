@@ -59,7 +59,7 @@ class UploadAction(HttpExecutor):
                 'banzuCode': item['banzu_code'],
                 'banzuName': item['banzu_name'],
                 'creator': item['creator'],
-                'creatorName': item['create_time'],
+                'creatorName': item['create_name'],
                 'createTime': item['create_time'],
                 'unitCode': item['unit_code'],
                 'boxCode': item['box_code'],
