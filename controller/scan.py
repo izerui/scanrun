@@ -290,7 +290,8 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             self.runAsync('palletSoundThread', SoundThread(self.palletSound))
 
         self.judge(showUnit, showBox, showPallet)
-        if Context.getSettings('scan/auto_code'):
+        autoCode = Context.getSettings('scan/auto_code')
+        if autoCode and str(autoCode) == 'true':
             ran_str = ''.join(random.sample(string.ascii_letters + string.digits, 8))
             self.scan_code_input.setText(ran_str)
 
