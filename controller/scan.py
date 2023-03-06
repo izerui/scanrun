@@ -9,11 +9,12 @@ from typing import Callable
 
 import simpleaudio as sa
 from PySide6.QtCore import Signal, Slot, QItemSelectionModel, QItemSelection
-from PySide6.QtWidgets import QWidget, QTableView
+from PySide6.QtWidgets import QWidget, QTableView, QMessageBox
 
 from action.upload import UploadAction
 from controller.component import ConfirmMessageBox
 from model.ScanModel import ScanModel
+from model.em import ScanType
 from ui.ui_scan_frame import Ui_ScanFrame
 from utils.context import Context
 from utils.db import ScanTableUnit
@@ -166,7 +167,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             pass
         pass
 
-    def validateCode(self, code) -> bool:
+    def validateCode(self, currentType: ScanType, code) -> bool:
         if not code:
             self.warn()
             return False
@@ -180,11 +181,11 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
             f'select count(0) as exist_pallet_count from {self.scanTableUnit.tableName} where pallet_code = :code',
             {'code': code})
         if exist_unit_count > 0:
-            self.warn('产品码已存在')
+            self.warn(f'{currentType.value["typeName"]}在产品码已存在')
         elif exist_box_count > 0:
-            self.warn('箱码已存在')
+            self.warn(f'{currentType.value["typeName"]}在箱码已存在')
         elif exist_pallet_count > 0:
-            self.warn('卡板码已存在')
+            self.warn(f'{currentType.value["typeName"]}在卡板码已存在')
         else:
             return True
         # 异常后，不需要下一步提示
@@ -194,7 +195,7 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     # 关联装箱
     def correlationBox(self, items: list = None):
         code = self.scan_code_input.text()
-        if not self.validateCode(code):
+        if not self.validateCode(ScanType.box, code):
             return
         for item in items:
             item['box_code'] = code
@@ -203,17 +204,20 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
     # 关联装卡板
     def correlationPallet(self, items: list = None):
         code = self.scan_code_input.text()
-        if not self.validateCode(code):
+        if not self.validateCode(ScanType.pallet, code):
             return
         for item in items:
             item['complete'] = 1
             item['pallet_code'] = code
             self.scanTableUnit.update(item)
+        # 任务数量已足够，提示
+        if int(self.lcd_unit.value()) >= int(self.order_info['taskQuantity']):
+            QMessageBox.information(None, '提示', '扫描任务数量已完成')
 
     # 添加产品
     def insertUnit(self, items: list = None):
         code = self.scan_code_input.text()
-        if not self.validateCode(code):
+        if not self.validateCode(ScanType.unit, code):
             return
         now = int(round(time.time() * 1000))
         # time.strftime('%Y-%m-%d %H:%M%S', time.localtime(now/1000))

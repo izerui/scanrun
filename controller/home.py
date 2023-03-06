@@ -85,3 +85,12 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
     def userInfoResponse(self, result):
         data = result['data']
         Context.user = User(data['entCode'], data['entName'], data['userCode'], data['userName'])
+
+
+    @Slot()
+    def currentTabIndexChanged(self):
+        if self.stackedTab.currentIndex() == 0:
+            self.taskFrame.firstPage()
+            pass
+        elif self.stackedTab.currentIndex == 1:
+            pass

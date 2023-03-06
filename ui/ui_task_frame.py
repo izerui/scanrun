@@ -184,6 +184,10 @@ class Ui_TaskFrame(object):
         self.pushButton_2.clicked.connect(TaskFrame.resetEdits)
         self.pushButton_12.clicked.connect(TaskFrame.openTaskForm)
         self.pushButton.clicked.connect(TaskFrame.firstPage)
+        self.ORDER_DOC_NO.returnPressed.connect(TaskFrame.firstPage)
+        self.CUSTOMER_ORDER_DOC_NO.returnPressed.connect(TaskFrame.firstPage)
+        self.CUSTOMER_MATERIAL.returnPressed.connect(TaskFrame.firstPage)
+        self.CUSTOMER_SERIAL.returnPressed.connect(TaskFrame.firstPage)
 
         QMetaObject.connectSlotsByName(TaskFrame)
     # setupUi

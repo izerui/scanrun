@@ -120,6 +120,7 @@ class Ui_Home(object):
 
         self.retranslateUi(Home)
         self.tabButtonGroup.buttonClicked.connect(Home.tabButtonPressed)
+        self.stackedTab.currentChanged.connect(Home.currentTabIndexChanged)
 
         self.stackedTab.setCurrentIndex(2)
 

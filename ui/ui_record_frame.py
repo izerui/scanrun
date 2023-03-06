@@ -220,6 +220,13 @@ class Ui_RecordFrame(object):
         self.BOX_CODE.textChanged.connect(RecordFrame.completerLineEdit)
         self.ORDER_DOC_NO.textChanged.connect(RecordFrame.completerLineEdit)
         self.UNIT_CODE.textChanged.connect(RecordFrame.completerLineEdit)
+        self.ORDER_DOC_NO.returnPressed.connect(RecordFrame.firstPage)
+        self.CUSTOMER_ORDER_DOC_NO.returnPressed.connect(RecordFrame.firstPage)
+        self.CUSTOMER_MATERIAL.returnPressed.connect(RecordFrame.firstPage)
+        self.CUSTOMER_SERIAL.returnPressed.connect(RecordFrame.firstPage)
+        self.UNIT_CODE.returnPressed.connect(RecordFrame.firstPage)
+        self.BOX_CODE.returnPressed.connect(RecordFrame.firstPage)
+        self.PALLET_CODE.returnPressed.connect(RecordFrame.firstPage)
 
         QMetaObject.connectSlotsByName(RecordFrame)
     # setupUi

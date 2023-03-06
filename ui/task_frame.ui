@@ -349,8 +349,8 @@
    <slot>completerLineEdit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>323</x>
-     <y>37</y>
+     <x>319</x>
+     <y>38</y>
     </hint>
     <hint type="destinationlabel">
      <x>-30</x>
@@ -365,8 +365,8 @@
    <slot>completerLineEdit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>477</x>
-     <y>37</y>
+     <x>471</x>
+     <y>38</y>
     </hint>
     <hint type="destinationlabel">
      <x>-17</x>
@@ -381,8 +381,8 @@
    <slot>completerLineEdit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>631</x>
-     <y>37</y>
+     <x>623</x>
+     <y>38</y>
     </hint>
     <hint type="destinationlabel">
      <x>-29</x>
@@ -397,8 +397,8 @@
    <slot>resetEdits()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>807</x>
-     <y>44</y>
+     <x>799</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>999</x>
@@ -435,6 +435,70 @@
     <hint type="destinationlabel">
      <x>640</x>
      <y>679</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ORDER_DOC_NO</sender>
+   <signal>returnPressed()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>24</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>112</x>
+     <y>-47</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CUSTOMER_ORDER_DOC_NO</sender>
+   <signal>returnPressed()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>265</x>
+     <y>27</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>267</x>
+     <y>-55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CUSTOMER_MATERIAL</sender>
+   <signal>returnPressed()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>415</x>
+     <y>23</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>410</x>
+     <y>-37</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CUSTOMER_SERIAL</sender>
+   <signal>returnPressed()</signal>
+   <receiver>TaskFrame</receiver>
+   <slot>firstPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>565</x>
+     <y>23</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>570</x>
+     <y>-21</y>
     </hint>
    </hints>
   </connection>

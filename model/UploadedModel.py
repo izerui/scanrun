@@ -38,7 +38,7 @@ class UploadedModel(BaseModel):
             {"code": "operaTime", "title": "作业时间", "hidden": True},
             {"code": "recordId", "title": "行号", "hidden": True},
             {"code": "taskCreateTime", "title": "任务创建时间"},
-            {"code": "taskCreator", "title": "任务创建人编码"},
+            {"code": "taskCreator", "title": "任务创建人编码", "hidden": True},
             {"code": "taskCreatorName", "title": "任务创建人"},
             {"code": "unitName", "title": "货品单位"}
         ]

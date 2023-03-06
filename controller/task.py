@@ -26,6 +26,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         self.autoCompleterEditors = [self.ORDER_DOC_NO, self.CUSTOMER_ORDER_DOC_NO, self.CUSTOMER_MATERIAL, self.CUSTOMER_SERIAL]
 
     def loadData(self):
+        self.selRow = None
         reqParam = {"pageIndex": self.paging.pageIndex, "pageSize": self.paging.pageSize, "total": 0, "completedStatus": False}
         if self.ORDER_DOC_NO.text():
             reqParam['saleOrderDocNo'] = self.ORDER_DOC_NO.text()
