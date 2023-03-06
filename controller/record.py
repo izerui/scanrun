@@ -73,7 +73,7 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
 
     # 初始化表单展示页
     def renderFormLabels(self):
-        for i, head in enumerate(UploadedModel(None).originHeads):
+        for i, head in enumerate(UploadedModel(None).heads):
             label = QLabel(self.scrollAreaWidgetContents)
             label.setObjectName(f'form_label_{head["code"]}')
             label.setText(f'{head["title"]}:')
