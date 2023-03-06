@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 import logging
+import os
+import platform
 from typing import Any
 
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
@@ -13,8 +15,14 @@ class DbUnit(object):
     if database.contains(default_database_connection):
         pass
     else:
+        db = 'scan_data.db'
+        system = platform.system()
+        if system == 'Windows':
+            pass
+        else:
+            db = f'{os.environ["HOME"]}{os.sep}scan_data.db'
         database.addDatabase(default_database_connection)
-        database.setDatabaseName('scan_data.db')
+        database.setDatabaseName(db)
         database.setUserName('sa')
         database.setPassword('sa>.yj2025.com!%')
 

@@ -1,10 +1,12 @@
 # -*- coding: UTF-8 -*-
+import json
 import logging
 import os
 import random
 import string
 import time
 from itertools import groupby
+from pathlib import Path
 from typing import Callable
 
 import simpleaudio as sa
@@ -29,10 +31,13 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         self.setupUi(self)
         self.continuePrompt = True
         try:
-            self.errorSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}error.wav')
-            self.unitSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}unit.wav')
-            self.boxSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}box.wav')
-            self.palletSound = sa.WaveObject.from_wave_file(f'{os.getcwd()}{os.sep}media{os.sep}pallet.wav')
+            project_path = os.path.abspath(
+                os.path.join(os.path.dirname(os.path.split(os.path.realpath(__file__))[0]), '.'))
+            QMessageBox.information(None, 's', str(project_path))
+            self.errorSound = sa.WaveObject.from_wave_file(str(Path(project_path) / 'media/error.wav'))
+            self.unitSound = sa.WaveObject.from_wave_file(str(Path(project_path) / 'media/unit.wav'))
+            self.boxSound = sa.WaveObject.from_wave_file(str(Path(project_path) / 'media/box.wav'))
+            self.palletSound = sa.WaveObject.from_wave_file(str(Path(project_path) / 'media/pallet.wav'))
         except Exception as e:
             logging.error(e)
 
