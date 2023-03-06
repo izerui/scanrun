@@ -33,7 +33,6 @@ class ScanFrame(QWidget, Ui_ScanFrame, HttpExecutor, ThreadExecutor):
         try:
             project_path = os.path.abspath(
                 os.path.join(os.path.dirname(os.path.split(os.path.realpath(__file__))[0]), '.'))
-            QMessageBox.information(None, 's', str(project_path))
             self.errorSound = sa.WaveObject.from_wave_file(str(Path(project_path) / 'media/error.wav'))
             self.unitSound = sa.WaveObject.from_wave_file(str(Path(project_path) / 'media/unit.wav'))
             self.boxSound = sa.WaveObject.from_wave_file(str(Path(project_path) / 'media/box.wav'))
