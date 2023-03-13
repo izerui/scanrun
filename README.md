@@ -1,13 +1,13 @@
 # 扫码装箱程序
 
 # 初始化
-1. 初始化 python 虚拟环境: `python -m venv venv`，并切换到当前环境 `source ./venv/bin/activate`。
-2. 安装所有依赖项: `pip install -r requirements.txt`
-3. 运行： `python main.py` 
+1. 修改全局pip源到百度源: `pip config set global.index-url https://mirror.baidu.com/pypi/simple/`
+2. 初始化 python 虚拟环境: `python -m venv venv`，并切换到当前环境 `source ./venv/bin/activate`。
+3. 安装所有依赖项: `pip install -r requirements.txt`
+4. 运行： `python main.py` 
 
 
 # 脚本
-* 修改全局pip源到百度源: `pip config set global.index-url https://mirror.baidu.com/pypi/simple/`
 * 生成`requirements.txt`: `pip freeze > requirements.txt`
 * 通过`requirements.txt`安装依赖: `pip install -r requirements.txt`
 * 执行各个目录中的`build.sh`文件来编译资源文件和ui文件
