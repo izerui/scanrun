@@ -2,22 +2,23 @@
 
 # 初始化
 1. 初始化 python 虚拟环境: `python -m venv venv`，并切换到当前环境 `source ./venv/bin/activate`。
-2. 安装所有依赖项: `pip install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+2. 安装所有依赖项: `pip install -r requirements.txt`
 3. 运行： `python main.py` 
 
 
 # 脚本
+* 修改全局pip源到百度源: `pip config set global.index-url https://mirror.baidu.com/pypi/simple/`
 * 生成`requirements.txt`: `pip freeze > requirements.txt`
-* 通过`requirements.txt`安装依赖: `pip install -r requirements.txt -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* 通过`requirements.txt`安装依赖: `pip install -r requirements.txt`
 * 执行各个目录中的`build.sh`文件来编译资源文件和ui文件
 
 # 已安装依赖列表(不及时更新)
-* PySide6(6.1.3=win7+): `pip install PySide6==6.1.3 -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* httpx: `pip install httpx -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* APScheduler: `pip install APScheduler -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* simpleaudio: `pip install simpleaudio -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* pyinstaller(打包选装): `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
-* 如果使用mac希望发出声音: `pip install PyObjC -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+* PySide6(6.1.3=win7+): `pip install PySide6==6.1.3`
+* httpx: `pip install httpx`
+* APScheduler: `pip install APScheduler`
+* simpleaudio: `pip install simpleaudio`
+* pyinstaller(打包选装): `pip install pyinstaller`
+* 如果使用mac希望发出声音: `pip install PyObjC`
 
 # 配置pycharm第三方工具,如果是vscode只需要安装插件: `Qt for Python`
 * pyside6-designer:
@@ -29,7 +30,7 @@
   > * working directory: `$FileDir$`
 
 # 打包 https://www.jianshu.com/p/e74047f7cc91
-> 需要安装 pyinstaller: `pip install pyinstaller -i http://pypi.douban.com/simple --trusted-host pypi.douban.com`
+> 需要安装 pyinstaller: `pip install pyinstaller`
 
 * Windows: 
   * 生成exe: `.\build.bat`
