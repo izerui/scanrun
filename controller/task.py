@@ -37,7 +37,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
         if self.CUSTOMER_SERIAL.text():
             reqParam['customerCode'] = self.CUSTOMER_SERIAL.text()
         self.http('loadDataThread',
-                  PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/task/list',
+                  PostThread(f'{Context.getSettings("gateway/domain")}/sale-pc/v1/scan/code/task/list',
                              json=reqParam),
                   self.dataResponse
                   )
@@ -102,7 +102,7 @@ class TaskFrame(QWidget, Ui_TaskFrame, HttpExecutor):
             text = edit.text() if edit.text() else ''
             search = {"completedStatus": False, "selectType": edit.objectName(), "selectBoxKey": text}
             self.http('orderDocNoComboxThread',
-                      PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/task/select',
+                      PostThread(f'{Context.getSettings("gateway/domain")}/sale-pc/v1/scan/code/task/select',
                                  json=search), self.orderDocNoComboxResponse)
 
     def orderDocNoComboxResponse(self, result):

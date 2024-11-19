@@ -42,12 +42,11 @@ class LoginWindow(QWidget, Ui_Login, HttpExecutor):
         self.setSubButtonLoading()
         data = {
             'username': self.usernameInput.text(),
-            'password': self.passwordInput.text(),
-            'type': 1
+            'password': self.passwordInput.text()
         }
         self.http(
             'loginThread',
-            PostThread(f'{Context.getSettings("gateway/domain")}/ierp/login', data),
+            PostThread(f'{Context.getSettings("gateway/domain")}/login', json=data),
             self.loginSuccess,
             lambda err: (
                 QMessageBox.critical(None, '错误', err['errMsg']),

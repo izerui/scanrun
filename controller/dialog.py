@@ -19,7 +19,7 @@ class ScanConfirmDialog(QDialog, Ui_TaskForm, HttpExecutor):
     def loadDepts(self):
         self.http(
             'getDeptsThread',
-            PostThread(f'{Context.getSettings("gateway/domain")}/ierp/rbac-pc/department/enabled-list'),
+            PostThread(f'{Context.getSettings("gateway/domain")}/rbac-pc/department/enabled-list'),
             self.deptsResponse
         )
 

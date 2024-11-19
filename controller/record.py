@@ -41,7 +41,7 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
             reqParam['beginOperaDate'] = self.dateRange.begin.date().toString('yyyy-MM-dd')
             reqParam['endOperaDate'] = self.dateRange.end.date().toString('yyyy-MM-dd')
         self.http('loadDataThread',
-                  PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/list',
+                  PostThread(f'{Context.getSettings("gateway/domain")}/sale-pc/v1/scan/code/record/list',
                              json=reqParam),
                   self.dataResponse
                   )
@@ -108,7 +108,7 @@ class RecordFrame(QWidget, Ui_RecordFrame, HttpExecutor):
             text = edit.text() if edit.text() else ''
             search = {"selectType": edit.objectName(), "selectBoxKey": text}
             self.http('orderDocNoComboxThread',
-                      PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/select',
+                      PostThread(f'{Context.getSettings("gateway/domain")}/sale-pc/v1/scan/code/record/select',
                                  json=search), self.orderDocNoComboxResponse)
 
     def orderDocNoComboxResponse(self, result):

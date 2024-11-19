@@ -72,7 +72,7 @@ class UploadAction(HttpExecutor):
 
         self.progressBar.setValue(self.upload_current_finished_count)
         self.http('uploadThread',
-                  PostThread(f'{Context.getSettings("gateway/domain")}/ierp/sale-pc/v1/scan/code/record/insert',
+                  PostThread(f'{Context.getSettings("gateway/domain")}/sale-pc/v1/scan/code/record/insert',
                              json=uploadRequest), self.continueUploadFragment)
 
     # 每个分片上传成功后修改状态并继续下一个分片

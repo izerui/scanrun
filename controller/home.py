@@ -78,7 +78,7 @@ class HomeWindow(QMainWindow, Ui_Home, HttpExecutor):
     def loopGetUserInfo(self):
         self.http(
             'loopGetUserInfoThread',
-            GetThread(f'{Context.getSettings("gateway/domain")}/ierp/v2/user/info/1', postCode='M1200'),
+            GetThread(f'{Context.getSettings("gateway/domain")}/v2/user/info/1', postCode='M1200'),
             self.userInfoResponse
         )
 
