@@ -54,6 +54,7 @@
   * 生成图标: `iconutil -c icns resources/tmp.iconset -o resources/Icon.icns`
   * 生成app: `./build.sh`
 
+
 # qt-designer 使用说明
 * 资源浏览器管理qrc资源
 * 动作编辑器管理toolbar等action
